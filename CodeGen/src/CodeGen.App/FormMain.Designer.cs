@@ -44,7 +44,11 @@
             this.toolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.saveFileDialogProject = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialogProject = new System.Windows.Forms.OpenFileDialog();
+            this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.menuMain.SuspendLayout();
+            this.panelMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuMain
@@ -137,8 +141,18 @@
             // panelMain
             // 
             this.panelMain.BackColor = System.Drawing.SystemColors.Control;
+            this.panelMain.Controls.Add(this.statusStripMain);
             resources.ApplyResources(this.panelMain, "panelMain");
             this.panelMain.Name = "panelMain";
+            // 
+            // openFileDialogProject
+            // 
+            this.openFileDialogProject.FileName = "openFileDialog1";
+            // 
+            // statusStripMain
+            // 
+            resources.ApplyResources(this.statusStripMain, "statusStripMain");
+            this.statusStripMain.Name = "statusStripMain";
             // 
             // FormMain
             // 
@@ -151,6 +165,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();
+            this.panelMain.ResumeLayout(false);
+            this.panelMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,6 +189,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripProjectSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemProjectProperties;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAbout;
+        private System.Windows.Forms.StatusStrip statusStripMain;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogProject;
+        private System.Windows.Forms.OpenFileDialog openFileDialogProject;
 
     }
 }

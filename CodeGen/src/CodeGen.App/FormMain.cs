@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using CodeGen.Domain;
 using CodeGen.Properties;
 
 namespace CodeGen
@@ -6,6 +7,9 @@ namespace CodeGen
     public partial class FormMain : Form
     {
         #region properties
+
+        private Project _activeProject;
+
         #endregion
 
         #region init

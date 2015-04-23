@@ -17,7 +17,10 @@ namespace CodeGen.Domain
         public int Version { get; set; }
 
         [XmlAttribute("Type")]
-        public ServerType Type { get; set; }
+        public DatabaseType Type { get; set; }
+
+        [XmlAttribute("Source")]
+        public SourceCodeType Source { get; set; }
 
         [XmlElement("Description")]
         public string Description { get; set; }
@@ -44,7 +47,7 @@ namespace CodeGen.Domain
         {
             Name = string.Empty;
             Version = 0;
-            Type = ServerType.SqlServer;
+            Type = DatabaseType.SqlServer;
             Description = string.Empty;
             ConnectionString = string.Empty;
             Properties = new List<ProjectProperty>();

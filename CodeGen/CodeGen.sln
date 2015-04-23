@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Library.AccessModel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Library.System", "src\CodeGen.Library.System\CodeGen.Library.System.csproj", "{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Library.Formats", "src\CodeGen.Library.Formats\CodeGen.Library.Formats.csproj", "{74E0C129-FC44-4298-A723-444B2D679566}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74E0C129-FC44-4298-A723-444B2D679566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74E0C129-FC44-4298-A723-444B2D679566}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74E0C129-FC44-4298-A723-444B2D679566}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74E0C129-FC44-4298-A723-444B2D679566}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,5 +58,6 @@ Global
 		{7995572A-42DC-406B-B0C4-2E5645C901A7} = {18597B76-FE2F-4099-8E00-C906918919AF}
 		{07451D36-93F9-4598-8414-BE9269DB06F8} = {A1DE76B3-7ECC-4D83-A1D6-EEB8CB3244BB}
 		{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9} = {A1DE76B3-7ECC-4D83-A1D6-EEB8CB3244BB}
+		{74E0C129-FC44-4298-A723-444B2D679566} = {A1DE76B3-7ECC-4D83-A1D6-EEB8CB3244BB}
 	EndGlobalSection
 EndGlobal

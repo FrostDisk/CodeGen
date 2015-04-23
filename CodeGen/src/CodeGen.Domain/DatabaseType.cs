@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeGen.Domain
 {
-    public enum ServerType
+    public enum DatabaseType
     {
         SqlServer,
         MySql,

@@ -231,6 +231,33 @@
   <data name="&gt;&gt;menuMain.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <metadata name="statusStripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>465, 17</value>
+  </metadata>
+  <data name="statusStripMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 515</value>
+  </data>
+  <data name="statusStripMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>784, 22</value>
+  </data>
+  <data name="statusStripMain.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="statusStripMain.Text" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="&gt;&gt;statusStripMain.Name" xml:space="preserve">
+    <value>statusStripMain</value>
+  </data>
+  <data name="&gt;&gt;statusStripMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statusStripMain.Parent" xml:space="preserve">
+    <value>panelMain</value>
+  </data>
+  <data name="&gt;&gt;statusStripMain.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="panelMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -255,6 +282,12 @@
   <data name="&gt;&gt;panelMain.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="saveFileDialogProject.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>127, 17</value>
+  </metadata>
+  <metadata name="openFileDialogProject.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>294, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -2044,6 +2077,18 @@
   </data>
   <data name="&gt;&gt;toolStripMenuItemAbout.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;saveFileDialogProject.Name" xml:space="preserve">
+    <value>saveFileDialogProject</value>
+  </data>
+  <data name="&gt;&gt;saveFileDialogProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;openFileDialogProject.Name" xml:space="preserve">
+    <value>openFileDialogProject</value>
+  </data>
+  <data name="&gt;&gt;openFileDialogProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormMain</value>

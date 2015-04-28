@@ -64,12 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\BasicProjectProperties.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\BasicProjectProperties.Designer.cs">
-      <DependentUpon>BasicProjectProperties.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Configuration\GlobalSettings.cs" />
     <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,9 +85,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Controls\BasicProjectProperties.resx">
-      <DependentUpon>BasicProjectProperties.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="Utils\ProgramInfo.cs" />
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +124,10 @@
     <None Include="Resources\FrostDisk_about.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeGen.App.Controls\CodeGen.App.Controls.csproj">
+      <Project>{1af25fbc-4d06-4df0-9dec-aeb07c448ed0}</Project>
+      <Name>CodeGen.App.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeGen.Data\CodeGen.Data.csproj">
       <Project>{7995572a-42dc-406b-b0c4-2e5645c901a7}</Project>
       <Name>CodeGen.Data</Name>

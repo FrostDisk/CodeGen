@@ -44,9 +44,9 @@
             this.toolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.saveFileDialogProject = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogProject = new System.Windows.Forms.OpenFileDialog();
-            this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.menuMain.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.SuspendLayout();
@@ -75,6 +75,7 @@
             // 
             this.toolStripMenuItemNewProject.Name = "toolStripMenuItemNewProject";
             resources.ApplyResources(this.toolStripMenuItemNewProject, "toolStripMenuItemNewProject");
+            this.toolStripMenuItemNewProject.Click += new System.EventHandler(this.toolStripMenuItemNewProject_Click);
             // 
             // toolStripMenuItemOpenProject
             // 
@@ -145,14 +146,14 @@
             resources.ApplyResources(this.panelMain, "panelMain");
             this.panelMain.Name = "panelMain";
             // 
-            // openFileDialogProject
-            // 
-            this.openFileDialogProject.FileName = "openFileDialog1";
-            // 
             // statusStripMain
             // 
             resources.ApplyResources(this.statusStripMain, "statusStripMain");
             this.statusStripMain.Name = "statusStripMain";
+            // 
+            // openFileDialogProject
+            // 
+            this.openFileDialogProject.FileName = "openFileDialog1";
             // 
             // FormMain
             // 

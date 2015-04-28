@@ -82,5 +82,23 @@ namespace CodeGen.Properties {
                 this["WindowPositionY"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("GlobalSettings.xml")]
+        public string GlobalSettingsFilename {
+            get {
+                return ((string)(this["GlobalSettingsFilename"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("UntitledProject")]
+        public string DefaultProjectName {
+            get {
+                return ((string)(this["DefaultProjectName"]));
+            }
+        }
     }
 }

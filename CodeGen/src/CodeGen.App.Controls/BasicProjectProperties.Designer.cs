@@ -52,6 +52,7 @@
             // 
             resources.ApplyResources(this.txtProjectName, "txtProjectName");
             this.txtProjectName.Name = "txtProjectName";
+            this.txtProjectName.TextChanged += new System.EventHandler(this.txtProjectName_TextChanged);
             // 
             // txtProjectDescription
             // 

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using CodeGen.Domain;
 using CodeGen.Properties;
 
@@ -32,6 +33,15 @@ namespace CodeGen
         #endregion
 
         #region events
+
+        private void toolStripMenuItemNewProject_Click(object sender, System.EventArgs e)
+        {
+            FormNewProject form = new FormNewProject();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                
+            }
+        }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {

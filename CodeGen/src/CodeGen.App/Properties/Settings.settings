@@ -17,5 +17,11 @@
     <Setting Name="WindowPositionY" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="GlobalSettingsFilename" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">GlobalSettings.xml</Value>
+    </Setting>
+    <Setting Name="DefaultProjectName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">UntitledProject</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

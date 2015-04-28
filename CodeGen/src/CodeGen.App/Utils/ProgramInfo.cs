@@ -18,7 +18,7 @@ namespace CodeGen.Utils
             {
                 if (_currentAssembly == null)
                 {
-                    _currentAssembly = CurrentAssembly;
+                    _currentAssembly = Assembly.GetExecutingAssembly();
                 }
                 return _currentAssembly;
             }

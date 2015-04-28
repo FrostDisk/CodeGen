@@ -28,47 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNewProject));
             this.btnAccept = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.basicProjectProperties1 = new CodeGen.App.Controls.BasicProjectProperties();
+            this.ucBasicProjectProperties = new CodeGen.App.Controls.BasicProjectProperties();
             this.SuspendLayout();
             // 
             // btnAccept
             // 
-            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAccept.Location = new System.Drawing.Point(344, 197);
+            resources.ApplyResources(this.btnAccept, "btnAccept");
             this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(75, 23);
-            this.btnAccept.TabIndex = 4;
-            this.btnAccept.Text = "Accept";
             this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(425, 197);
+            resources.ApplyResources(this.btnCancel, "btnCancel");
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 5;
-            this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // basicProjectProperties1
+            // ucBasicProjectProperties
             // 
-            this.basicProjectProperties1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.basicProjectProperties1.Location = new System.Drawing.Point(12, 12);
-            this.basicProjectProperties1.Name = "basicProjectProperties1";
-            this.basicProjectProperties1.Size = new System.Drawing.Size(488, 179);
-            this.basicProjectProperties1.TabIndex = 6;
+            resources.ApplyResources(this.ucBasicProjectProperties, "ucBasicProjectProperties");
+            this.ucBasicProjectProperties.Name = "ucBasicProjectProperties";
+            this.ucBasicProjectProperties.ProjectDatabaseType = CodeGen.Domain.DatabaseType.SqlServer;
+            this.ucBasicProjectProperties.ProjectDescription = "";
+            this.ucBasicProjectProperties.ProjectLanguage = CodeGen.Domain.Language.CSharp;
+            this.ucBasicProjectProperties.ProjectLocation = "";
+            this.ucBasicProjectProperties.ProjectName = "";
             // 
             // FormNewProject
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AcceptButton = this.btnAccept;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 232);
-            this.Controls.Add(this.basicProjectProperties1);
+            this.CancelButton = this.btnCancel;
+            this.Controls.Add(this.ucBasicProjectProperties);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAccept);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -77,8 +74,6 @@
             this.Name = "FormNewProject";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "New Project";
             this.ResumeLayout(false);
 
         }
@@ -87,6 +82,6 @@
 
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.Button btnCancel;
-        private App.Controls.BasicProjectProperties basicProjectProperties1;
+        private App.Controls.BasicProjectProperties ucBasicProjectProperties;
     }
 }

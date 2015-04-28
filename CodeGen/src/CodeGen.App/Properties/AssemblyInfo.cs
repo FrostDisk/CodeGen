@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CodeGen.App")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("CodeGen")]
+[assembly: AssemblyDescription("FrostDisk Code Generator")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CodeGen.App")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCompany("FrostDisk Chile")]
+[assembly: AssemblyProduct("CodeGen")]
+[assembly: AssemblyCopyright("Copyright FrostDisk© 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

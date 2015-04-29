@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CodeGen.Domain;
 using CodeGen.Utils;
 
 namespace CodeGen
@@ -14,6 +15,9 @@ namespace CodeGen
     public partial class FormNewProject : Form
     {
         #region properties
+
+        public Project Project { get; private set; }
+
         #endregion
 
         #region initialization
@@ -44,7 +48,8 @@ namespace CodeGen
         {
             if (ucBasicProjectProperties.ValidateForm())
             {
-                
+                Project = ucBasicProjectProperties.GetProject();
+                DialogResult = DialogResult.OK;
             }
         }
 

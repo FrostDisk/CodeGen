@@ -41,6 +41,8 @@
             this.btnSelectProjectLocation = new System.Windows.Forms.Button();
             this.folderBrowserSelectProjectLocation = new System.Windows.Forms.FolderBrowserDialog();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
+            this.txtConnectionString = new System.Windows.Forms.TextBox();
+            this.btnGenerateConnectionString = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblProjectName
@@ -116,6 +118,18 @@
             resources.GetString("cmbLanguage.Items2")});
             this.cmbLanguage.Name = "cmbLanguage";
             // 
+            // txtConnectionString
+            // 
+            resources.ApplyResources(this.txtConnectionString, "txtConnectionString");
+            this.txtConnectionString.Name = "txtConnectionString";
+            // 
+            // btnGenerateConnectionString
+            // 
+            resources.ApplyResources(this.btnGenerateConnectionString, "btnGenerateConnectionString");
+            this.btnGenerateConnectionString.Name = "btnGenerateConnectionString";
+            this.btnGenerateConnectionString.UseVisualStyleBackColor = true;
+            this.btnGenerateConnectionString.Click += new System.EventHandler(this.btnGenerateConnectionString_Click);
+            // 
             // BasicProjectProperties
             // 
             resources.ApplyResources(this, "$this");
@@ -129,6 +143,8 @@
             this.Controls.Add(this.txtProjectDescription);
             this.Controls.Add(this.lblDatabaseType);
             this.Controls.Add(this.cmbDatabaseType);
+            this.Controls.Add(this.txtConnectionString);
+            this.Controls.Add(this.btnGenerateConnectionString);
             this.Controls.Add(this.lblLanguage);
             this.Controls.Add(this.cmbLanguage);
             this.Name = "BasicProjectProperties";
@@ -152,5 +168,7 @@
         private System.Windows.Forms.Button btnSelectProjectLocation;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserSelectProjectLocation;
         private System.Windows.Forms.ComboBox cmbLanguage;
+        private System.Windows.Forms.TextBox txtConnectionString;
+        private System.Windows.Forms.Button btnGenerateConnectionString;
     }
 }

@@ -13,5 +13,10 @@ namespace CodeGen.App.Controls
         {
             MessageBox.Show(message, subject, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        public static bool ValidationQuestion(string question, string subject = "Question")
+        {
+            return MessageBox.Show(question, subject, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
     }
 }

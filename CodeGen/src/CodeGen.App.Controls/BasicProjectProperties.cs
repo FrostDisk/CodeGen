@@ -17,28 +17,6 @@ namespace CodeGen.App.Controls
     {
         #region properties
 
-        public string ProjectName
-        {
-            get { return txtProjectName.Text; }
-            set { txtProjectName.Text = value; }
-        }
-
-        public string ProjectLocation
-        {
-            get { return txtProjectLocation.Text; }
-            set { txtProjectLocation.Text = value; }
-        }
-
-        public string ProjectDescription
-        {
-            get { return txtProjectDescription.Text; }
-            set { txtProjectDescription.Text = value; }
-        }
-
-        public DatabaseType ProjectDatabaseType { get; set; }
-
-        public Language ProjectLanguage { get; set; }
-
         public string DefaultProjectLocation { get; set; }
 
         public string DefaultProjectName { get; set; }
@@ -110,19 +88,58 @@ namespace CodeGen.App.Controls
             
         }
 
+        public Project GetProject()
+        {
+            Project project = new Project();
+
+            project.Name = txtProjectName.Text;
+            project.Version = Project.ActiveVersion;
+            project.Type = DatabaseType.SqlServer;
+            project.Description = txtProjectDescription.Text;
+
+
+            return project;
+        }
+
         public bool ValidateForm()
         {
             if (string.IsNullOrWhiteSpace(txtProjectName.Text))
             {
-                MessageBoxHelper.ValidationMessage("You must write a project name");
+                MessageBoxHelper.ValidationMessage("Project name isn't specified");
                 txtProjectName.Focus();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(txtProjectLocation.Text))
             {
-                MessageBoxHelper.ValidationMessage("You must define a project location");
+                MessageBoxHelper.ValidationMessage("Project location isn't specified");
                 txtProjectLocation.Focus();
+                return false;
+            }
+
+            if (cmbDatabaseType.SelectedItem == null)
+            {
+                MessageBoxHelper.ValidationMessage("Database Type isn't specified");
+                cmbDatabaseType.Focus();
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtConnectionString.Text))
+            {
+                MessageBoxHelper.ValidationMessage("Connection string isn't specified");
+                txtConnectionString.Focus();
+                return false;
+            }
+
+            if (cmbLanguage.SelectedItem == null)
+            {
+                MessageBoxHelper.ValidationMessage("Language isn't specified");
+                cmbLanguage.Focus();
+                return false;
+            }
+
+            if (!FolderHelper.IsDirectoryEmpty(txtProjectLocation.Text) && !MessageBoxHelper.ValidationQuestion("Selected directory isn't empty. Are you sure you want the project in the selected location?"))
+            {
                 return false;
             }
 
@@ -148,6 +165,16 @@ namespace CodeGen.App.Controls
             if (folderBrowserSelectProjectLocation.ShowDialog() == DialogResult.OK)
             {
                 txtProjectLocation.Text = folderBrowserSelectProjectLocation.SelectedPath;
+            }
+        }
+
+        private void btnGenerateConnectionString_Click(object sender, EventArgs e)
+        {
+            FormGenerateConnectionString form = new FormGenerateConnectionString();
+
+            if (cmbDatabaseType.SelectedItem != null && form.ShowDialog() == DialogResult.OK)
+            {
+
             }
         }
 

@@ -52,12 +52,10 @@
             // ucBasicProjectProperties
             // 
             resources.ApplyResources(this.ucBasicProjectProperties, "ucBasicProjectProperties");
+            this.ucBasicProjectProperties.DefaultProjectLocation = null;
+            this.ucBasicProjectProperties.DefaultProjectName = null;
+            this.ucBasicProjectProperties.IsLoaded = false;
             this.ucBasicProjectProperties.Name = "ucBasicProjectProperties";
-            this.ucBasicProjectProperties.ProjectDatabaseType = CodeGen.Domain.DatabaseType.SqlServer;
-            this.ucBasicProjectProperties.ProjectDescription = "";
-            this.ucBasicProjectProperties.ProjectLanguage = CodeGen.Domain.Language.CSharp;
-            this.ucBasicProjectProperties.ProjectLocation = "";
-            this.ucBasicProjectProperties.ProjectName = "";
             // 
             // FormNewProject
             // 

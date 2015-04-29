@@ -43,6 +43,9 @@ namespace CodeGen.Domain
         [XmlIgnore]
         public bool IsUnsaved { get; set; }
 
+        [XmlIgnore]
+        public const int ActiveVersion = 1;
+
         public Project()
         {
             Name = string.Empty;

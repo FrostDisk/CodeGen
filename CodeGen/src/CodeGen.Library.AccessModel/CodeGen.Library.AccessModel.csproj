@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDBHelper.cs" />
+    <Compile Include="DatabaseUtils.cs" />
     <Compile Include="ParameterType.cs" />
     <Compile Include="IDBHelper.cs" />
     <Compile Include="ITransaction.cs" />

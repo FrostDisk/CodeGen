@@ -48,6 +48,12 @@
     <Compile Include="BasicProjectProperties.Designer.cs">
       <DependentUpon>BasicProjectProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormGenerateConnectionString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGenerateConnectionString.Designer.cs">
+      <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
+    </Compile>
     <Compile Include="IBaseUserControl.cs" />
     <Compile Include="MessageBoxHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,6 +62,9 @@
   <ItemGroup>
     <EmbeddedResource Include="BasicProjectProperties.resx">
       <DependentUpon>BasicProjectProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGenerateConnectionString.resx">
+      <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +76,9 @@
       <Project>{6caa1a18-1551-472b-8cc1-c6d701e6c2b9}</Project>
       <Name>CodeGen.Library.System</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

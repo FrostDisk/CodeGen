@@ -154,7 +154,7 @@
     <value>92, 3</value>
   </data>
   <data name="txtProjectName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 20</value>
+    <value>364, 20</value>
   </data>
   <data name="txtProjectName.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -181,7 +181,7 @@
     <value>True</value>
   </data>
   <data name="txtProjectDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 74</value>
+    <value>364, 69</value>
   </data>
   <data name="txtProjectDescription.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -232,7 +232,7 @@
     <value>True</value>
   </data>
   <data name="lblDatabaseType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 138</value>
+    <value>8, 133</value>
   </data>
   <data name="lblDatabaseType.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 13</value>
@@ -262,10 +262,10 @@
     <value>SQL Server</value>
   </data>
   <data name="cmbDatabaseType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 135</value>
+    <value>92, 130</value>
   </data>
   <data name="cmbDatabaseType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 21</value>
+    <value>364, 21</value>
   </data>
   <data name="cmbDatabaseType.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -289,7 +289,7 @@
     <value>True</value>
   </data>
   <data name="lblLanguage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 165</value>
+    <value>29, 186</value>
   </data>
   <data name="lblLanguage.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 13</value>
@@ -310,7 +310,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblLanguage.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="lblProjectLocation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -346,7 +346,7 @@
     <value>92, 29</value>
   </data>
   <data name="txtProjectLocation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 20</value>
+    <value>283, 20</value>
   </data>
   <data name="txtProjectLocation.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -367,7 +367,7 @@
     <value>Top, Right</value>
   </data>
   <data name="btnSelectProjectLocation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>344, 29</value>
+    <value>381, 29</value>
   </data>
   <data name="btnSelectProjectLocation.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 20</value>
@@ -406,10 +406,10 @@
     <value>PHP</value>
   </data>
   <data name="cmbLanguage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 162</value>
+    <value>92, 183</value>
   </data>
   <data name="cmbLanguage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>327, 21</value>
+    <value>364, 21</value>
   </data>
   <data name="cmbLanguage.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -424,6 +424,57 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cmbLanguage.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="txtConnectionString.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="txtConnectionString.Location" type="System.Drawing.Point, System.Drawing">
+    <value>92, 157</value>
+  </data>
+  <data name="txtConnectionString.Size" type="System.Drawing.Size, System.Drawing">
+    <value>283, 20</value>
+  </data>
+  <data name="txtConnectionString.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;txtConnectionString.Name" xml:space="preserve">
+    <value>txtConnectionString</value>
+  </data>
+  <data name="&gt;&gt;txtConnectionString.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtConnectionString.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtConnectionString.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="btnGenerateConnectionString.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="btnGenerateConnectionString.Location" type="System.Drawing.Point, System.Drawing">
+    <value>381, 157</value>
+  </data>
+  <data name="btnGenerateConnectionString.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 20</value>
+  </data>
+  <data name="btnGenerateConnectionString.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="btnGenerateConnectionString.Text" xml:space="preserve">
+    <value>Generate</value>
+  </data>
+  <data name="&gt;&gt;btnGenerateConnectionString.Name" xml:space="preserve">
+    <value>btnGenerateConnectionString</value>
+  </data>
+  <data name="&gt;&gt;btnGenerateConnectionString.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnGenerateConnectionString.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnGenerateConnectionString.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -433,7 +484,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>422, 186</value>
+    <value>459, 207</value>
   </data>
   <data name="&gt;&gt;folderBrowserSelectProjectLocation.Name" xml:space="preserve">
     <value>folderBrowserSelectProjectLocation</value>

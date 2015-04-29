@@ -258,6 +258,9 @@
   <data name="cmbDatabaseType.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
+  <data name="cmbDatabaseType.Items" xml:space="preserve">
+    <value>SQL Server</value>
+  </data>
   <data name="cmbDatabaseType.Location" type="System.Drawing.Point, System.Drawing">
     <value>92, 135</value>
   </data>
@@ -392,6 +395,15 @@
   </metadata>
   <data name="cmbLanguage.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
+  </data>
+  <data name="cmbLanguage.Items" xml:space="preserve">
+    <value>C#</value>
+  </data>
+  <data name="cmbLanguage.Items1" xml:space="preserve">
+    <value>C++</value>
+  </data>
+  <data name="cmbLanguage.Items2" xml:space="preserve">
+    <value>PHP</value>
   </data>
   <data name="cmbLanguage.Location" type="System.Drawing.Point, System.Drawing">
     <value>92, 162</value>

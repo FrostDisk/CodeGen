@@ -74,6 +74,8 @@
             resources.ApplyResources(this.cmbDatabaseType, "cmbDatabaseType");
             this.cmbDatabaseType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDatabaseType.FormattingEnabled = true;
+            this.cmbDatabaseType.Items.AddRange(new object[] {
+            resources.GetString("cmbDatabaseType.Items")});
             this.cmbDatabaseType.Name = "cmbDatabaseType";
             // 
             // lblLanguage
@@ -108,6 +110,10 @@
             resources.ApplyResources(this.cmbLanguage, "cmbLanguage");
             this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLanguage.FormattingEnabled = true;
+            this.cmbLanguage.Items.AddRange(new object[] {
+            resources.GetString("cmbLanguage.Items"),
+            resources.GetString("cmbLanguage.Items1"),
+            resources.GetString("cmbLanguage.Items2")});
             this.cmbLanguage.Name = "cmbLanguage";
             // 
             // BasicProjectProperties

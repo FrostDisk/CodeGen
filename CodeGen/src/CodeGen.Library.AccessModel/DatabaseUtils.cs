@@ -16,5 +16,17 @@ namespace CodeGen.Library.AccessModel
 
             return true;
         }
+
+        public static string CreateBasicConnectionString(string dataSource, string userId, string password, string initialCatalog)
+        {
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
+
+            builder.DataSource = dataSource;
+            builder.UserID = userId;
+            builder.Password = password;
+            builder.InitialCatalog = initialCatalog;
+
+            return builder.ConnectionString;
+        }
     }
 }

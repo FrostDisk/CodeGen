@@ -39,7 +39,7 @@ namespace CodeGen
             FormNewProject form = new FormNewProject();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                
+                _activeProject = form.Project;
             }
         }
 

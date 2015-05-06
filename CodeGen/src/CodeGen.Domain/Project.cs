@@ -28,8 +28,8 @@ namespace CodeGen.Domain
         [XmlElement("ConnectionString")]
         public string ConnectionString { get; set; }
 
-        [XmlArray("Properties"), XmlArrayItem("Property")]
-        public List<ProjectProperty> Properties { get; set; }
+        [XmlElement("Properties")]
+        public ProjectProperties Properties { get; set; }
 
         [XmlArray("Entities"), XmlArrayItem("Entity")]
         public List<ProjectEntity> Entities { get; set; }
@@ -53,7 +53,7 @@ namespace CodeGen.Domain
             Type = DatabaseType.SqlServer;
             Description = string.Empty;
             ConnectionString = string.Empty;
-            Properties = new List<ProjectProperty>();
+            Properties = new ProjectProperties();
             Entities = new List<ProjectEntity>();
             SaveLocation = string.Empty;
             IsNew = true;

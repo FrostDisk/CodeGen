@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using CodeGen.App.Controls.Forms;
 using CodeGen.Domain;
 using CodeGen.Library.System.IO;
+using System;
+using System.IO;
+using System.Windows.Forms;
 
 namespace CodeGen.App.Controls
 {
@@ -96,7 +90,8 @@ namespace CodeGen.App.Controls
             project.Version = Project.ActiveVersion;
             project.Type = DatabaseType.SqlServer;
             project.Description = txtProjectDescription.Text;
-
+            project.ConnectionString = txtConnectionString.Text;
+            project.SaveLocation = txtProjectLocation.Text;
 
             return project;
         }

@@ -42,16 +42,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdvancedProjectProperties.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdvancedProjectProperties.Designer.cs">
+      <DependentUpon>AdvancedProjectProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="BasicProjectProperties.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="BasicProjectProperties.Designer.cs">
       <DependentUpon>BasicProjectProperties.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormGenerateConnectionString.cs">
+    <Compile Include="Forms\FormGenerateConnectionString.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormGenerateConnectionString.Designer.cs">
+    <Compile Include="Forms\FormGenerateConnectionString.Designer.cs">
       <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
     </Compile>
     <Compile Include="IBaseUserControl.cs" />
@@ -60,10 +66,13 @@
     <Compile Include="SystemHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AdvancedProjectProperties.resx">
+      <DependentUpon>AdvancedProjectProperties.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BasicProjectProperties.resx">
       <DependentUpon>BasicProjectProperties.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormGenerateConnectionString.resx">
+    <EmbeddedResource Include="Forms\FormGenerateConnectionString.resx">
       <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -72,14 +81,16 @@
       <Project>{cd81c9c1-ad1e-4bb7-be30-eaa7a584a377}</Project>
       <Name>CodeGen.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Library.AccessModel\CodeGen.Library.AccessModel.csproj">
+      <Project>{07451d36-93f9-4598-8414-be9269db06f8}</Project>
+      <Name>CodeGen.Library.AccessModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeGen.Library.System\CodeGen.Library.System.csproj">
       <Project>{6caa1a18-1551-472b-8cc1-c6d701e6c2b9}</Project>
       <Name>CodeGen.Library.System</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Forms\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

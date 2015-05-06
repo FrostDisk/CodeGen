@@ -40,10 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassesProjectProperties.cs" />
+    <Compile Include="DataAccessProjectProperties.cs" />
+    <Compile Include="GeneralProjectProperties.cs" />
     <Compile Include="Language.cs" />
+    <Compile Include="ProceduresProjectProperties.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="ProjectEntity.cs" />
-    <Compile Include="ProjectProperty.cs" />
+    <Compile Include="ProjectProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DatabaseType.cs" />
     <Compile Include="SourceCodeType.cs" />

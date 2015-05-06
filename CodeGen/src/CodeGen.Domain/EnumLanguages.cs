@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeGen.App.Controls
+namespace CodeGen.Domain
 {
-    interface IBaseUserControl : IBaseForm
+    public enum EnumLanguages
     {
-        bool IsLoaded { get; set; }
+        CSharp,
+        CPlusPlus,
+        Php
     }
 }

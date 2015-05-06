@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace CodeGen.App.Controls.Forms
 {
-    public partial class FormGenerateConnectionString : Form
+    public partial class FormGenerateConnectionString : Form, IBaseForm
     {
         #region properties
         #endregion
@@ -27,9 +27,37 @@ namespace CodeGen.App.Controls.Forms
 
         #region methods
 
+        public void LoadLocalVariables()
+        {
+            LoadDatabaseTypes();
+        }
+
+        private void LoadDatabaseTypes()
+        {
+            cmbServerType.DataSource = SystemHelper.GetSupportedTypes().DatabaseTypes;
+            cmbServerType.DisplayMember = "Name";
+            cmbServerType.ValueMember = "Code";
+        }
+
+        private void UpdateDatabaseList()
+        {
+            if(!string.IsNullOrWhiteSpace(txtDataSource.Text)
+                && !string.IsNullOrWhiteSpace(txtUserID.Text)
+                && !string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                cmbDatabaseName.Items.Clear();
+                cmbDatabaseName.Items.AddRange(DatabaseUtils.GetDatabaseList(txtDataSource.Text, txtUserID.Text, txtPassword.Text).ToArray());
+            }
+        }
+
         public string GetConnectionString()
         {
-            return string.Empty;
+            return DatabaseUtils.CreateBasicConnectionString(txtDataSource.Text, txtUserID.Text, txtPassword.Text, (string)cmbDatabaseName.SelectedItem);
+        }
+
+        public bool ValidateForm()
+        {
+            return false;
         }
 
         #endregion

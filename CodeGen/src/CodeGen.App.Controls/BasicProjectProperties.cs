@@ -74,12 +74,16 @@ namespace CodeGen.App.Controls
 
         private void LoadDatabaseTypes()
         {
-            
+            cmbDatabaseType.DataSource = SystemHelper.GetSupportedTypes().DatabaseTypes;
+            cmbDatabaseType.DisplayMember = "Name";
+            cmbDatabaseType.ValueMember = "Code";
         }
 
         private void LoadLanguages()
         {
-            
+            cmbLanguage.DataSource = SystemHelper.GetSupportedTypes().Languages;
+            cmbLanguage.DisplayMember = "Name";
+            cmbLanguage.ValueMember = "Code";
         }
 
         public Project GetProject()
@@ -88,7 +92,7 @@ namespace CodeGen.App.Controls
 
             project.Name = txtProjectName.Text;
             project.Version = Project.ActiveVersion;
-            project.Type = DatabaseType.SqlServer;
+            project.Type = EnumDatabaseTypes.SqlServer;
             project.Description = txtProjectDescription.Text;
             project.ConnectionString = txtConnectionString.Text;
             project.SaveLocation = txtProjectLocation.Text;
@@ -166,6 +170,7 @@ namespace CodeGen.App.Controls
         private void btnGenerateConnectionString_Click(object sender, EventArgs e)
         {
             FormGenerateConnectionString form = new FormGenerateConnectionString();
+            form.LoadLocalVariables();
 
             if (cmbDatabaseType.SelectedItem != null && form.ShowDialog() == DialogResult.OK)
             {

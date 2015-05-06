@@ -17,7 +17,7 @@ namespace CodeGen.Domain
         public int Version { get; set; }
 
         [XmlAttribute("Type")]
-        public DatabaseType Type { get; set; }
+        public EnumDatabaseTypes Type { get; set; }
 
         [XmlAttribute("Source")]
         public SourceCodeType Source { get; set; }
@@ -50,7 +50,7 @@ namespace CodeGen.Domain
         {
             Name = string.Empty;
             Version = 0;
-            Type = DatabaseType.SqlServer;
+            Type = EnumDatabaseTypes.SqlServer;
             Description = string.Empty;
             ConnectionString = string.Empty;
             Properties = new ProjectProperties();

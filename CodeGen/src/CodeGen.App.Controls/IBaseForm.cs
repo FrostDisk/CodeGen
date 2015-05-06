@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeGen.Domain
+namespace CodeGen.App.Controls
 {
-    public enum Language
+    interface IBaseForm
     {
-        CSharp,
-        CPlusPlus,
-        PHP
+        void LoadLocalVariables();
+
+        bool ValidateForm();
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Types>
+  <DatabaseTypes>
+    <Type Name="Sql Server" Code="SqlServer"  Default="true" />
+    <Type Name="MySQL"      Code="MySql"      Library="CodeGen.Plugin.MySql.dll" />
+    <Type Name="PostgreSQL" Code="PostgreSql" Library="CodeGen.Plugin.PostgreSql.dll" />
+    <Type Name="MariaDB"    Code="MariaDb"    Library="CodeGen.Plugin.MariaDb.dll" />
+    <Type Name="Oracle"     Code="Oracle"     Library="CodeGen.Plugin.Oracle.dll" />
+  </DatabaseTypes>
+  <Languages>
+    <Language Name="C#"  Code="CSharp"    Default="true" />
+    <Language Name="C++" Code="CPlusPlus" Library="CodeGen.Plugin.CPlusPlus.dll" />
+    <Language Name="PHP" Code="Php"       Library="CodeGen.Plugin.Php.dll" />
+  </Languages>
+</Types>

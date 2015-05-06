@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace CodeGen.Domain
 {
-    public enum DatabaseType
+    public enum EnumDatabaseTypes
     {
         SqlServer,
         MySql,
-        Postgres,
-        MariaDB,
+        PostgreSQL,
+        MariaDb,
         Oracle
     }
 }

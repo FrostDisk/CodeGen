@@ -1,9 +1,11 @@
-﻿using CodeGen.App.Controls.Forms;
+﻿using CodeGen.App.Controls.Classes;
+using CodeGen.App.Controls.Forms;
 using CodeGen.Data;
 using CodeGen.Domain;
 using CodeGen.Library.System.IO;
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CodeGen.App.Controls
@@ -170,9 +172,15 @@ namespace CodeGen.App.Controls
             FormGenerateConnectionString form = new FormGenerateConnectionString();
             form.LoadLocalVariables();
 
-            if (cmbDatabaseType.SelectedItem != null && form.ShowDialog() == DialogResult.OK)
+            if (cmbDatabaseType.SelectedItem != null)
+            {
+                form.DatabaseType = (DatabaseType)cmbDatabaseType.SelectedItem;
+            }
+
+            if (form.ShowDialog() == DialogResult.OK)
             {
                 txtConnectionString.Text = form.GetConnectionString();
+                cmbDatabaseType.SelectedItem = form.DatabaseType;
             }
         }
 

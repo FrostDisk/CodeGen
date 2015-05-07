@@ -18,5 +18,10 @@ namespace CodeGen.App.Controls
         {
             return MessageBox.Show(question, subject, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
         }
+
+        public static void ProcessException(Exception ex)
+        {
+            MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

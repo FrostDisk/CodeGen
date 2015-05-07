@@ -147,6 +147,7 @@
             // 
             this.toolStripMenuItemAbout.Name = "toolStripMenuItemAbout";
             resources.ApplyResources(this.toolStripMenuItemAbout, "toolStripMenuItemAbout");
+            this.toolStripMenuItemAbout.Click += new System.EventHandler(this.toolStripMenuItemAbout_Click);
             // 
             // panelMain
             // 

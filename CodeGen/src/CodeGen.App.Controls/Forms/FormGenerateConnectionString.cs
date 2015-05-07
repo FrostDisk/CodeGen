@@ -1,4 +1,6 @@
-﻿using CodeGen.Library.AccessModel;
+﻿using CodeGen.App.Controls.Classes;
+using CodeGen.Domain;
+using CodeGen.Library.AccessModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,13 @@ namespace CodeGen.App.Controls.Forms
     public partial class FormGenerateConnectionString : Form, IBaseForm
     {
         #region properties
+
+        public DatabaseType DatabaseType
+        {
+            get { return (DatabaseType)cmbDatabaseType.SelectedItem; }
+            set { cmbDatabaseType.SelectedItem = value; }
+        }
+
         #endregion
 
         #region initialization
@@ -32,11 +41,19 @@ namespace CodeGen.App.Controls.Forms
             LoadDatabaseTypes();
         }
 
+        private void CleanControls()
+        {
+            txtDataSource.Clear();
+            txtUserID.Clear();
+            txtPassword.Clear();
+            cmbDatabaseName.Items.Clear();
+        }
+
         private void LoadDatabaseTypes()
         {
-            cmbServerType.DataSource = SystemHelper.GetSupportedTypes().DatabaseTypes;
-            cmbServerType.DisplayMember = "Name";
-            cmbServerType.ValueMember = "Code";
+            cmbDatabaseType.DataSource = SystemHelper.GetSupportedTypes().DatabaseTypes;
+            cmbDatabaseType.DisplayMember = "Name";
+            cmbDatabaseType.ValueMember = "Code";
         }
 
         private void UpdateDatabaseList()
@@ -57,21 +74,81 @@ namespace CodeGen.App.Controls.Forms
 
         public bool ValidateForm()
         {
-            return false;
+            if(cmbDatabaseType.SelectedItem == null)
+            {
+                MessageBoxHelper.ValidationMessage("Database type isn't specified");
+                return false;
+            }
+
+            if(string.IsNullOrWhiteSpace(txtDataSource.Text))
+            {
+                MessageBoxHelper.ValidationMessage("Data source isn't specified");
+                return false;
+            }
+
+            if(string.IsNullOrWhiteSpace(txtUserID.Text))
+            {
+                MessageBoxHelper.ValidationMessage("User ID isn't specified");
+                return false;
+            }
+
+            if(string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                MessageBoxHelper.ValidationMessage("Password isn't specified");
+                return false;
+            }
+
+            if(cmbDatabaseName.SelectedItem == null)
+            {
+                MessageBoxHelper.ValidationMessage("Database name isn't specified");
+                return false;
+            }
+
+            return true;
         }
 
         #endregion
 
         #region events
 
+        private void cmbDatabaseType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CleanControls();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
+        }
+
         private void cmbDatabaseName_Enter(object sender, EventArgs e)
         {
-
+            try
+            {
+                UpdateDatabaseList();
+            }
+            catch(Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if(ValidateForm())
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
         }
 
         #endregion

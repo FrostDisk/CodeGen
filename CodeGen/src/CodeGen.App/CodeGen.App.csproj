@@ -123,6 +123,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\license_about.txt" />
+    <None Include="license.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\page_white_add.png" />
     <None Include="Resources\FrostDisk_about.png" />
   </ItemGroup>

@@ -29,26 +29,24 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGenerateConnectionString));
-            this.lblServerType = new System.Windows.Forms.Label();
+            this.lblDatabaseType = new System.Windows.Forms.Label();
             this.lblDataSource = new System.Windows.Forms.Label();
             this.lblUserID = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblDatabaseName = new System.Windows.Forms.Label();
-            this.cmbServerType = new System.Windows.Forms.ComboBox();
+            this.cmbDatabaseType = new System.Windows.Forms.ComboBox();
             this.txtDataSource = new System.Windows.Forms.TextBox();
             this.txtUserID = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.cmbDatabaseName = new System.Windows.Forms.ComboBox();
             this.btnAccept = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblServerType
+            // lblDatabaseType
             // 
-            resources.ApplyResources(this.lblServerType, "lblServerType");
-            this.lblServerType.Name = "lblServerType";
+            resources.ApplyResources(this.lblDatabaseType, "lblDatabaseType");
+            this.lblDatabaseType.Name = "lblDatabaseType";
             // 
             // lblDataSource
             // 
@@ -70,12 +68,13 @@
             resources.ApplyResources(this.lblDatabaseName, "lblDatabaseName");
             this.lblDatabaseName.Name = "lblDatabaseName";
             // 
-            // cmbServerType
+            // cmbDatabaseType
             // 
-            resources.ApplyResources(this.cmbServerType, "cmbServerType");
-            this.cmbServerType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbServerType.FormattingEnabled = true;
-            this.cmbServerType.Name = "cmbServerType";
+            resources.ApplyResources(this.cmbDatabaseType, "cmbDatabaseType");
+            this.cmbDatabaseType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDatabaseType.FormattingEnabled = true;
+            this.cmbDatabaseType.Name = "cmbDatabaseType";
+            this.cmbDatabaseType.SelectedIndexChanged += new System.EventHandler(this.cmbDatabaseType_SelectedIndexChanged);
             // 
             // txtDataSource
             // 
@@ -91,6 +90,7 @@
             // 
             resources.ApplyResources(this.txtPassword, "txtPassword");
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // cmbDatabaseName
             // 
@@ -113,56 +113,48 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel
-            // 
-            resources.ApplyResources(this.tableLayoutPanel, "tableLayoutPanel");
-            this.tableLayoutPanel.Controls.Add(this.lblServerType, 0, 0);
-            this.tableLayoutPanel.Controls.Add(this.cmbServerType, 1, 0);
-            this.tableLayoutPanel.Controls.Add(this.lblDataSource, 0, 1);
-            this.tableLayoutPanel.Controls.Add(this.txtDataSource, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.lblUserID, 0, 2);
-            this.tableLayoutPanel.Controls.Add(this.txtUserID, 1, 2);
-            this.tableLayoutPanel.Controls.Add(this.lblPassword, 0, 3);
-            this.tableLayoutPanel.Controls.Add(this.txtPassword, 1, 3);
-            this.tableLayoutPanel.Controls.Add(this.lblDatabaseName, 0, 4);
-            this.tableLayoutPanel.Controls.Add(this.cmbDatabaseName, 1, 4);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            // 
             // FormGenerateConnectionString
             // 
             this.AcceptButton = this.btnAccept;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.Controls.Add(this.tableLayoutPanel);
-            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.lblDatabaseType);
+            this.Controls.Add(this.cmbDatabaseType);
+            this.Controls.Add(this.lblDataSource);
+            this.Controls.Add(this.txtDataSource);
+            this.Controls.Add(this.lblUserID);
+            this.Controls.Add(this.txtUserID);
+            this.Controls.Add(this.lblPassword);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.lblDatabaseName);
+            this.Controls.Add(this.cmbDatabaseName);
             this.Controls.Add(this.btnAccept);
+            this.Controls.Add(this.btnCancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormGenerateConnectionString";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lblServerType;
+        private System.Windows.Forms.Label lblDatabaseType;
         private System.Windows.Forms.Label lblDataSource;
         private System.Windows.Forms.Label lblUserID;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Label lblDatabaseName;
-        private System.Windows.Forms.ComboBox cmbServerType;
+        private System.Windows.Forms.ComboBox cmbDatabaseType;
         private System.Windows.Forms.TextBox txtDataSource;
         private System.Windows.Forms.TextBox txtUserID;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.ComboBox cmbDatabaseName;
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
     }
 }

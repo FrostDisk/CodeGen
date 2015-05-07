@@ -118,48 +118,48 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblServerType.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblDatabaseType.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblServerType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 0</value>
+  <data name="lblDatabaseType.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 15</value>
   </data>
-  <data name="lblServerType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 13</value>
+  <data name="lblDatabaseType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 13</value>
   </data>
-  <data name="lblServerType.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblDatabaseType.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="lblServerType.Text" xml:space="preserve">
-    <value>Server Type:</value>
+  <data name="lblDatabaseType.Text" xml:space="preserve">
+    <value>Database type:</value>
   </data>
-  <data name="&gt;&gt;lblServerType.Name" xml:space="preserve">
-    <value>lblServerType</value>
+  <data name="&gt;&gt;lblDatabaseType.Name" xml:space="preserve">
+    <value>lblDatabaseType</value>
   </data>
-  <data name="&gt;&gt;lblServerType.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblDatabaseType.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblServerType.Parent" xml:space="preserve">
-    <value>tableLayoutPanel</value>
+  <data name="&gt;&gt;lblDatabaseType.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblServerType.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblDatabaseType.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="lblDataSource.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lblDataSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 25</value>
+    <value>29, 42</value>
   </data>
   <data name="lblDataSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 13</value>
+    <value>68, 13</value>
   </data>
   <data name="lblDataSource.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="lblDataSource.Text" xml:space="preserve">
-    <value>Data Source:</value>
+    <value>Data source:</value>
   </data>
   <data name="&gt;&gt;lblDataSource.Name" xml:space="preserve">
     <value>lblDataSource</value>
@@ -168,7 +168,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblDataSource.Parent" xml:space="preserve">
-    <value>tableLayoutPanel</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;lblDataSource.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -177,7 +177,7 @@
     <value>True</value>
   </data>
   <data name="lblUserID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 50</value>
+    <value>51, 68</value>
   </data>
   <data name="lblUserID.Size" type="System.Drawing.Size, System.Drawing">
     <value>46, 13</value>
@@ -195,7 +195,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblUserID.Parent" xml:space="preserve">
-    <value>tableLayoutPanel</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;lblUserID.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -204,7 +204,7 @@
     <value>True</value>
   </data>
   <data name="lblPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 75</value>
+    <value>41, 94</value>
   </data>
   <data name="lblPassword.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 13</value>
@@ -222,7 +222,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblPassword.Parent" xml:space="preserve">
-    <value>tableLayoutPanel</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;lblPassword.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -231,16 +231,16 @@
     <value>True</value>
   </data>
   <data name="lblDatabaseName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 100</value>
+    <value>12, 120</value>
   </data>
   <data name="lblDatabaseName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 13</value>
+    <value>85, 13</value>
   </data>
   <data name="lblDatabaseName.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="lblDatabaseName.Text" xml:space="preserve">
-    <value>Database Name:</value>
+    <value>Database name:</value>
   </data>
   <data name="&gt;&gt;lblDatabaseName.Name" xml:space="preserve">
     <value>lblDatabaseName</value>
@@ -249,44 +249,44 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblDatabaseName.Parent" xml:space="preserve">
-    <value>tableLayoutPanel</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;lblDatabaseName.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cmbServerType.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="cmbDatabaseType.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="cmbServerType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>99, 3</value>
+  <data name="cmbDatabaseType.Location" type="System.Drawing.Point, System.Drawing">
+    <value>103, 12</value>
   </data>
-  <data name="cmbServerType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 21</value>
+  <data name="cmbDatabaseType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 21</value>
   </data>
-  <data name="cmbServerType.TabIndex" type="System.Int32, mscorlib">
+  <data name="cmbDatabaseType.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;cmbServerType.Name" xml:space="preserve">
-    <value>cmbServerType</value>
+  <data name="&gt;&gt;cmbDatabaseType.Name" xml:space="preserve">
+    <value>cmbDatabaseType</value>
   </data>
-  <data name="&gt;&gt;cmbServerType.Type" xml:space="preserve">
+  <data name="&gt;&gt;cmbDatabaseType.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cmbServerType.Parent" xml:space="preserve">
-    <value>tableLayoutPanel</value>
+  <data name="&gt;&gt;cmbDatabaseType.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;cmbServerType.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cmbDatabaseType.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="txtDataSource.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
   <data name="txtDataSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>99, 28</value>
+    <value>103, 39</value>
   </data>
   <data name="txtDataSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 20</value>
+    <value>249, 20</value>
   </data>
   <data name="txtDataSource.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -298,7 +298,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtDataSource.Parent" xml:space="preserve">
-    <value>tableLayoutPanel</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;txtDataSource.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -307,10 +307,10 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="txtUserID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>99, 53</value>
+    <value>103, 65</value>
   </data>
   <data name="txtUserID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 20</value>
+    <value>249, 20</value>
   </data>
   <data name="txtUserID.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -322,7 +322,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtUserID.Parent" xml:space="preserve">
-    <value>tableLayoutPanel</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;txtUserID.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -331,10 +331,10 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="txtPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>99, 78</value>
+    <value>103, 91</value>
   </data>
   <data name="txtPassword.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 20</value>
+    <value>249, 20</value>
   </data>
   <data name="txtPassword.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -346,7 +346,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtPassword.Parent" xml:space="preserve">
-    <value>tableLayoutPanel</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;txtPassword.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -355,10 +355,10 @@
     <value>Top, Left, Right</value>
   </data>
   <data name="cmbDatabaseName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>99, 103</value>
+    <value>103, 117</value>
   </data>
   <data name="cmbDatabaseName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 21</value>
+    <value>249, 21</value>
   </data>
   <data name="cmbDatabaseName.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -370,7 +370,7 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;cmbDatabaseName.Parent" xml:space="preserve">
-    <value>tableLayoutPanel</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;cmbDatabaseName.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -379,7 +379,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="btnAccept.Location" type="System.Drawing.Point, System.Drawing">
-    <value>288, 145</value>
+    <value>196, 143</value>
   </data>
   <data name="btnAccept.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -400,13 +400,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnAccept.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>10</value>
   </data>
   <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>369, 145</value>
+    <value>277, 143</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -427,40 +427,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tableLayoutPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="tableLayoutPanel.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tableLayoutPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="tableLayoutPanel.RowCount" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="tableLayoutPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>432, 127</value>
-  </data>
-  <data name="tableLayoutPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel.Name" xml:space="preserve">
-    <value>tableLayoutPanel</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tableLayoutPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tableLayoutPanel.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="lblServerType" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cmbServerType" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblDataSource" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtDataSource" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblUserID" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtUserID" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblPassword" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtPassword" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblDatabaseName" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cmbDatabaseName" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,22.32143,Percent,77.67857" /&gt;&lt;Rows Styles="Percent,20,Percent,20,Percent,20,Percent,20,Percent,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>11</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -469,7 +436,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>456, 180</value>
+    <value>364, 178</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>

@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CodeGen.Utils;
+using CodeGen.Properties;
 
 namespace CodeGen
 {
@@ -21,7 +22,7 @@ namespace CodeGen
             this.labelVersion.Text = String.Format("Version {0}", ProgramInfo.AssemblyVersion);
             this.labelCopyright.Text = ProgramInfo.AssemblyCopyright;
             this.labelCompanyName.Text = ProgramInfo.AssemblyCompany;
-            this.textBoxDescription.Text = ProgramInfo.AssemblyDescription;
+            this.textBoxDescription.Text = Resources.license_about;
         }
 
         #region Assembly Attribute Accessors

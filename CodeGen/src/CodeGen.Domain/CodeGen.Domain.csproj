@@ -44,8 +44,10 @@
     <Compile Include="DataAccessProjectProperties.cs" />
     <Compile Include="GeneralProjectProperties.cs" />
     <Compile Include="EnumLanguages.cs" />
+    <Compile Include="IProjectBase.cs" />
     <Compile Include="ProceduresProjectProperties.cs" />
     <Compile Include="Project.cs" />
+    <Compile Include="ProjectBase.cs" />
     <Compile Include="ProjectEntity.cs" />
     <Compile Include="ProjectProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

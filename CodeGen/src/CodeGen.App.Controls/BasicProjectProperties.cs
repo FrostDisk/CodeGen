@@ -1,4 +1,5 @@
 ﻿using CodeGen.App.Controls.Forms;
+using CodeGen.Data;
 using CodeGen.Domain;
 using CodeGen.Library.System.IO;
 using System;
@@ -69,7 +70,7 @@ namespace CodeGen.App.Controls
             {
                 txtProjectName.Text = projectName;
             }
-            txtProjectLocation.Text = projectLocation;
+            txtProjectDirectory.Text = projectLocation;
         }
 
         private void LoadDatabaseTypes()
@@ -88,14 +89,11 @@ namespace CodeGen.App.Controls
 
         public Project GetProject()
         {
-            Project project = new Project();
+            Project project = ProjectController.CreateEmptyProject(txtProjectName.Text, txtProjectDirectory.Text);
 
-            project.Name = txtProjectName.Text;
-            project.Version = Project.ActiveVersion;
             project.Type = EnumDatabaseTypes.SqlServer;
             project.Description = txtProjectDescription.Text;
             project.ConnectionString = txtConnectionString.Text;
-            project.SaveLocation = txtProjectLocation.Text;
 
             return project;
         }
@@ -109,10 +107,10 @@ namespace CodeGen.App.Controls
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(txtProjectLocation.Text))
+            if (string.IsNullOrWhiteSpace(txtProjectDirectory.Text))
             {
                 MessageBoxHelper.ValidationMessage("Project location isn't specified");
-                txtProjectLocation.Focus();
+                txtProjectDirectory.Focus();
                 return false;
             }
 
@@ -137,7 +135,7 @@ namespace CodeGen.App.Controls
                 return false;
             }
 
-            if (!FolderHelper.IsDirectoryEmpty(txtProjectLocation.Text) && !MessageBoxHelper.ValidationQuestion("Selected directory isn't empty. Are you sure you want the project in the selected location?"))
+            if (!FolderHelper.IsDirectoryEmpty(txtProjectDirectory.Text) && !MessageBoxHelper.ValidationQuestion("Selected directory isn't empty. Are you sure you want the project in the selected location?"))
             {
                 return false;
             }
@@ -156,14 +154,14 @@ namespace CodeGen.App.Controls
 
         private void btnSelectProjectLocation_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtProjectLocation.Text))
+            if (!string.IsNullOrWhiteSpace(txtProjectDirectory.Text))
             {
-                folderBrowserSelectProjectLocation.SelectedPath = txtProjectLocation.Text;
+                folderBrowserSelectProjectLocation.SelectedPath = txtProjectDirectory.Text;
             }
 
             if (folderBrowserSelectProjectLocation.ShowDialog() == DialogResult.OK)
             {
-                txtProjectLocation.Text = folderBrowserSelectProjectLocation.SelectedPath;
+                txtProjectDirectory.Text = folderBrowserSelectProjectLocation.SelectedPath;
             }
         }
 
@@ -174,7 +172,7 @@ namespace CodeGen.App.Controls
 
             if (cmbDatabaseType.SelectedItem != null && form.ShowDialog() == DialogResult.OK)
             {
-
+                txtConnectionString.Text = form.GetConnectionString();
             }
         }
 

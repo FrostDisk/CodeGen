@@ -309,55 +309,55 @@
   <data name="&gt;&gt;lblLanguage.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="lblProjectLocation.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblProjectDirectory.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblProjectLocation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 33</value>
+  <data name="lblProjectDirectory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 32</value>
   </data>
-  <data name="lblProjectLocation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 13</value>
+  <data name="lblProjectDirectory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 13</value>
   </data>
-  <data name="lblProjectLocation.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblProjectDirectory.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="lblProjectLocation.Text" xml:space="preserve">
-    <value>Project location</value>
+  <data name="lblProjectDirectory.Text" xml:space="preserve">
+    <value>Project folder</value>
   </data>
-  <data name="&gt;&gt;lblProjectLocation.Name" xml:space="preserve">
-    <value>lblProjectLocation</value>
+  <data name="&gt;&gt;lblProjectDirectory.Name" xml:space="preserve">
+    <value>lblProjectDirectory</value>
   </data>
-  <data name="&gt;&gt;lblProjectLocation.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblProjectDirectory.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblProjectLocation.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblProjectDirectory.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblProjectLocation.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblProjectDirectory.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="txtProjectLocation.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="txtProjectDirectory.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="txtProjectLocation.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="txtProjectDirectory.Location" type="System.Drawing.Point, System.Drawing">
     <value>92, 29</value>
   </data>
-  <data name="txtProjectLocation.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="txtProjectDirectory.Size" type="System.Drawing.Size, System.Drawing">
     <value>283, 20</value>
   </data>
-  <data name="txtProjectLocation.TabIndex" type="System.Int32, mscorlib">
+  <data name="txtProjectDirectory.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="&gt;&gt;txtProjectLocation.Name" xml:space="preserve">
-    <value>txtProjectLocation</value>
+  <data name="&gt;&gt;txtProjectDirectory.Name" xml:space="preserve">
+    <value>txtProjectDirectory</value>
   </data>
-  <data name="&gt;&gt;txtProjectLocation.Type" xml:space="preserve">
+  <data name="&gt;&gt;txtProjectDirectory.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtProjectLocation.Parent" xml:space="preserve">
+  <data name="&gt;&gt;txtProjectDirectory.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;txtProjectLocation.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;txtProjectDirectory.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
   <data name="btnSelectProjectLocation.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">

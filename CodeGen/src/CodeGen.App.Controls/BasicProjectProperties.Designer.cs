@@ -36,8 +36,8 @@
             this.lblDatabaseType = new System.Windows.Forms.Label();
             this.cmbDatabaseType = new System.Windows.Forms.ComboBox();
             this.lblLanguage = new System.Windows.Forms.Label();
-            this.lblProjectLocation = new System.Windows.Forms.Label();
-            this.txtProjectLocation = new System.Windows.Forms.TextBox();
+            this.lblProjectDirectory = new System.Windows.Forms.Label();
+            this.txtProjectDirectory = new System.Windows.Forms.TextBox();
             this.btnSelectProjectLocation = new System.Windows.Forms.Button();
             this.folderBrowserSelectProjectLocation = new System.Windows.Forms.FolderBrowserDialog();
             this.cmbLanguage = new System.Windows.Forms.ComboBox();
@@ -85,16 +85,16 @@
             resources.ApplyResources(this.lblLanguage, "lblLanguage");
             this.lblLanguage.Name = "lblLanguage";
             // 
-            // lblProjectLocation
+            // lblProjectDirectory
             // 
-            resources.ApplyResources(this.lblProjectLocation, "lblProjectLocation");
-            this.lblProjectLocation.Name = "lblProjectLocation";
+            resources.ApplyResources(this.lblProjectDirectory, "lblProjectDirectory");
+            this.lblProjectDirectory.Name = "lblProjectDirectory";
             // 
-            // txtProjectLocation
+            // txtProjectDirectory
             // 
-            resources.ApplyResources(this.txtProjectLocation, "txtProjectLocation");
-            this.txtProjectLocation.Name = "txtProjectLocation";
-            this.txtProjectLocation.ReadOnly = true;
+            resources.ApplyResources(this.txtProjectDirectory, "txtProjectDirectory");
+            this.txtProjectDirectory.Name = "txtProjectDirectory";
+            this.txtProjectDirectory.ReadOnly = true;
             // 
             // btnSelectProjectLocation
             // 
@@ -134,8 +134,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lblProjectName);
             this.Controls.Add(this.txtProjectName);
-            this.Controls.Add(this.lblProjectLocation);
-            this.Controls.Add(this.txtProjectLocation);
+            this.Controls.Add(this.lblProjectDirectory);
+            this.Controls.Add(this.txtProjectDirectory);
             this.Controls.Add(this.btnSelectProjectLocation);
             this.Controls.Add(this.lblProjectDescription);
             this.Controls.Add(this.txtProjectDescription);
@@ -161,8 +161,8 @@
         private System.Windows.Forms.Label lblDatabaseType;
         private System.Windows.Forms.ComboBox cmbDatabaseType;
         private System.Windows.Forms.Label lblLanguage;
-        private System.Windows.Forms.Label lblProjectLocation;
-        private System.Windows.Forms.TextBox txtProjectLocation;
+        private System.Windows.Forms.Label lblProjectDirectory;
+        private System.Windows.Forms.TextBox txtProjectDirectory;
         private System.Windows.Forms.Button btnSelectProjectLocation;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserSelectProjectLocation;
         private System.Windows.Forms.ComboBox cmbLanguage;

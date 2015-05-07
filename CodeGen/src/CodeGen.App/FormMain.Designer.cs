@@ -47,6 +47,9 @@
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.saveFileDialogProject = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogProject = new System.Windows.Forms.OpenFileDialog();
+            this.toolStripFileSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemSaveProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemSaveProjectAs = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMain.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +70,9 @@
             this.toolStripMenuItemOpenProject,
             this.toolStripMenuItemCloseProject,
             this.toolStripFileSeparator1,
+            this.toolStripMenuItemSaveProject,
+            this.toolStripMenuItemSaveProjectAs,
+            this.toolStripFileSeparator2,
             this.toolStripMenuItemExit});
             this.toolStripMenuItemFile.Name = "toolStripMenuItemFile";
             resources.ApplyResources(this.toolStripMenuItemFile, "toolStripMenuItemFile");
@@ -81,11 +87,13 @@
             // 
             this.toolStripMenuItemOpenProject.Name = "toolStripMenuItemOpenProject";
             resources.ApplyResources(this.toolStripMenuItemOpenProject, "toolStripMenuItemOpenProject");
+            this.toolStripMenuItemOpenProject.Click += new System.EventHandler(this.toolStripMenuItemOpenProject_Click);
             // 
             // toolStripMenuItemCloseProject
             // 
-            this.toolStripMenuItemCloseProject.Name = "toolStripMenuItemCloseProject";
             resources.ApplyResources(this.toolStripMenuItemCloseProject, "toolStripMenuItemCloseProject");
+            this.toolStripMenuItemCloseProject.Name = "toolStripMenuItemCloseProject";
+            this.toolStripMenuItemCloseProject.Click += new System.EventHandler(this.toolStripMenuItemCloseProject_Click);
             // 
             // toolStripFileSeparator1
             // 
@@ -96,6 +104,7 @@
             // 
             this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
             resources.ApplyResources(this.toolStripMenuItemExit, "toolStripMenuItemExit");
+            this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
             // 
             // toolStripMenuItemProject
             // 
@@ -104,8 +113,8 @@
             this.toolStripMenuItemGenerateStoredProcedure,
             this.toolStripProjectSeparator1,
             this.toolStripMenuItemProjectProperties});
-            this.toolStripMenuItemProject.Name = "toolStripMenuItemProject";
             resources.ApplyResources(this.toolStripMenuItemProject, "toolStripMenuItemProject");
+            this.toolStripMenuItemProject.Name = "toolStripMenuItemProject";
             // 
             // toolStripMenuItemGenerateClass
             // 
@@ -151,9 +160,30 @@
             resources.ApplyResources(this.statusStripMain, "statusStripMain");
             this.statusStripMain.Name = "statusStripMain";
             // 
+            // saveFileDialogProject
+            // 
+            resources.ApplyResources(this.saveFileDialogProject, "saveFileDialogProject");
+            // 
             // openFileDialogProject
             // 
-            this.openFileDialogProject.FileName = "openFileDialog1";
+            resources.ApplyResources(this.openFileDialogProject, "openFileDialogProject");
+            // 
+            // toolStripFileSeparator2
+            // 
+            this.toolStripFileSeparator2.Name = "toolStripFileSeparator2";
+            resources.ApplyResources(this.toolStripFileSeparator2, "toolStripFileSeparator2");
+            // 
+            // toolStripMenuItemSaveProject
+            // 
+            resources.ApplyResources(this.toolStripMenuItemSaveProject, "toolStripMenuItemSaveProject");
+            this.toolStripMenuItemSaveProject.Name = "toolStripMenuItemSaveProject";
+            this.toolStripMenuItemSaveProject.Click += new System.EventHandler(this.toolStripMenuItemSaveProject_Click);
+            // 
+            // toolStripMenuItemSaveProjectAs
+            // 
+            resources.ApplyResources(this.toolStripMenuItemSaveProjectAs, "toolStripMenuItemSaveProjectAs");
+            this.toolStripMenuItemSaveProjectAs.Name = "toolStripMenuItemSaveProjectAs";
+            this.toolStripMenuItemSaveProjectAs.Click += new System.EventHandler(this.toolStripMenuItemSaveProjectAs_Click);
             // 
             // FormMain
             // 
@@ -164,6 +194,7 @@
             this.Controls.Add(this.menuMain);
             this.Name = "FormMain";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();
             this.panelMain.ResumeLayout(false);
@@ -193,6 +224,9 @@
         private System.Windows.Forms.StatusStrip statusStripMain;
         private System.Windows.Forms.SaveFileDialog saveFileDialogProject;
         private System.Windows.Forms.OpenFileDialog openFileDialogProject;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSaveProject;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSaveProjectAs;
+        private System.Windows.Forms.ToolStripSeparator toolStripFileSeparator2;
 
     }
 }

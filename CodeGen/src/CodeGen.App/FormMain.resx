@@ -171,14 +171,14 @@
   <data name="toolStripMenuItemOpenProject.Text" xml:space="preserve">
     <value>&amp;Open Project...</value>
   </data>
-  <data name="toolStripMenuItemCloseProject.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+X</value>
+  <data name="toolStripMenuItemCloseProject.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="toolStripMenuItemCloseProject.Size" type="System.Drawing.Size, System.Drawing">
     <value>195, 22</value>
   </data>
   <data name="toolStripMenuItemCloseProject.Text" xml:space="preserve">
-    <value>&amp;Close Project...</value>
+    <value>&amp;Close Project</value>
   </data>
   <data name="toolStripFileSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>192, 6</value>
@@ -191,6 +191,9 @@
   </data>
   <data name="toolStripMenuItemExit.Text" xml:space="preserve">
     <value>E&amp;xit</value>
+  </data>
+  <data name="toolStripMenuItemProject.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="toolStripMenuItemProject.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 20</value>
@@ -303,9 +306,45 @@
   <metadata name="saveFileDialogProject.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>127, 17</value>
   </metadata>
+  <data name="saveFileDialogProject.Filter" xml:space="preserve">
+    <value>CodeGenerator project file (*.cgproj)|*.cgproj</value>
+  </data>
+  <data name="saveFileDialogProject.Title" xml:space="preserve">
+    <value>Save Project As</value>
+  </data>
   <metadata name="openFileDialogProject.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>294, 17</value>
   </metadata>
+  <data name="openFileDialogProject.Filter" xml:space="preserve">
+    <value>CodeGenerator project file (*.cgproj)|*.cgproj</value>
+  </data>
+  <data name="openFileDialogProject.Title" xml:space="preserve">
+    <value>Open Project</value>
+  </data>
+  <data name="toolStripFileSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 6</value>
+  </data>
+  <data name="toolStripMenuItemSaveProject.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolStripMenuItemSaveProject.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+S</value>
+  </data>
+  <data name="toolStripMenuItemSaveProject.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
+  </data>
+  <data name="toolStripMenuItemSaveProject.Text" xml:space="preserve">
+    <value>&amp;Save Project</value>
+  </data>
+  <data name="toolStripMenuItemSaveProjectAs.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolStripMenuItemSaveProjectAs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>195, 22</value>
+  </data>
+  <data name="toolStripMenuItemSaveProjectAs.Text" xml:space="preserve">
+    <value>Save Project &amp;As...</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -2107,6 +2146,24 @@
   </data>
   <data name="&gt;&gt;openFileDialogProject.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripFileSeparator2.Name" xml:space="preserve">
+    <value>toolStripFileSeparator2</value>
+  </data>
+  <data name="&gt;&gt;toolStripFileSeparator2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemSaveProject.Name" xml:space="preserve">
+    <value>toolStripMenuItemSaveProject</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemSaveProject.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemSaveProjectAs.Name" xml:space="preserve">
+    <value>toolStripMenuItemSaveProjectAs</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemSaveProjectAs.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormMain</value>

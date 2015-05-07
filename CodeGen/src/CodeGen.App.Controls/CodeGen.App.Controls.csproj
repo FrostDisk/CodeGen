@@ -66,6 +66,12 @@
     <Compile Include="IBaseForm.cs" />
     <Compile Include="IBaseUserControl.cs" />
     <Compile Include="MessageBoxHelper.cs" />
+    <Compile Include="ProjectWorkspace.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProjectWorkspace.Designer.cs">
+      <DependentUpon>ProjectWorkspace.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -84,6 +90,9 @@
     <EmbeddedResource Include="Forms\FormGenerateConnectionString.resx">
       <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProjectWorkspace.resx">
+      <DependentUpon>ProjectWorkspace.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -91,6 +100,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeGen.Data\CodeGen.Data.csproj">
+      <Project>{7995572a-42dc-406b-b0c4-2e5645c901a7}</Project>
+      <Name>CodeGen.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeGen.Domain\CodeGen.Domain.csproj">
       <Project>{cd81c9c1-ad1e-4bb7-be30-eaa7a584a377}</Project>
       <Name>CodeGen.Domain</Name>

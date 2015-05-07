@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace CodeGen.Domain
 {
     [XmlRoot("Project"), Serializable]
-    public class Project
+    public class Project : IProjectBase
     {
         [XmlAttribute("Name")]
         public string Name { get; set; }
@@ -38,10 +38,16 @@ namespace CodeGen.Domain
         public string SaveLocation { get; set; }
 
         [XmlIgnore]
+        public string SaveDirectory { get; set; }
+
+        [XmlIgnore]
         public bool IsNew { get; set; }
 
         [XmlIgnore]
         public bool IsUnsaved { get; set; }
+
+        [XmlIgnore]
+        public bool IsValid { get; set; }
 
         [XmlIgnore]
         public const int ActiveVersion = 1;
@@ -56,6 +62,7 @@ namespace CodeGen.Domain
             Properties = new ProjectProperties();
             Entities = new List<ProjectEntity>();
             SaveLocation = string.Empty;
+            SaveDirectory = string.Empty;
             IsNew = true;
             IsUnsaved = true;
         }

@@ -64,6 +64,7 @@ namespace CodeGen.App.Controls
             if (Directory.Exists(projectLocation) && !FolderHelper.IsDirectoryEmpty(projectLocation))
             {
                 GenerateProjectFolder(number + 1);
+                return;
             }
 
             Directory.CreateDirectory(projectLocation);

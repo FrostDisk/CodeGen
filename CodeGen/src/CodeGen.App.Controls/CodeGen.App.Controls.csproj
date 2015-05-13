@@ -63,6 +63,18 @@
     <Compile Include="Forms\FormGenerateConnectionString.Designer.cs">
       <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerateCodeDatabase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GenerateCodeDatabase.Designer.cs">
+      <DependentUpon>GenerateCodeDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerateCodeFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GenerateCodeFile.Designer.cs">
+      <DependentUpon>GenerateCodeFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="IBaseForm.cs" />
     <Compile Include="IBaseUserControl.cs" />
     <Compile Include="MessageBoxHelper.cs" />
@@ -89,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGenerateConnectionString.resx">
       <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerateCodeFile.resx">
+      <DependentUpon>GenerateCodeFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectWorkspace.resx">
       <DependentUpon>ProjectWorkspace.cs</DependentUpon>

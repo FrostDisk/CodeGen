@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Library.Formats", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.App.Controls", "src\CodeGen.App.Controls\CodeGen.App.Controls.csproj", "{1AF25FBC-4D06-4DF0-9DEC-AEB07C448ED0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Plugin.Base", "src\CodeGen.Plugin.Base\CodeGen.Plugin.Base.csproj", "{25CD4C77-2763-4139-A22F-26A589857780}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{1AF25FBC-4D06-4DF0-9DEC-AEB07C448ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1AF25FBC-4D06-4DF0-9DEC-AEB07C448ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1AF25FBC-4D06-4DF0-9DEC-AEB07C448ED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25CD4C77-2763-4139-A22F-26A589857780}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25CD4C77-2763-4139-A22F-26A589857780}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25CD4C77-2763-4139-A22F-26A589857780}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25CD4C77-2763-4139-A22F-26A589857780}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,5 +71,6 @@ Global
 		{07451D36-93F9-4598-8414-BE9269DB06F8} = {A1DE76B3-7ECC-4D83-A1D6-EEB8CB3244BB}
 		{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9} = {A1DE76B3-7ECC-4D83-A1D6-EEB8CB3244BB}
 		{74E0C129-FC44-4298-A723-444B2D679566} = {A1DE76B3-7ECC-4D83-A1D6-EEB8CB3244BB}
+		{25CD4C77-2763-4139-A22F-26A589857780} = {A1DE76B3-7ECC-4D83-A1D6-EEB8CB3244BB}
 	EndGlobalSection
 EndGlobal

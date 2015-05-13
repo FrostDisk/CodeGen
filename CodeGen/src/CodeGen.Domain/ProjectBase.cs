@@ -20,7 +20,7 @@ namespace CodeGen.Domain
         public EnumDatabaseTypes Type { get; set; }
 
         [XmlAttribute("Source")]
-        public SourceCodeType Source { get; set; }
+        public EnumLanguages Source { get; set; }
 
     }
 }

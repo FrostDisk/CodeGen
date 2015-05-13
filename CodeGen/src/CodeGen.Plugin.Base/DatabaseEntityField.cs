@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeGen.Plugin.Base
 {
-    public class DatabaseEntityField
+    public sealed class DatabaseEntityField
     {
         public String ColumnName { get; set; }
 

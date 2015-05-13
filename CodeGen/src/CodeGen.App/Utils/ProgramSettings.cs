@@ -12,6 +12,11 @@ namespace CodeGen.Utils
 {
     public static class ProgramSettings
     {
+        internal static string SettingsFolder
+        {
+            get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), ProgramInfo.AssemblyCompany, ProgramInfo.AssemblyProduct); }
+        }
+
         private static GlobalSettings _loadedGlobalSettings;
 
         public static GlobalSettings GetGlobalSettings()
@@ -22,31 +27,50 @@ namespace CodeGen.Utils
             }
 
             // look-up for the global settings folder, inside /User/Local
-            string settingsFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), ProgramInfo.AssemblyCompany, ProgramInfo.AssemblyProduct);
-            if (!Directory.Exists(settingsFolder))
+            if (!Directory.Exists(SettingsFolder))
             {
-                Directory.CreateDirectory(settingsFolder);
+                Directory.CreateDirectory(SettingsFolder);
                 _loadedGlobalSettings = new GlobalSettings();
                 return _loadedGlobalSettings;
             }
 
             // look-up the settings file
-            string settingsLocation = Path.Combine(settingsFolder, Settings.Default.GlobalSettingsFilename);
-            if (!File.Exists(settingsFolder))
+            string settingsLocation = Path.Combine(SettingsFolder, Settings.Default.GlobalSettingsFilename);
+            if (!File.Exists(settingsLocation))
             {
                 _loadedGlobalSettings = new GlobalSettings();
                 return _loadedGlobalSettings;
             }
 
-            XmlSerializer serializer = new XmlSerializer(typeof(GlobalSettings));
-
-            using (StreamReader reader = new StreamReader(settingsLocation))
+            try
             {
-                _loadedGlobalSettings = serializer.Deserialize(reader) as GlobalSettings;
-                reader.Close();
+                XmlSerializer serializer = new XmlSerializer(typeof (GlobalSettings));
+
+                using (StreamReader reader = new StreamReader(settingsLocation))
+                {
+                    _loadedGlobalSettings = serializer.Deserialize(reader) as GlobalSettings;
+                    reader.Close();
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                _loadedGlobalSettings = new GlobalSettings();
             }
 
             return _loadedGlobalSettings;
+        }
+
+        public static void SaveGlobalSettings()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(GlobalSettings));
+
+            string settingsLocation = Path.Combine(SettingsFolder, Settings.Default.GlobalSettingsFilename);
+
+            using (StreamWriter file = new StreamWriter(settingsLocation))
+            {
+                serializer.Serialize(file, GetGlobalSettings());
+                file.Close();
+            }
         }
     }
 }

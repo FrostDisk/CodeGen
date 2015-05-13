@@ -14,6 +14,6 @@ namespace CodeGen.Domain
 
         EnumDatabaseTypes Type { get; set; }
 
-        SourceCodeType Source { get; set; }
+        EnumLanguages Source { get; set; }
     }
 }

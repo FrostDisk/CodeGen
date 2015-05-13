@@ -14,29 +14,6 @@ namespace CodeGen.Configuration
     public class ProjectSettings
     {
         [XmlIgnore]
-        private string _defaultProjectLocation;
-
-        [XmlElement("DefaultProjectLocation")]
-        public string DefaultProjectLocation
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(_defaultProjectLocation))
-                {
-                    _defaultProjectLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ProgramInfo.AssemblyProduct);
-                }
-
-                if (!Directory.Exists(_defaultProjectLocation))
-                {
-                    Directory.CreateDirectory(_defaultProjectLocation);
-                }
-
-                return _defaultProjectLocation;;
-            }
-            set { _defaultProjectLocation = value; }
-        }
-
-        [XmlIgnore]
         public string _defaultProjectName;
 
         [XmlElement("DefaultProjectName")]

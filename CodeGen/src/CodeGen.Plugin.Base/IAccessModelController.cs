@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace CodeGen.Plugin.Base
 {
-    public interface IAccessModelController
+    public interface IAccessModelController : IPluginBase
     {
+        String DatabaseTypeCode { get; }
+
         Boolean IsLoaded { get; }
 
+        Boolean HaveCustomConnectionStringForm { get; }
+
         Boolean Load(String connectionString);
+
+        String ShowGenerateConnectionStringForm();
 
         List<String> GetTableList();
 

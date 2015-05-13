@@ -21,7 +21,7 @@ namespace CodeGen
 
         #endregion
 
-        #region init
+        #region initialization
 
         public FormMain()
         {
@@ -178,6 +178,11 @@ namespace CodeGen
             }
         }
 
+        private void StartPluginsCheck()
+        {
+            workerPluginsCheck.RunWorkerAsync();
+        }
+
         #endregion
 
         #region events
@@ -191,6 +196,7 @@ namespace CodeGen
         {
             LoadLocalVariables();
             UpdateWindowTitle();
+            StartPluginsCheck();
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -202,6 +208,8 @@ namespace CodeGen
             Settings.Default.WindowPositionY = Location.Y;
 
             Settings.Default.Save();
+
+            ProgramSettings.SaveGlobalSettings();
         }
 
         private void toolStripMenuItemNewProject_Click(object sender, System.EventArgs e)
@@ -262,6 +270,17 @@ namespace CodeGen
             FormAbout form = new FormAbout();
 
             form.ShowDialog();
+        }
+
+        private void workerPluginsCheck_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            PluginsController.UpdatePlugins();
+            PluginsController.CheckExistingPlugins();
+        }
+
+        private void workerPluginsCheck_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+
         }
 
         #endregion

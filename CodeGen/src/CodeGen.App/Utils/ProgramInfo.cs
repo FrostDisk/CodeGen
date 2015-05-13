@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeGen.Utils
 {
@@ -14,14 +9,7 @@ namespace CodeGen.Utils
 
         private static Assembly CurrentAssembly
         {
-            get
-            {
-                if (_currentAssembly == null)
-                {
-                    _currentAssembly = Assembly.GetExecutingAssembly();
-                }
-                return _currentAssembly;
-            }
+            get { return _currentAssembly ?? (_currentAssembly = Assembly.GetExecutingAssembly()); }
         }
 
         public static string AssemblyTitle
@@ -32,7 +20,7 @@ namespace CodeGen.Utils
                 if (attributes.Length > 0)
                 {
                     AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
-                    if (titleAttribute.Title != "")
+                    if (!string.IsNullOrWhiteSpace(titleAttribute.Title))
                     {
                         return titleAttribute.Title;
                     }
@@ -43,10 +31,7 @@ namespace CodeGen.Utils
 
         public static string AssemblyVersion
         {
-            get
-            {
-                return CurrentAssembly.GetName().Version.ToString();
-            }
+            get { return CurrentAssembly.GetName().Version.ToString(); }
         }
 
         public static string AssemblyDescription
@@ -56,7 +41,7 @@ namespace CodeGen.Utils
                 object[] attributes = CurrentAssembly.GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
                 if (attributes.Length == 0)
                 {
-                    return "";
+                    return string.Empty;
                 }
                 return ((AssemblyDescriptionAttribute)attributes[0]).Description;
             }
@@ -69,7 +54,7 @@ namespace CodeGen.Utils
                 object[] attributes = CurrentAssembly.GetCustomAttributes(typeof(AssemblyProductAttribute), false);
                 if (attributes.Length == 0)
                 {
-                    return "";
+                    return string.Empty;
                 }
                 return ((AssemblyProductAttribute)attributes[0]).Product;
             }
@@ -82,7 +67,7 @@ namespace CodeGen.Utils
                 object[] attributes = CurrentAssembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
                 if (attributes.Length == 0)
                 {
-                    return "";
+                    return string.Empty;
                 }
                 return ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
             }
@@ -95,7 +80,7 @@ namespace CodeGen.Utils
                 object[] attributes = CurrentAssembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
                 if (attributes.Length == 0)
                 {
-                    return "";
+                    return string.Empty;
                 }
                 return ((AssemblyCompanyAttribute)attributes[0]).Company;
             }

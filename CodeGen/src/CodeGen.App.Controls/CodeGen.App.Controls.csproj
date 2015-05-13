@@ -57,6 +57,7 @@
     <Compile Include="Classes\DatabaseType.cs" />
     <Compile Include="Classes\LanguageType.cs" />
     <Compile Include="Classes\SupportedTypes.cs" />
+    <Compile Include="CSharpDomainTemplate.cs" />
     <Compile Include="Forms\FormGenerateConnectionString.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +91,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SqlServerController.cs" />
     <Compile Include="SystemHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +132,10 @@
     <ProjectReference Include="..\CodeGen.Library.System\CodeGen.Library.System.csproj">
       <Project>{6caa1a18-1551-472b-8cc1-c6d701e6c2b9}</Project>
       <Name>CodeGen.Library.System</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Plugin.Base\CodeGen.Plugin.Base.csproj">
+      <Project>{25cd4c77-2763-4139-a22f-26a589857780}</Project>
+      <Name>CodeGen.Plugin.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

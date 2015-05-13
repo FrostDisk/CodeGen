@@ -35,6 +35,9 @@
             this.toolStripMenuItemOpenProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemCloseProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripFileSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemSaveProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemSaveProjectAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripFileSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemGenerateClass = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,9 +50,7 @@
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.saveFileDialogProject = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogProject = new System.Windows.Forms.OpenFileDialog();
-            this.toolStripFileSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItemSaveProject = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemSaveProjectAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.workerPluginsCheck = new System.ComponentModel.BackgroundWorker();
             this.menuMain.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.SuspendLayout();
@@ -99,6 +100,23 @@
             // 
             this.toolStripFileSeparator1.Name = "toolStripFileSeparator1";
             resources.ApplyResources(this.toolStripFileSeparator1, "toolStripFileSeparator1");
+            // 
+            // toolStripMenuItemSaveProject
+            // 
+            resources.ApplyResources(this.toolStripMenuItemSaveProject, "toolStripMenuItemSaveProject");
+            this.toolStripMenuItemSaveProject.Name = "toolStripMenuItemSaveProject";
+            this.toolStripMenuItemSaveProject.Click += new System.EventHandler(this.toolStripMenuItemSaveProject_Click);
+            // 
+            // toolStripMenuItemSaveProjectAs
+            // 
+            resources.ApplyResources(this.toolStripMenuItemSaveProjectAs, "toolStripMenuItemSaveProjectAs");
+            this.toolStripMenuItemSaveProjectAs.Name = "toolStripMenuItemSaveProjectAs";
+            this.toolStripMenuItemSaveProjectAs.Click += new System.EventHandler(this.toolStripMenuItemSaveProjectAs_Click);
+            // 
+            // toolStripFileSeparator2
+            // 
+            this.toolStripFileSeparator2.Name = "toolStripFileSeparator2";
+            resources.ApplyResources(this.toolStripFileSeparator2, "toolStripFileSeparator2");
             // 
             // toolStripMenuItemExit
             // 
@@ -169,22 +187,10 @@
             // 
             resources.ApplyResources(this.openFileDialogProject, "openFileDialogProject");
             // 
-            // toolStripFileSeparator2
+            // workerPluginsCheck
             // 
-            this.toolStripFileSeparator2.Name = "toolStripFileSeparator2";
-            resources.ApplyResources(this.toolStripFileSeparator2, "toolStripFileSeparator2");
-            // 
-            // toolStripMenuItemSaveProject
-            // 
-            resources.ApplyResources(this.toolStripMenuItemSaveProject, "toolStripMenuItemSaveProject");
-            this.toolStripMenuItemSaveProject.Name = "toolStripMenuItemSaveProject";
-            this.toolStripMenuItemSaveProject.Click += new System.EventHandler(this.toolStripMenuItemSaveProject_Click);
-            // 
-            // toolStripMenuItemSaveProjectAs
-            // 
-            resources.ApplyResources(this.toolStripMenuItemSaveProjectAs, "toolStripMenuItemSaveProjectAs");
-            this.toolStripMenuItemSaveProjectAs.Name = "toolStripMenuItemSaveProjectAs";
-            this.toolStripMenuItemSaveProjectAs.Click += new System.EventHandler(this.toolStripMenuItemSaveProjectAs_Click);
+            this.workerPluginsCheck.DoWork += new System.ComponentModel.DoWorkEventHandler(this.workerPluginsCheck_DoWork);
+            this.workerPluginsCheck.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.workerPluginsCheck_RunWorkerCompleted);
             // 
             // FormMain
             // 
@@ -228,6 +234,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSaveProject;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSaveProjectAs;
         private System.Windows.Forms.ToolStripSeparator toolStripFileSeparator2;
+        private System.ComponentModel.BackgroundWorker workerPluginsCheck;
 
     }
 }

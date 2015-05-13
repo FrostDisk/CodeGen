@@ -103,10 +103,6 @@
             this.btnSelectProjectLocation.UseVisualStyleBackColor = true;
             this.btnSelectProjectLocation.Click += new System.EventHandler(this.btnSelectProjectLocation_Click);
             // 
-            // folderBrowserSelectProjectLocation
-            // 
-            this.folderBrowserSelectProjectLocation.RootFolder = System.Environment.SpecialFolder.MyDocuments;
-            // 
             // cmbLanguage
             // 
             resources.ApplyResources(this.cmbLanguage, "cmbLanguage");

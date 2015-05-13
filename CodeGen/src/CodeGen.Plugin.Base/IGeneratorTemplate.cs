@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace CodeGen.Plugin.Base
 {
-    public interface IGeneratorTemplate
+    public interface IGeneratorTemplate : IPluginBase
     {
-        string Name { get; }
+        String LanguageCode { get; }
 
-        bool HaveOptions { get; }
+        String FileExtension { get; }
+
+        Boolean HaveOptions { get; }
 
         void ShowOptionsForm();
 
-        
+        String GenerateCode(DatabaseEntity entity);
     }
 }

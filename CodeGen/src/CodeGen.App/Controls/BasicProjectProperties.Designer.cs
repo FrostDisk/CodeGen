@@ -1,4 +1,4 @@
-﻿namespace CodeGen.App.Controls
+﻿namespace CodeGen.Controls
 {
     partial class BasicProjectProperties
     {
@@ -35,12 +35,10 @@
             this.lblProjectDescription = new System.Windows.Forms.Label();
             this.lblDatabaseType = new System.Windows.Forms.Label();
             this.cmbDatabaseType = new System.Windows.Forms.ComboBox();
-            this.lblLanguage = new System.Windows.Forms.Label();
             this.lblProjectDirectory = new System.Windows.Forms.Label();
             this.txtProjectDirectory = new System.Windows.Forms.TextBox();
             this.btnSelectProjectLocation = new System.Windows.Forms.Button();
             this.folderBrowserSelectProjectLocation = new System.Windows.Forms.FolderBrowserDialog();
-            this.cmbLanguage = new System.Windows.Forms.ComboBox();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.btnGenerateConnectionString = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -80,11 +78,6 @@
             this.cmbDatabaseType.Name = "cmbDatabaseType";
             this.cmbDatabaseType.ValueMember = "Code";
             // 
-            // lblLanguage
-            // 
-            resources.ApplyResources(this.lblLanguage, "lblLanguage");
-            this.lblLanguage.Name = "lblLanguage";
-            // 
             // lblProjectDirectory
             // 
             resources.ApplyResources(this.lblProjectDirectory, "lblProjectDirectory");
@@ -102,15 +95,6 @@
             this.btnSelectProjectLocation.Name = "btnSelectProjectLocation";
             this.btnSelectProjectLocation.UseVisualStyleBackColor = true;
             this.btnSelectProjectLocation.Click += new System.EventHandler(this.btnSelectProjectLocation_Click);
-            // 
-            // cmbLanguage
-            // 
-            resources.ApplyResources(this.cmbLanguage, "cmbLanguage");
-            this.cmbLanguage.DisplayMember = "Nombre";
-            this.cmbLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLanguage.FormattingEnabled = true;
-            this.cmbLanguage.Name = "cmbLanguage";
-            this.cmbLanguage.ValueMember = "Code";
             // 
             // txtConnectionString
             // 
@@ -139,8 +123,6 @@
             this.Controls.Add(this.cmbDatabaseType);
             this.Controls.Add(this.txtConnectionString);
             this.Controls.Add(this.btnGenerateConnectionString);
-            this.Controls.Add(this.lblLanguage);
-            this.Controls.Add(this.cmbLanguage);
             this.Name = "BasicProjectProperties";
             this.Load += new System.EventHandler(this.BasicProjectProperties_Load);
             this.ResumeLayout(false);
@@ -156,12 +138,10 @@
         private System.Windows.Forms.Label lblProjectDescription;
         private System.Windows.Forms.Label lblDatabaseType;
         private System.Windows.Forms.ComboBox cmbDatabaseType;
-        private System.Windows.Forms.Label lblLanguage;
         private System.Windows.Forms.Label lblProjectDirectory;
         private System.Windows.Forms.TextBox txtProjectDirectory;
         private System.Windows.Forms.Button btnSelectProjectLocation;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserSelectProjectLocation;
-        private System.Windows.Forms.ComboBox cmbLanguage;
         private System.Windows.Forms.TextBox txtConnectionString;
         private System.Windows.Forms.Button btnGenerateConnectionString;
     }

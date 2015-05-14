@@ -1,14 +1,14 @@
-﻿using CodeGen.App.Controls.Classes;
-using CodeGen.App.Controls.Forms;
+﻿using System;
+using System.IO;
+using System.Windows.Forms;
+using CodeGen.Core;
 using CodeGen.Data;
 using CodeGen.Domain;
 using CodeGen.Library.System.IO;
-using System;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
+using CodeGen.Plugin.Base;
+using CodeGen.Utils;
 
-namespace CodeGen.App.Controls
+namespace CodeGen.Controls
 {
     public partial class BasicProjectProperties : UserControl, IBaseUserControl
     {
@@ -51,7 +51,6 @@ namespace CodeGen.App.Controls
 
             GenerateProjectFolder();
             LoadDatabaseTypes();
-            LoadLanguages();
 
             IsLoaded = true;
         }
@@ -78,23 +77,23 @@ namespace CodeGen.App.Controls
 
         private void LoadDatabaseTypes()
         {
-            cmbDatabaseType.DataSource = SystemHelper.GetSupportedTypes().DatabaseTypes;
+            cmbDatabaseType.DataSource = PluginsManager.GetDatabaseTypes();
             cmbDatabaseType.DisplayMember = "Name";
-            cmbDatabaseType.ValueMember = "Code";
-        }
-
-        private void LoadLanguages()
-        {
-            cmbLanguage.DataSource = SystemHelper.GetSupportedTypes().Languages;
-            cmbLanguage.DisplayMember = "Name";
-            cmbLanguage.ValueMember = "Code";
+            cmbDatabaseType.ValueMember = "Name";
         }
 
         public Project GetProject()
         {
             Project project = ProjectController.CreateEmptyProject(txtProjectName.Text, txtProjectDirectory.Text);
 
-            project.Type = EnumDatabaseTypes.SqlServer;
+            SupportedType item = (SupportedType) cmbDatabaseType.SelectedItem;
+
+            project.Type = PluginsManager.GetDataBaseType(item);
+            project.Plugin = new ProjectPlugin
+            {
+                Assembly = item.Assembly,
+                Type = item.Type
+            };
             project.Description = txtProjectDescription.Text;
             project.ConnectionString = txtConnectionString.Text;
 
@@ -131,13 +130,6 @@ namespace CodeGen.App.Controls
                 return false;
             }
 
-            if (cmbLanguage.SelectedItem == null)
-            {
-                MessageBoxHelper.ValidationMessage("Language isn't specified");
-                cmbLanguage.Focus();
-                return false;
-            }
-
             if (!FolderHelper.IsDirectoryEmpty(txtProjectDirectory.Text) && !MessageBoxHelper.ValidationQuestion("Selected directory isn't empty. Are you sure you want the project in the selected location?"))
             {
                 return false;
@@ -170,18 +162,18 @@ namespace CodeGen.App.Controls
 
         private void btnGenerateConnectionString_Click(object sender, EventArgs e)
         {
-            FormGenerateConnectionString form = new FormGenerateConnectionString();
-            form.LoadLocalVariables();
-
-            if (cmbDatabaseType.SelectedItem != null)
+            var item = cmbDatabaseType.SelectedItem as SupportedType;
+            if (item != null)
             {
-                form.DatabaseType = (DatabaseType)cmbDatabaseType.SelectedItem;
-            }
-
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                txtConnectionString.Text = form.GetConnectionString();
-                cmbDatabaseType.SelectedItem = form.DatabaseType;
+                var plugin = item.Item as IAccessModelController;
+                if (plugin != null)
+                {
+                    string connectionString;
+                    if (plugin.ShowGenerateConnectionStringForm(out connectionString))
+                    {
+                        txtConnectionString.Text = connectionString;
+                    }
+                }
             }
         }
 

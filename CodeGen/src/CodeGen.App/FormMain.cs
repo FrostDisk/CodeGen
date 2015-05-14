@@ -1,10 +1,10 @@
-﻿using CodeGen.App.Controls;
-using CodeGen.Domain;
+﻿using CodeGen.Domain;
 using CodeGen.Data;
 using CodeGen.Properties;
 using System;
 using System.IO;
 using System.Windows.Forms;
+using CodeGen.Controls;
 using CodeGen.Utils;
 
 namespace CodeGen
@@ -217,6 +217,8 @@ namespace CodeGen
             SaveAndCloseProject(false);
 
             FormNewProject form = new FormNewProject();
+            form.LoadLocalVariables();
+
             if (form.ShowDialog() == DialogResult.OK)
             {
                 _activeProject = form.Project;
@@ -265,6 +267,16 @@ namespace CodeGen
             SaveAndCloseProject(true);
         }
 
+        private void toolStripMenuItemGenerateClass_Click(object sender, EventArgs e)
+        {
+            _activeControl.LoadGenerator<GenerateCodeFile>();
+        }
+
+        private void toolStripMenuItemGenerateStoredProcedure_Click(object sender, EventArgs e)
+        {
+            _activeControl.LoadGenerator<GenerateCodeDatabase>();
+        }
+
         private void toolStripMenuItemAbout_Click(object sender, EventArgs e)
         {
             FormAbout form = new FormAbout();
@@ -274,8 +286,8 @@ namespace CodeGen
 
         private void workerPluginsCheck_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            PluginsController.UpdatePlugins();
-            PluginsController.CheckExistingPlugins();
+            PluginsManager.UpdatePluginList();
+            PluginsManager.CheckExistingPlugins();
         }
 
         private void workerPluginsCheck_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)

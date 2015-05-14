@@ -118,93 +118,66 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblDatabaseType.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblServerName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblDatabaseType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 15</value>
+  <data name="lblServerName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 9</value>
   </data>
-  <data name="lblDatabaseType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 13</value>
+  <data name="lblServerName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 13</value>
   </data>
-  <data name="lblDatabaseType.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lblDatabaseType.Text" xml:space="preserve">
-    <value>Database type:</value>
-  </data>
-  <data name="&gt;&gt;lblDatabaseType.Name" xml:space="preserve">
-    <value>lblDatabaseType</value>
-  </data>
-  <data name="&gt;&gt;lblDatabaseType.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDatabaseType.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblDatabaseType.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lblDataSource.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblDataSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>29, 42</value>
-  </data>
-  <data name="lblDataSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 13</value>
-  </data>
-  <data name="lblDataSource.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblServerName.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="lblDataSource.Text" xml:space="preserve">
-    <value>Data source:</value>
+  <data name="lblServerName.Text" xml:space="preserve">
+    <value>Server name:</value>
   </data>
-  <data name="&gt;&gt;lblDataSource.Name" xml:space="preserve">
-    <value>lblDataSource</value>
+  <data name="&gt;&gt;lblServerName.Name" xml:space="preserve">
+    <value>lblServerName</value>
   </data>
-  <data name="&gt;&gt;lblDataSource.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblServerName.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblDataSource.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblServerName.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblDataSource.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;lblServerName.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="lblUserID.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblLogin.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblUserID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>51, 68</value>
+  <data name="lblLogin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 87</value>
   </data>
-  <data name="lblUserID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 13</value>
+  <data name="lblLogin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 13</value>
   </data>
-  <data name="lblUserID.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblLogin.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="lblUserID.Text" xml:space="preserve">
-    <value>User ID:</value>
+  <data name="lblLogin.Text" xml:space="preserve">
+    <value>Login:</value>
   </data>
-  <data name="&gt;&gt;lblUserID.Name" xml:space="preserve">
-    <value>lblUserID</value>
+  <data name="&gt;&gt;lblLogin.Name" xml:space="preserve">
+    <value>lblLogin</value>
   </data>
-  <data name="&gt;&gt;lblUserID.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblLogin.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblUserID.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblLogin.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblUserID.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblLogin.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
   <data name="lblPassword.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lblPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>41, 94</value>
+    <value>12, 113</value>
   </data>
   <data name="lblPassword.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 13</value>
@@ -227,114 +200,96 @@
   <data name="&gt;&gt;lblPassword.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="lblDatabaseName.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblDatabase.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblDatabaseName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 120</value>
+  <data name="lblDatabase.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 139</value>
   </data>
-  <data name="lblDatabaseName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 13</value>
+  <data name="lblDatabase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>56, 13</value>
   </data>
-  <data name="lblDatabaseName.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblDatabase.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="lblDatabaseName.Text" xml:space="preserve">
-    <value>Database name:</value>
+  <data name="lblDatabase.Text" xml:space="preserve">
+    <value>Database:</value>
   </data>
-  <data name="&gt;&gt;lblDatabaseName.Name" xml:space="preserve">
-    <value>lblDatabaseName</value>
+  <data name="&gt;&gt;lblDatabase.Name" xml:space="preserve">
+    <value>lblDatabase</value>
   </data>
-  <data name="&gt;&gt;lblDatabaseName.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblDatabase.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblDatabaseName.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblDatabase.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblDatabaseName.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblDatabase.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cmbDatabaseType.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="txtServerName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="cmbDatabaseType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 12</value>
+  <data name="txtServerName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 6</value>
   </data>
-  <data name="cmbDatabaseType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 21</value>
+  <data name="txtServerName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>253, 20</value>
   </data>
-  <data name="cmbDatabaseType.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;cmbDatabaseType.Name" xml:space="preserve">
-    <value>cmbDatabaseType</value>
-  </data>
-  <data name="&gt;&gt;cmbDatabaseType.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmbDatabaseType.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cmbDatabaseType.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtDataSource.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="txtDataSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 39</value>
-  </data>
-  <data name="txtDataSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 20</value>
-  </data>
-  <data name="txtDataSource.TabIndex" type="System.Int32, mscorlib">
+  <data name="txtServerName.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;txtDataSource.Name" xml:space="preserve">
-    <value>txtDataSource</value>
+  <data name="&gt;&gt;txtServerName.Name" xml:space="preserve">
+    <value>txtServerName</value>
   </data>
-  <data name="&gt;&gt;txtDataSource.Type" xml:space="preserve">
+  <data name="&gt;&gt;txtServerName.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtDataSource.Parent" xml:space="preserve">
+  <data name="&gt;&gt;txtServerName.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;txtDataSource.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;txtServerName.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="txtUserID.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="txtLogin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="txtUserID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 65</value>
+  <data name="txtLogin.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="txtUserID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 20</value>
+  <data name="txtLogin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 84</value>
   </data>
-  <data name="txtUserID.TabIndex" type="System.Int32, mscorlib">
+  <data name="txtLogin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>253, 20</value>
+  </data>
+  <data name="txtLogin.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;txtUserID.Name" xml:space="preserve">
-    <value>txtUserID</value>
+  <data name="&gt;&gt;txtLogin.Name" xml:space="preserve">
+    <value>txtLogin</value>
   </data>
-  <data name="&gt;&gt;txtUserID.Type" xml:space="preserve">
+  <data name="&gt;&gt;txtLogin.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtUserID.Parent" xml:space="preserve">
+  <data name="&gt;&gt;txtLogin.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;txtUserID.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;txtLogin.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
   <data name="txtPassword.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
+  <data name="txtPassword.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="txtPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 91</value>
+    <value>99, 110</value>
   </data>
   <data name="txtPassword.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 20</value>
+    <value>253, 20</value>
   </data>
   <data name="txtPassword.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -351,35 +306,35 @@
   <data name="&gt;&gt;txtPassword.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="cmbDatabaseName.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="cmbDatabase.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="cmbDatabaseName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 117</value>
+  <data name="cmbDatabase.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 136</value>
   </data>
-  <data name="cmbDatabaseName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>249, 21</value>
+  <data name="cmbDatabase.Size" type="System.Drawing.Size, System.Drawing">
+    <value>253, 21</value>
   </data>
-  <data name="cmbDatabaseName.TabIndex" type="System.Int32, mscorlib">
+  <data name="cmbDatabase.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="&gt;&gt;cmbDatabaseName.Name" xml:space="preserve">
-    <value>cmbDatabaseName</value>
+  <data name="&gt;&gt;cmbDatabase.Name" xml:space="preserve">
+    <value>cmbDatabase</value>
   </data>
-  <data name="&gt;&gt;cmbDatabaseName.Type" xml:space="preserve">
+  <data name="&gt;&gt;cmbDatabase.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cmbDatabaseName.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cmbDatabase.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;cmbDatabaseName.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cmbDatabase.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
   <data name="btnAccept.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="btnAccept.Location" type="System.Drawing.Point, System.Drawing">
-    <value>196, 143</value>
+    <value>196, 168</value>
   </data>
   <data name="btnAccept.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -406,7 +361,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>277, 143</value>
+    <value>277, 168</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -429,6 +384,114 @@
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="pnlAuthentication.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="rbtnWindowsAuthentication.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rbtnWindowsAuthentication.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="rbtnWindowsAuthentication.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 17</value>
+  </data>
+  <data name="rbtnWindowsAuthentication.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="rbtnWindowsAuthentication.Text" xml:space="preserve">
+    <value>Windows Authentication</value>
+  </data>
+  <data name="&gt;&gt;rbtnWindowsAuthentication.Name" xml:space="preserve">
+    <value>rbtnWindowsAuthentication</value>
+  </data>
+  <data name="&gt;&gt;rbtnWindowsAuthentication.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rbtnWindowsAuthentication.Parent" xml:space="preserve">
+    <value>pnlAuthentication</value>
+  </data>
+  <data name="&gt;&gt;rbtnWindowsAuthentication.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="rbtnSqlServerAuthentication.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="rbtnSqlServerAuthentication.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rbtnSqlServerAuthentication.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 26</value>
+  </data>
+  <data name="rbtnSqlServerAuthentication.Size" type="System.Drawing.Size, System.Drawing">
+    <value>151, 17</value>
+  </data>
+  <data name="rbtnSqlServerAuthentication.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="rbtnSqlServerAuthentication.Text" xml:space="preserve">
+    <value>SQL Server Authentication</value>
+  </data>
+  <data name="&gt;&gt;rbtnSqlServerAuthentication.Name" xml:space="preserve">
+    <value>rbtnSqlServerAuthentication</value>
+  </data>
+  <data name="&gt;&gt;rbtnSqlServerAuthentication.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rbtnSqlServerAuthentication.Parent" xml:space="preserve">
+    <value>pnlAuthentication</value>
+  </data>
+  <data name="&gt;&gt;rbtnSqlServerAuthentication.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pnlAuthentication.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 32</value>
+  </data>
+  <data name="pnlAuthentication.Size" type="System.Drawing.Size, System.Drawing">
+    <value>253, 46</value>
+  </data>
+  <data name="pnlAuthentication.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;pnlAuthentication.Name" xml:space="preserve">
+    <value>pnlAuthentication</value>
+  </data>
+  <data name="&gt;&gt;pnlAuthentication.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlAuthentication.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlAuthentication.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblAuthentication.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblAuthentication.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 37</value>
+  </data>
+  <data name="lblAuthentication.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 13</value>
+  </data>
+  <data name="lblAuthentication.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="lblAuthentication.Text" xml:space="preserve">
+    <value>Authentication:</value>
+  </data>
+  <data name="&gt;&gt;lblAuthentication.Name" xml:space="preserve">
+    <value>lblAuthentication</value>
+  </data>
+  <data name="&gt;&gt;lblAuthentication.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblAuthentication.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblAuthentication.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -436,7 +499,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>364, 178</value>
+    <value>364, 203</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>

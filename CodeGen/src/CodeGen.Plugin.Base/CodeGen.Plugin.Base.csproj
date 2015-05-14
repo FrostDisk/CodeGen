@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DatabaseEntity.cs" />
     <Compile Include="DatabaseEntityField.cs" />
+    <Compile Include="GeneratorComponent.cs" />
     <Compile Include="IAccessModelController.cs" />
     <Compile Include="IGeneratorTemplate.cs" />
     <Compile Include="IPluginBase.cs" />

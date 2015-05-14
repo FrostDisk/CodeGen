@@ -11,15 +11,5 @@ namespace CodeGen.Plugin.Base
         String Name { get; }
 
         String Description { get; }
-
-        String Author { get; }
-
-        String Version { get; }
-
-        DateTime UpdateVersion { get; }
-
-        String PluginUrl { get; }
-
-        String ReleaseNoteUrl { get; }
     }
 }

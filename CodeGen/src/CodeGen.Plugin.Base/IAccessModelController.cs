@@ -16,7 +16,7 @@ namespace CodeGen.Plugin.Base
 
         Boolean Load(String connectionString);
 
-        String ShowGenerateConnectionStringForm();
+        Boolean ShowGenerateConnectionStringForm(out String connectionString);
 
         List<String> GetTableList();
 

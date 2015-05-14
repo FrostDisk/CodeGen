@@ -8,24 +8,15 @@ using System.Xml.Serialization;
 namespace CodeGen.Configuration
 {
     [Serializable]
-    public class Plugin
+    public class PluginType
     {
-        [XmlAttribute("Assembly")]
-        public string Assembly { get; set; }
-
-        [XmlAttribute("Version")]
-        public string Version { get; set; }
-
-        [XmlAttribute("Type")]
-        public string Type { get; set; }
+        [XmlAttribute("Name")]
+        public string Name { get; set; }
 
         [XmlAttribute("IsValid")]
         public bool IsValid { get; set; }
 
         [XmlAttribute("Enabled")]
         public bool Enabled { get; set; }
-
-        [XmlAttribute("IsBase")]
-        public bool IsBase { get; set; }
     }
 }

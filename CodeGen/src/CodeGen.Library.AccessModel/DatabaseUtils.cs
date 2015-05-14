@@ -18,28 +18,41 @@ namespace CodeGen.Library.AccessModel
             return true;
         }
 
-        public static string CreateBasicConnectionString(string dataSource, string userId, string password, string initialCatalog)
+        public static string CreateBasicConnectionString(string dataSource, string userId, string password, bool integratedSecurity, string initialCatalog)
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
             builder.DataSource = dataSource;
-            builder.UserID = userId;
-            builder.Password = password;
+            if (integratedSecurity)
+            {
+                builder.IntegratedSecurity = true;
+            }
+            else
+            {
+                builder.UserID = userId;
+                builder.Password = password;
+            }
             builder.InitialCatalog = initialCatalog;
 
             return builder.ConnectionString;
         }
 
-        public static List<string> GetDatabaseList(string dataSource, string userId, string password)
+        public static List<string> GetDatabaseList(string dataSource, string userId, string password, bool integratedSecurity)
         {
             List<string> basesDatos = new List<string>();
 
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
-            {
-                DataSource = dataSource,
-                UserID = userId,
-                Password = password
-            };
+            SqlConnectionStringBuilder builder = integratedSecurity
+                ? new SqlConnectionStringBuilder
+                {
+                    DataSource = dataSource,
+                    IntegratedSecurity = true
+                }
+                : new SqlConnectionStringBuilder
+                {
+                    DataSource = dataSource,
+                    UserID = userId,
+                    Password = password
+                };
 
             using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
             {

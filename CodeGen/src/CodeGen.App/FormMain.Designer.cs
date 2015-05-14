@@ -138,11 +138,13 @@
             // 
             this.toolStripMenuItemGenerateClass.Name = "toolStripMenuItemGenerateClass";
             resources.ApplyResources(this.toolStripMenuItemGenerateClass, "toolStripMenuItemGenerateClass");
+            this.toolStripMenuItemGenerateClass.Click += new System.EventHandler(this.toolStripMenuItemGenerateClass_Click);
             // 
             // toolStripMenuItemGenerateStoredProcedure
             // 
             this.toolStripMenuItemGenerateStoredProcedure.Name = "toolStripMenuItemGenerateStoredProcedure";
             resources.ApplyResources(this.toolStripMenuItemGenerateStoredProcedure, "toolStripMenuItemGenerateStoredProcedure");
+            this.toolStripMenuItemGenerateStoredProcedure.Click += new System.EventHandler(this.toolStripMenuItemGenerateStoredProcedure_Click);
             // 
             // toolStripProjectSeparator1
             // 

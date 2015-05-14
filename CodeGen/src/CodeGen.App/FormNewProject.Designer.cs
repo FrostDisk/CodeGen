@@ -1,4 +1,6 @@
-﻿namespace CodeGen
+﻿using CodeGen.Controls;
+
+namespace CodeGen
 {
     partial class FormNewProject
     {
@@ -31,7 +33,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNewProject));
             this.btnAccept = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.ucBasicProjectProperties = new CodeGen.App.Controls.BasicProjectProperties();
+            this.ucBasicProjectProperties = new BasicProjectProperties();
             this.SuspendLayout();
             // 
             // btnAccept
@@ -80,6 +82,6 @@
 
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.Button btnCancel;
-        private App.Controls.BasicProjectProperties ucBasicProjectProperties;
+        private BasicProjectProperties ucBasicProjectProperties;
     }
 }

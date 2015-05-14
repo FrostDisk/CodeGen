@@ -13,7 +13,5 @@ namespace CodeGen.Domain
         int Version { get; set; }
 
         EnumDatabaseTypes Type { get; set; }
-
-        EnumLanguages Source { get; set; }
     }
 }

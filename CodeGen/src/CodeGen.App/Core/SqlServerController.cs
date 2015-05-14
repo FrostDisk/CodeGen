@@ -4,9 +4,10 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using CodeGen.Plugin.Base;
 
-namespace CodeGen.App.Controls
+namespace CodeGen.Core
 {
     public sealed class SqlServerController : IAccessModelController
     {
@@ -20,31 +21,6 @@ namespace CodeGen.App.Controls
         public string Description
         {
             get { return "Sql Server Database Controller"; }
-        }
-
-        public string Author
-        {
-            get { return "FrostDisk"; }
-        }
-
-        public string Version
-        {
-            get { return "1.0"; }
-        }
-
-        public DateTime UpdateVersion
-        {
-            get { return DateTime.Today; }
-        }
-
-        public string PluginUrl
-        {
-            get { return string.Empty; }
-        }
-
-        public string ReleaseNoteUrl
-        {
-            get { return string.Empty; }
         }
 
         public String DatabaseTypeCode
@@ -71,9 +47,19 @@ namespace CodeGen.App.Controls
             return true;
         }
 
-        public String ShowGenerateConnectionStringForm()
+        public Boolean ShowGenerateConnectionStringForm(out String connectionString)
         {
-            return String.Empty;
+            FormGenerateConnectionString form = new FormGenerateConnectionString();
+            form.LoadLocalVariables();
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                connectionString = form.GetConnectionString();
+                return true;
+            }
+
+            connectionString = string.Empty;
+            return false;
         }
 
         public List<String> GetTableList()

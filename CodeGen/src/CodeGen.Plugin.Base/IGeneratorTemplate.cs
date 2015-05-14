@@ -14,8 +14,18 @@ namespace CodeGen.Plugin.Base
 
         Boolean HaveOptions { get; }
 
+        Boolean HaveCodeComponents { get; }
+
+        Boolean HaveQueryComponents { get; }
+
         void ShowOptionsForm();
 
-        String GenerateCode(DatabaseEntity entity);
+        List<GeneratorComponent> GetCodeComponents();
+
+        List<GeneratorComponent> GetQueryComponents();
+
+        String GenerateCode(DatabaseEntity entity, Int32 componentId);
+
+        String GenerateQuery(DatabaseEntity entity, Int32 componentId);
     }
 }

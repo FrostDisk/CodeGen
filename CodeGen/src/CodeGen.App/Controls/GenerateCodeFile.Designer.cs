@@ -1,4 +1,4 @@
-﻿namespace CodeGen.App.Controls
+﻿namespace CodeGen.Controls
 {
     partial class GenerateCodeFile
     {
@@ -31,16 +31,19 @@
             this.grpConfiguration = new System.Windows.Forms.GroupBox();
             this.lblDatabaseEntity = new System.Windows.Forms.Label();
             this.cmbDatabaseEntity = new System.Windows.Forms.ComboBox();
-            this.cmbTemplate = new System.Windows.Forms.ComboBox();
             this.lblTemplate = new System.Windows.Forms.Label();
+            this.cmbTemplate = new System.Windows.Forms.ComboBox();
             this.lnkTemplateOptions = new System.Windows.Forms.LinkLabel();
             this.grpGenerate = new System.Windows.Forms.GroupBox();
             this.btnGenerateCode = new System.Windows.Forms.Button();
             this.chkCopyToClipboard = new System.Windows.Forms.CheckBox();
-            this.txtGeneratedCode = new System.Windows.Forms.TextBox();
             this.btnSaveFileAs = new System.Windows.Forms.Button();
+            this.txtGeneratedCode = new System.Windows.Forms.TextBox();
+            this.grpOption = new System.Windows.Forms.GroupBox();
+            this.rlstOptions = new CodeGen.Controls.RadioListBox();
             this.grpConfiguration.SuspendLayout();
             this.grpGenerate.SuspendLayout();
+            this.grpOption.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpConfiguration
@@ -79,6 +82,15 @@
             this.cmbDatabaseEntity.Size = new System.Drawing.Size(450, 21);
             this.cmbDatabaseEntity.TabIndex = 1;
             // 
+            // lblTemplate
+            // 
+            this.lblTemplate.AutoSize = true;
+            this.lblTemplate.Location = new System.Drawing.Point(43, 49);
+            this.lblTemplate.Name = "lblTemplate";
+            this.lblTemplate.Size = new System.Drawing.Size(51, 13);
+            this.lblTemplate.TabIndex = 0;
+            this.lblTemplate.Text = "Template";
+            // 
             // cmbTemplate
             // 
             this.cmbTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -91,15 +103,6 @@
             this.cmbTemplate.TabIndex = 1;
             this.cmbTemplate.SelectedIndexChanged += new System.EventHandler(this.cmbTemplate_SelectedIndexChanged);
             // 
-            // lblTemplate
-            // 
-            this.lblTemplate.AutoSize = true;
-            this.lblTemplate.Location = new System.Drawing.Point(43, 49);
-            this.lblTemplate.Name = "lblTemplate";
-            this.lblTemplate.Size = new System.Drawing.Size(51, 13);
-            this.lblTemplate.TabIndex = 0;
-            this.lblTemplate.Text = "Template";
-            // 
             // lnkTemplateOptions
             // 
             this.lnkTemplateOptions.AutoSize = true;
@@ -109,6 +112,7 @@
             this.lnkTemplateOptions.TabIndex = 2;
             this.lnkTemplateOptions.TabStop = true;
             this.lnkTemplateOptions.Text = "Template Options";
+            this.lnkTemplateOptions.Visible = false;
             this.lnkTemplateOptions.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkTemplateOptions_LinkClicked);
             // 
             // grpGenerate
@@ -120,9 +124,9 @@
             this.grpGenerate.Controls.Add(this.chkCopyToClipboard);
             this.grpGenerate.Controls.Add(this.btnSaveFileAs);
             this.grpGenerate.Controls.Add(this.txtGeneratedCode);
-            this.grpGenerate.Location = new System.Drawing.Point(3, 95);
+            this.grpGenerate.Location = new System.Drawing.Point(3, 168);
             this.grpGenerate.Name = "grpGenerate";
-            this.grpGenerate.Size = new System.Drawing.Size(556, 384);
+            this.grpGenerate.Size = new System.Drawing.Size(556, 311);
             this.grpGenerate.TabIndex = 1;
             this.grpGenerate.TabStop = false;
             // 
@@ -148,19 +152,6 @@
             this.chkCopyToClipboard.Text = "Copy to Clipboard";
             this.chkCopyToClipboard.UseVisualStyleBackColor = true;
             // 
-            // txtGeneratedCode
-            // 
-            this.txtGeneratedCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGeneratedCode.Enabled = false;
-            this.txtGeneratedCode.Location = new System.Drawing.Point(6, 48);
-            this.txtGeneratedCode.Multiline = true;
-            this.txtGeneratedCode.Name = "txtGeneratedCode";
-            this.txtGeneratedCode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtGeneratedCode.Size = new System.Drawing.Size(544, 330);
-            this.txtGeneratedCode.TabIndex = 2;
-            // 
             // btnSaveFileAs
             // 
             this.btnSaveFileAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -172,18 +163,57 @@
             this.btnSaveFileAs.UseVisualStyleBackColor = true;
             this.btnSaveFileAs.Click += new System.EventHandler(this.btnSaveFileAs_Click);
             // 
+            // txtGeneratedCode
+            // 
+            this.txtGeneratedCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtGeneratedCode.Enabled = false;
+            this.txtGeneratedCode.Location = new System.Drawing.Point(6, 48);
+            this.txtGeneratedCode.Multiline = true;
+            this.txtGeneratedCode.Name = "txtGeneratedCode";
+            this.txtGeneratedCode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtGeneratedCode.Size = new System.Drawing.Size(544, 257);
+            this.txtGeneratedCode.TabIndex = 2;
+            // 
+            // grpOption
+            // 
+            this.grpOption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpOption.Controls.Add(this.rlstOptions);
+            this.grpOption.Location = new System.Drawing.Point(3, 95);
+            this.grpOption.Name = "grpOption";
+            this.grpOption.Size = new System.Drawing.Size(556, 67);
+            this.grpOption.TabIndex = 2;
+            this.grpOption.TabStop = false;
+            this.grpOption.Text = "Option";
+            // 
+            // rlstOptions
+            // 
+            this.rlstOptions.BackColor = System.Drawing.SystemColors.Control;
+            this.rlstOptions.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.rlstOptions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rlstOptions.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.rlstOptions.FormattingEnabled = true;
+            this.rlstOptions.Location = new System.Drawing.Point(3, 16);
+            this.rlstOptions.Name = "rlstOptions";
+            this.rlstOptions.Size = new System.Drawing.Size(550, 48);
+            this.rlstOptions.TabIndex = 0;
+            // 
             // GenerateCodeFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.grpConfiguration);
             this.Controls.Add(this.grpGenerate);
+            this.Controls.Add(this.grpOption);
             this.Name = "GenerateCodeFile";
             this.Size = new System.Drawing.Size(562, 482);
             this.grpConfiguration.ResumeLayout(false);
             this.grpConfiguration.PerformLayout();
             this.grpGenerate.ResumeLayout(false);
             this.grpGenerate.PerformLayout();
+            this.grpOption.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -201,5 +231,7 @@
         private System.Windows.Forms.CheckBox chkCopyToClipboard;
         private System.Windows.Forms.Button btnGenerateCode;
         private System.Windows.Forms.Button btnSaveFileAs;
+        private System.Windows.Forms.GroupBox grpOption;
+        private RadioListBox rlstOptions;
     }
 }

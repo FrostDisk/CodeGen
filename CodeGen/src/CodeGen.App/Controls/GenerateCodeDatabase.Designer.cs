@@ -1,4 +1,4 @@
-﻿namespace CodeGen.App.Controls
+﻿namespace CodeGen.Controls
 {
     partial class GenerateCodeDatabase
     {

@@ -19,8 +19,8 @@ namespace CodeGen.Domain
         [XmlAttribute("Type")]
         public EnumDatabaseTypes Type { get; set; }
 
-        [XmlAttribute("Source")]
-        public EnumLanguages Source { get; set; }
+        [XmlElement("Plugin")]
+        public ProjectPlugin Plugin { get; set; }
 
         [XmlElement("Description")]
         public string Description { get; set; }

@@ -12,12 +12,12 @@ namespace CodeGen.Configuration
     [Serializable]
     public class PluginsSettings
     {
-        [XmlArray("Plugins"), XmlArrayItem("Plugin")]
-        public List<Plugin> Plugins { get; set; }
+        [XmlArray("Plugins"), XmlArrayItem("Assembly")]
+        public List<PluginAssembly> Plugins { get; set; }
 
         public PluginsSettings()
         {
-            Plugins = new List<Plugin>();
+            Plugins = new List<PluginAssembly>();
         }
     }
 }

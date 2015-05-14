@@ -48,6 +48,7 @@
     <Compile Include="ProceduresProjectProperties.cs" />
     <Compile Include="Project.cs" />
     <Compile Include="ProjectBase.cs" />
+    <Compile Include="ProjectPlugin.cs" />
     <Compile Include="ProjectEntity.cs" />
     <Compile Include="ProjectProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -67,14 +67,54 @@
   <ItemGroup>
     <Compile Include="Configuration\DirectoriesSettings.cs" />
     <Compile Include="Configuration\GlobalSettings.cs" />
-    <Compile Include="Configuration\Plugin.cs" />
+    <Compile Include="Configuration\PluginType.cs" />
+    <Compile Include="Configuration\PluginAssembly.cs" />
     <Compile Include="Configuration\PluginsSettings.cs" />
     <Compile Include="Configuration\ProjectSettings.cs" />
+    <Compile Include="Controls\BasicProjectProperties.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BasicProjectProperties.Designer.cs">
+      <DependentUpon>BasicProjectProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GenerateCodeDatabase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GenerateCodeDatabase.Designer.cs">
+      <DependentUpon>GenerateCodeDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GenerateCodeFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GenerateCodeFile.Designer.cs">
+      <DependentUpon>GenerateCodeFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProjectWorkspace.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProjectWorkspace.Designer.cs">
+      <DependentUpon>ProjectWorkspace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RadioListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Core\CSharpBaseTemplate.cs" />
+    <Compile Include="Controls\IBaseForm.cs" />
+    <Compile Include="Controls\IBaseUserControl.cs" />
+    <Compile Include="Controls\IGeneratorUserControl.cs" />
+    <Compile Include="Core\SqlServerController.cs" />
+    <Compile Include="Core\SupportedType.cs" />
     <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAbout.Designer.cs">
       <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormGenerateConnectionString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGenerateConnectionString.Designer.cs">
+      <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -90,11 +130,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\PluginsController.cs" />
+    <Compile Include="Utils\MessageBoxHelper.cs" />
+    <Compile Include="Utils\PluginsManager.cs" />
     <Compile Include="Utils\ProgramInfo.cs" />
     <Compile Include="Utils\ProgramSettings.cs" />
+    <EmbeddedResource Include="Controls\BasicProjectProperties.resx">
+      <DependentUpon>BasicProjectProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GenerateCodeFile.resx">
+      <DependentUpon>GenerateCodeFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProjectWorkspace.resx">
+      <DependentUpon>ProjectWorkspace.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGenerateConnectionString.resx">
+      <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -135,10 +188,6 @@
     <None Include="Resources\FrostDisk_about.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CodeGen.App.Controls\CodeGen.App.Controls.csproj">
-      <Project>{1af25fbc-4d06-4df0-9dec-aeb07c448ed0}</Project>
-      <Name>CodeGen.App.Controls</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CodeGen.Data\CodeGen.Data.csproj">
       <Project>{7995572a-42dc-406b-b0c4-2e5645c901a7}</Project>
       <Name>CodeGen.Data</Name>
@@ -146,6 +195,14 @@
     <ProjectReference Include="..\CodeGen.Domain\CodeGen.Domain.csproj">
       <Project>{cd81c9c1-ad1e-4bb7-be30-eaa7a584a377}</Project>
       <Name>CodeGen.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Library.AccessModel\CodeGen.Library.AccessModel.csproj">
+      <Project>{07451D36-93F9-4598-8414-BE9269DB06F8}</Project>
+      <Name>CodeGen.Library.AccessModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Library.System\CodeGen.Library.System.csproj">
+      <Project>{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9}</Project>
+      <Name>CodeGen.Library.System</Name>
     </ProjectReference>
     <ProjectReference Include="..\CodeGen.Plugin.Base\CodeGen.Plugin.Base.csproj">
       <Project>{25CD4C77-2763-4139-A22F-26A589857780}</Project>

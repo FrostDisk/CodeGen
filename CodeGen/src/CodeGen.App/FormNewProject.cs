@@ -24,9 +24,7 @@ namespace CodeGen
 
         public FormNewProject()
         {
-            InitializeComponent();
-            LoadLocalVariables();
-            
+            InitializeComponent();           
         }
 
         #endregion

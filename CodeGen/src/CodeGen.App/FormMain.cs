@@ -212,6 +212,8 @@ namespace CodeGen
             ProgramSettings.SaveGlobalSettings();
         }
 
+        #region file menu
+
         private void toolStripMenuItemNewProject_Click(object sender, System.EventArgs e)
         {
             SaveAndCloseProject(false);
@@ -267,6 +269,10 @@ namespace CodeGen
             SaveAndCloseProject(true);
         }
 
+        #endregion
+
+        #region project menu
+
         private void toolStripMenuItemGenerateClass_Click(object sender, EventArgs e)
         {
             _activeControl.LoadGenerator<GenerateCodeFile>();
@@ -277,12 +283,30 @@ namespace CodeGen
             _activeControl.LoadGenerator<GenerateCodeDatabase>();
         }
 
+        #endregion
+
+        #region tools menu
+
+        private void toolStripMenuItemPluginsManager_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItemOptions_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region help menu
+
         private void toolStripMenuItemAbout_Click(object sender, EventArgs e)
         {
-            FormAbout form = new FormAbout();
-
-            form.ShowDialog();
+            new FormAbout().ShowDialog();
         }
+
+        #endregion
 
         private void workerPluginsCheck_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {

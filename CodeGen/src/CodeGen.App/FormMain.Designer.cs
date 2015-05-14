@@ -44,6 +44,10 @@
             this.toolStripMenuItemGenerateStoredProcedure = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripProjectSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemProjectProperties = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemPluginsManager = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripToolsSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.panelMain = new System.Windows.Forms.Panel();
@@ -60,6 +64,7 @@
             this.menuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemFile,
             this.toolStripMenuItemProject,
+            this.toolStripMenuItemTools,
             this.toolStripMenuItemHelp});
             resources.ApplyResources(this.menuMain, "menuMain");
             this.menuMain.Name = "menuMain";
@@ -80,12 +85,14 @@
             // 
             // toolStripMenuItemNewProject
             // 
+            this.toolStripMenuItemNewProject.Image = global::CodeGen.Properties.Resources.application_form_add;
             this.toolStripMenuItemNewProject.Name = "toolStripMenuItemNewProject";
             resources.ApplyResources(this.toolStripMenuItemNewProject, "toolStripMenuItemNewProject");
             this.toolStripMenuItemNewProject.Click += new System.EventHandler(this.toolStripMenuItemNewProject_Click);
             // 
             // toolStripMenuItemOpenProject
             // 
+            this.toolStripMenuItemOpenProject.Image = global::CodeGen.Properties.Resources.folder;
             this.toolStripMenuItemOpenProject.Name = "toolStripMenuItemOpenProject";
             resources.ApplyResources(this.toolStripMenuItemOpenProject, "toolStripMenuItemOpenProject");
             this.toolStripMenuItemOpenProject.Click += new System.EventHandler(this.toolStripMenuItemOpenProject_Click);
@@ -104,12 +111,14 @@
             // toolStripMenuItemSaveProject
             // 
             resources.ApplyResources(this.toolStripMenuItemSaveProject, "toolStripMenuItemSaveProject");
+            this.toolStripMenuItemSaveProject.Image = global::CodeGen.Properties.Resources.diskette;
             this.toolStripMenuItemSaveProject.Name = "toolStripMenuItemSaveProject";
             this.toolStripMenuItemSaveProject.Click += new System.EventHandler(this.toolStripMenuItemSaveProject_Click);
             // 
             // toolStripMenuItemSaveProjectAs
             // 
             resources.ApplyResources(this.toolStripMenuItemSaveProjectAs, "toolStripMenuItemSaveProjectAs");
+            this.toolStripMenuItemSaveProjectAs.Image = global::CodeGen.Properties.Resources.save_as;
             this.toolStripMenuItemSaveProjectAs.Name = "toolStripMenuItemSaveProjectAs";
             this.toolStripMenuItemSaveProjectAs.Click += new System.EventHandler(this.toolStripMenuItemSaveProjectAs_Click);
             // 
@@ -120,6 +129,7 @@
             // 
             // toolStripMenuItemExit
             // 
+            this.toolStripMenuItemExit.Image = global::CodeGen.Properties.Resources.door_in;
             this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
             resources.ApplyResources(this.toolStripMenuItemExit, "toolStripMenuItemExit");
             this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
@@ -136,12 +146,14 @@
             // 
             // toolStripMenuItemGenerateClass
             // 
+            this.toolStripMenuItemGenerateClass.Image = global::CodeGen.Properties.Resources.page_white_code;
             this.toolStripMenuItemGenerateClass.Name = "toolStripMenuItemGenerateClass";
             resources.ApplyResources(this.toolStripMenuItemGenerateClass, "toolStripMenuItemGenerateClass");
             this.toolStripMenuItemGenerateClass.Click += new System.EventHandler(this.toolStripMenuItemGenerateClass_Click);
             // 
             // toolStripMenuItemGenerateStoredProcedure
             // 
+            this.toolStripMenuItemGenerateStoredProcedure.Image = global::CodeGen.Properties.Resources.page_white_database;
             this.toolStripMenuItemGenerateStoredProcedure.Name = "toolStripMenuItemGenerateStoredProcedure";
             resources.ApplyResources(this.toolStripMenuItemGenerateStoredProcedure, "toolStripMenuItemGenerateStoredProcedure");
             this.toolStripMenuItemGenerateStoredProcedure.Click += new System.EventHandler(this.toolStripMenuItemGenerateStoredProcedure_Click);
@@ -153,8 +165,36 @@
             // 
             // toolStripMenuItemProjectProperties
             // 
+            this.toolStripMenuItemProjectProperties.Image = global::CodeGen.Properties.Resources.interface_preferences;
             this.toolStripMenuItemProjectProperties.Name = "toolStripMenuItemProjectProperties";
             resources.ApplyResources(this.toolStripMenuItemProjectProperties, "toolStripMenuItemProjectProperties");
+            // 
+            // toolStripMenuItemTools
+            // 
+            this.toolStripMenuItemTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemPluginsManager,
+            this.toolStripToolsSeparator1,
+            this.toolStripMenuItemOptions});
+            this.toolStripMenuItemTools.Name = "toolStripMenuItemTools";
+            resources.ApplyResources(this.toolStripMenuItemTools, "toolStripMenuItemTools");
+            // 
+            // toolStripMenuItemPluginsManager
+            // 
+            this.toolStripMenuItemPluginsManager.Name = "toolStripMenuItemPluginsManager";
+            resources.ApplyResources(this.toolStripMenuItemPluginsManager, "toolStripMenuItemPluginsManager");
+            this.toolStripMenuItemPluginsManager.Click += new System.EventHandler(this.toolStripMenuItemPluginsManager_Click);
+            // 
+            // toolStripToolsSeparator1
+            // 
+            this.toolStripToolsSeparator1.Name = "toolStripToolsSeparator1";
+            resources.ApplyResources(this.toolStripToolsSeparator1, "toolStripToolsSeparator1");
+            // 
+            // toolStripMenuItemOptions
+            // 
+            this.toolStripMenuItemOptions.Image = global::CodeGen.Properties.Resources.cog;
+            this.toolStripMenuItemOptions.Name = "toolStripMenuItemOptions";
+            resources.ApplyResources(this.toolStripMenuItemOptions, "toolStripMenuItemOptions");
+            this.toolStripMenuItemOptions.Click += new System.EventHandler(this.toolStripMenuItemOptions_Click);
             // 
             // toolStripMenuItemHelp
             // 
@@ -165,6 +205,7 @@
             // 
             // toolStripMenuItemAbout
             // 
+            this.toolStripMenuItemAbout.Image = global::CodeGen.Properties.Resources.help;
             this.toolStripMenuItemAbout.Name = "toolStripMenuItemAbout";
             resources.ApplyResources(this.toolStripMenuItemAbout, "toolStripMenuItemAbout");
             this.toolStripMenuItemAbout.Click += new System.EventHandler(this.toolStripMenuItemAbout_Click);
@@ -237,6 +278,10 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSaveProjectAs;
         private System.Windows.Forms.ToolStripSeparator toolStripFileSeparator2;
         private System.ComponentModel.BackgroundWorker workerPluginsCheck;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemTools;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPluginsManager;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOptions;
+        private System.Windows.Forms.ToolStripSeparator toolStripToolsSeparator1;
 
     }
 }

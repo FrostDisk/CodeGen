@@ -102,6 +102,7 @@
     <Compile Include="Controls\IBaseForm.cs" />
     <Compile Include="Controls\IBaseUserControl.cs" />
     <Compile Include="Controls\IGeneratorUserControl.cs" />
+    <Compile Include="Core\eCSharpComponent.cs" />
     <Compile Include="Core\SqlServerController.cs" />
     <Compile Include="Core\SupportedType.cs" />
     <Compile Include="FormAbout.cs">
@@ -109,6 +110,12 @@
     </Compile>
     <Compile Include="FormAbout.Designer.cs">
       <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCSharpCodeConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCSharpCodeConfiguration.Designer.cs">
+      <DependentUpon>FormCSharpCodeConfiguration.cs</DependentUpon>
     </Compile>
     <Compile Include="FormGenerateConnectionString.cs">
       <SubType>Form</SubType>
@@ -146,6 +153,9 @@
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCSharpCodeConfiguration.resx">
+      <DependentUpon>FormCSharpCodeConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormGenerateConnectionString.resx">
       <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,6 +190,25 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\interface_preferences.png" />
+    <None Include="Resources\cog.png" />
+    <None Include="Resources\door_in.png" />
+    <None Include="Resources\diskette.png" />
+    <None Include="Resources\application_form_add.png" />
+    <None Include="Resources\help.png" />
+    <None Include="Resources\paste_plain.png" />
+    <None Include="Resources\page_white_php.png" />
+    <None Include="Resources\page_white_edit.png" />
+    <None Include="Resources\page_white_database.png" />
+    <None Include="Resources\page_white_csharp.png" />
+    <None Include="Resources\page_white_cplusplus.png" />
+    <None Include="Resources\page_white_code.png" />
+    <None Include="Resources\page_white_c.png" />
+    <None Include="Resources\database_add.png" />
+    <None Include="Resources\cut.png" />
+    <None Include="Resources\save_data.png" />
+    <None Include="Resources\save_as.png" />
+    <None Include="Resources\folder.png" />
     <None Include="Resources\license_about.txt" />
     <None Include="license.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

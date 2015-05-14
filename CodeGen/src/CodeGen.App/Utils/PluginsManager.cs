@@ -260,6 +260,20 @@ namespace CodeGen.Utils
             return new List<GeneratorComponent>();
         }
 
+        public static bool CheckIfPluginHaveOptions(SupportedType generatorItem)
+        {
+            if (generatorItem != null)
+            {
+                var controller = generatorItem.Item as IGeneratorTemplate;
+                if (controller != null)
+                {
+                    return controller.HaveOptions;
+                }
+            }
+
+            return false;
+        }
+
         private static void CheckAssembly(Assembly assembly, GlobalSettings settings, bool isBase = false)
         {
             foreach (Type type in assembly.GetExportedTypes().Where(t => t.IsClass && !t.IsAbstract))

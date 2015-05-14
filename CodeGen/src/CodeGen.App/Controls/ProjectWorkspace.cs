@@ -46,8 +46,8 @@ namespace CodeGen.Controls
             control.Dock = DockStyle.Fill;
             _activeControl = control;
 
-            panelGenerator.Controls.Clear();            
-            panelGenerator.Controls.Add(control);
+            panelWorkspace.Controls.Clear();            
+            panelWorkspace.Controls.Add(control);
         }
 
         #endregion

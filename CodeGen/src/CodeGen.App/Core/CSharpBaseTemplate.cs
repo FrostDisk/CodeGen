@@ -28,7 +28,7 @@ namespace CodeGen.Core
 
         public Boolean HaveOptions
         {
-            get { return false; }
+            get { return true; }
         }
 
         public bool HaveCodeComponents
@@ -50,8 +50,8 @@ namespace CodeGen.Core
         {
             return new List<GeneratorComponent>
             {
-                new GeneratorComponent(1, "Domain"),
-                new GeneratorComponent(2, "Data Access"),
+                new GeneratorComponent((int) eCSharpComponent.DOMAIN, "Domain"),
+                new GeneratorComponent((int) eCSharpComponent.DATA_ACCESS, "Data Access"),
             };
         }
 
@@ -59,10 +59,10 @@ namespace CodeGen.Core
         {
             return new List<GeneratorComponent>
             {
-                new GeneratorComponent(1, "Save"),
-                new GeneratorComponent(2, "Get By ID"),
-                new GeneratorComponent(3, "List All"),
-                new GeneratorComponent(4, "Delete"),
+                new GeneratorComponent((int) eCSharpComponent.SAVE, "Save"),
+                new GeneratorComponent((int) eCSharpComponent.GET_BY_ID, "Get By ID"),
+                new GeneratorComponent((int) eCSharpComponent.LIST_ALL, "List All"),
+                new GeneratorComponent((int) eCSharpComponent.DELETE, "Delete"),
             };
         }
 

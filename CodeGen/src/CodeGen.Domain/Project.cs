@@ -59,8 +59,8 @@ namespace CodeGen.Domain
             Type = EnumDatabaseTypes.SqlServer;
             Description = string.Empty;
             ConnectionString = string.Empty;
-            Properties = new ProjectProperties();
-            Entities = new List<ProjectEntity>();
+            //Properties = new ProjectProperties();
+            //Entities = new List<ProjectEntity>();
             SaveLocation = string.Empty;
             SaveDirectory = string.Empty;
             IsNew = true;

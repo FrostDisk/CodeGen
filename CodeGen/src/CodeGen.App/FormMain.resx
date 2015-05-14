@@ -127,27 +127,6 @@
   <data name="toolStripMenuItemFile.Text" xml:space="preserve">
     <value>&amp;File</value>
   </data>
-  <data name="toolStripMenuItemGenerateClass.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 22</value>
-  </data>
-  <data name="toolStripMenuItemGenerateClass.Text" xml:space="preserve">
-    <value>Generate &amp;Class...</value>
-  </data>
-  <data name="toolStripMenuItemGenerateStoredProcedure.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 22</value>
-  </data>
-  <data name="toolStripMenuItemGenerateStoredProcedure.Text" xml:space="preserve">
-    <value>Generate &amp;Stored Procedure...</value>
-  </data>
-  <data name="toolStripProjectSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 6</value>
-  </data>
-  <data name="toolStripMenuItemProjectProperties.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 22</value>
-  </data>
-  <data name="toolStripMenuItemProjectProperties.Text" xml:space="preserve">
-    <value>Project &amp;Properties...</value>
-  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="toolStripMenuItemProject.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -157,6 +136,27 @@
   </data>
   <data name="toolStripMenuItemProject.Text" xml:space="preserve">
     <value>&amp;Project</value>
+  </data>
+  <data name="toolStripMenuItemPluginsManager.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="toolStripMenuItemPluginsManager.Text" xml:space="preserve">
+    <value>Plugins Manager...</value>
+  </data>
+  <data name="toolStripToolsSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 6</value>
+  </data>
+  <data name="toolStripMenuItemOptions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="toolStripMenuItemOptions.Text" xml:space="preserve">
+    <value>Options...</value>
+  </data>
+  <data name="toolStripMenuItemTools.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 20</value>
+  </data>
+  <data name="toolStripMenuItemTools.Text" xml:space="preserve">
+    <value>Tools</value>
   </data>
   <data name="toolStripMenuItemHelp.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
@@ -252,8 +252,29 @@
   <data name="toolStripMenuItemExit.Text" xml:space="preserve">
     <value>E&amp;xit</value>
   </data>
+  <data name="toolStripMenuItemGenerateClass.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 22</value>
+  </data>
+  <data name="toolStripMenuItemGenerateClass.Text" xml:space="preserve">
+    <value>Generate &amp;Class...</value>
+  </data>
+  <data name="toolStripMenuItemGenerateStoredProcedure.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 22</value>
+  </data>
+  <data name="toolStripMenuItemGenerateStoredProcedure.Text" xml:space="preserve">
+    <value>Generate &amp;Stored Procedure...</value>
+  </data>
+  <data name="toolStripProjectSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 6</value>
+  </data>
+  <data name="toolStripMenuItemProjectProperties.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 22</value>
+  </data>
+  <data name="toolStripMenuItemProjectProperties.Text" xml:space="preserve">
+    <value>Project &amp;Properties...</value>
+  </data>
   <data name="toolStripMenuItemAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>116, 22</value>
   </data>
   <data name="toolStripMenuItemAbout.Text" xml:space="preserve">
     <value>&amp;About...</value>
@@ -2142,6 +2163,30 @@
     <value>toolStripMenuItemProjectProperties</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItemProjectProperties.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemTools.Name" xml:space="preserve">
+    <value>toolStripMenuItemTools</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemTools.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemPluginsManager.Name" xml:space="preserve">
+    <value>toolStripMenuItemPluginsManager</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemPluginsManager.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripToolsSeparator1.Name" xml:space="preserve">
+    <value>toolStripToolsSeparator1</value>
+  </data>
+  <data name="&gt;&gt;toolStripToolsSeparator1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemOptions.Name" xml:space="preserve">
+    <value>toolStripMenuItemOptions</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemOptions.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItemHelp.Name" xml:space="preserve">

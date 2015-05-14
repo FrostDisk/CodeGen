@@ -55,9 +55,15 @@ namespace CodeGen.Controls
             {
                 var item = (SupportedType) cmbTemplate.SelectedItem;
 
-                rlstOptions.DataSource = PluginsManager.GetComponents(item);
-                rlstOptions.DisplayMember = "Name";
-                rlstOptions.ValueMember = "Id";
+                cmbComponent.DataSource = PluginsManager.GetComponents(item);
+                cmbComponent.DisplayMember = "Name";
+                cmbComponent.ValueMember = "Id";
+
+                lnkTemplateOptions.Visible = PluginsManager.CheckIfPluginHaveOptions(item);
+            }
+            else
+            {
+                cmbComponent.DataSource = null;
             }
         }
 

@@ -10,5 +10,7 @@ namespace CodeGen.Controls
         Project Project { get; set; }
 
         event EventHandler OnControlUpdate;
+
+        IGeneratorTemplate ActiveTemplate { get; }
     }
 }

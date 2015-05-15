@@ -274,6 +274,21 @@ namespace CodeGen.Utils
             return false;
         }
 
+        public static bool CheckIfPluginIsBase(IPluginBase pluginBase)
+        {
+            var settings = ProgramSettings.GetGlobalSettings();
+
+            var type = pluginBase.GetType();
+
+            var assembly = settings.PluginsSettings.Plugins.FirstOrDefault(a => a.File == Path.GetFileName(type.Assembly.Location));
+
+            if (assembly != null)
+            {
+                return assembly.IsBase;
+            }
+            return false;
+        }
+
         public static bool ShowTemplateOptions(SupportedType generatorItem)
         {
             if (generatorItem != null)
@@ -326,7 +341,7 @@ namespace CodeGen.Utils
                         isValidPlugin = true;
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
                     isValidPlugin = false;
                 }
@@ -340,11 +355,8 @@ namespace CodeGen.Utils
                     if (settingsAssembly == null)
                     {
                         settingsAssembly = new PluginAssembly();
-                        if (!isBase)
-                        {
-                            settingsAssembly.File = assemblyName;
-                            settingsAssembly.Version = assembly.GetName().Version.ToString();
-                        }
+                        settingsAssembly.File = assemblyName;
+                        settingsAssembly.Version = assembly.GetName().Version.ToString();
                         settingsAssembly.IsValid = true;
                         settingsAssembly.IsBase = isBase;
 
@@ -366,7 +378,11 @@ namespace CodeGen.Utils
 
         private static T LoadPluginByName<T>(string assemblyFile, string pluginType) where T : class, IPluginBase
         {
-            if (string.IsNullOrWhiteSpace(assemblyFile))
+            var settings = ProgramSettings.GetGlobalSettings();
+
+            var globalAssembly = settings.PluginsSettings.Plugins.First(a => a.File == assemblyFile);
+
+            if (string.IsNullOrWhiteSpace(assemblyFile) || globalAssembly.IsBase)
             {
                 Type type = Assembly.GetExecutingAssembly().GetType(pluginType);
 
@@ -374,8 +390,6 @@ namespace CodeGen.Utils
             }
             else
             {
-                var settings = ProgramSettings.GetGlobalSettings();
-
                 string pluginsDirectory = settings.DirectoriesSettings.DefaultPluginsLocation;
 
                 string pluginLocation = Path.Combine(pluginsDirectory, assemblyFile);

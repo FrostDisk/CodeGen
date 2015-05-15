@@ -13,7 +13,15 @@ namespace CodeGen.Domain
         [XmlAttribute("Code")]
         public string Code { get; set; }
 
-        [XmlAttribute("Value")]
+        [XmlText]
         public string Value { get; set; }
+
+        [XmlAttribute("UseDefault")]
+        public bool UseDefault { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}={1}{2}", Code, Value, UseDefault ? " (default)" : string.Empty);
+        }
     }
 }

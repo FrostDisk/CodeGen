@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using CodeGen.Plugin.Base;
 
 namespace CodeGen.Data
 {
@@ -56,6 +58,48 @@ namespace CodeGen.Data
             }
 
             return new Project();
+        }
+
+        public static Project UpdatePluginSettings(Project project, IGeneratorTemplate plugin, bool isBase)
+        {
+            if (project.Properties == null)
+            {
+                project.Properties = new ProjectProperties();
+            }
+
+            if (project.Properties.Plugins == null)
+            {
+                project.Properties.Plugins = new List<ProjectPluginProperties>();
+            }
+
+            var type = plugin.GetType();
+            var assemblyFile = Path.GetFileName(type.Assembly.Location);
+
+            var pluginAssembly = project.Properties.Plugins.FirstOrDefault(p => p.Assembly == assemblyFile && p.Type == type.FullName);
+            if (pluginAssembly == null)
+            {
+                pluginAssembly = new ProjectPluginProperties();
+                pluginAssembly.Assembly = assemblyFile;
+                pluginAssembly.Type = type.FullName;
+                project.Properties.Plugins.Add(pluginAssembly);
+            }
+
+            if (pluginAssembly.Parameters == null)
+            {
+                pluginAssembly.Parameters = new List<PluginParameter>();
+            }
+
+            pluginAssembly.Parameters.Clear();
+            foreach (PluginSettingValue settingValue in plugin.Settings)
+            {
+                PluginParameter parameter = new PluginParameter();
+                parameter.Code = settingValue.Key;
+                parameter.Value = settingValue.Value;
+                parameter.UseDefault = settingValue.UseDefault;
+                pluginAssembly.Parameters.Add(parameter);
+            }
+
+            return project;
         }
 
         private static Project RecalculateVariables(Project openProject)

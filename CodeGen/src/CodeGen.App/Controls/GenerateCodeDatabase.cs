@@ -23,6 +23,8 @@ namespace CodeGen.Controls
             get { throw new NotImplementedException(); }
         }
 
+        public IGeneratorTemplate ActiveTemplate { get; private set; }
+
         #endregion
 
         #region initialization

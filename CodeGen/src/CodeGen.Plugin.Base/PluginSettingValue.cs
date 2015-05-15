@@ -18,5 +18,10 @@ namespace CodeGen.Plugin.Base
 
         [XmlAttribute("UseDefault")]
         public bool UseDefault { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}={1}{2}", Key, Value, UseDefault ? " (default)" : string.Empty);
+        }
     }
 }

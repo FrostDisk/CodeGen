@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using CodeGen.Core;
+using CodeGen.Data;
 using CodeGen.Domain;
+using CodeGen.Utils;
 
 namespace CodeGen.Controls
 {
@@ -44,6 +47,7 @@ namespace CodeGen.Controls
             control.Project = Project;
             control.LoadLocalVariables();
             control.Dock = DockStyle.Fill;
+            control.OnSettingsUpdate += control_OnSettingsUpdate;
             _activeControl = control;
 
             panelWorkspace.Controls.Clear();            
@@ -53,6 +57,15 @@ namespace CodeGen.Controls
         #endregion
 
         #region events
+
+        private void control_OnSettingsUpdate(object sender, EventArgs e)
+        {
+            ProjectController.UpdatePluginSettings(Project, _activeControl.ActiveTemplate, PluginsManager.CheckIfPluginIsBase(_activeControl.ActiveTemplate));
+
+
+
+        }
+
         #endregion
     }
 }

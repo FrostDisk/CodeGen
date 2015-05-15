@@ -31,6 +31,8 @@ namespace CodeGen.Controls
             }
         }
 
+        public IGeneratorTemplate ActiveTemplate { get; private set; }
+
         #endregion
 
         #region initialization
@@ -79,6 +81,8 @@ namespace CodeGen.Controls
             {
                 var item = (SupportedType) cmbTemplate.SelectedItem;
 
+                ActiveTemplate = item.Item as IGeneratorTemplate;
+
                 cmbComponent.DataSource = PluginsManager.GetComponents(item);
                 cmbComponent.DisplayMember = "Name";
                 cmbComponent.ValueMember = "Id";
@@ -87,7 +91,9 @@ namespace CodeGen.Controls
             }
             else
             {
+                ActiveTemplate = null;
                 cmbComponent.DataSource = null;
+                lnkTemplateOptions.Visible = false;
             }
         }
 
@@ -99,7 +105,7 @@ namespace CodeGen.Controls
 
                 if (PluginsManager.ShowTemplateOptions(item))
                 {
-                    if(OnSettingsUpdate!=null)
+                    if (OnSettingsUpdate != null)
                     {
                         OnSettingsUpdate(this, new EventArgs());
                     }

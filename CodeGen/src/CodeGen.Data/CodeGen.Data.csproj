@@ -48,6 +48,10 @@
       <Project>{cd81c9c1-ad1e-4bb7-be30-eaa7a584a377}</Project>
       <Name>CodeGen.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Plugin.Base\CodeGen.Plugin.Base.csproj">
+      <Project>{25cd4c77-2763-4139-a22f-26a589857780}</Project>
+      <Name>CodeGen.Plugin.Base</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

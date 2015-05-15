@@ -40,7 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InvalidFormatTagsException.cs" />
+    <Compile Include="NotDaughterSectionException.cs" />
+    <Compile Include="NotSupportedTemplateTypeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegularExpressionsPatterns.cs" />
+    <Compile Include="SectionNotFoundException.cs" />
+    <Compile Include="TemplateFile.cs" />
+    <Compile Include="TemplateSection.cs" />
+    <Compile Include="TemplateSectionCollection.cs" />
+    <Compile Include="TemplateTags.cs" />
+    <Compile Include="TemplateType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

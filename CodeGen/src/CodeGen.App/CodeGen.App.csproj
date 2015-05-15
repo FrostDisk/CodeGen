@@ -89,14 +89,12 @@
     <Compile Include="Controls\GenerateCodeFile.Designer.cs">
       <DependentUpon>GenerateCodeFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ISettingsUserControl.cs" />
     <Compile Include="Controls\ProjectWorkspace.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\ProjectWorkspace.Designer.cs">
       <DependentUpon>ProjectWorkspace.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\RadioListBox.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\TemplateParameter.cs">
       <SubType>UserControl</SubType>

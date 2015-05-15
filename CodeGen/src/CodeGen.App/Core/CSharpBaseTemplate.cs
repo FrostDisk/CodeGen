@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Configuration;
+using System.Windows.Forms;
 using CodeGen.Plugin.Base;
 
 namespace CodeGen.Core
 {
     public sealed class CSharpBaseTemplate : IGeneratorTemplate
     {
+        #region properties
+
         public String Name
         {
             get { return "C# Base Code Template"; }
@@ -15,6 +19,8 @@ namespace CodeGen.Core
         {
             get { return "C# Domain/DataAccess Code Template"; }
         }
+
+        public PluginSettings Settings { get; private set; }
 
         public string LanguageCode
         {
@@ -41,10 +47,41 @@ namespace CodeGen.Core
             get { return true; }
         }
 
-        public void ShowOptionsForm()
+        private FormCSharpCodeConfiguration _formConfiguration;
+
+        #endregion
+
+        #region initialization
+
+        public CSharpBaseTemplate()
         {
-            FormCSharpCodeConfiguration form = new FormCSharpCodeConfiguration();
-            form.ShowDialog();
+            _formConfiguration = new FormCSharpCodeConfiguration();
+
+            Settings = _formConfiguration.GetSettings();
+        }
+
+        #endregion
+
+        #region methods
+
+        public void UpdateSettings(PluginSettings settings)
+        {
+            foreach (PluginSettingValue settingValue in settings)
+            {
+                _formConfiguration.UpdateSetting(settingValue.Key, settingValue.Value);
+            }
+        }
+
+        public bool ShowOptionsForm()
+        {
+            var result = _formConfiguration.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                Settings = _formConfiguration.GetSettings();
+                return true;
+            }
+            return false;
         }
 
         public List<GeneratorComponent> GetCodeComponents()
@@ -76,5 +113,7 @@ namespace CodeGen.Core
         {
             throw new NotImplementedException();
         }
+
+        #endregion
     }
 }

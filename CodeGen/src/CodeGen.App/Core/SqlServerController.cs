@@ -23,6 +23,8 @@ namespace CodeGen.Core
             get { return "Sql Server Database Controller"; }
         }
 
+        public PluginSettings Settings { get; private set; }
+
         public String DatabaseTypeCode
         {
             get { return "SqlServer"; }
@@ -31,6 +33,11 @@ namespace CodeGen.Core
         public Boolean IsLoaded { get; private set; }
 
         public Boolean HaveCustomConnectionStringForm { get { return false; } }
+
+        public void UpdateSettings(PluginSettings settings)
+        {
+
+        }
 
         public Boolean Load(String connectionString)
         {

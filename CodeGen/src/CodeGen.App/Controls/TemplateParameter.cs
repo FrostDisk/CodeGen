@@ -14,6 +14,8 @@ namespace CodeGen.Controls
     {
         #region properties
 
+        private string _savedValue;
+
         [Browsable(true)]
         public string ParameterName
         {
@@ -32,8 +34,24 @@ namespace CodeGen.Controls
         public string ParameterValue
         {
             get { return txtValue.Text; }
-            set { txtValue.Text = value; }
+            set
+            {
+                if (!IsUpdated && value != _savedValue)
+                {
+                    _savedValue = ParameterValue;
+                    IsUpdated = true;
+                }
+                IsDefaultValue = value != DefaultValue;
+                txtValue.Text = value;
+            }
         }
+
+        public bool IsUpdated { get; set; }
+
+        [Browsable(true)]
+        public string DefaultValue { get; set; }
+
+        public bool IsDefaultValue { get; private set; }
 
         [Browsable(true)]
         public string Tooltip
@@ -61,6 +79,7 @@ namespace CodeGen.Controls
             InitializeComponent();
 
             Required = true;
+            IsDefaultValue = ParameterValue == DefaultValue;
         }
 
         #endregion
@@ -69,7 +88,22 @@ namespace CodeGen.Controls
 
         public bool Validate()
         {
-            return !Required || string.IsNullOrWhiteSpace(txtValue.Text);
+            if (!Required)
+            {
+                return true;
+            }
+
+            return !string.IsNullOrWhiteSpace(txtValue.Text);
+        }
+
+        public void RestoreValue()
+        {
+            if (IsUpdated)
+            {
+                ParameterValue = _savedValue;
+                IsUpdated = false;
+            }
+
         }
 
         #endregion

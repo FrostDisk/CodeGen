@@ -18,7 +18,7 @@ namespace CodeGen.Plugin.Base
 
         Boolean HaveQueryComponents { get; }
 
-        void ShowOptionsForm();
+        bool ShowOptionsForm();
 
         List<GeneratorComponent> GetCodeComponents();
 

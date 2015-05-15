@@ -1,6 +1,8 @@
 ﻿using System.Windows.Forms;
 using CodeGen.Core;
 using CodeGen.Domain;
+using System;
+using CodeGen.Plugin.Base;
 
 namespace CodeGen.Controls
 {
@@ -11,6 +13,15 @@ namespace CodeGen.Controls
         public Project Project { get; set; }
 
         public bool IsLoaded { get; set; }
+
+        public event EventHandler OnControlUpdate;
+
+        public event EventHandler OnSettingsUpdate;
+
+        public PluginSettings Settings
+        {
+            get { throw new NotImplementedException(); }
+        }
 
         #endregion
 
@@ -24,6 +35,11 @@ namespace CodeGen.Controls
         #endregion
 
         #region methods
+
+        public void UpdateSettings(PluginSettings settings)
+        {
+            throw new NotImplementedException();
+        }
 
         public void LoadLocalVariables()
         {

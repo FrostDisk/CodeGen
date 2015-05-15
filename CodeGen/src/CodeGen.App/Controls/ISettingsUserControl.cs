@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeGen.Plugin.Base;
 
-namespace CodeGen.Plugin.Base
+namespace CodeGen.Controls
 {
-    public interface IPluginBase
+    public interface ISettingsUserControl
     {
-        String Name { get; }
-
-        String Description { get; }
-
         PluginSettings Settings { get; }
 
         void UpdateSettings(PluginSettings settings);
+
+        event EventHandler OnSettingsUpdate;
     }
 }

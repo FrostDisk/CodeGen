@@ -47,7 +47,7 @@
             this.panelWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelWorkspace.Location = new System.Drawing.Point(0, 0);
             this.panelWorkspace.Name = "panelWorkspace";
-            this.panelWorkspace.Size = new System.Drawing.Size(346, 419);
+            this.panelWorkspace.Size = new System.Drawing.Size(396, 419);
             this.panelWorkspace.TabIndex = 1;
             // 
             // splitWorkspace
@@ -66,7 +66,7 @@
             // 
             this.splitWorkspace.Panel2.Controls.Add(this.panelWorkspace);
             this.splitWorkspace.Size = new System.Drawing.Size(500, 419);
-            this.splitWorkspace.SplitterDistance = 150;
+            this.splitWorkspace.SplitterDistance = 100;
             this.splitWorkspace.TabIndex = 2;
             // 
             // panelProject
@@ -75,7 +75,7 @@
             this.panelProject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelProject.Location = new System.Drawing.Point(0, 0);
             this.panelProject.Name = "panelProject";
-            this.panelProject.Size = new System.Drawing.Size(150, 419);
+            this.panelProject.Size = new System.Drawing.Size(100, 419);
             this.panelProject.TabIndex = 0;
             // 
             // treeViewProject
@@ -86,7 +86,7 @@
             this.treeViewProject.Location = new System.Drawing.Point(0, 0);
             this.treeViewProject.Name = "treeViewProject";
             this.treeViewProject.SelectedImageIndex = 0;
-            this.treeViewProject.Size = new System.Drawing.Size(150, 419);
+            this.treeViewProject.Size = new System.Drawing.Size(100, 419);
             this.treeViewProject.TabIndex = 0;
             // 
             // imageListTreeViewProject

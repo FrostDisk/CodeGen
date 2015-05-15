@@ -274,14 +274,40 @@ namespace CodeGen.Utils
             return false;
         }
 
-        public static void ShowTemplateOptions(SupportedType generatorItem)
+        public static bool ShowTemplateOptions(SupportedType generatorItem)
         {
             if (generatorItem != null)
             {
                 var controller = generatorItem.Item as IGeneratorTemplate;
                 if (controller != null)
                 {
-                    controller.ShowOptionsForm();
+                    return controller.ShowOptionsForm();
+                }
+            }
+            return false;
+        }
+
+        public static PluginSettings GetSettingsFromPlugin(SupportedType generatorItem)
+        {
+            if (generatorItem != null)
+            {
+                var controller = generatorItem.Item as IGeneratorTemplate;
+                if (controller != null)
+                {
+                    return controller.Settings;
+                }
+            }
+            return null;
+        }
+
+        public static void UpdateSettingsForPlugin(SupportedType generatorItem, PluginSettings settings)
+        {
+            if (generatorItem != null)
+            {
+                var controller = generatorItem.Item as IGeneratorTemplate;
+                if (controller != null)
+                {
+                    controller.UpdateSettings(settings);
                 }
             }
         }

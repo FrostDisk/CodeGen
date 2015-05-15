@@ -15,6 +15,22 @@ namespace CodeGen.Controls
 
         public bool IsLoaded { get; set; }
 
+        public event EventHandler OnControlUpdate;
+
+        public event EventHandler OnSettingsUpdate;
+
+        public PluginSettings Settings
+        {
+            get
+            {
+                if (cmbTemplate.SelectedItem != null)
+                {
+                    return PluginsManager.GetSettingsFromPlugin(cmbTemplate.SelectedItem as SupportedType);
+                }
+                return null;
+            }
+        }
+
         #endregion
 
         #region initialization
@@ -27,6 +43,14 @@ namespace CodeGen.Controls
         #endregion
 
         #region methods
+
+        public void UpdateSettings(PluginSettings settings)
+        {
+            if (cmbTemplate.SelectedItem == null)
+            {
+                PluginsManager.UpdateSettingsForPlugin(cmbTemplate.SelectedItem as SupportedType, settings);
+            }
+        }
 
         public void LoadLocalVariables()
         {
@@ -73,13 +97,27 @@ namespace CodeGen.Controls
             {
                 var item = (SupportedType)cmbTemplate.SelectedItem;
 
-                PluginsManager.ShowTemplateOptions(item);
+                if (PluginsManager.ShowTemplateOptions(item))
+                {
+                    if(OnSettingsUpdate!=null)
+                    {
+                        OnSettingsUpdate(this, new EventArgs());
+                    }
+
+                    if (OnControlUpdate != null)
+                    {
+                        OnControlUpdate(this, new EventArgs());
+                    }
+                }
             }
         }
 
         private void btnGenerateCode_Click(object sender, EventArgs e)
         {
-
+            if (OnControlUpdate != null)
+            {
+                OnControlUpdate(this, new EventArgs());
+            }
         }
 
         private void btnSaveFileAs_Click(object sender, EventArgs e)

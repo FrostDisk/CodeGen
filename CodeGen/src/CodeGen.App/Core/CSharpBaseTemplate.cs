@@ -43,7 +43,8 @@ namespace CodeGen.Core
 
         public void ShowOptionsForm()
         {
-            
+            FormCSharpCodeConfiguration form = new FormCSharpCodeConfiguration();
+            form.ShowDialog();
         }
 
         public List<GeneratorComponent> GetCodeComponents()

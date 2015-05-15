@@ -69,7 +69,12 @@ namespace CodeGen.Controls
 
         private void lnkTemplateOptions_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            if (cmbTemplate.SelectedItem != null)
+            {
+                var item = (SupportedType)cmbTemplate.SelectedItem;
 
+                PluginsManager.ShowTemplateOptions(item);
+            }
         }
 
         private void btnGenerateCode_Click(object sender, EventArgs e)

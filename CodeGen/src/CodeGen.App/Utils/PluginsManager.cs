@@ -274,6 +274,18 @@ namespace CodeGen.Utils
             return false;
         }
 
+        public static void ShowTemplateOptions(SupportedType generatorItem)
+        {
+            if (generatorItem != null)
+            {
+                var controller = generatorItem.Item as IGeneratorTemplate;
+                if (controller != null)
+                {
+                    controller.ShowOptionsForm();
+                }
+            }
+        }
+
         private static void CheckAssembly(Assembly assembly, GlobalSettings settings, bool isBase = false)
         {
             foreach (Type type in assembly.GetExportedTypes().Where(t => t.IsClass && !t.IsAbstract))

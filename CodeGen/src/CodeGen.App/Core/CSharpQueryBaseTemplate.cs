@@ -6,7 +6,7 @@ using CodeGen.Plugin.Base;
 
 namespace CodeGen.Core
 {
-    public sealed class CSharpBaseTemplate : IGeneratorTemplate
+    public sealed class CSharpQueryBaseTemplate : IQueryGeneratorTemplate
     {
         #region properties
 
@@ -32,19 +32,19 @@ namespace CodeGen.Core
             get { return ".cs"; }
         }
 
+        public String FileNameFilter
+        {
+            get { return "Visual C# Files (*.cs)|*.cs"; }
+        }
+
         public Boolean HaveOptions
         {
             get { return true; }
         }
 
-        public bool HaveCodeComponents
+        public bool HaveComponents
         {
-            get { return true; }
-        }
-
-        public bool HaveQueryComponents
-        {
-            get { return true; }
+            get { return GetComponents().Count > 0; }
         }
 
         private FormCSharpCodeConfiguration _formConfiguration;
@@ -53,7 +53,7 @@ namespace CodeGen.Core
 
         #region initialization
 
-        public CSharpBaseTemplate()
+        public CSharpQueryBaseTemplate()
         {
             _formConfiguration = new FormCSharpCodeConfiguration();
 
@@ -84,7 +84,7 @@ namespace CodeGen.Core
             return false;
         }
 
-        public List<GeneratorComponent> GetCodeComponents()
+        public List<GeneratorComponent> GetComponents()
         {
             return new List<GeneratorComponent>
             {
@@ -93,23 +93,12 @@ namespace CodeGen.Core
             };
         }
 
-        public List<GeneratorComponent> GetQueryComponents()
+        public String GenerateFileName(DatabaseEntity entity, Int32 componentId)
         {
-            return new List<GeneratorComponent>
-            {
-                new GeneratorComponent((int) eCSharpComponent.SAVE, "Save"),
-                new GeneratorComponent((int) eCSharpComponent.GET_BY_ID, "Get By ID"),
-                new GeneratorComponent((int) eCSharpComponent.LIST_ALL, "List All"),
-                new GeneratorComponent((int) eCSharpComponent.DELETE, "Delete"),
-            };
+            return string.Empty;
         }
 
-        public String GenerateCode(DatabaseEntity entity, Int32 componentId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GenerateQuery(DatabaseEntity entity, Int32 componentId)
+        public String Generate(DatabaseEntity entity, Int32 componentId)
         {
             throw new NotImplementedException();
         }

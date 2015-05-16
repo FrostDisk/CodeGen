@@ -16,6 +16,16 @@ namespace CodeGen.Domain
         [XmlText]
         public string Value { get; set; }
 
+        [XmlAttribute("Type")]
+        public string TypeName
+        {
+            get { return Type != null ? Type.ToString() : null; }
+            set { Type = Type.GetType(value); }
+        }
+
+        [XmlIgnore]
+        public Type Type { get; set; }
+
         [XmlAttribute("UseDefault")]
         public bool UseDefault { get; set; }
 

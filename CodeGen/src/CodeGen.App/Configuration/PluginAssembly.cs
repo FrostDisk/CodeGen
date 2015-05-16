@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -25,9 +26,16 @@ namespace CodeGen.Configuration
         [XmlArray("Components"), XmlArrayItem("Type")]
         public List<PluginType> Types { get; set; }
 
+        [XmlIgnore]
+        public Assembly AssemblyInstance { get; set; }
+
+        [XmlIgnore]
+        public bool IsLoaded { get; set; }
+
         public PluginAssembly()
         {
             Types = new List<PluginType>();
+            IsLoaded = false;
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CodeGen.Controls
 {
-    public partial class TemplateParameter : UserControl
+    public partial class TemplateParameter : UserControl, ITemplateParameter
     {
         #region properties
 
@@ -52,6 +52,8 @@ namespace CodeGen.Controls
         public string DefaultValue { get; set; }
 
         public bool IsDefaultValue { get; private set; }
+
+        public Type Type { get { return typeof (string); } }
 
         [Browsable(true)]
         public string Tooltip

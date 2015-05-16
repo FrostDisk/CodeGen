@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,20 +13,18 @@ namespace CodeGen.Plugin.Base
 
         String FileExtension { get; }
 
+        String FileNameFilter { get; }
+
         Boolean HaveOptions { get; }
 
-        Boolean HaveCodeComponents { get; }
-
-        Boolean HaveQueryComponents { get; }
+        Boolean HaveComponents { get; }
 
         bool ShowOptionsForm();
 
-        List<GeneratorComponent> GetCodeComponents();
+        List<GeneratorComponent> GetComponents();
 
-        List<GeneratorComponent> GetQueryComponents();
+        String GenerateFileName(DatabaseEntity entity, Int32 componentId);
 
-        String GenerateCode(DatabaseEntity entity, Int32 componentId);
-
-        String GenerateQuery(DatabaseEntity entity, Int32 componentId);
+        String Generate(DatabaseEntity entity, Int32 componentId);
     }
 }

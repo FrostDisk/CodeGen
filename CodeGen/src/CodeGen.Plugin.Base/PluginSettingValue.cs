@@ -16,6 +16,9 @@ namespace CodeGen.Plugin.Base
         [XmlText]
         public string Value { get; set; }
 
+        [XmlAttribute("Type")]
+        public Type Type { get; set; }
+
         [XmlAttribute("UseDefault")]
         public bool UseDefault { get; set; }
 

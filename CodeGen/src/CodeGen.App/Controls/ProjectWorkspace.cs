@@ -60,10 +60,7 @@ namespace CodeGen.Controls
 
         private void control_OnSettingsUpdate(object sender, EventArgs e)
         {
-            ProjectController.UpdatePluginSettings(Project, _activeControl.ActiveTemplate, PluginsManager.CheckIfPluginIsBase(_activeControl.ActiveTemplate));
-
-
-
+            ProjectController.UpdatePluginSettings(Project, _activeControl.ActiveTemplate);
         }
 
         #endregion

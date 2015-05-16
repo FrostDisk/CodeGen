@@ -44,8 +44,10 @@
     <Compile Include="DatabaseEntityField.cs" />
     <Compile Include="GeneratorComponent.cs" />
     <Compile Include="IAccessModelController.cs" />
+    <Compile Include="ICodeGeneratorTemplate.cs" />
     <Compile Include="IGeneratorTemplate.cs" />
     <Compile Include="IPluginBase.cs" />
+    <Compile Include="IQueryGeneratorTemplate.cs" />
     <Compile Include="PluginSettings.cs" />
     <Compile Include="PluginSettingValue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

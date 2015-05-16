@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using CodeGen.Core;
+using CodeGen.Data;
 using CodeGen.Domain;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
@@ -60,7 +61,7 @@ namespace CodeGen.Controls
             cmbDatabaseEntity.Items.AddRange(PluginsManager.GetTableListFromPlugin(Project.ConnectionString, Project.Plugin).ToArray());
 
             cmbTemplate.Items.Clear();
-            cmbTemplate.DataSource = PluginsManager.GetCodeTemplates();
+            cmbTemplate.DataSource = PluginsManager.GetSupportedTemplates<ICodeGeneratorTemplate>();
             cmbTemplate.DisplayMember = "Name";
             cmbTemplate.ValueMember = "Name";
             cmbTemplate.SelectedItem = null;
@@ -88,6 +89,8 @@ namespace CodeGen.Controls
                 cmbComponent.ValueMember = "Id";
 
                 lnkTemplateOptions.Visible = PluginsManager.CheckIfPluginHaveOptions(item);
+
+                PluginsManager.UpdateProjectSettingsForPlugin(item, Project);
             }
             else
             {
@@ -120,10 +123,20 @@ namespace CodeGen.Controls
 
         private void btnGenerateCode_Click(object sender, EventArgs e)
         {
-            if (OnControlUpdate != null)
+            if (ValidateForm())
             {
-                OnControlUpdate(this, new EventArgs());
+                txtGeneratedCode.Text = ActiveTemplate.Generate((DatabaseEntity) cmbDatabaseEntity.SelectedItem, (int) cmbComponent.SelectedValue);
+
+                if (OnControlUpdate != null)
+                {
+                    OnControlUpdate(this, new EventArgs());
+                }
             }
+        }
+
+        private void cmbComponent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void btnSaveFileAs_Click(object sender, EventArgs e)

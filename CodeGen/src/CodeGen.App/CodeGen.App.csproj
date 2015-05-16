@@ -90,6 +90,7 @@
       <DependentUpon>GenerateCodeFile.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ISettingsUserControl.cs" />
+    <Compile Include="Controls\ITemplateParameter.cs" />
     <Compile Include="Controls\ProjectWorkspace.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -102,7 +103,8 @@
     <Compile Include="Controls\TemplateParameter.Designer.cs">
       <DependentUpon>TemplateParameter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\CSharpBaseTemplate.cs" />
+    <Compile Include="Core\CSharpQueryBaseTemplate.cs" />
+    <Compile Include="Core\CSharpCodeBaseTemplate.cs" />
     <Compile Include="Controls\IBaseForm.cs" />
     <Compile Include="Controls\IBaseUserControl.cs" />
     <Compile Include="Controls\IGeneratorUserControl.cs" />

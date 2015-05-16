@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using CodeGen.Plugin.Base;
 
 namespace CodeGen.Configuration
 {
@@ -18,5 +19,16 @@ namespace CodeGen.Configuration
 
         [XmlAttribute("Enabled")]
         public bool Enabled { get; set; }
+
+        [XmlIgnore]
+        public IPluginBase PluginInstance { get; set; }
+
+        [XmlIgnore]
+        public bool IsLoaded { get; set; }
+
+        public PluginType()
+        {
+            IsLoaded = false;
+        }
     }
 }

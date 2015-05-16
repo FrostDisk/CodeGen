@@ -34,13 +34,14 @@
             this.lblTemplate = new System.Windows.Forms.Label();
             this.cmbTemplate = new System.Windows.Forms.ComboBox();
             this.lnkTemplateOptions = new System.Windows.Forms.LinkLabel();
+            this.lblComponent = new System.Windows.Forms.Label();
+            this.cmbComponent = new System.Windows.Forms.ComboBox();
             this.grpGenerate = new System.Windows.Forms.GroupBox();
             this.btnGenerateCode = new System.Windows.Forms.Button();
             this.chkCopyToClipboard = new System.Windows.Forms.CheckBox();
             this.btnSaveFileAs = new System.Windows.Forms.Button();
             this.txtGeneratedCode = new System.Windows.Forms.TextBox();
-            this.cmbComponent = new System.Windows.Forms.ComboBox();
-            this.lblComponent = new System.Windows.Forms.Label();
+            this.txtFileName = new System.Windows.Forms.TextBox();
             this.grpConfiguration.SuspendLayout();
             this.grpGenerate.SuspendLayout();
             this.SuspendLayout();
@@ -116,6 +117,27 @@
             this.lnkTemplateOptions.Visible = false;
             this.lnkTemplateOptions.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkTemplateOptions_LinkClicked);
             // 
+            // lblComponent
+            // 
+            this.lblComponent.AutoSize = true;
+            this.lblComponent.Location = new System.Drawing.Point(33, 89);
+            this.lblComponent.Name = "lblComponent";
+            this.lblComponent.Size = new System.Drawing.Size(61, 13);
+            this.lblComponent.TabIndex = 4;
+            this.lblComponent.Text = "Component";
+            // 
+            // cmbComponent
+            // 
+            this.cmbComponent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbComponent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbComponent.FormattingEnabled = true;
+            this.cmbComponent.Location = new System.Drawing.Point(100, 86);
+            this.cmbComponent.Name = "cmbComponent";
+            this.cmbComponent.Size = new System.Drawing.Size(450, 21);
+            this.cmbComponent.TabIndex = 3;
+            this.cmbComponent.SelectedIndexChanged += new System.EventHandler(this.cmbComponent_SelectedIndexChanged);
+            // 
             // grpGenerate
             // 
             this.grpGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -123,6 +145,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpGenerate.Controls.Add(this.btnGenerateCode);
             this.grpGenerate.Controls.Add(this.chkCopyToClipboard);
+            this.grpGenerate.Controls.Add(this.txtFileName);
             this.grpGenerate.Controls.Add(this.btnSaveFileAs);
             this.grpGenerate.Controls.Add(this.txtGeneratedCode);
             this.grpGenerate.Location = new System.Drawing.Point(3, 122);
@@ -135,7 +158,7 @@
             // 
             this.btnGenerateCode.Location = new System.Drawing.Point(6, 19);
             this.btnGenerateCode.Name = "btnGenerateCode";
-            this.btnGenerateCode.Size = new System.Drawing.Size(133, 23);
+            this.btnGenerateCode.Size = new System.Drawing.Size(133, 20);
             this.btnGenerateCode.TabIndex = 0;
             this.btnGenerateCode.Text = "Generate Code";
             this.btnGenerateCode.UseVisualStyleBackColor = true;
@@ -146,7 +169,7 @@
             this.chkCopyToClipboard.AutoSize = true;
             this.chkCopyToClipboard.Checked = true;
             this.chkCopyToClipboard.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkCopyToClipboard.Location = new System.Drawing.Point(145, 23);
+            this.chkCopyToClipboard.Location = new System.Drawing.Point(145, 21);
             this.chkCopyToClipboard.Name = "chkCopyToClipboard";
             this.chkCopyToClipboard.Size = new System.Drawing.Size(109, 17);
             this.chkCopyToClipboard.TabIndex = 1;
@@ -158,7 +181,7 @@
             this.btnSaveFileAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveFileAs.Location = new System.Drawing.Point(462, 19);
             this.btnSaveFileAs.Name = "btnSaveFileAs";
-            this.btnSaveFileAs.Size = new System.Drawing.Size(88, 23);
+            this.btnSaveFileAs.Size = new System.Drawing.Size(88, 21);
             this.btnSaveFileAs.TabIndex = 3;
             this.btnSaveFileAs.Text = "Save File";
             this.btnSaveFileAs.UseVisualStyleBackColor = true;
@@ -177,25 +200,14 @@
             this.txtGeneratedCode.Size = new System.Drawing.Size(544, 303);
             this.txtGeneratedCode.TabIndex = 2;
             // 
-            // cmbComponent
+            // txtFileName
             // 
-            this.cmbComponent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbComponent.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbComponent.FormattingEnabled = true;
-            this.cmbComponent.Location = new System.Drawing.Point(100, 86);
-            this.cmbComponent.Name = "cmbComponent";
-            this.cmbComponent.Size = new System.Drawing.Size(450, 21);
-            this.cmbComponent.TabIndex = 3;
-            // 
-            // lblComponent
-            // 
-            this.lblComponent.AutoSize = true;
-            this.lblComponent.Location = new System.Drawing.Point(33, 89);
-            this.lblComponent.Name = "lblComponent";
-            this.lblComponent.Size = new System.Drawing.Size(61, 13);
-            this.lblComponent.TabIndex = 4;
-            this.lblComponent.Text = "Component";
+            this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFileName.Location = new System.Drawing.Point(331, 19);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.ReadOnly = true;
+            this.txtFileName.Size = new System.Drawing.Size(125, 20);
+            this.txtFileName.TabIndex = 4;
             // 
             // GenerateCodeFile
             // 
@@ -228,5 +240,6 @@
         private System.Windows.Forms.Button btnSaveFileAs;
         private System.Windows.Forms.Label lblComponent;
         private System.Windows.Forms.ComboBox cmbComponent;
+        private System.Windows.Forms.TextBox txtFileName;
     }
 }

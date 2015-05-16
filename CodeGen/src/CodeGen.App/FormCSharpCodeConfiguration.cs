@@ -17,7 +17,7 @@ namespace CodeGen
     {
         #region properties
 
-        private Dictionary<string, TemplateParameter> _parameters;
+        private Dictionary<string, ITemplateParameter> _parameters;
 
         #endregion
 
@@ -43,6 +43,7 @@ namespace CodeGen
                 value.Key = entry.Value.ParameterCode;
                 value.Value = entry.Value.ParameterValue;
                 value.UseDefault = entry.Value.IsDefaultValue;
+                value.Type = typeof (string);
                 settings.Add(value);
             }
 
@@ -66,7 +67,7 @@ namespace CodeGen
 
         public void UpdateSetting(string code, string value)
         {
-            TemplateParameter parameter = _parameters[code];
+            ITemplateParameter parameter = _parameters[code];
             if (parameter != null)
             {
                 parameter.ParameterValue = value;
@@ -97,10 +98,10 @@ namespace CodeGen
         {
             if (!checkIfNull || _parameters == null)
             {
-                _parameters = new Dictionary<string, TemplateParameter>();
+                _parameters = new Dictionary<string, ITemplateParameter>();
             }
 
-            List<TemplateParameter> parameters = new List<TemplateParameter>();
+            var parameters = new List<ITemplateParameter>();
             parameters.AddRange(GetParameters(this));
 
             foreach (TemplateParameter parameter in parameters)
@@ -109,11 +110,11 @@ namespace CodeGen
             }
         }
 
-        private List<TemplateParameter> GetParameters(Control control)
+        private List<ITemplateParameter> GetParameters(Control control)
         {
-            List<TemplateParameter> parameters = new List<TemplateParameter>();
+            var parameters = new List<ITemplateParameter>();
 
-            TemplateParameter parameter = control as TemplateParameter;
+            var parameter = control as ITemplateParameter;
             if (parameter != null)
             {
                 parameters.Add(parameter);

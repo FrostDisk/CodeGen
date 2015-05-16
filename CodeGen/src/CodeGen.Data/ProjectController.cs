@@ -1,11 +1,8 @@
 ﻿using CodeGen.Domain;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using CodeGen.Plugin.Base;
 
@@ -60,7 +57,18 @@ namespace CodeGen.Data
             return new Project();
         }
 
-        public static Project UpdatePluginSettings(Project project, IGeneratorTemplate plugin, bool isBase)
+        public static ProjectPluginProperties GetPluginProperties(Project project, string assemblyFile, string plugin)
+        {
+            if (project.Properties == null
+                || project.Properties.Plugins == null)
+            {
+                return null;
+            }
+
+            return project.Properties.Plugins.FirstOrDefault(p => p.Assembly == assemblyFile && p.Type == plugin);
+        }
+
+        public static Project UpdatePluginSettings(Project project, IGeneratorTemplate plugin)
         {
             if (project.Properties == null)
             {

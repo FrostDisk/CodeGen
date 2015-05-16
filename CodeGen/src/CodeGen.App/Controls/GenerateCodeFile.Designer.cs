@@ -39,9 +39,9 @@
             this.grpGenerate = new System.Windows.Forms.GroupBox();
             this.btnGenerateCode = new System.Windows.Forms.Button();
             this.chkCopyToClipboard = new System.Windows.Forms.CheckBox();
+            this.txtFileName = new System.Windows.Forms.TextBox();
             this.btnSaveFileAs = new System.Windows.Forms.Button();
             this.txtGeneratedCode = new System.Windows.Forms.TextBox();
-            this.txtFileName = new System.Windows.Forms.TextBox();
             this.grpConfiguration.SuspendLayout();
             this.grpGenerate.SuspendLayout();
             this.SuspendLayout();
@@ -176,6 +176,15 @@
             this.chkCopyToClipboard.Text = "Copy to Clipboard";
             this.chkCopyToClipboard.UseVisualStyleBackColor = true;
             // 
+            // txtFileName
+            // 
+            this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFileName.Location = new System.Drawing.Point(331, 19);
+            this.txtFileName.Name = "txtFileName";
+            this.txtFileName.ReadOnly = true;
+            this.txtFileName.Size = new System.Drawing.Size(125, 20);
+            this.txtFileName.TabIndex = 4;
+            // 
             // btnSaveFileAs
             // 
             this.btnSaveFileAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -192,22 +201,14 @@
             this.txtGeneratedCode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGeneratedCode.Enabled = false;
+            this.txtGeneratedCode.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtGeneratedCode.Location = new System.Drawing.Point(6, 48);
             this.txtGeneratedCode.Multiline = true;
             this.txtGeneratedCode.Name = "txtGeneratedCode";
+            this.txtGeneratedCode.ReadOnly = true;
             this.txtGeneratedCode.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtGeneratedCode.Size = new System.Drawing.Size(544, 303);
             this.txtGeneratedCode.TabIndex = 2;
-            // 
-            // txtFileName
-            // 
-            this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFileName.Location = new System.Drawing.Point(331, 19);
-            this.txtFileName.Name = "txtFileName";
-            this.txtFileName.ReadOnly = true;
-            this.txtFileName.Size = new System.Drawing.Size(125, 20);
-            this.txtFileName.TabIndex = 4;
             // 
             // GenerateCodeFile
             // 

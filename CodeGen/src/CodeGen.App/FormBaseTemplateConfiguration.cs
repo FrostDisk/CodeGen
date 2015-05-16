@@ -8,14 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CodeGen.Controls;
+using CodeGen.Library.Formats;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
 
 namespace CodeGen
 {
-    public partial class FormCSharpCodeConfiguration : Form
+    public partial class FormBaseTemplateConfiguration : Form
     {
         #region properties
+
+        private static FormBaseTemplateConfiguration _instance;
+
+        public static FormBaseTemplateConfiguration Instance
+        {
+            get { return _instance ?? (_instance = new FormBaseTemplateConfiguration()); }
+        }
 
         private Dictionary<string, ITemplateParameter> _parameters;
 
@@ -23,7 +31,7 @@ namespace CodeGen
 
         #region initialization
 
-        public FormCSharpCodeConfiguration()
+        public FormBaseTemplateConfiguration()
         {
             InitializeComponent();
             PopulateDictionary();
@@ -32,6 +40,16 @@ namespace CodeGen
         #endregion
 
         #region methods
+
+        public void ReplaceMyProject(string projectName)
+        {
+            string safeName = StringHelper.ConvertToSafeCodeName(projectName);
+
+            foreach (var entry in _parameters)
+            {
+                entry.Value.ParameterValue = entry.Value.ParameterValue.Replace("MyProject", safeName);
+            }
+        }
 
         public PluginSettings GetSettings()
         {

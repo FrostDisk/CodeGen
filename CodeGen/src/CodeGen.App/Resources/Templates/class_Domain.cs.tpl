@@ -79,12 +79,26 @@ namespace {NAMESPACE_DOMAIN}
         public double {VAR.PROPERTYNAME} { get; set; }
         /*-- END SECTION DOUBLE */
 
+        /*-- BEGIN SECTION MONEY AS VAR */
+        /// <summary>
+        /// {VAR.PROPERTYNAME}
+        /// </summary>
+        public decimal {VAR.PROPERTYNAME} { get; set; }
+        /*-- END SECTION MONEY */
+
         /*-- BEGIN SECTION CHAR AS VAR */
         /// <summary>
         /// {VAR.PROPERTYNAME}
         /// </summary>
         public string {VAR.PROPERTYNAME} { get; set; }
         /*-- END SECTION CHAR */
+
+        /*-- BEGIN SECTION NCHAR AS VAR */
+        /// <summary>
+        /// {VAR.PROPERTYNAME}
+        /// </summary>
+        public string {VAR.PROPERTYNAME} { get; set; }
+        /*-- END SECTION NCHAR */
 
         /*-- BEGIN SECTION VARCHAR AS VAR */
         /// <summary>
@@ -93,12 +107,26 @@ namespace {NAMESPACE_DOMAIN}
         public string {VAR.PROPERTYNAME} { get; set; }
         /*-- END SECTION VARCHAR */
 
+        /*-- BEGIN SECTION NVARCHAR AS VAR */
+        /// <summary>
+        /// {VAR.PROPERTYNAME}
+        /// </summary>
+        public string {VAR.PROPERTYNAME} { get; set; }
+        /*-- END SECTION NVARCHAR */
+
         /*-- BEGIN SECTION TEXT AS VAR */
         /// <summary>
         /// {VAR.PROPERTYNAME}
         /// </summary>
         public string {VAR.PROPERTYNAME} { get; set; }
         /*-- END SECTION TEXT */
+
+        /*-- BEGIN SECTION NTEXT AS VAR */
+        /// <summary>
+        /// {VAR.PROPERTYNAME}
+        /// </summary>
+        public string {VAR.PROPERTYNAME} { get; set; }
+        /*-- END SECTION NTEXT */
 
         /*-- BEGIN SECTION MEDIUMTEXT AS VAR */
         /// <summary>
@@ -170,6 +198,13 @@ namespace {NAMESPACE_DOMAIN}
         public object {VAR.PROPERTYNAME} { get; set; }
         /*-- END SECTION LONGBLOB */
 
+        /*-- BEGIN SECTION IMAGE AS VAR */
+        /// <summary>
+        /// {VAR.PROPERTYNAME}
+        /// </summary>
+        public byte[] {VAR.PROPERTYNAME} { get; set; }
+        /*-- END SECTION IMAGE */
+
         /*-- END SECTION PROPERTIES */
 
         /// <summary>
@@ -194,12 +229,20 @@ namespace {NAMESPACE_DOMAIN}
             /*-- END SECTION FLOAT */
             /*-- BEGIN SECTION DOUBLE AS VAR */{VAR.PROPERTYNAME} = 0;
             /*-- END SECTION DOUBLE */
+            /*-- BEGIN SECTION MONEY AS VAR */{VAR.PROPERTYNAME} = 0;
+            /*-- END SECTION MONEY */
             /*-- BEGIN SECTION CHAR AS VAR */{VAR.PROPERTYNAME} = string.Empty;
             /*-- END SECTION CHAR */
+            /*-- BEGIN SECTION NCHAR AS VAR */{VAR.PROPERTYNAME} = string.Empty;
+            /*-- END SECTION NCHAR */
             /*-- BEGIN SECTION VARCHAR AS VAR */{VAR.PROPERTYNAME} = string.Empty;
             /*-- END SECTION VARCHAR */
+            /*-- BEGIN SECTION NVARCHAR AS VAR */{VAR.PROPERTYNAME} = string.Empty;
+            /*-- END SECTION NVARCHAR */
             /*-- BEGIN SECTION TEXT AS VAR */{VAR.PROPERTYNAME} = string.Empty;
             /*-- END SECTION TEXT */
+            /*-- BEGIN SECTION NTEXT AS VAR */{VAR.PROPERTYNAME} = string.Empty;
+            /*-- END SECTION NTEXT */
             /*-- BEGIN SECTION MEDIUMTEXT AS VAR */{VAR.PROPERTYNAME} = string.Empty;
             /*-- END SECTION MEDIUMTEXT */
             /*-- BEGIN SECTION LONGTEXT AS VAR */{VAR.PROPERTYNAME} = string.Empty;
@@ -220,6 +263,8 @@ namespace {NAMESPACE_DOMAIN}
             /*-- END SECTION BLOB */
             /*-- BEGIN SECTION LONGBLOB AS VAR */{VAR.PROPERTYNAME} = null;
             /*-- END SECTION LONGBLOB */
+            /*-- BEGIN SECTION IMAGE AS VAR */{VAR.PROPERTYNAME} = null;
+            /*-- END SECTION IMAGE */
             /*-- END SECTION PARAMETERS */
         }
     }

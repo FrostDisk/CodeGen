@@ -32,7 +32,7 @@ namespace CodeGen.Core
 
         public Boolean IsLoaded { get; private set; }
 
-        public Boolean HaveCustomConnectionStringForm { get { return false; } }
+        public Boolean HaveCustomConnectionStringForm { get { return true; } }
 
         public void UpdateSettings(PluginSettings settings)
         {
@@ -129,7 +129,7 @@ namespace CodeGen.Core
             }
 
             List<string> typesWithoutPrecision = new List<string> {"int", "tinyint", "bigint", "bit", "datetime", "date", "real", "float", "text"};
-            List<string> typesWithDoublePrecision = new List<string> { "decimal" };
+            List<string> typesWithDoublePrecision = new List<string> {"decimal", "money"};
 
             using (SqlCommand command = connection.CreateCommand())
             {

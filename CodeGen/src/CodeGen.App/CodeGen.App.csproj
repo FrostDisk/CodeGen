@@ -103,12 +103,14 @@
     <Compile Include="Controls\TemplateParameter.Designer.cs">
       <DependentUpon>TemplateParameter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\CSharpQueryBaseTemplate.cs" />
+    <Compile Include="Core\CodeBaseConstants.cs" />
+    <Compile Include="Core\BaseGenerator.cs" />
+    <Compile Include="Core\SqlServerQueryBaseTemplate.cs" />
     <Compile Include="Core\CSharpCodeBaseTemplate.cs" />
     <Compile Include="Controls\IBaseForm.cs" />
     <Compile Include="Controls\IBaseUserControl.cs" />
     <Compile Include="Controls\IGeneratorUserControl.cs" />
-    <Compile Include="Core\eCSharpComponent.cs" />
+    <Compile Include="Core\eBaseTemplateComponent.cs" />
     <Compile Include="Core\SqlServerController.cs" />
     <Compile Include="Core\SupportedType.cs" />
     <Compile Include="FormAbout.cs">
@@ -117,11 +119,11 @@
     <Compile Include="FormAbout.Designer.cs">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormCSharpCodeConfiguration.cs">
+    <Compile Include="FormBaseTemplateConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCSharpCodeConfiguration.Designer.cs">
-      <DependentUpon>FormCSharpCodeConfiguration.cs</DependentUpon>
+    <Compile Include="FormBaseTemplateConfiguration.Designer.cs">
+      <DependentUpon>FormBaseTemplateConfiguration.cs</DependentUpon>
     </Compile>
     <Compile Include="FormGenerateConnectionString.cs">
       <SubType>Form</SubType>
@@ -167,8 +169,8 @@
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormCSharpCodeConfiguration.resx">
-      <DependentUpon>FormCSharpCodeConfiguration.cs</DependentUpon>
+    <EmbeddedResource Include="FormBaseTemplateConfiguration.resx">
+      <DependentUpon>FormBaseTemplateConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormGenerateConnectionString.resx">
       <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
@@ -239,6 +241,10 @@
     <ProjectReference Include="..\CodeGen.Library.AccessModel\CodeGen.Library.AccessModel.csproj">
       <Project>{07451D36-93F9-4598-8414-BE9269DB06F8}</Project>
       <Name>CodeGen.Library.AccessModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Library.Formats\CodeGen.Library.Formats.csproj">
+      <Project>{74E0C129-FC44-4298-A723-444B2D679566}</Project>
+      <Name>CodeGen.Library.Formats</Name>
     </ProjectReference>
     <ProjectReference Include="..\CodeGen.Library.System\CodeGen.Library.System.csproj">
       <Project>{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9}</Project>

@@ -136,64 +136,37 @@ namespace CodeGen.Utils
             }
         }
 
-        public static List<SupportedType> GetDatabaseTypes()
+        /// <summary>
+        /// Gets the supported database controllers.
+        /// </summary>
+        /// <returns></returns>
+        public static List<SupportedType> GetSupportedDatabaseControllers()
         {
             var supportedTypes = new List<SupportedType>();
 
-            var settings = ProgramSettings.GetGlobalSettings();
+            var activeControllerInstances = GetAllPluginInstances<IAccessModelController>();
 
-            string pluginsDirectory = settings.DirectoriesSettings.DefaultPluginsLocation;
-
-            foreach (var pluginAssembly in settings.PluginsSettings.Plugins.Where(p => p.IsValid))
+            foreach (var controller in activeControllerInstances)
             {
-                if (!pluginAssembly.IsBase)
+                Type type = controller.GetType();
+
+                supportedTypes.Add(new SupportedType
                 {
-                    string pluginLocation = Path.Combine(pluginsDirectory, pluginAssembly.File);
-                    Assembly assembly = Assembly.LoadFile(pluginLocation);
-
-                    foreach (PluginType pluginType in pluginAssembly.Types.Where(t => t.Enabled))
-                    {
-                        Type type = assembly.GetType(pluginType.Name);
-
-                        var runnable = Activator.CreateInstance(type) as IAccessModelController;
-                        if (runnable != null)
-                        {
-                            supportedTypes.Add(new SupportedType
-                            {
-                                Assembly = pluginAssembly.File,
-                                Name = runnable.Name,
-                                Type = pluginType.Name
-                            });
-                        }
-                    }
-                }
-                else
-                {
-                    foreach (PluginType pluginType in pluginAssembly.Types.Where(t => t.Enabled))
-                    {
-                        Type type = Assembly.GetExecutingAssembly().GetType(pluginType.Name);
-
-                        if (type != null)
-                        {
-                            var runnable = Activator.CreateInstance(type) as IAccessModelController;
-                            if (runnable != null)
-                            {
-                                supportedTypes.Add(new SupportedType
-                                {
-                                    Assembly = pluginAssembly.File,
-                                    Name = runnable.Name,
-                                    Type = pluginType.Name,
-                                    Item = runnable
-                                });
-                            }
-                        }
-                    }
-                }
+                    Assembly = Path.GetFileName(type.Assembly.Location),
+                    Name = controller.Name,
+                    Type = type.FullName,
+                    Item = controller
+                });
             }
 
             return supportedTypes;
         }
 
+        /// <summary>
+        /// Gets the supported templates.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         public static List<SupportedType> GetSupportedTemplates<T>() where T : class, IGeneratorTemplate
         {
             var supportedTypes = new List<SupportedType>();
@@ -216,6 +189,11 @@ namespace CodeGen.Utils
             return supportedTypes;
         }
 
+        /// <summary>
+        /// Gets the type of the data base.
+        /// </summary>
+        /// <param name="accessModelType">Type of the access model.</param>
+        /// <returns></returns>
         public static EnumDatabaseTypes GetDataBaseType(SupportedType accessModelType)
         {
             if (accessModelType != null)
@@ -230,23 +208,44 @@ namespace CodeGen.Utils
             return default(EnumDatabaseTypes);
         }
 
+        /// <summary>
+        /// Gets the table list from plugin.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
+        /// <param name="plugin">The plugin.</param>
+        /// <returns></returns>
         public static List<string> GetTableListFromPlugin(string connectionString, ProjectPlugin plugin)
         {
             var accessModel = GetPluginInstance<IAccessModelController>(plugin.Assembly, plugin.Type);
 
-            accessModel.Load(connectionString);
+            if (!accessModel.IsLoaded)
+            {
+                accessModel.Load(connectionString);
+            }
 
             return accessModel.GetTableList();
+        }
+
+        public static DatabaseEntity GetEntityInfoFromPlugin(string connectionString, ProjectPlugin plugin, string tableName)
+        {
+            var accessModel = GetPluginInstance<IAccessModelController>(plugin.Assembly, plugin.Type);
+
+            if (!accessModel.IsLoaded)
+            {
+                accessModel.Load(connectionString);
+            }
+
+            return accessModel.GetEntityInfo(tableName);
         }
 
         public static List<GeneratorComponent> GetComponents(SupportedType generatorItem)
         {
             if (generatorItem != null)
             {
-                var controller = generatorItem.Item as IGeneratorTemplate;
-                if (controller != null)
+                var template = generatorItem.Item as IGeneratorTemplate;
+                if (template != null)
                 {
-                    return controller.GetComponents();
+                    return template.GetComponents();
                 }
             }
 
@@ -257,10 +256,24 @@ namespace CodeGen.Utils
         {
             if (generatorItem != null)
             {
-                var controller = generatorItem.Item as IGeneratorTemplate;
+                var template = generatorItem.Item as IGeneratorTemplate;
+                if (template != null)
+                {
+                    return template.HaveOptions;
+                }
+            }
+
+            return false;
+        }
+
+        public static bool CheckIfPluginHaveCustomConnectionStringsForm(SupportedType accessModelItem)
+        {
+            if (accessModelItem != null)
+            {
+                var controller = accessModelItem.Item as IAccessModelController;
                 if (controller != null)
                 {
-                    return controller.HaveOptions;
+                    return controller.HaveCustomConnectionStringForm;
                 }
             }
 
@@ -286,10 +299,10 @@ namespace CodeGen.Utils
         {
             if (generatorItem != null)
             {
-                var controller = generatorItem.Item as IGeneratorTemplate;
-                if (controller != null)
+                var template = generatorItem.Item as IGeneratorTemplate;
+                if (template != null)
                 {
-                    return controller.ShowOptionsForm();
+                    return template.ShowOptionsForm();
                 }
             }
             return false;
@@ -299,10 +312,10 @@ namespace CodeGen.Utils
         {
             if (generatorItem != null)
             {
-                var controller = generatorItem.Item as IGeneratorTemplate;
-                if (controller != null)
+                var template = generatorItem.Item as IGeneratorTemplate;
+                if (template != null)
                 {
-                    return controller.Settings;
+                    return template.Settings;
                 }
             }
             return null;
@@ -312,10 +325,10 @@ namespace CodeGen.Utils
         {
             if (generatorItem != null)
             {
-                var controller = generatorItem.Item as IGeneratorTemplate;
-                if (controller != null)
+                var template = generatorItem.Item as IGeneratorTemplate;
+                if (template != null)
                 {
-                    controller.UpdateSettings(settings);
+                    template.UpdateSettings(settings);
                 }
             }
         }
@@ -324,10 +337,10 @@ namespace CodeGen.Utils
         {
             if (generatorItem != null)
             {
-                var controller = generatorItem.Item as IGeneratorTemplate;
-                if (controller != null)
+                var template = generatorItem.Item as IGeneratorTemplate;
+                if (template != null)
                 {
-                    var type = controller.GetType();
+                    var type = template.GetType();
                     var assemblyFile = Path.GetFileName(type.Assembly.Location);
 
                     var pluginProperties = ProjectController.GetPluginProperties(project, assemblyFile, type.FullName);
@@ -345,7 +358,7 @@ namespace CodeGen.Utils
                             settings.Add(value);
                         }
 
-                        controller.UpdateSettings(settings);
+                        template.UpdateSettings(settings);
                     }
                 }
             }
@@ -368,8 +381,8 @@ namespace CodeGen.Utils
                 try
                 {
                     // Try to create an instance and check if inherit for IPluginBase interface
-                    object runnable = Activator.CreateInstance(type);
-                    if (runnable is IPluginBase)
+                    object instance = Activator.CreateInstance(type);
+                    if (instance is IPluginBase)
                     {
                         isValidPlugin = true;
                     }

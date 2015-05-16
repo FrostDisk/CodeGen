@@ -104,6 +104,7 @@ namespace CodeGen.Data
                 parameter.Code = settingValue.Key;
                 parameter.Value = settingValue.Value;
                 parameter.UseDefault = settingValue.UseDefault;
+                parameter.Type = settingValue.Type;
                 pluginAssembly.Parameters.Add(parameter);
             }
 

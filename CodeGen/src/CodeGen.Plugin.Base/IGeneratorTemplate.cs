@@ -19,6 +19,10 @@ namespace CodeGen.Plugin.Base
 
         Boolean HaveComponents { get; }
 
+        Boolean IsLoaded { get; }
+
+        void Load(String projectName);
+
         bool ShowOptionsForm();
 
         List<GeneratorComponent> GetComponents();

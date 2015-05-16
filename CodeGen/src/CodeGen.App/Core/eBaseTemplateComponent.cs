@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeGen.Core
 {
-    internal enum eCSharpComponent
+    internal enum eBaseTemplateComponent
     {
         DOMAIN = 1,
         DATA_ACCESS = 2,

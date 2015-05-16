@@ -77,9 +77,11 @@ namespace CodeGen.Controls
 
         private void LoadDatabaseTypes()
         {
-            cmbDatabaseType.DataSource = PluginsManager.GetDatabaseTypes();
+            cmbDatabaseType.DataSource = PluginsManager.GetSupportedDatabaseControllers();
             cmbDatabaseType.DisplayMember = "Name";
             cmbDatabaseType.ValueMember = "Name";
+            cmbDatabaseType.SelectedItem = null;
+            btnGenerateConnectionString.Enabled = false;
         }
 
         public Project GetProject()
@@ -157,6 +159,20 @@ namespace CodeGen.Controls
             if (folderBrowserSelectProjectLocation.ShowDialog() == DialogResult.OK)
             {
                 txtProjectDirectory.Text = folderBrowserSelectProjectLocation.SelectedPath;
+            }
+        }
+
+        private void cmbDatabaseType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbDatabaseType.SelectedItem != null)
+            {
+                btnGenerateConnectionString.Enabled = PluginsManager.CheckIfPluginHaveCustomConnectionStringsForm(cmbDatabaseType.SelectedItem as SupportedType);
+                txtConnectionString.ReadOnly = false;
+            }
+            else
+            {
+                btnGenerateConnectionString.Enabled = false;
+                txtConnectionString.ReadOnly = true;
             }
         }
 

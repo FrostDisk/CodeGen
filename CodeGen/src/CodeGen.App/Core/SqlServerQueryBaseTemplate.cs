@@ -6,35 +6,35 @@ using CodeGen.Plugin.Base;
 
 namespace CodeGen.Core
 {
-    public sealed class CSharpQueryBaseTemplate : IQueryGeneratorTemplate
+    public sealed class SqlServerQueryBaseTemplate : IQueryGeneratorTemplate
     {
         #region properties
 
         public String Name
         {
-            get { return "C# Base Code Template"; }
+            get { return "Sql Server Base Query Template"; }
         }
 
         public string Description
         {
-            get { return "C# Domain/DataAccess Code Template"; }
+            get { return "Sql Server Save/GetById/ListaAll Query Template"; }
         }
 
         public PluginSettings Settings { get; private set; }
 
         public string LanguageCode
         {
-            get { return "CSharp"; }
+            get { return "SqlServer"; }
         }
 
         public String FileExtension
         {
-            get { return ".cs"; }
+            get { return ".sql"; }
         }
 
         public String FileNameFilter
         {
-            get { return "Visual C# Files (*.cs)|*.cs"; }
+            get { return "SQL Server files (*.sql)|*.sql"; }
         }
 
         public Boolean HaveOptions
@@ -47,17 +47,15 @@ namespace CodeGen.Core
             get { return GetComponents().Count > 0; }
         }
 
-        private FormCSharpCodeConfiguration _formConfiguration;
+        public Boolean IsLoaded { get; private set; }
 
         #endregion
 
         #region initialization
 
-        public CSharpQueryBaseTemplate()
+        public SqlServerQueryBaseTemplate()
         {
-            _formConfiguration = new FormCSharpCodeConfiguration();
-
-            Settings = _formConfiguration.GetSettings();
+            Settings = FormBaseTemplateConfiguration.Instance.GetSettings();
         }
 
         #endregion
@@ -68,17 +66,23 @@ namespace CodeGen.Core
         {
             foreach (PluginSettingValue settingValue in settings)
             {
-                _formConfiguration.UpdateSetting(settingValue.Key, settingValue.Value);
+                FormBaseTemplateConfiguration.Instance.UpdateSetting(settingValue.Key, settingValue.Value);
             }
+        }
+
+        public void Load(String projectName)
+        {
+            FormBaseTemplateConfiguration.Instance.ReplaceMyProject(projectName);
+            IsLoaded = true;
         }
 
         public bool ShowOptionsForm()
         {
-            var result = _formConfiguration.ShowDialog();
+            var result = FormBaseTemplateConfiguration.Instance.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                Settings = _formConfiguration.GetSettings();
+                Settings = FormBaseTemplateConfiguration.Instance.GetSettings();
                 return true;
             }
             return false;
@@ -88,8 +92,10 @@ namespace CodeGen.Core
         {
             return new List<GeneratorComponent>
             {
-                new GeneratorComponent((int) eCSharpComponent.DOMAIN, "Domain"),
-                new GeneratorComponent((int) eCSharpComponent.DATA_ACCESS, "Data Access"),
+                new GeneratorComponent((int) eBaseTemplateComponent.SAVE, "Save"),
+                new GeneratorComponent((int) eBaseTemplateComponent.GET_BY_ID, "GetByID"),
+                new GeneratorComponent((int) eBaseTemplateComponent.LIST_ALL, "ListAll"),
+                new GeneratorComponent((int) eBaseTemplateComponent.DELETE, "Delete"),
             };
         }
 
@@ -100,7 +106,7 @@ namespace CodeGen.Core
 
         public String Generate(DatabaseEntity entity, Int32 componentId)
         {
-            throw new NotImplementedException();
+            return string.Empty;
         }
 
         #endregion

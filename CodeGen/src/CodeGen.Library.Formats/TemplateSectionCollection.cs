@@ -37,7 +37,7 @@ namespace CodeGen.Library.Formats
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateSectionCollection"/> class.
         /// </summary>
-        internal TemplateSectionCollection()
+        public TemplateSectionCollection()
         {
         }
 
@@ -45,7 +45,7 @@ namespace CodeGen.Library.Formats
         /// Adds the section.
         /// </summary>
         /// <param name="section">The section.</param>
-        internal void AddSection(TemplateSection section)
+        public void AddSection(TemplateSection section)
         {
             _sections.Add(section);
         }

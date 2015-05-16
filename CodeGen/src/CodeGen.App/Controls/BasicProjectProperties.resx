@@ -387,6 +387,9 @@
   <data name="btnGenerateConnectionString.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
+  <data name="btnGenerateConnectionString.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="btnGenerateConnectionString.Location" type="System.Drawing.Point, System.Drawing">
     <value>381, 138</value>
   </data>

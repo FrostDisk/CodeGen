@@ -56,12 +56,20 @@ namespace {NAMESPACE_DATAACCESS}
                 /*-- END SECTION FLOAT */
                 /*-- BEGIN SECTION DOUBLE AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION DOUBLE */
+                /*-- BEGIN SECTION MONEY AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- END SECTION MONEY */
                 /*-- BEGIN SECTION CHAR AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION CHAR */
+                /*-- BEGIN SECTION NCHAR AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- END SECTION NCHAR */
                 /*-- BEGIN SECTION VARCHAR AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION VARCHAR */
+                /*-- BEGIN SECTION NVARCHAR AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- END SECTION NVARCHAR */
                 /*-- BEGIN SECTION TEXT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION TEXT */
+                /*-- BEGIN SECTION NTEXT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- END SECTION NTEXT */
                 /*-- BEGIN SECTION MEDIUMTEXT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION MEDIUMTEXT */
                 /*-- BEGIN SECTION LONGTEXT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
@@ -82,6 +90,8 @@ namespace {NAMESPACE_DATAACCESS}
                 /*-- END SECTION BLOB */
                 /*-- BEGIN SECTION LONGBLOB AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION LONGBLOB */
+                /*-- BEGIN SECTION IMAGE AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- END SECTION IMAGE */
                 /*-- END SECTION PARAMETERS */
             };
 
@@ -154,12 +164,20 @@ namespace {NAMESPACE_DATAACCESS}
                 /*-- END SECTION FLOAT */
                 /*-- BEGIN SECTION DOUBLE AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToDouble(row["{VAR.PROPERTYNAME}"]) : 0,
                 /*-- END SECTION DOUBLE */
+                /*-- BEGIN SECTION MONEY AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToDouble(row["{VAR.PROPERTYNAME}"]) : 0,
+                /*-- END SECTION MONEY */
                 /*-- BEGIN SECTION CHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
                 /*-- END SECTION CHAR */
+                /*-- BEGIN SECTION NCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
+                /*-- END SECTION NCHAR */
                 /*-- BEGIN SECTION VARCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
                 /*-- END SECTION VARCHAR */
+                /*-- BEGIN SECTION NVARCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
+                /*-- END SECTION NVARCHAR */
                 /*-- BEGIN SECTION TEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
                 /*-- END SECTION TEXT */
+                /*-- BEGIN SECTION NTEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
+                /*-- END SECTION NTEXT */
                 /*-- BEGIN SECTION MEDIUMTEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
                 /*-- END SECTION MEDIUMTEXT */
                 /*-- BEGIN SECTION LONGTEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
@@ -180,6 +198,8 @@ namespace {NAMESPACE_DATAACCESS}
                 /*-- END SECTION BLOB */
                 /*-- BEGIN SECTION LONGBLOB AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"] : null,
                 /*-- END SECTION LONGBLOB */
+                /*-- BEGIN SECTION IMAGE AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"] : null,
+                /*-- END SECTION IMAGE */
                 /*-- END SECTION PROPERTIES */
             };
         }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using CodeGen.Domain;
+using CodeGen.Plugin.Base;
 
 namespace CodeGen.Core
 {
@@ -16,6 +17,6 @@ namespace CodeGen.Core
 
         public string Type { get; set; }
 
-        public object Item { get; set; }
+        public IPluginBase Item { get; set; }
     }
 }

@@ -77,6 +77,7 @@
             this.cmbDatabaseType.FormattingEnabled = true;
             this.cmbDatabaseType.Name = "cmbDatabaseType";
             this.cmbDatabaseType.ValueMember = "Code";
+            this.cmbDatabaseType.SelectedIndexChanged += new System.EventHandler(this.cmbDatabaseType_SelectedIndexChanged);
             // 
             // lblProjectDirectory
             // 
@@ -100,6 +101,7 @@
             // 
             resources.ApplyResources(this.txtConnectionString, "txtConnectionString");
             this.txtConnectionString.Name = "txtConnectionString";
+            this.txtConnectionString.ReadOnly = true;
             // 
             // btnGenerateConnectionString
             // 

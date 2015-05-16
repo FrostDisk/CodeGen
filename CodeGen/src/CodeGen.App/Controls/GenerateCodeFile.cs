@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using CodeGen.Core;
 using CodeGen.Data;
@@ -34,6 +35,8 @@ namespace CodeGen.Controls
 
         public IGeneratorTemplate ActiveTemplate { get; private set; }
 
+        private Dictionary<string, DatabaseEntity> _entities;
+
         #endregion
 
         #region initialization
@@ -41,6 +44,8 @@ namespace CodeGen.Controls
         public GenerateCodeFile()
         {
             InitializeComponent();
+
+            _entities = new Dictionary<string, DatabaseEntity>();
         }
 
         #endregion
@@ -82,7 +87,12 @@ namespace CodeGen.Controls
             {
                 var item = (SupportedType) cmbTemplate.SelectedItem;
 
-                ActiveTemplate = item.Item as IGeneratorTemplate;
+                ActiveTemplate = (IGeneratorTemplate) item.Item;
+
+                if (!ActiveTemplate.IsLoaded)
+                {
+                    ActiveTemplate.Load(Project.Name);
+                }
 
                 cmbComponent.DataSource = PluginsManager.GetComponents(item);
                 cmbComponent.DisplayMember = "Name";
@@ -121,22 +131,43 @@ namespace CodeGen.Controls
             }
         }
 
+        private void cmbComponent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ActiveTemplate != null && cmbDatabaseEntity.SelectedItem != null)
+            {
+                string tableName = (string) cmbDatabaseEntity.SelectedItem;
+
+                DatabaseEntity entity;
+                if (!_entities.TryGetValue(tableName, out entity))
+                {
+                    entity = PluginsManager.GetEntityInfoFromPlugin(Project.ConnectionString, Project.Plugin, tableName);
+                    _entities[tableName] = entity;
+                }
+
+                txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (int) cmbComponent.SelectedValue);
+            }
+        }
+
         private void btnGenerateCode_Click(object sender, EventArgs e)
         {
             if (ValidateForm())
             {
-                txtGeneratedCode.Text = ActiveTemplate.Generate((DatabaseEntity) cmbDatabaseEntity.SelectedItem, (int) cmbComponent.SelectedValue);
+                string tableName = (string)cmbDatabaseEntity.SelectedItem;
+
+                DatabaseEntity entity;
+                if (!_entities.TryGetValue(tableName, out entity))
+                {
+                    entity = PluginsManager.GetEntityInfoFromPlugin(Project.ConnectionString, Project.Plugin, tableName);
+                    _entities[tableName] = entity;
+                }
+
+                txtGeneratedCode.Text = ActiveTemplate.Generate(entity, (int) cmbComponent.SelectedValue);
 
                 if (OnControlUpdate != null)
                 {
                     OnControlUpdate(this, new EventArgs());
                 }
             }
-        }
-
-        private void cmbComponent_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnSaveFileAs_Click(object sender, EventArgs e)

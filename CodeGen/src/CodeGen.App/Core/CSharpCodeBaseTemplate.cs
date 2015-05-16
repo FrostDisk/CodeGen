@@ -47,7 +47,7 @@ namespace CodeGen.Core
             get { return GetComponents().Count > 0; }
         }
 
-        private FormCSharpCodeConfiguration _formConfiguration;
+        public Boolean IsLoaded { get; private set; }
 
         #endregion
 
@@ -55,9 +55,7 @@ namespace CodeGen.Core
 
         public CSharpCodeBaseTemplate()
         {
-            _formConfiguration = new FormCSharpCodeConfiguration();
-
-            Settings = _formConfiguration.GetSettings();
+            Settings = FormBaseTemplateConfiguration.Instance.GetSettings();
         }
 
         #endregion
@@ -68,17 +66,23 @@ namespace CodeGen.Core
         {
             foreach (PluginSettingValue settingValue in settings)
             {
-                _formConfiguration.UpdateSetting(settingValue.Key, settingValue.Value);
+                FormBaseTemplateConfiguration.Instance.UpdateSetting(settingValue.Key, settingValue.Value);
             }
+        }
+
+        public void Load(String projectName)
+        {
+            FormBaseTemplateConfiguration.Instance.ReplaceMyProject(projectName);
+            IsLoaded = true;
         }
 
         public bool ShowOptionsForm()
         {
-            var result = _formConfiguration.ShowDialog();
+            var result = FormBaseTemplateConfiguration.Instance.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                Settings = _formConfiguration.GetSettings();
+                Settings = FormBaseTemplateConfiguration.Instance.GetSettings();
                 return true;
             }
             return false;
@@ -88,8 +92,8 @@ namespace CodeGen.Core
         {
             return new List<GeneratorComponent>
             {
-                new GeneratorComponent((int) eCSharpComponent.DOMAIN, "Domain"),
-                new GeneratorComponent((int) eCSharpComponent.DATA_ACCESS, "Data Access"),
+                new GeneratorComponent((int) eBaseTemplateComponent.DOMAIN, "Domain"),
+                new GeneratorComponent((int) eBaseTemplateComponent.DATA_ACCESS, "Data Access"),
             };
         }
 
@@ -100,7 +104,22 @@ namespace CodeGen.Core
 
         public String Generate(DatabaseEntity entity, Int32 componentId)
         {
-            throw new NotImplementedException();
+            BaseGenerator generator = new BaseGenerator(Settings, entity);
+
+            switch (componentId)
+            {
+                case (int)eBaseTemplateComponent.DOMAIN:
+                {
+                    return generator.GenerateDomainCode();
+                }
+
+                case (int)eBaseTemplateComponent.DATA_ACCESS:
+                {
+                    return generator.GenerateDataAccessCode();
+                }
+            }
+
+            return string.Empty;
         }
 
         #endregion

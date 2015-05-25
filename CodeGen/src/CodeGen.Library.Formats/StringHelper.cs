@@ -103,22 +103,29 @@ namespace CodeGen.Library.Formats
             return string.Format("{0}{1}_{2}", preffix, nameLength > 0 && titleFormatName.Length > nameLength ? titleFormatName.Substring(0, nameLength) : titleFormatName, uniqueId);
         }
 
+        public static string RemovePrefix(string text, string prefixSeparator = "_")
+        {
+            return text.Contains(prefixSeparator) ? text.Substring(text.IndexOf(prefixSeparator, StringComparison.Ordinal) + 1) : text;
+        }
+
         public static string ConvertToSafeCodeName(string text, bool checkIfStartWithNumber = true)
         {
-            return (checkIfStartWithNumber && (new Regex(StartWithNumber)).IsMatch(text) ? "_" : string.Empty) + CleanSpecialCharacters(text).Replace(" ", "_");
+            return (checkIfStartWithNumber && (new Regex(StartWithNumber)).IsMatch(text) ? ClassNumberPrefix : string.Empty) + CleanSpecialCharacters(text).Replace(" ", "_");
+        }
+
+        public static string ConvertToSafeConstantName(string text, bool checkIfStartWithNumber = true)
+        {
+            return ConvertToTitleCase(ConvertToSafeCodeName(text, checkIfStartWithNumber));
+        }
+
+        public static string ConverToInstanceName(string text)
+        {
+            return !string.IsNullOrWhiteSpace(text) ? text.ToUpper().StartsWith("ID") ? "id" + text.Substring(2) : char.ToLower(text[0]) + text.Substring(1) : string.Empty;
         }
 
         public static string ConvertToTitleCase(string text)
         {
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text.ToLower());
-        }
-
-        public static string ConvertToSafeVariableName(string text)
-        {
-            Regex regex = new Regex(StartWithNumber);
-            Match match = regex.Match(text);
-
-            return CleanSpecialCharacters(CultureInfo.CurrentCulture.TextInfo.ToUpper(match.Success ? string.Format("{0}{1}", ClassNumberPrefix, text.Trim()) : text.Trim())).Replace(" ", "_");
         }
 
         public static string CleanSpecialCharacters(string text)

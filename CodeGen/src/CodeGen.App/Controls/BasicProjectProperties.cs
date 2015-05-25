@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using CodeGen.Core;
 using CodeGen.Data;
 using CodeGen.Domain;
+using CodeGen.Library.Formats;
 using CodeGen.Library.System.IO;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
@@ -57,16 +58,13 @@ namespace CodeGen.Controls
 
         private void GenerateProjectFolder(int number = 1)
         {
-            string projectName = string.IsNullOrWhiteSpace(txtProjectName.Text) ? number == 1 ? DefaultProjectName : string.Format("{0} ({1})", DefaultProjectName, number) : txtProjectName.Text;
+            string projectName = StringHelper.ConvertToSafeCodeName(string.IsNullOrWhiteSpace(txtProjectName.Text) ? number == 1 ? DefaultProjectName : string.Format("{0} ({1})", DefaultProjectName, number) : txtProjectName.Text, false);
 
             string projectLocation = Path.Combine(DefaultProjectLocation, projectName);
             if (Directory.Exists(projectLocation) && !FolderHelper.IsDirectoryEmpty(projectLocation))
             {
-                GenerateProjectFolder(number + 1);
                 return;
             }
-
-            Directory.CreateDirectory(projectLocation);
 
             if (string.IsNullOrWhiteSpace(txtProjectName.Text))
             {
@@ -132,9 +130,12 @@ namespace CodeGen.Controls
                 return false;
             }
 
-            if (!FolderHelper.IsDirectoryEmpty(txtProjectDirectory.Text) && !MessageBoxHelper.ValidationQuestion("Selected directory isn't empty. Are you sure you want the project in the selected location?"))
+            if (Directory.Exists(txtProjectDirectory.Text))
             {
-                return false;
+                if (!FolderHelper.IsDirectoryEmpty(txtProjectDirectory.Text) && !MessageBoxHelper.ValidationQuestion("Selected directory isn't empty. Are you sure you want the project in the selected location?"))
+                {
+                    return false;
+                }
             }
 
             return true;
@@ -154,6 +155,10 @@ namespace CodeGen.Controls
             if (!string.IsNullOrWhiteSpace(txtProjectDirectory.Text))
             {
                 folderBrowserSelectProjectLocation.SelectedPath = txtProjectDirectory.Text;
+            }
+            else
+            {
+                folderBrowserSelectProjectLocation.SelectedPath = DefaultProjectLocation;
             }
 
             if (folderBrowserSelectProjectLocation.ShowDialog() == DialogResult.OK)

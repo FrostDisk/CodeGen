@@ -40,57 +40,57 @@ namespace {NAMESPACE_DATAACCESS}
             ParameterCollection parameters = new ParameterCollection
             {
                 /*-- BEGIN SECTION PARAMETERS */
-                /*-- BEGIN SECTION INT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION INT AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION INT */
-                /*-- BEGIN SECTION BIGINT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION BIGINT AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION BIGINT */
-                /*-- BEGIN SECTION SMALLINT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION SMALLINT AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION SMALLINT */
-                /*-- BEGIN SECTION TINYINT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION TINYINT AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION TINYINT */
-                /*-- BEGIN SECTION DECIMAL AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION DECIMAL AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION DECIMAL */
-                /*-- BEGIN SECTION REAL AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION REAL AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION REAL */
-                /*-- BEGIN SECTION FLOAT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION FLOAT AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION FLOAT */
-                /*-- BEGIN SECTION DOUBLE AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION DOUBLE AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION DOUBLE */
-                /*-- BEGIN SECTION MONEY AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION MONEY AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION MONEY */
-                /*-- BEGIN SECTION CHAR AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION CHAR AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION CHAR */
-                /*-- BEGIN SECTION NCHAR AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION NCHAR AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION NCHAR */
-                /*-- BEGIN SECTION VARCHAR AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION VARCHAR AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION VARCHAR */
-                /*-- BEGIN SECTION NVARCHAR AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION NVARCHAR AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION NVARCHAR */
-                /*-- BEGIN SECTION TEXT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION TEXT AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION TEXT */
-                /*-- BEGIN SECTION NTEXT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION NTEXT AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION NTEXT */
-                /*-- BEGIN SECTION MEDIUMTEXT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION MEDIUMTEXT AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION MEDIUMTEXT */
-                /*-- BEGIN SECTION LONGTEXT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION LONGTEXT AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION LONGTEXT */
-                /*-- BEGIN SECTION ENUM AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION ENUM AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION ENUM */
-                /*-- BEGIN SECTION BIT AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION BIT AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION BIT */
-                /*-- BEGIN SECTION SMALLDATETIME AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION SMALLDATETIME AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION SMALLDATETIME */
-                /*-- BEGIN SECTION DATETIME AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION DATETIME AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION DATETIME */
-                /*-- BEGIN SECTION DATE AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION DATE AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION DATE */
-                /*-- BEGIN SECTION TIME AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION TIME AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION TIME */
-                /*-- BEGIN SECTION BLOB AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION BLOB AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION BLOB */
-                /*-- BEGIN SECTION LONGBLOB AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION LONGBLOB AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION LONGBLOB */
-                /*-- BEGIN SECTION IMAGE AS VAR */new Parameter("{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- BEGIN SECTION IMAGE AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION IMAGE */
                 /*-- END SECTION PARAMETERS */
             };
@@ -101,13 +101,13 @@ namespace {NAMESPACE_DATAACCESS}
         /// <summary>
         /// Get a <see cref="{CLASS_NAME_DOMAIN}"/> entity from Database by Primary Key ID
         /// </summary>
-        /// <author>{AUTOR_CLASE}</author>
+        /// <author>{AUTHOR_NAME}</author>
         /// <created>{CREATION_DATE}</created>
         /// <param name="{PRIMARYKEY_LOCAL_VARIABLE}">ID de {CLASS_NAME_DOMAIN}.</param>
         /// <returns>Reference to a new instance of <see cref="{CLASS_NAME_DOMAIN}"/>.</returns>
         public static {CLASS_NAME_DOMAIN} {GETBYID_METHODNAME}({PRIMARYKEY_DATATYPE} {PRIMARYKEY_LOCAL_VARIABLE})
         {
-            Parameter parameter = new Parameter("{PRIMARYKEY_PARAMETERNAME}", {PRIMARYKEY_LOCAL_VARIABLE});
+            Parameter parameter = new Parameter("@{PRIMARYKEY_PARAMETERNAME}", {PRIMARYKEY_LOCAL_VARIABLE});
 
             return {DBHELPER_INSTANCEOBJECT}.{GETENTITY_METHODNAME}("{GETBYID_STORED_PROCEDURE}", parameter, {BUILDFUNCTION_METHODNAME});
         }
@@ -115,7 +115,7 @@ namespace {NAMESPACE_DATAACCESS}
         /// <summary>
         /// List all Entities from Database
         /// </summary>
-        /// <author>{AUTOR_CLASE}</author>
+        /// <author>{AUTHOR_NAME}</author>
         /// <created>{CREATION_DATE}</created>
         /// <returns><see cref="DataTable"/> con todos los objetos.</returns>
         public static DataTable {LISTALL_METHODNAME}()
@@ -126,13 +126,13 @@ namespace {NAMESPACE_DATAACCESS}
         /// <summary>
         /// Delete a Entity from Database
         /// </summary>
-        /// <author>{AUTOR_CLASE}</author>
+        /// <author>{AUTHOR_NAME}</author>
         /// <created>{CREATION_DATE}</created>
         /// <param name="{PRIMARYKEY_LOCAL_VARIABLE}">ID de {CLASS_NAME_DOMAIN}.</param>
         /// <returns>Referencia a una clase <see cref="{CLASS_NAME_DOMAIN}"/>.</returns>
         public static void {DELETE_METHODNAME}({PRIMARYKEY_DATATYPE} {PRIMARYKEY_LOCAL_VARIABLE})
         {
-            Parameter parameter = new Parameter("{PRIMARYKEY_PARAMETERNAME}", {PRIMARYKEY_LOCAL_VARIABLE});
+            Parameter parameter = new Parameter("@{PRIMARYKEY_PARAMETERNAME}", {PRIMARYKEY_LOCAL_VARIABLE});
 
             return {DBHELPER_INSTANCEOBJECT}.{EXECUTESP_METHODNAME}("{DELETE_STORED_PROCEDURE}", parameter);
         }
@@ -148,57 +148,57 @@ namespace {NAMESPACE_DATAACCESS}
             return new {CLASS_NAME_DOMAIN}
             {
                 /*-- BEGIN SECTION PROPERTIES */
-                /*-- BEGIN SECTION INT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToInt32(row["{VAR.PROPERTYNAME}"]) : 0,
+                /*-- BEGIN SECTION INT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToInt32(row["{VAR.COLUMNNAME}"]) : 0,
                 /*-- END SECTION INT */
-                /*-- BEGIN SECTION BIGINT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToInt64(row["{VAR.PROPERTYNAME}"]) : 0,
+                /*-- BEGIN SECTION BIGINT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToInt64(row["{VAR.COLUMNNAME}"]) : 0,
                 /*-- END SECTION BIGINT */
-                /*-- BEGIN SECTION SMALLINT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToInt16(row["{VAR.PROPERTYNAME}"]) : (short)0,
+                /*-- BEGIN SECTION SMALLINT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToInt16(row["{VAR.COLUMNNAME}"]) : (short)0,
                 /*-- END SECTION SMALLINT */
-                /*-- BEGIN SECTION TINYINT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToInt16(row["{VAR.PROPERTYNAME}"]) : (short)0,
+                /*-- BEGIN SECTION TINYINT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToInt16(row["{VAR.COLUMNNAME}"]) : (short)0,
                 /*-- END SECTION TINYINT */
-                /*-- BEGIN SECTION DECIMAL AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToDecimal(row["{VAR.PROPERTYNAME}"]) : 0,
+                /*-- BEGIN SECTION DECIMAL AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToDecimal(row["{VAR.COLUMNNAME}"]) : 0,
                 /*-- END SECTION DECIMAL */
-                /*-- BEGIN SECTION REAL AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToFloat(row["{VAR.PROPERTYNAME}"]) : 0.0f,
+                /*-- BEGIN SECTION REAL AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToFloat(row["{VAR.COLUMNNAME}"]) : 0.0f,
                 /*-- END SECTION REAL */
-                /*-- BEGIN SECTION FLOAT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToFloat(row["{VAR.PROPERTYNAME}"]) : 0.0f,
+                /*-- BEGIN SECTION FLOAT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToFloat(row["{VAR.COLUMNNAME}"]) : 0.0f,
                 /*-- END SECTION FLOAT */
-                /*-- BEGIN SECTION DOUBLE AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToDouble(row["{VAR.PROPERTYNAME}"]) : 0,
+                /*-- BEGIN SECTION DOUBLE AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToDouble(row["{VAR.COLUMNNAME}"]) : 0,
                 /*-- END SECTION DOUBLE */
-                /*-- BEGIN SECTION MONEY AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToDouble(row["{VAR.PROPERTYNAME}"]) : 0,
+                /*-- BEGIN SECTION MONEY AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToDouble(row["{VAR.COLUMNNAME}"]) : 0,
                 /*-- END SECTION MONEY */
-                /*-- BEGIN SECTION CHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION CHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
                 /*-- END SECTION CHAR */
-                /*-- BEGIN SECTION NCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION NCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
                 /*-- END SECTION NCHAR */
-                /*-- BEGIN SECTION VARCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION VARCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
                 /*-- END SECTION VARCHAR */
-                /*-- BEGIN SECTION NVARCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION NVARCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
                 /*-- END SECTION NVARCHAR */
-                /*-- BEGIN SECTION TEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION TEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
                 /*-- END SECTION TEXT */
-                /*-- BEGIN SECTION NTEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION NTEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
                 /*-- END SECTION NTEXT */
-                /*-- BEGIN SECTION MEDIUMTEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION MEDIUMTEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
                 /*-- END SECTION MEDIUMTEXT */
-                /*-- BEGIN SECTION LONGTEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION LONGTEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
                 /*-- END SECTION LONGTEXT */
-                /*-- BEGIN SECTION ENUM AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION ENUM AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
                 /*-- END SECTION ENUM */
-                /*-- BEGIN SECTION BIT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value && Convert.ToBoolean(row["{VAR.PROPERTYNAME}"]),
+                /*-- BEGIN SECTION BIT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value && Convert.ToBoolean(row["{VAR.COLUMNNAME}"]),
                 /*-- END SECTION BIT */
-                /*-- BEGIN SECTION SMALLDATETIME AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToDateTime(row["{VAR.PROPERTYNAME}"]) : new DateTime(1900, 1, 1),
+                /*-- BEGIN SECTION SMALLDATETIME AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToDateTime(row["{VAR.COLUMNNAME}"]) : new DateTime(1900, 1, 1),
                 /*-- END SECTION SMALLDATETIME */
-                /*-- BEGIN SECTION DATETIME AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToDateTime(row["{VAR.PROPERTYNAME}"]) : new DateTime(1900, 1, 1),
+                /*-- BEGIN SECTION DATETIME AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToDateTime(row["{VAR.COLUMNNAME}"]) : new DateTime(1900, 1, 1),
                 /*-- END SECTION DATETIME */
-                /*-- BEGIN SECTION DATE AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? Convert.ToDateTime(row["{VAR.PROPERTYNAME}"]) : new DateTime(1900, 1, 1),
+                /*-- BEGIN SECTION DATE AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToDateTime(row["{VAR.COLUMNNAME}"]) : new DateTime(1900, 1, 1),
                 /*-- END SECTION DATE */
-                /*-- BEGIN SECTION TIME AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? TimeSpan.Parse(Convert.ToDateTime(row["{VAR.PROPERTYNAME}"]).ToLongTimeString()) : new TimeSpan(0),
+                /*-- BEGIN SECTION TIME AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? TimeSpan.Parse(Convert.ToDateTime(row["{VAR.COLUMNNAME}"]).ToLongTimeString()) : new TimeSpan(0),
                 /*-- END SECTION TIME */
-                /*-- BEGIN SECTION BLOB AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"] : null,
+                /*-- BEGIN SECTION BLOB AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"] : null,
                 /*-- END SECTION BLOB */
-                /*-- BEGIN SECTION LONGBLOB AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"] : null,
+                /*-- BEGIN SECTION LONGBLOB AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"] : null,
                 /*-- END SECTION LONGBLOB */
-                /*-- BEGIN SECTION IMAGE AS VAR */{VAR.PROPERTYNAME} = row["{VAR.PROPERTYNAME}"] != DBNull.Value ? row["{VAR.PROPERTYNAME}"] : null,
+                /*-- BEGIN SECTION IMAGE AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"] : null,
                 /*-- END SECTION IMAGE */
                 /*-- END SECTION PROPERTIES */
             };

@@ -42,6 +42,7 @@
             this.txtFileName = new System.Windows.Forms.TextBox();
             this.btnSaveFileAs = new System.Windows.Forms.Button();
             this.txtGeneratedCode = new System.Windows.Forms.TextBox();
+            this.saveDialogGeneratedCode = new System.Windows.Forms.SaveFileDialog();
             this.grpConfiguration.SuspendLayout();
             this.grpGenerate.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +84,7 @@
             this.cmbDatabaseEntity.Name = "cmbDatabaseEntity";
             this.cmbDatabaseEntity.Size = new System.Drawing.Size(450, 21);
             this.cmbDatabaseEntity.TabIndex = 1;
+            this.cmbDatabaseEntity.SelectedIndexChanged += new System.EventHandler(this.cmbDatabaseEntity_SelectedIndexChanged);
             // 
             // lblTemplate
             // 
@@ -156,6 +158,7 @@
             // 
             // btnGenerateCode
             // 
+            this.btnGenerateCode.Enabled = false;
             this.btnGenerateCode.Location = new System.Drawing.Point(6, 19);
             this.btnGenerateCode.Name = "btnGenerateCode";
             this.btnGenerateCode.Size = new System.Drawing.Size(133, 20);
@@ -178,16 +181,18 @@
             // 
             // txtFileName
             // 
-            this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFileName.Location = new System.Drawing.Point(331, 19);
+            this.txtFileName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFileName.Location = new System.Drawing.Point(302, 19);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.ReadOnly = true;
-            this.txtFileName.Size = new System.Drawing.Size(125, 20);
+            this.txtFileName.Size = new System.Drawing.Size(154, 20);
             this.txtFileName.TabIndex = 4;
             // 
             // btnSaveFileAs
             // 
             this.btnSaveFileAs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveFileAs.Enabled = false;
             this.btnSaveFileAs.Location = new System.Drawing.Point(462, 19);
             this.btnSaveFileAs.Name = "btnSaveFileAs";
             this.btnSaveFileAs.Size = new System.Drawing.Size(88, 21);
@@ -242,5 +247,6 @@
         private System.Windows.Forms.Label lblComponent;
         private System.Windows.Forms.ComboBox cmbComponent;
         private System.Windows.Forms.TextBox txtFileName;
+        private System.Windows.Forms.SaveFileDialog saveDialogGeneratedCode;
     }
 }

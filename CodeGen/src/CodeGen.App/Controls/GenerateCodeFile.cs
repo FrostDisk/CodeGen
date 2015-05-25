@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using CodeGen.Core;
-using CodeGen.Data;
 using CodeGen.Domain;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
@@ -74,105 +73,208 @@ namespace CodeGen.Controls
 
         public bool ValidateForm()
         {
+            if (cmbDatabaseEntity.SelectedItem == null)
+            {
+                MessageBoxHelper.ValidationMessage("Select Database Entity");
+                return false;
+            }
+
+            if (cmbTemplate.SelectedItem == null)
+            {
+                MessageBoxHelper.ValidationMessage("Select Template Plugin");
+                return false;
+            }
+
+            if (cmbComponent.SelectedItem == null)
+            {
+                MessageBoxHelper.ValidationMessage("Select Template Component");
+                return false;
+            }
+
             return true;
+        }
+
+        private void UpdateFileName()
+        {
+            string entityItem = (string)cmbDatabaseEntity.SelectedItem;
+
+            DatabaseEntity entity;
+            if (!_entities.TryGetValue(entityItem, out entity))
+            {
+                entity = PluginsManager.GetEntityInfoFromPlugin(Project.ConnectionString, Project.Plugin, entityItem);
+                _entities[entityItem] = entity;
+            }
+
+            txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (int)cmbComponent.SelectedValue);
+        }
+
+        private void EnableButtons()
+        {
+            bool enable = cmbDatabaseEntity.SelectedItem != null && cmbTemplate.SelectedItem != null && cmbComponent.SelectedItem != null;
+
+            btnGenerateCode.Enabled = enable;
+            btnSaveFileAs.Enabled = enable && !string.IsNullOrWhiteSpace(txtGeneratedCode.Text);
+            chkCopyToClipboard.Enabled = enable;
         }
 
         #endregion
 
         #region events
 
+        private void cmbDatabaseEntity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                EnableButtons();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
+        }
+
         private void cmbTemplate_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbTemplate.SelectedItem != null)
+            try
             {
-                var item = (SupportedType) cmbTemplate.SelectedItem;
-
-                ActiveTemplate = (IGeneratorTemplate) item.Item;
-
-                if (!ActiveTemplate.IsLoaded)
+                if (cmbTemplate.SelectedItem != null)
                 {
-                    ActiveTemplate.Load(Project.Name);
+                    var item = (SupportedType) cmbTemplate.SelectedItem;
+
+                    ActiveTemplate = (IGeneratorTemplate) item.Item;
+
+                    if (!ActiveTemplate.IsLoaded)
+                    {
+                        ActiveTemplate.Load(Project.Name);
+                    }
+
+                    cmbComponent.DataSource = PluginsManager.GetComponents(item);
+                    cmbComponent.DisplayMember = "Name";
+                    cmbComponent.ValueMember = "Id";
+
+                    lnkTemplateOptions.Visible = PluginsManager.CheckIfPluginHaveOptions(item);
+
+                    PluginsManager.UpdateProjectSettingsForPlugin(item, Project);
+                }
+                else
+                {
+                    ActiveTemplate = null;
+                    cmbComponent.DataSource = null;
+                    lnkTemplateOptions.Visible = false;
                 }
 
-                cmbComponent.DataSource = PluginsManager.GetComponents(item);
-                cmbComponent.DisplayMember = "Name";
-                cmbComponent.ValueMember = "Id";
-
-                lnkTemplateOptions.Visible = PluginsManager.CheckIfPluginHaveOptions(item);
-
-                PluginsManager.UpdateProjectSettingsForPlugin(item, Project);
+                EnableButtons();
             }
-            else
+            catch (Exception ex)
             {
-                ActiveTemplate = null;
-                cmbComponent.DataSource = null;
-                lnkTemplateOptions.Visible = false;
+                MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void lnkTemplateOptions_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            if (cmbTemplate.SelectedItem != null)
+            try
             {
-                var item = (SupportedType)cmbTemplate.SelectedItem;
-
-                if (PluginsManager.ShowTemplateOptions(item))
+                if (cmbTemplate.SelectedItem != null)
                 {
-                    if (OnSettingsUpdate != null)
-                    {
-                        OnSettingsUpdate(this, new EventArgs());
-                    }
+                    var templateItem = (SupportedType) cmbTemplate.SelectedItem;
 
-                    if (OnControlUpdate != null)
+                    if (PluginsManager.ShowTemplateOptions(templateItem))
                     {
-                        OnControlUpdate(this, new EventArgs());
+                        if (OnSettingsUpdate != null)
+                        {
+                            OnSettingsUpdate(this, new EventArgs());
+                        }
+
+                        if (OnControlUpdate != null)
+                        {
+                            OnControlUpdate(this, new EventArgs());
+                        }
+
+                        if (cmbDatabaseEntity.SelectedItem != null)
+                        {
+                            UpdateFileName();
+                        }
                     }
                 }
+
+                EnableButtons();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void cmbComponent_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ActiveTemplate != null && cmbDatabaseEntity.SelectedItem != null)
+            try
             {
-                string tableName = (string) cmbDatabaseEntity.SelectedItem;
-
-                DatabaseEntity entity;
-                if (!_entities.TryGetValue(tableName, out entity))
+                if (ActiveTemplate != null && cmbDatabaseEntity.SelectedItem != null)
                 {
-                    entity = PluginsManager.GetEntityInfoFromPlugin(Project.ConnectionString, Project.Plugin, tableName);
-                    _entities[tableName] = entity;
+                    UpdateFileName();
                 }
 
-                txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (int) cmbComponent.SelectedValue);
+                EnableButtons();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void btnGenerateCode_Click(object sender, EventArgs e)
         {
-            if (ValidateForm())
+            try
             {
-                string tableName = (string)cmbDatabaseEntity.SelectedItem;
-
-                DatabaseEntity entity;
-                if (!_entities.TryGetValue(tableName, out entity))
+                if (ValidateForm())
                 {
-                    entity = PluginsManager.GetEntityInfoFromPlugin(Project.ConnectionString, Project.Plugin, tableName);
-                    _entities[tableName] = entity;
+                    string tableName = (string) cmbDatabaseEntity.SelectedItem;
+
+                    DatabaseEntity entity;
+                    if (!_entities.TryGetValue(tableName, out entity))
+                    {
+                        entity = PluginsManager.GetEntityInfoFromPlugin(Project.ConnectionString, Project.Plugin, tableName);
+                        _entities[tableName] = entity;
+                    }
+
+                    txtGeneratedCode.Text = ActiveTemplate.Generate(entity, (int) cmbComponent.SelectedValue);
+
+                    if (OnControlUpdate != null)
+                    {
+                        OnControlUpdate(this, new EventArgs());
+                    }
+
+                    if (chkCopyToClipboard.Checked)
+                    {
+                        txtGeneratedCode.SelectAll();
+                        txtGeneratedCode.Copy();
+
+                        MessageBox.Show("Copied to Clipboard", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
 
-                txtGeneratedCode.Text = ActiveTemplate.Generate(entity, (int) cmbComponent.SelectedValue);
-
-                if (OnControlUpdate != null)
-                {
-                    OnControlUpdate(this, new EventArgs());
-                }
+                EnableButtons();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void btnSaveFileAs_Click(object sender, EventArgs e)
         {
+            try
+            {
+                saveDialogGeneratedCode.Filter = ActiveTemplate.FileNameFilter;
+                saveDialogGeneratedCode.FileName = txtFileName.Text;
 
+                saveDialogGeneratedCode.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
         }
 
         #endregion

@@ -86,13 +86,13 @@ namespace CodeGen
         public void UpdateSetting(string code, string value)
         {
             ITemplateParameter parameter = _parameters[code];
-            if (parameter != null)
+            if (parameter != null && !string.IsNullOrWhiteSpace(value))
             {
                 parameter.ParameterValue = value;
             }
         }
 
-        private bool ValidateForm()
+        public bool ValidateForm(bool showMessages = true)
         {
             List<string> messages = new List<string>();
 
@@ -100,13 +100,16 @@ namespace CodeGen
             {
                 if (!entry.Value.Validate())
                 {
-                    messages.Add(string.Format("Parameter {0} is required",entry.Value.ParameterName));
+                    messages.Add(string.Format("Parameter {0} is required", entry.Value.ParameterName));
                 }
             }
 
             if (messages.Count > 0)
             {
-                MessageBoxHelper.ValidationMessage(string.Join(Environment.NewLine, messages));
+                if (showMessages)
+                {
+                    MessageBoxHelper.ValidationMessage(string.Join(Environment.NewLine, messages));
+                }
                 return false;
             }
             return true;
@@ -122,7 +125,7 @@ namespace CodeGen
             var parameters = new List<ITemplateParameter>();
             parameters.AddRange(GetParameters(this));
 
-            foreach (TemplateParameter parameter in parameters)
+            foreach (ITemplateParameter parameter in parameters)
             {
                 _parameters[parameter.ParameterCode] = parameter;
             }

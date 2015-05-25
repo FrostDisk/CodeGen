@@ -99,23 +99,44 @@ namespace CodeGen.Core
 
         public String GenerateFileName(DatabaseEntity entity, Int32 componentId)
         {
+            if (FormBaseTemplateConfiguration.Instance.ValidateForm(false))
+            {
+                BaseGenerator generator = new BaseGenerator(Settings, entity);
+
+                switch (componentId)
+                {
+                    case (int) eBaseTemplateComponent.DOMAIN:
+                    {
+                        return string.Format("{0}{1}", generator.DomainClassName, FileExtension);
+                    }
+
+                    case (int) eBaseTemplateComponent.DATA_ACCESS:
+                    {
+                        return string.Format("{0}{1}", generator.DataAccessClassName, FileExtension);
+                    }
+                }
+            }
+
             return string.Empty;
         }
 
         public String Generate(DatabaseEntity entity, Int32 componentId)
         {
-            BaseGenerator generator = new BaseGenerator(Settings, entity);
-
-            switch (componentId)
+            if (FormBaseTemplateConfiguration.Instance.ValidateForm())
             {
-                case (int)eBaseTemplateComponent.DOMAIN:
-                {
-                    return generator.GenerateDomainCode();
-                }
+                BaseGenerator generator = new BaseGenerator(Settings, entity);
 
-                case (int)eBaseTemplateComponent.DATA_ACCESS:
+                switch (componentId)
                 {
-                    return generator.GenerateDataAccessCode();
+                    case (int) eBaseTemplateComponent.DOMAIN:
+                    {
+                        return generator.GenerateDomainCode();
+                    }
+
+                    case (int) eBaseTemplateComponent.DATA_ACCESS:
+                    {
+                        return generator.GenerateDataAccessCode();
+                    }
                 }
             }
 

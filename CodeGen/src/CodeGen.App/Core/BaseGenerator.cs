@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CodeGen.Library.Formats;
 using CodeGen.Plugin.Base;
 using CodeGen.Properties;
@@ -32,12 +29,21 @@ namespace CodeGen.Core
         public string DataAccessClassName { get; set; }
 
         /// <summary>
+        /// CleanEntityName
+        /// </summary>
+        public string CleanEntityName { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="BaseGenerator"/> class.
         /// </summary>
         public BaseGenerator(PluginSettings settings, DatabaseEntity entity)
         {
             Settings = settings;
             Entity = entity;
+
+            CleanEntityName = StringHelper.ConvertToSafeCodeName(StringHelper.RemovePrefix(entity.Name)).Replace("_", string.Empty);
+            DomainClassName = string.Format("{0}{1}{2}", Settings[CodeBaseConstants.DOMAIN_PREFIX].Value, CleanEntityName, Settings[CodeBaseConstants.DOMAIN_SUFFIX].Value);
+            DataAccessClassName = string.Format("{0}{1}{2}", Settings[CodeBaseConstants.DATAACCESS_PREFIX].Value, CleanEntityName, Settings[CodeBaseConstants.DATAACCESS_SUFFIX].Value);
         }
 
         /// <summary>
@@ -71,7 +77,7 @@ namespace CodeGen.Core
             template.ReplaceTag("CLASS_NAME_DOMAIN", DomainClassName, false);
 
             template.ReplaceTag("AUTHOR_NAME", Settings[CodeBaseConstants.AUTHOR_NAME].Value, false);
-            template.ReplaceTag("CREATION_DATE", ObtenerFechaFormateada(), false);
+            template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
 
             return template.Content;
         }
@@ -84,49 +90,65 @@ namespace CodeGen.Core
         {
             TemplateFile template = TemplateFile.LoadTemplate(TemplateType.CS, Resources.class_DataAccess);
 
-            TemplateSection seccionPropiedades = template.ExtractSection("PROPERTIES");
-            TemplateSection seccionParametros = template.ExtractSection("PARAMETERS");
+            TemplateSection sectionProperties = template.ExtractSection("PROPERTIES");
+            TemplateSection sectionParameters = template.ExtractSection("PARAMETERS");
 
-            TemplateSectionCollection listaSeccionesPropiedades = new TemplateSectionCollection();
-            TemplateSectionCollection listaSeccionesParametros = new TemplateSectionCollection();
+            TemplateSectionCollection propertiesSectionList = new TemplateSectionCollection();
+            TemplateSectionCollection parameterSectionList = new TemplateSectionCollection();
+
+            var instanceEntityName = StringHelper.ConverToInstanceName(CleanEntityName);
 
             foreach (var entityField in Entity.Fields)
             {
-                TemplateSection seccionParametro = seccionParametros.ExtractSection(entityField.SimpleTypeName);
-                seccionParametro.ReplaceTag("NOMBREPARAMETRO", entityField.ColumnName);
-                seccionParametro.ReplaceTag("NOMBREPROPIEDAD", entityField.ColumnName);
-                //seccionParametro.ReplaceTag("NOMBRE_INSTANCIA_DOMAIN", Entity.NombreInstancia, false);
-                listaSeccionesParametros.AddSection(seccionParametro);
+                TemplateSection propertySection = sectionParameters.ExtractSection(entityField.SimpleTypeName);
+                propertySection.ReplaceTag("PARAMETERNAME", entityField.ColumnName);
+                propertySection.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                propertySection.ReplaceTag("INSTANCE_NAME_DOMAIN", instanceEntityName, false);
+                parameterSectionList.AddSection(propertySection);
 
-                TemplateSection seccionPropiedad = seccionPropiedades.ExtractSection(entityField.SimpleTypeName);
-                seccionPropiedad.ReplaceTag("NOMBREPROPIEDAD", entityField.ColumnName);
-                seccionPropiedad.ReplaceTag("NOMBRECOLUMNA", entityField.ColumnName);
-                listaSeccionesPropiedades.AddSection(seccionPropiedad);
+                TemplateSection parameterSection = sectionProperties.ExtractSection(entityField.SimpleTypeName);
+                parameterSection.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                parameterSection.ReplaceTag("COLUMNNAME", entityField.ColumnName);
+                propertiesSectionList.AddSection(parameterSection);
             }
 
-            template.ReplaceSection("PROPERTIES", listaSeccionesPropiedades);
-            template.ReplaceSection("PARAMETERS", listaSeccionesParametros);
+            template.ReplaceSection("PROPERTIES", propertiesSectionList);
+            template.ReplaceSection("PARAMETERS", parameterSectionList);
 
-            //template.ReplaceTag("NAMESPACE_DOMAIN", Settings[CodeBaseConstants.NAMESPACE_DOMAIN].Value, false);
-            //template.ReplaceTag("NAMESPACE_DATAACCESS", Settings[CodeBaseConstants.NAMESPACE_DATAACCESS].Value, false);
-            //template.ReplaceTag("NAMESPACE_DBHELPER", Settings[eParametros.NAMESPACE_DBHELPER], false);
-            //template.ReplaceTag("INSTANCIA_DBHELPER", Settings[eParametros.INSTANCIA_DBHELPER], false);
-            //template.ReplaceTag("NAMESPACE_GDK_DATA", Settings[eParametros.NAMESPACE_GDK_DATA], false);
+            var primaryEntityField = Entity.Fields.First(f => f.IsPrimaryKey);
 
-            //template.ReplaceTag("VARIABLE_PRIMARIA_PARAMETRO", Proyecto.IDTipoServidor == (int)eTipoServidor.MYSQL ? Entity.ClavePrimaria.NombreParametroMySql : Entity.ClavePrimaria.NombreParametroSqlServer, false);
-            //template.ReplaceTag("VARIABLE_PRIMARIA_LOCAL", Entity.ClavePrimaria.NombrePropiedadLocal, false);
-            //template.ReplaceTag("VARIABLE_PRIMARIA_TIPODATO", TipoDatoHelper.ObtenerValor(Entity.ClavePrimaria.TipoDato), false);
+            template.ReplaceTag("PRIMARYKEY_DATATYPE", DataTypeHelper.GetCSharpType(primaryEntityField.SimpleTypeName), false);
+            template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
+            template.ReplaceTag("PRIMARYKEY_LOCAL_VARIABLE", StringHelper.ConverToInstanceName(StringHelper.ConvertToSafeCodeName(primaryEntityField.ColumnName)), false);
 
-            //template.ReplaceTag("NOMBRE_INSTANCIA_DOMAIN", Entity.NombreInstancia, false);
-            //template.ReplaceTag("NOMBRE_CLASE_DOMAIN", DomainClassName, false);
-            //template.ReplaceTag("NOMBRE_CLASE_DATAACCESS", DataAccessClassName, false);
+            template.ReplaceTag("NAMESPACE_DOMAIN", Settings[CodeBaseConstants.NAMESPACE_DOMAIN].Value, false);
+            template.ReplaceTag("NAMESPACE_DATAACCESS", Settings[CodeBaseConstants.NAMESPACE_DATAACCESS].Value, false);
+            template.ReplaceTag("NAMESPACE_DBHELPER", Settings[CodeBaseConstants.NAMESPACE_DBHELPER].Value, false);
+            template.ReplaceTag("NAMESPACE_ACCESS_MODEL", Settings[CodeBaseConstants.NAMESPACE_ACCESS_MODEL].Value, false);
 
-            //template.ReplaceTag("NOMBRE_PROCEDIMIENTO_GUARDAR", Entity.NombreProcedimientoGuardar, false);
-            //template.ReplaceTag("NOMBRE_PROCEDIMIENTO_OBTENERPORID", Entity.NombreProcedimientoObtenerPorID, false);
-            //template.ReplaceTag("NOMBRE_PROCEDIMIENTO_LISTAR", Entity.NombreProcedimientoListar, false);
+            template.ReplaceTag("INSTANCE_NAME_DOMAIN", instanceEntityName, false);
+            template.ReplaceTag("CLASS_NAME_DOMAIN", DomainClassName, false);
+            template.ReplaceTag("CLASS_NAME_DATAACCESS", DataAccessClassName, false);
+
+            template.ReplaceTag("SAVE_STORED_PROCEDURE", string.Format("{0}{1}{2}", Settings[CodeBaseConstants.SAVE_PREFIX].Value, DomainClassName, Settings[CodeBaseConstants.SAVE_SUFFIX].Value), false);
+            template.ReplaceTag("GETBYID_STORED_PROCEDURE", string.Format("{0}{1}{2}", Settings[CodeBaseConstants.GETBYID_PREFIX].Value, DomainClassName, Settings[CodeBaseConstants.GETBYID_SUFFIX].Value), false);
+            template.ReplaceTag("LISTALL_STORED_PROCEDURE", string.Format("{0}{1}{2}", Settings[CodeBaseConstants.LISTALL_PREFIX].Value, DomainClassName, Settings[CodeBaseConstants.LISTALL_SUFFIX].Value), false);
+            template.ReplaceTag("DELETE_STORED_PROCEDURE", string.Format("{0}{1}{2}", Settings[CodeBaseConstants.DELETE_PREFIX].Value, DomainClassName, Settings[CodeBaseConstants.DELETE_SUFFIX].Value), false);
+
+            template.ReplaceTag("SAVE_METHODNAME", Settings[CodeBaseConstants.SAVE_METHODNAME].Value, false);
+            template.ReplaceTag("GETBYID_METHODNAME", Settings[CodeBaseConstants.GETBYID_METHODNAME].Value, false);
+            template.ReplaceTag("LISTALL_METHODNAME", Settings[CodeBaseConstants.LISTALL_METHODNAME].Value, false);
+            template.ReplaceTag("DELETE_METHODNAME", Settings[CodeBaseConstants.DELETE_METHODNAME].Value, false);
+            template.ReplaceTag("BUILDFUNCTION_METHODNAME", Settings[CodeBaseConstants.BUILDFUNCTION_METHODNAME].Value, false);
+
+            template.ReplaceTag("DBHELPER_INSTANCEOBJECT", Settings[CodeBaseConstants.DBHELPER_INSTANCEOBJECT].Value, false);
+            template.ReplaceTag("GETSCALAR_METHODNAME", Settings[CodeBaseConstants.GETSCALAR_METHODNAME].Value, false);
+            template.ReplaceTag("GETENTITY_METHODNAME", Settings[CodeBaseConstants.GETENTITY_METHODNAME].Value, false);
+            template.ReplaceTag("GETDATATABLE_METHODNAME", Settings[CodeBaseConstants.GETDATATABLE_METHODNAME].Value, false);
+            template.ReplaceTag("EXECUTESP_METHODNAME", Settings[CodeBaseConstants.EXECUTESP_METHODNAME].Value, false);
 
             template.ReplaceTag("AUTHOR_NAME", Settings[CodeBaseConstants.AUTHOR_NAME].Value, false);
-            template.ReplaceTag("CREATION_DATE", ObtenerFechaFormateada(), false);
+            template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
 
             return template.Content;
         }
@@ -135,9 +157,9 @@ namespace CodeGen.Core
         /// Obteners the fecha formateada.
         /// </summary>
         /// <returns></returns>
-        public string ObtenerFechaFormateada()
+        public string GetSimpleDate(DateTime date)
         {
-            return DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
+            return date.ToString("dd-MM-yyyy HH:mm");
         }
     }
 }

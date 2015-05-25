@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTypeHelper.cs" />
     <Compile Include="InvalidFormatTagsException.cs" />
     <Compile Include="NotDaughterSectionException.cs" />
     <Compile Include="NotSupportedTemplateTypeException.cs" />

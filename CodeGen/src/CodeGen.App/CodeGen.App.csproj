@@ -71,6 +71,12 @@
     <Compile Include="Configuration\PluginAssembly.cs" />
     <Compile Include="Configuration\PluginsSettings.cs" />
     <Compile Include="Configuration\ProjectSettings.cs" />
+    <Compile Include="Controls\AssemblyDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\AssemblyDetails.Designer.cs">
+      <DependentUpon>AssemblyDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\BasicProjectProperties.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -91,6 +97,12 @@
     </Compile>
     <Compile Include="Controls\ISettingsUserControl.cs" />
     <Compile Include="Controls\ITemplateParameter.cs" />
+    <Compile Include="Controls\PluginDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PluginDetails.Designer.cs">
+      <DependentUpon>PluginDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ProjectWorkspace.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -143,6 +155,12 @@
     <Compile Include="FormNewProject.Designer.cs">
       <DependentUpon>FormNewProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPluginsManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPluginsManager.Designer.cs">
+      <DependentUpon>FormPluginsManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -154,11 +172,17 @@
     <Compile Include="Utils\PluginsManager.cs" />
     <Compile Include="Utils\ProgramInfo.cs" />
     <Compile Include="Utils\ProgramSettings.cs" />
+    <EmbeddedResource Include="Controls\AssemblyDetails.resx">
+      <DependentUpon>AssemblyDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\BasicProjectProperties.resx">
       <DependentUpon>BasicProjectProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\GenerateCodeFile.resx">
       <DependentUpon>GenerateCodeFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PluginDetails.resx">
+      <DependentUpon>PluginDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ProjectWorkspace.resx">
       <DependentUpon>ProjectWorkspace.cs</DependentUpon>
@@ -181,6 +205,9 @@
     <EmbeddedResource Include="FormNewProject.resx">
       <DependentUpon>FormNewProject.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPluginsManager.resx">
+      <DependentUpon>FormPluginsManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -201,6 +228,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Content Include="Resources\Icons\file_extension_bin.png" />
+    <Content Include="Resources\Icons\file_extension_dll.png" />
+    <Content Include="Resources\Icons\file_extension_rtf.png" />
+    <Content Include="Resources\Icons\file_extension_sit.png" />
     <None Include="Resources\Templates\class_Domain.cs.tpl" />
     <None Include="Resources\Templates\class_DataAccess.cs.tpl" />
     <None Include="Resources\Icons\interface_preferences.png" />

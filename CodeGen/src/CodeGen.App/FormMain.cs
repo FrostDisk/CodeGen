@@ -289,7 +289,10 @@ namespace CodeGen
 
         private void toolStripMenuItemPluginsManager_Click(object sender, EventArgs e)
         {
+            FormPluginsManager form = new FormPluginsManager();
+            form.LoadLocalVariables();
 
+            form.ShowDialog();
         }
 
         private void toolStripMenuItemOptions_Click(object sender, EventArgs e)

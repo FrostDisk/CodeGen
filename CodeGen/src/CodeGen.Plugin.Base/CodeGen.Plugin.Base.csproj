@@ -45,6 +45,7 @@
     <Compile Include="GeneratorComponent.cs" />
     <Compile Include="IAccessModelController.cs" />
     <Compile Include="ICodeGeneratorTemplate.cs" />
+    <Compile Include="IConnectionStringForm.cs" />
     <Compile Include="IGeneratorTemplate.cs" />
     <Compile Include="IPluginBase.cs" />
     <Compile Include="IQueryGeneratorTemplate.cs" />

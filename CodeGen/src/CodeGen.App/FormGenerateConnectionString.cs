@@ -3,11 +3,12 @@ using System.Windows.Forms;
 using CodeGen.Controls;
 using CodeGen.Core;
 using CodeGen.Library.AccessModel;
+using CodeGen.Plugin.Base;
 using CodeGen.Utils;
 
 namespace CodeGen
 {
-    public partial class FormGenerateConnectionString : Form, IBaseForm
+    public partial class FormGenerateConnectionString : Form, IConnectionStringForm
     {
         #region properties
 

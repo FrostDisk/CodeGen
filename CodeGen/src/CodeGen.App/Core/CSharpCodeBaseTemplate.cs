@@ -130,12 +130,12 @@ namespace CodeGen.Core
                 {
                     case (int) eBaseTemplateComponent.DOMAIN:
                     {
-                        return generator.GenerateDomainCode();
+                        return generator.GenerateCodeDomain();
                     }
 
                     case (int) eBaseTemplateComponent.DATA_ACCESS:
                     {
-                        return generator.GenerateDataAccessCode();
+                        return generator.GenerateCodeDataAccess();
                     }
                 }
             }

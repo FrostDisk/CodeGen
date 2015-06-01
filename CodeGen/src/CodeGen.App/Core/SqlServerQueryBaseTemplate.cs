@@ -101,11 +101,67 @@ namespace CodeGen.Core
 
         public String GenerateFileName(DatabaseEntity entity, Int32 componentId)
         {
+            if (FormBaseTemplateConfiguration.Instance.ValidateForm(false))
+            {
+                BaseGenerator generator = new BaseGenerator(Settings, entity);
+
+                switch (componentId)
+                {
+                    case (int)eBaseTemplateComponent.SAVE:
+                        {
+                            return string.Format("{0}{1}", generator.SaveStoredProcedureName, FileExtension);
+                        }
+
+                    case (int)eBaseTemplateComponent.GET_BY_ID:
+                        {
+                            return string.Format("{0}{1}", generator.GetByIdStoredProcedureName, FileExtension);
+                        }
+
+                    case (int)eBaseTemplateComponent.LIST_ALL:
+                        {
+                            return string.Format("{0}{1}", generator.ListAllStoredProcedureName, FileExtension);
+                        }
+
+                    case (int)eBaseTemplateComponent.DELETE:
+                        {
+                            return string.Format("{0}{1}", generator.DeleteStoredProcedureName, FileExtension);
+                        }
+                }
+            }
+
             return string.Empty;
         }
 
         public String Generate(DatabaseEntity entity, Int32 componentId)
         {
+            if (FormBaseTemplateConfiguration.Instance.ValidateForm())
+            {
+                BaseGenerator generator = new BaseGenerator(Settings, entity);
+
+                switch (componentId)
+                {
+                    case (int)eBaseTemplateComponent.SAVE:
+                        {
+                            return generator.GenerateScriptSave();
+                        }
+
+                    case (int)eBaseTemplateComponent.GET_BY_ID:
+                        {
+                            return generator.GenerateScriptGetById();
+                        }
+
+                    case (int)eBaseTemplateComponent.LIST_ALL:
+                        {
+                            return generator.GenerateScriptListAll();
+                        }
+
+                    case (int)eBaseTemplateComponent.DELETE:
+                        {
+                            return generator.GenerateScriptDelete();
+                        }
+                }
+            }
+
             return string.Empty;
         }
 

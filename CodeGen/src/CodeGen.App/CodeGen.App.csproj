@@ -178,6 +178,9 @@
     <EmbeddedResource Include="Controls\BasicProjectProperties.resx">
       <DependentUpon>BasicProjectProperties.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GenerateCodeDatabase.resx">
+      <DependentUpon>GenerateCodeDatabase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\GenerateCodeFile.resx">
       <DependentUpon>GenerateCodeFile.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,6 +235,10 @@
     <Content Include="Resources\Icons\file_extension_dll.png" />
     <Content Include="Resources\Icons\file_extension_rtf.png" />
     <Content Include="Resources\Icons\file_extension_sit.png" />
+    <None Include="Resources\Templates\sp_Delete.sql.tpl" />
+    <None Include="Resources\Templates\sp_GetByID.sql.tpl" />
+    <None Include="Resources\Templates\sp_ListAll.sql.tpl" />
+    <None Include="Resources\Templates\sp_Save.sql.tpl" />
     <None Include="Resources\Templates\class_Domain.cs.tpl" />
     <None Include="Resources\Templates\class_DataAccess.cs.tpl" />
     <None Include="Resources\Icons\interface_preferences.png" />

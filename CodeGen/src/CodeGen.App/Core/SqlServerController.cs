@@ -158,7 +158,7 @@ namespace CodeGen.Core
                         fullDataType = !typesWithoutPrecision.Exists(t => t.Equals(dataType)) ? string.Format("{0}({1})", dataType, row["PRECISION"]) : dataType;
                     }
 
-                    DatabaseEntityField columna = new DatabaseEntityField
+                    DatabaseEntityField entityField = new DatabaseEntityField
                     {
                         ColumnName = Convert.ToString(row["COLUMN_NAME"]),
                         IsPrimaryKey = match.Success,
@@ -172,7 +172,7 @@ namespace CodeGen.Core
                         IsNullable = Convert.ToBoolean(row["NULLABLE"]),
                         
                     };
-                    entity.Fields.Add(columna);
+                    entity.Fields.Add(entityField);
                 }
             }
 

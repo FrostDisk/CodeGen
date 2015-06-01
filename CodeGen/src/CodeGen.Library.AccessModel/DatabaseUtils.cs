@@ -39,7 +39,7 @@ namespace CodeGen.Library.AccessModel
 
         public static List<string> GetDatabaseList(string dataSource, string userId, string password, bool integratedSecurity)
         {
-            List<string> basesDatos = new List<string>();
+            List<string> databaseList = new List<string>();
 
             SqlConnectionStringBuilder builder = integratedSecurity
                 ? new SqlConnectionStringBuilder
@@ -60,12 +60,12 @@ namespace CodeGen.Library.AccessModel
                 DataTable tblDatabases = connection.GetSchema("Databases");
                 connection.Close();
 
-                basesDatos.AddRange(from DataRow row in tblDatabases.Rows select row["DATABASE_NAME"].ToString());
+                databaseList.AddRange(from DataRow row in tblDatabases.Rows select row["DATABASE_NAME"].ToString());
             }
 
-            basesDatos.Sort();
+            databaseList.Sort();
 
-            return basesDatos;
+            return databaseList;
         }
     }
 }

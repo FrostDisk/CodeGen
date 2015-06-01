@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using CodeGen.Core;
 using CodeGen.Data;
 using CodeGen.Domain;
+using CodeGen.Plugin.Base;
 using CodeGen.Utils;
 
 namespace CodeGen.Controls

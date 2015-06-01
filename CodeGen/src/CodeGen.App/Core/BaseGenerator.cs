@@ -6,32 +6,52 @@ using CodeGen.Properties;
 
 namespace CodeGen.Core
 {
-    public class BaseGenerator
+    internal class BaseGenerator
     {
         /// <summary>
-        /// Configuracion
+        /// Settings
         /// </summary>
         public PluginSettings Settings { get; private set; }
 
         /// <summary>
-        /// Clase
+        /// Entity
         /// </summary>
         public DatabaseEntity Entity { get; private set; }
 
         /// <summary>
-        /// NombreClaseDomain
+        /// DomainClassName
         /// </summary>
-        public string DomainClassName { get; set; }
+        public string DomainClassName { get; private set; }
 
         /// <summary>
-        /// NombreClaseDataAccess
+        /// DataAccessClassName
         /// </summary>
-        public string DataAccessClassName { get; set; }
+        public string DataAccessClassName { get; private set; }
+
+        /// <summary>
+        /// SaveStoredProcedureName
+        /// </summary>
+        public string SaveStoredProcedureName { get; private set; }
+
+        /// <summary>
+        /// SaveStoredProcedureName
+        /// </summary>
+        public string GetByIdStoredProcedureName { get; private set; }
+
+        /// <summary>
+        /// SaveStoredProcedureName
+        /// </summary>
+        public string ListAllStoredProcedureName { get; private set; }
+
+        /// <summary>
+        /// SaveStoredProcedureName
+        /// </summary>
+        public string DeleteStoredProcedureName { get; private set; }
 
         /// <summary>
         /// CleanEntityName
         /// </summary>
-        public string CleanEntityName { get; set; }
+        public string CleanEntityName { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BaseGenerator"/> class.
@@ -44,13 +64,19 @@ namespace CodeGen.Core
             CleanEntityName = StringHelper.ConvertToSafeCodeName(StringHelper.RemovePrefix(entity.Name)).Replace("_", string.Empty);
             DomainClassName = string.Format("{0}{1}{2}", Settings[CodeBaseConstants.DOMAIN_PREFIX].Value, CleanEntityName, Settings[CodeBaseConstants.DOMAIN_SUFFIX].Value);
             DataAccessClassName = string.Format("{0}{1}{2}", Settings[CodeBaseConstants.DATAACCESS_PREFIX].Value, CleanEntityName, Settings[CodeBaseConstants.DATAACCESS_SUFFIX].Value);
+
+            SaveStoredProcedureName = string.Format("{0}{1}{2}", Settings[CodeBaseConstants.SAVE_PREFIX].Value, DomainClassName, Settings[CodeBaseConstants.SAVE_SUFFIX].Value);
+            GetByIdStoredProcedureName = string.Format("{0}{1}{2}", Settings[CodeBaseConstants.GETBYID_PREFIX].Value, DomainClassName, Settings[CodeBaseConstants.GETBYID_SUFFIX].Value);
+            ListAllStoredProcedureName = string.Format("{0}{1}{2}", Settings[CodeBaseConstants.LISTALL_PREFIX].Value, DomainClassName, Settings[CodeBaseConstants.LISTALL_SUFFIX].Value);
+            DeleteStoredProcedureName = string.Format("{0}{1}{2}", Settings[CodeBaseConstants.DELETE_PREFIX].Value, DomainClassName, Settings[CodeBaseConstants.DELETE_SUFFIX].Value);
+
         }
 
         /// <summary>
         /// Generars the codigo domain.
         /// </summary>
         /// <returns></returns>
-        public string GenerateDomainCode()
+        public string GenerateCodeDomain()
         {
             TemplateFile template = TemplateFile.LoadTemplate(TemplateType.CS, Resources.class_Domain);
 
@@ -86,7 +112,7 @@ namespace CodeGen.Core
         /// Generars the codigo data access.
         /// </summary>
         /// <returns></returns>
-        public string GenerateDataAccessCode()
+        public string GenerateCodeDataAccess()
         {
             TemplateFile template = TemplateFile.LoadTemplate(TemplateType.CS, Resources.class_DataAccess);
 
@@ -130,10 +156,10 @@ namespace CodeGen.Core
             template.ReplaceTag("CLASS_NAME_DOMAIN", DomainClassName, false);
             template.ReplaceTag("CLASS_NAME_DATAACCESS", DataAccessClassName, false);
 
-            template.ReplaceTag("SAVE_STORED_PROCEDURE", string.Format("{0}{1}{2}", Settings[CodeBaseConstants.SAVE_PREFIX].Value, DomainClassName, Settings[CodeBaseConstants.SAVE_SUFFIX].Value), false);
-            template.ReplaceTag("GETBYID_STORED_PROCEDURE", string.Format("{0}{1}{2}", Settings[CodeBaseConstants.GETBYID_PREFIX].Value, DomainClassName, Settings[CodeBaseConstants.GETBYID_SUFFIX].Value), false);
-            template.ReplaceTag("LISTALL_STORED_PROCEDURE", string.Format("{0}{1}{2}", Settings[CodeBaseConstants.LISTALL_PREFIX].Value, DomainClassName, Settings[CodeBaseConstants.LISTALL_SUFFIX].Value), false);
-            template.ReplaceTag("DELETE_STORED_PROCEDURE", string.Format("{0}{1}{2}", Settings[CodeBaseConstants.DELETE_PREFIX].Value, DomainClassName, Settings[CodeBaseConstants.DELETE_SUFFIX].Value), false);
+            template.ReplaceTag("SAVE_STORED_PROCEDURE", SaveStoredProcedureName, false);
+            template.ReplaceTag("GETBYID_STORED_PROCEDURE", GetByIdStoredProcedureName, false);
+            template.ReplaceTag("LISTALL_STORED_PROCEDURE", ListAllStoredProcedureName, false);
+            template.ReplaceTag("DELETE_STORED_PROCEDURE", DeleteStoredProcedureName, false);
 
             template.ReplaceTag("SAVE_METHODNAME", Settings[CodeBaseConstants.SAVE_METHODNAME].Value, false);
             template.ReplaceTag("GETBYID_METHODNAME", Settings[CodeBaseConstants.GETBYID_METHODNAME].Value, false);
@@ -153,11 +179,63 @@ namespace CodeGen.Core
             return template.Content;
         }
 
+        public string GenerateScriptSave()
+        {
+            TemplateFile template = TemplateFile.LoadTemplate(TemplateType.SQL, Resources.sp_Save);
+
+            template.ReplaceTag("SAVE_STORED_PROCEDURE", SaveStoredProcedureName, false);
+            template.ReplaceTag("ENTITY_NAME", Entity.Name, false);
+
+            template.ReplaceTag("AUTHOR_NAME", Settings[CodeBaseConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
+
+            return template.Content;
+        }
+
+        public string GenerateScriptGetById()
+        {
+            TemplateFile template = TemplateFile.LoadTemplate(TemplateType.SQL, Resources.sp_GetByID);
+
+            template.ReplaceTag("GETBYID_STORED_PROCEDURE", GetByIdStoredProcedureName, false);
+            template.ReplaceTag("ENTITY_NAME", Entity.Name, false);
+
+            template.ReplaceTag("AUTHOR_NAME", Settings[CodeBaseConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
+
+            return template.Content;
+        }
+
+        public string GenerateScriptListAll()
+        {
+            TemplateFile template = TemplateFile.LoadTemplate(TemplateType.SQL, Resources.sp_ListAll);
+
+            template.ReplaceTag("LISTALL_STORED_PROCEDURE", ListAllStoredProcedureName, false);
+            template.ReplaceTag("ENTITY_NAME", Entity.Name, false);
+
+            template.ReplaceTag("AUTHOR_NAME", Settings[CodeBaseConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
+
+            return template.Content;
+        }
+
+        public string GenerateScriptDelete()
+        {
+            TemplateFile template = TemplateFile.LoadTemplate(TemplateType.SQL, Resources.sp_Delete);
+
+            template.ReplaceTag("DELETE_STORED_PROCEDURE", DeleteStoredProcedureName, false);
+            template.ReplaceTag("ENTITY_NAME", Entity.Name, false);
+
+            template.ReplaceTag("AUTHOR_NAME", Settings[CodeBaseConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
+
+            return template.Content;
+        }
+
         /// <summary>
         /// Obteners the fecha formateada.
         /// </summary>
         /// <returns></returns>
-        public string GetSimpleDate(DateTime date)
+        internal string GetSimpleDate(DateTime date)
         {
             return date.ToString("dd-MM-yyyy HH:mm");
         }

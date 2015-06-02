@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CodeGen.Library.Formats;
 
 namespace CodeGen.Controls
 {
@@ -34,16 +35,7 @@ namespace CodeGen.Controls
         public string ParameterValue
         {
             get { return txtValue.Text; }
-            set
-            {
-                if (!IsUpdated && value != _savedValue)
-                {
-                    _savedValue = ParameterValue;
-                    IsUpdated = true;
-                }
-                IsDefaultValue = value != DefaultValue;
-                txtValue.Text = value;
-            }
+            set { txtValue.Text = value; }
         }
 
         public bool IsUpdated { get; set; }
@@ -88,6 +80,17 @@ namespace CodeGen.Controls
 
         #region methods
 
+        public void UpdateValue(string value)
+        {
+            if (!IsUpdated && !StringHelper.AreEquals(value, _savedValue))
+            {
+                _savedValue = ParameterValue;
+                IsUpdated = true;
+            }
+            IsDefaultValue = StringHelper.AreEquals(value, DefaultValue);
+            txtValue.Text = value;
+        }
+
         public bool Validate()
         {
             if (!Required)
@@ -111,6 +114,20 @@ namespace CodeGen.Controls
         #endregion
 
         #region events
+
+        private void txtValue_Enter(object sender, EventArgs e)
+        {
+            if (!IsUpdated)
+            {
+                _savedValue = txtValue.Text;
+            }
+        }
+
+        private void txtValue_Leave(object sender, EventArgs e)
+        {
+            UpdateValue(txtValue.Text);
+        }
+
         #endregion
     }
 }

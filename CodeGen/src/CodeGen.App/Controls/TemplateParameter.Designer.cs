@@ -52,6 +52,8 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(304, 20);
             this.txtValue.TabIndex = 1;
+            this.txtValue.Enter += new System.EventHandler(this.txtValue_Enter);
+            this.txtValue.Leave += new System.EventHandler(this.txtValue_Leave);
             // 
             // lblCode
             // 

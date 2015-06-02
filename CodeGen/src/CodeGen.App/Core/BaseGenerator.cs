@@ -183,6 +183,48 @@ namespace CodeGen.Core
         {
             TemplateFile template = TemplateFile.LoadTemplate(TemplateType.SQL, Resources.sp_Save);
 
+            TemplateSection sectionParameters = template.ExtractSection("PARAMETERS");
+            TemplateSection sectionUpdateParameters = template.ExtractSection("UPDATE_PARAMETERS");
+            TemplateSection sectionInsertColumns = template.ExtractSection("INSERT_COLUMNS");
+            TemplateSection sectionInsertParameters = template.ExtractSection("INSERT_PARAMETERS");
+
+            TemplateSectionCollection parameterSectionList = new TemplateSectionCollection();
+            TemplateSectionCollection updateParameterSectionList = new TemplateSectionCollection();
+            TemplateSectionCollection insertColumnsSectionList = new TemplateSectionCollection();
+            TemplateSectionCollection insertParameterSectionList = new TemplateSectionCollection();
+
+            foreach (var entityField in Entity.Fields)
+            {
+                TemplateSection parameterSection = sectionParameters.ExtractSection("DEFAULT");
+                parameterSection.ReplaceTag("PARAMETERNAME", entityField.ColumnName);
+                parameterSection.ReplaceTag("DATATYPE", entityField.TypeName);
+                parameterSectionList.AddSection(parameterSection);
+
+                TemplateSection updateParameterSection = sectionUpdateParameters.ExtractSection("DEFAULT");
+                updateParameterSection.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                updateParameterSection.ReplaceTag("PARAMETERNAME", entityField.ColumnName);
+                updateParameterSectionList.AddSection(updateParameterSection);
+
+                TemplateSection insertColumnsSection = sectionInsertColumns.ExtractSection("DEFAULT");
+                insertColumnsSection.ReplaceTag("COLUMNNAME", entityField.ColumnName);
+                insertColumnsSectionList.AddSection(insertColumnsSection);
+
+                TemplateSection insertParameterSection = sectionInsertParameters.ExtractSection("DEFAULT");
+                insertParameterSection.ReplaceTag("PARAMETERNAME", entityField.ColumnName);
+                insertParameterSectionList.AddSection(insertParameterSection);
+            }
+
+            template.ReplaceSection("PARAMETERS", parameterSectionList, ",");
+            template.ReplaceSection("UPDATE_PARAMETERS", updateParameterSectionList, ",");
+            template.ReplaceSection("INSERT_COLUMNS", insertColumnsSectionList, ",");
+            template.ReplaceSection("INSERT_PARAMETERS", insertParameterSectionList, ",");
+
+            var primaryEntityField = Entity.Fields.First(f => f.IsPrimaryKey);
+
+            template.ReplaceTag("PRIMARYKEY_DATATYPE", primaryEntityField.TypeName, false);
+            template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
+            template.ReplaceTag("PRIMARYKEY_PROPERTYNAME", primaryEntityField.ColumnName, false);
+
             template.ReplaceTag("SAVE_STORED_PROCEDURE", SaveStoredProcedureName, false);
             template.ReplaceTag("ENTITY_NAME", Entity.Name, false);
 
@@ -195,6 +237,25 @@ namespace CodeGen.Core
         public string GenerateScriptGetById()
         {
             TemplateFile template = TemplateFile.LoadTemplate(TemplateType.SQL, Resources.sp_GetByID);
+
+            TemplateSection sectionSelectColumns = template.ExtractSection("SELECT_COLUMNS");
+
+            TemplateSectionCollection selectColumnsSectionList = new TemplateSectionCollection();
+
+            foreach (var entityField in Entity.Fields)
+            {
+                TemplateSection selectColumnsSection = sectionSelectColumns.ExtractSection("DEFAULT");
+                selectColumnsSection.ReplaceTag("COLUMNNAME", entityField.ColumnName);
+                selectColumnsSectionList.AddSection(selectColumnsSection);
+            }
+
+            template.ReplaceSection("SELECT_COLUMNS", selectColumnsSectionList, ",");
+
+            var primaryEntityField = Entity.Fields.First(f => f.IsPrimaryKey);
+
+            template.ReplaceTag("PRIMARYKEY_DATATYPE", primaryEntityField.TypeName, false);
+            template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
+            template.ReplaceTag("PRIMARYKEY_PROPERTYNAME", primaryEntityField.ColumnName, false);
 
             template.ReplaceTag("GETBYID_STORED_PROCEDURE", GetByIdStoredProcedureName, false);
             template.ReplaceTag("ENTITY_NAME", Entity.Name, false);
@@ -209,6 +270,19 @@ namespace CodeGen.Core
         {
             TemplateFile template = TemplateFile.LoadTemplate(TemplateType.SQL, Resources.sp_ListAll);
 
+            TemplateSection sectionSelectColumns = template.ExtractSection("SELECT_COLUMNS");
+
+            TemplateSectionCollection selectColumnsSectionList = new TemplateSectionCollection();
+
+            foreach (var entityField in Entity.Fields)
+            {
+                TemplateSection selectColumnsSection = sectionSelectColumns.ExtractSection("DEFAULT");
+                selectColumnsSection.ReplaceTag("COLUMNNAME", entityField.ColumnName);
+                selectColumnsSectionList.AddSection(selectColumnsSection);
+            }
+
+            template.ReplaceSection("SELECT_COLUMNS", selectColumnsSectionList, ",");
+
             template.ReplaceTag("LISTALL_STORED_PROCEDURE", ListAllStoredProcedureName, false);
             template.ReplaceTag("ENTITY_NAME", Entity.Name, false);
 
@@ -221,6 +295,12 @@ namespace CodeGen.Core
         public string GenerateScriptDelete()
         {
             TemplateFile template = TemplateFile.LoadTemplate(TemplateType.SQL, Resources.sp_Delete);
+
+            var primaryEntityField = Entity.Fields.First(f => f.IsPrimaryKey);
+
+            template.ReplaceTag("PRIMARYKEY_DATATYPE", primaryEntityField.TypeName, false);
+            template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
+            template.ReplaceTag("PRIMARYKEY_PROPERTYNAME", primaryEntityField.ColumnName, false);
 
             template.ReplaceTag("DELETE_STORED_PROCEDURE", DeleteStoredProcedureName, false);
             template.ReplaceTag("ENTITY_NAME", Entity.Name, false);

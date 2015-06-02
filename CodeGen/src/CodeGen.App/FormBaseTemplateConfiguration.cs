@@ -47,7 +47,10 @@ namespace CodeGen
 
             foreach (var entry in _parameters)
             {
-                entry.Value.ParameterValue = entry.Value.ParameterValue.Replace("MyProject", safeName);
+                if (!string.IsNullOrWhiteSpace(entry.Value.ParameterValue))
+                {
+                    entry.Value.UpdateValue(entry.Value.ParameterValue.Replace("MyProject", safeName));
+                }
             }
         }
 
@@ -88,7 +91,7 @@ namespace CodeGen
             ITemplateParameter parameter = _parameters[code];
             if (parameter != null && !string.IsNullOrWhiteSpace(value))
             {
-                parameter.ParameterValue = value;
+                parameter.UpdateValue(value);
             }
         }
 

@@ -51,6 +51,7 @@ namespace CodeGen
         {
             listPluginsList.Items.Clear();
             pnlAssemblyDetails.Controls.Clear();
+            pnlPluginDetails.Controls.Clear();
 
             if (assembly != null)
             {

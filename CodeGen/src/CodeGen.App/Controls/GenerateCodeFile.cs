@@ -68,7 +68,6 @@ namespace CodeGen.Controls
             cmbTemplate.DataSource = PluginsManager.GetSupportedTemplates<ICodeGeneratorTemplate>();
             cmbTemplate.DisplayMember = "Name";
             cmbTemplate.ValueMember = "Name";
-            cmbTemplate.SelectedItem = null;
         }
 
         public bool ValidateForm()
@@ -238,19 +237,24 @@ namespace CodeGen.Controls
                         _entities[tableName] = entity;
                     }
 
-                    txtGeneratedCode.Text = ActiveTemplate.Generate(entity, (int) cmbComponent.SelectedValue);
+                    var code = ActiveTemplate.Generate(entity, (int) cmbComponent.SelectedValue);
 
-                    if (OnControlUpdate != null)
+                    if (!string.IsNullOrWhiteSpace(code))
                     {
-                        OnControlUpdate(this, new EventArgs());
-                    }
+                        txtGeneratedCode.Text = code;
 
-                    if (chkCopyToClipboard.Checked)
-                    {
-                        txtGeneratedCode.SelectAll();
-                        txtGeneratedCode.Copy();
+                        if (OnControlUpdate != null)
+                        {
+                            OnControlUpdate(this, new EventArgs());
+                        }
 
-                        MessageBox.Show("Copied to Clipboard", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (chkCopyToClipboard.Checked)
+                        {
+                            txtGeneratedCode.SelectAll();
+                            txtGeneratedCode.Copy();
+
+                            MessageBox.Show("Copied to Clipboard", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
 

@@ -20,6 +20,8 @@ namespace CodeGen.Controls
 
         Type Type { get; }
 
+        void UpdateValue(string value);
+
         bool Validate();
 
         void RestoreValue();

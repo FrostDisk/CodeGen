@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Xml.Serialization;
+using CodeGen.Library.System.IO;
 using CodeGen.Utils;
 
 namespace CodeGen.Configuration
@@ -26,7 +27,7 @@ namespace CodeGen.Configuration
                     Directory.CreateDirectory(_defaultProjectDirectory);
                 }
 
-                return _defaultProjectDirectory; ;
+                return FolderHelper.PathAddBackslash(_defaultProjectDirectory);
             }
             set { _defaultProjectDirectory = value; }
         }
@@ -49,7 +50,7 @@ namespace CodeGen.Configuration
                     Directory.CreateDirectory(_defaultPluginsDirectory);
                 }
 
-                return _defaultPluginsDirectory; ;
+                return FolderHelper.PathAddBackslash(_defaultPluginsDirectory);
             }
             set { _defaultPluginsDirectory = value; }
         }
@@ -72,7 +73,7 @@ namespace CodeGen.Configuration
                     Directory.CreateDirectory(_cacheDirectory);
                 }
 
-                return _cacheDirectory;
+                return FolderHelper.PathAddBackslash(_cacheDirectory);
             }
             set { _cacheDirectory = value; }
         }
@@ -95,7 +96,7 @@ namespace CodeGen.Configuration
                     Directory.CreateDirectory(_tempDirectory);
                 }
 
-                return _tempDirectory;
+                return FolderHelper.PathAddBackslash(_tempDirectory);
             }
             set { _tempDirectory = value; }
         }

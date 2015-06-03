@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using CodeGen.Configuration;
 using CodeGen.Controls;
@@ -58,6 +59,10 @@ namespace CodeGen
                     item.ImageKey = type.Base;
                     item.Checked = type.Enabled;
                     item.Tag = type;
+                    if (!type.IsValid)
+                    {
+                        item.Font = new Font(item.Font, FontStyle.Strikeout);
+                    }
 
                     if (!assembly.IsBase)
                     {

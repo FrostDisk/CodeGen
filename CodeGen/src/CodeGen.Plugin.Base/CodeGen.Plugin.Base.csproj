@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CodeGen.App\Properties\AssemblyInfoCommon.cs">
+      <Link>Properties\AssemblyInfoCommon.cs</Link>
+    </Compile>
     <Compile Include="DatabaseEntity.cs" />
     <Compile Include="DatabaseEntityField.cs" />
     <Compile Include="GeneratorComponent.cs" />

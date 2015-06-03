@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CodeGen.App\Properties\AssemblyInfoCommon.cs">
+      <Link>Properties\AssemblyInfoCommon.cs</Link>
+    </Compile>
     <Compile Include="Configuration\ConfigHelper.cs" />
     <Compile Include="IO\FolderHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

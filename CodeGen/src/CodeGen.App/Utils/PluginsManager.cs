@@ -4,6 +4,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
+using System.Security.Policy;
 using CodeGen.Configuration;
 using CodeGen.Core;
 using CodeGen.Data;
@@ -94,9 +95,9 @@ namespace CodeGen.Utils
                     {
                         string pluginTargetDirectory = Path.Combine(settings.DirectoriesSettings.DefaultPluginsDirectory, shortUniqueName);
 
-                        if (!Directory.Exists(pluginTempDirectory))
+                        if (!Directory.Exists(pluginTargetDirectory))
                         {
-                            Directory.Move(pluginTempDirectory, pluginTargetDirectory);
+                            ZipFile.ExtractToDirectory(pluginLocation, pluginTargetDirectory);
                         }
                     }
                 }
@@ -223,7 +224,7 @@ namespace CodeGen.Utils
                 supportedTypes.Add(new SupportedType
                 {
                     Assembly = Path.GetFileName(type.Assembly.Location),
-                    Name = string.Format("{0} [{1}]", controller.Title, controller.Version),
+                    Name = string.Format("{0} ({1})", controller.Title, controller.Version),
                     Type = type.FullName,
                     Item = controller
                 });
@@ -250,7 +251,7 @@ namespace CodeGen.Utils
                 supportedTypes.Add(new SupportedType
                 {
                     Assembly = Path.GetFileName(type.Assembly.Location),
-                    Name = string.Format("{0} [{1}]", generator.Title, generator.Version),
+                    Name = string.Format("{0} ({1})", generator.Title, generator.Version),
                     Type = type.FullName,
                     Item = generator
                 });
@@ -539,7 +540,9 @@ namespace CodeGen.Utils
                     string assemblyName = Path.GetFileName(assembly.Location);
 
                     // Check if assembly was already registered in the global settings
-                    var settingsAssembly = settings.PluginsSettings.Plugins.FirstOrDefault(a => a.File == assemblyName);
+                    var settingsAssembly = isBase
+                                            ? settings.PluginsSettings.Plugins.FirstOrDefault(a => a.File == assemblyName)
+                                            : settings.PluginsSettings.Plugins.FirstOrDefault(a => a.File == relativeLocation);
 
                     // if not add to the list
                     if (settingsAssembly == null)

@@ -29,7 +29,9 @@ namespace CodeGen.Controls
 
         public void LoadType(PluginType type)
         {
-            label1.Text = type.Name;
+            lblPluginTitle.Text = type.Title;
+            lblPluginVersion.Text = type.Version;
+            txtPluginDescription.Text = type.Description;
         }
 
         #endregion

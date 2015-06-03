@@ -9,49 +9,95 @@ namespace CodeGen.Configuration
     public class DirectoriesSettings
     {
         [XmlIgnore]
-        private string _defaultProjectLocation;
+        private string _defaultProjectDirectory;
 
-        [XmlElement("DefaultProjectLocation")]
-        public string DefaultProjectLocation
+        [XmlElement("DefaultProjectDirectory")]
+        public string DefaultProjectDirectory
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(_defaultProjectLocation))
+                if (string.IsNullOrWhiteSpace(_defaultProjectDirectory))
                 {
-                    _defaultProjectLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ProgramInfo.AssemblyProduct);
+                    _defaultProjectDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ProgramInfo.AssemblyProduct);
                 }
 
-                if (!Directory.Exists(_defaultProjectLocation))
+                if (!Directory.Exists(_defaultProjectDirectory))
                 {
-                    Directory.CreateDirectory(_defaultProjectLocation);
+                    Directory.CreateDirectory(_defaultProjectDirectory);
                 }
 
-                return _defaultProjectLocation; ;
+                return _defaultProjectDirectory; ;
             }
-            set { _defaultProjectLocation = value; }
+            set { _defaultProjectDirectory = value; }
         }
 
         [XmlIgnore]
-        private string _defaultPluginsLocation;
+        private string _defaultPluginsDirectory;
 
-        [XmlElement("DefaultPluginsLocation")]
-        public string DefaultPluginsLocation
+        [XmlElement("DefaultPluginsDirectory")]
+        public string DefaultPluginsDirectory
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(_defaultPluginsLocation))
+                if (string.IsNullOrWhiteSpace(_defaultPluginsDirectory))
                 {
-                    _defaultPluginsLocation = Path.Combine(ProgramSettings.SettingsFolder, "Plugins");
+                    _defaultPluginsDirectory = Path.Combine(ProgramSettings.SettingsFolder, "Plugins");
                 }
 
-                if (!Directory.Exists(_defaultPluginsLocation))
+                if (!Directory.Exists(_defaultPluginsDirectory))
                 {
-                    Directory.CreateDirectory(_defaultPluginsLocation);
+                    Directory.CreateDirectory(_defaultPluginsDirectory);
                 }
 
-                return _defaultPluginsLocation; ;
+                return _defaultPluginsDirectory; ;
             }
-            set { _defaultPluginsLocation = value; }
+            set { _defaultPluginsDirectory = value; }
+        }
+
+        [XmlIgnore]
+        private string _cacheDirectory;
+
+        [XmlElement("CacheLocation")]
+        public string CacheDirectory
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_cacheDirectory))
+                {
+                    _cacheDirectory = Path.Combine(ProgramSettings.SettingsFolder, "Cache");
+                }
+
+                if (!Directory.Exists(_cacheDirectory))
+                {
+                    Directory.CreateDirectory(_cacheDirectory);
+                }
+
+                return _cacheDirectory;
+            }
+            set { _cacheDirectory = value; }
+        }
+
+        [XmlIgnore]
+        private string _tempDirectory;
+
+        [XmlElement("TempDirectory")]
+        public string TempDirectory
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_tempDirectory))
+                {
+                    _tempDirectory = Path.Combine(ProgramSettings.SettingsFolder, "Temp");
+                }
+
+                if (!Directory.Exists(_tempDirectory))
+                {
+                    Directory.CreateDirectory(_tempDirectory);
+                }
+
+                return _tempDirectory;
+            }
+            set { _tempDirectory = value; }
         }
     }
 }

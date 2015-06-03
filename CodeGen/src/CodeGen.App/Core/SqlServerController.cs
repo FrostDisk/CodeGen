@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using CodeGen.Plugin.Base;
+using CodeGen.Utils;
 
 namespace CodeGen.Core
 {
@@ -13,14 +14,19 @@ namespace CodeGen.Core
     {
         private String _connectionString;
 
-        public String Name
+        public String Title
         {
-            get { return "Sql Server"; }
+            get { return "Sql Server Access-Model Controller"; }
         }
 
-        public string Description
+        public String Description
         {
-            get { return "Sql Server Database Controller"; }
+            get { return "Sql Server Access-Model Controller"; }
+        }
+
+        public String Version
+        {
+            get { return ProgramInfo.AssemblyVersion; }
         }
 
         public PluginSettings Settings { get; private set; }

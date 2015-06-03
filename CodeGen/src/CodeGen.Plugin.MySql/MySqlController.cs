@@ -15,14 +15,19 @@ namespace CodeGen.Plugin.MySql
 
         #region plugin base 
 
-        public string Name
+        public string Title
         {
-            get { return "MySql"; }
+            get { return "MySql Access-Model Controller"; }
         }
 
         public string Description
         {
-            get { return "MySql Database Controller"; }
+            get { return "MySql Access-Model Controller"; }
+        }
+
+        public string Version
+        {
+            get { return "1.0"; }
         }
 
         public PluginSettings Settings { get; private set; }

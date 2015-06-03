@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Configuration;
 using System.Windows.Forms;
 using CodeGen.Plugin.Base;
+using CodeGen.Utils;
 
 namespace CodeGen.Core
 {
@@ -10,19 +10,24 @@ namespace CodeGen.Core
     {
         #region properties
 
-        public String Name
+        public String Title
         {
             get { return "Sql Server Base Query Template"; }
         }
 
-        public string Description
+        public String Description
         {
             get { return "Sql Server Save/GetById/ListaAll Query Template"; }
         }
 
+        public String Version
+        {
+            get { return ProgramInfo.AssemblyVersion; }
+        }
+
         public PluginSettings Settings { get; private set; }
 
-        public string LanguageCode
+        public String LanguageCode
         {
             get { return "SqlServer"; }
         }
@@ -42,7 +47,7 @@ namespace CodeGen.Core
             get { return true; }
         }
 
-        public bool HaveComponents
+        public Boolean HaveComponents
         {
             get { return GetComponents().Count > 0; }
         }

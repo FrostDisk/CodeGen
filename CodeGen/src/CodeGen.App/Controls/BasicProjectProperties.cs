@@ -75,7 +75,7 @@ namespace CodeGen.Controls
 
         private void LoadDatabaseTypes()
         {
-            cmbDatabaseType.DataSource = PluginsManager.GetSupportedDatabaseControllers();
+            cmbDatabaseType.DataSource = PluginsManager.GetSupportedAccessModelControllers();
             cmbDatabaseType.DisplayMember = "Name";
             cmbDatabaseType.ValueMember = "Name";
             cmbDatabaseType.SelectedItem = null;

@@ -54,7 +54,6 @@
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
             this.saveFileDialogProject = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogProject = new System.Windows.Forms.OpenFileDialog();
-            this.workerPluginsCheck = new System.ComponentModel.BackgroundWorker();
             this.menuMain.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.SuspendLayout();
@@ -230,11 +229,6 @@
             // 
             resources.ApplyResources(this.openFileDialogProject, "openFileDialogProject");
             // 
-            // workerPluginsCheck
-            // 
-            this.workerPluginsCheck.DoWork += new System.ComponentModel.DoWorkEventHandler(this.workerPluginsCheck_DoWork);
-            this.workerPluginsCheck.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.workerPluginsCheck_RunWorkerCompleted);
-            // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
@@ -277,7 +271,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSaveProject;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemSaveProjectAs;
         private System.Windows.Forms.ToolStripSeparator toolStripFileSeparator2;
-        private System.ComponentModel.BackgroundWorker workerPluginsCheck;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemTools;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPluginsManager;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOptions;

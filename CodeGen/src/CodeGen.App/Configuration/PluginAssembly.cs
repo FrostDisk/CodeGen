@@ -11,6 +11,9 @@ namespace CodeGen.Configuration
         [XmlAttribute("File")]
         public string File { get; set; }
 
+        [XmlAttribute("Title")]
+        public string Title { get; set; }
+
         [XmlAttribute("Version")]
         public string Version { get; set; }
 
@@ -19,6 +22,15 @@ namespace CodeGen.Configuration
 
         [XmlAttribute("IsValid")]
         public bool IsValid { get; set; }
+
+        [XmlElement("Description")]
+        public string Description { get; set; }
+
+        [XmlElement("Author")]
+        public string Author { get; set; }
+
+        [XmlElement("Url")]
+        public string Url { get; set; }
 
         [XmlArray("Components"), XmlArrayItem("Type")]
         public List<PluginType> Types { get; set; }

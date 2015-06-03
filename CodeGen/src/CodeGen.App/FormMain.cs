@@ -178,11 +178,6 @@ namespace CodeGen
             }
         }
 
-        private void StartPluginsCheck()
-        {
-            workerPluginsCheck.RunWorkerAsync();
-        }
-
         #endregion
 
         #region events
@@ -196,7 +191,6 @@ namespace CodeGen
         {
             LoadLocalVariables();
             UpdateWindowTitle();
-            StartPluginsCheck();
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -310,17 +304,6 @@ namespace CodeGen
         }
 
         #endregion
-
-        private void workerPluginsCheck_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            PluginsManager.UpdatePluginList();
-            PluginsManager.CheckExistingPlugins();
-        }
-
-        private void workerPluginsCheck_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
-        {
-
-        }
 
         #endregion
     }

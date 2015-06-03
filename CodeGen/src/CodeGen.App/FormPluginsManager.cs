@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using CodeGen.Configuration;
 using CodeGen.Controls;
+using CodeGen.Plugin.Base;
 using CodeGen.Utils;
 
 namespace CodeGen
@@ -9,6 +10,7 @@ namespace CodeGen
     public partial class FormPluginsManager : Form
     {
         #region properties
+
         #endregion
 
         #region initialization
@@ -24,57 +26,46 @@ namespace CodeGen
 
         public void LoadLocalVariables()
         {
-            
-            UpdateAssemblyList();
+        }
+
+        public void EnableControls(bool enable)
+        {
+            listPluginsList.Enabled = enable;
+
+            btnImportPlugins.Enabled = enable;
+            btnClose.Enabled = enable;
         }
 
         public void UpdateAssemblyList()
         {
             var globalSettings = ProgramSettings.GetGlobalSettings();
 
-            listAssemblyList.Items.Clear();
+            listPluginsList.Items.Clear();
+            listPluginsList.Groups.Clear();
             foreach (var assembly in globalSettings.PluginsSettings.Plugins)
             {
-                var assemblyName = assembly.IsBase ? "(base)" : assembly.File;
-
-                listAssemblyList.Items.Add(new ListViewItem
+                var lstViewGroup = new ListViewGroup(assembly.Title, HorizontalAlignment.Left);
+                if (!assembly.IsBase)
                 {
-                    Name = assemblyName,
-                    Text = assemblyName,
-                    ImageIndex = 0,
-                    Tag = assembly
-                });
-            }
-        }
-
-        public void LoadAssembly(PluginAssembly assembly)
-        {
-            listPluginsList.Items.Clear();
-            pnlAssemblyDetails.Controls.Clear();
-            pnlPluginDetails.Controls.Clear();
-
-            if (assembly != null)
-            {
-                foreach (var type in assembly.Types)
-                {
-                    var pluginName = type.Name.Substring(type.Name.LastIndexOf(".", StringComparison.Ordinal) + 1);
-
-                    listPluginsList.Items.Add(new ListViewItem
-                    {
-                        Name = pluginName,
-                        Text = pluginName,
-                        ImageIndex = 0,
-                        Checked = type.Enabled,
-                        Tag = type,
-                    });
+                    listPluginsList.Groups.Add(lstViewGroup);
                 }
 
-                var control = new AssemblyDetails
+                foreach (var type in assembly.Types)
                 {
-                    Dock = DockStyle.Fill
-                };
-                control.LoadAssembly(assembly);
-                pnlAssemblyDetails.Controls.Add(control);
+                    var item = new ListViewItem();
+                    item.Name = type.Title;
+                    item.Text = type.Title;
+                    item.ImageKey = type.Base;
+                    item.Checked = type.Enabled;
+                    item.Tag = type;
+
+                    if (!assembly.IsBase)
+                    {
+                        item.Group = lstViewGroup;
+                    }
+
+                    listPluginsList.Items.Add(item);
+                }
             }
         }
 
@@ -98,23 +89,11 @@ namespace CodeGen
 
         #region events
 
-        private void listAssemblyList_SelectedIndexChanged(object sender, EventArgs e)
+        private void FormPluginsManager_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (listAssemblyList.SelectedItems.Count > 0)
-                {
-                    LoadAssembly((PluginAssembly) listAssemblyList.SelectedItems[0].Tag);
-                }
-                else
-                {
-                    LoadAssembly(null);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBoxHelper.ProcessException(ex);
-            }
+            EnableControls(false);
+            progressBarCheckPlugins.Visible = true;
+            workerCheckPlugins.RunWorkerAsync();
         }
 
         private void listPluginsList_SelectedIndexChanged(object sender, EventArgs e)
@@ -153,12 +132,50 @@ namespace CodeGen
         {
             try
             {
-                
+                if (openDialogImportPlugins.ShowDialog() == DialogResult.OK)
+                {
+                    EnableControls(false);
+                    progressBarCheckPlugins.Visible = true;
+                    workerImportPlugins.RunWorkerAsync();
+                }
             }
             catch (Exception ex)
             {
                 MessageBoxHelper.ProcessException(ex);
             }
+        }
+
+        private void workerCheckPlugins_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            PluginsManager.UpdatePluginList();
+            PluginsManager.CheckExistingPlugins();
+        }
+
+        private void workerCheckPlugins_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            EnableControls(true);
+            progressBarCheckPlugins.Visible = false;
+
+            UpdateAssemblyList();
+        }
+
+        private void workerImportPlugins_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            foreach (string fileName in openDialogImportPlugins.FileNames)
+            {
+                PluginsManager.ImportPlugin(fileName);
+            }
+
+            PluginsManager.UpdatePluginList();
+            PluginsManager.CheckExistingPlugins();
+        }
+
+        private void workerImportPlugins_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            EnableControls(true);
+            progressBarCheckPlugins.Visible = false;
+
+            UpdateAssemblyList();
         }
 
         #endregion

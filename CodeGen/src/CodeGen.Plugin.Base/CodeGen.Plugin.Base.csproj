@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,7 @@
     <Compile Include="DatabaseEntityField.cs" />
     <Compile Include="GeneratorComponent.cs" />
     <Compile Include="IAccessModelController.cs" />
+    <Compile Include="IAssemblyDetails.cs" />
     <Compile Include="ICodeGeneratorTemplate.cs" />
     <Compile Include="IConnectionStringForm.cs" />
     <Compile Include="IGeneratorTemplate.cs" />

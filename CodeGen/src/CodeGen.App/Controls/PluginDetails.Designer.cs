@@ -28,25 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPluginTitle = new System.Windows.Forms.Label();
+            this.txtPluginDescription = new System.Windows.Forms.TextBox();
+            this.lblPluginVersion = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // lblPluginTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 32);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.lblPluginTitle.AutoSize = true;
+            this.lblPluginTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPluginTitle.Location = new System.Drawing.Point(3, 0);
+            this.lblPluginTitle.Name = "lblPluginTitle";
+            this.lblPluginTitle.Size = new System.Drawing.Size(115, 24);
+            this.lblPluginTitle.TabIndex = 1;
+            this.lblPluginTitle.Text = "Plugin Title";
+            // 
+            // txtPluginDescription
+            // 
+            this.txtPluginDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPluginDescription.Location = new System.Drawing.Point(3, 64);
+            this.txtPluginDescription.Multiline = true;
+            this.txtPluginDescription.Name = "txtPluginDescription";
+            this.txtPluginDescription.ReadOnly = true;
+            this.txtPluginDescription.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtPluginDescription.Size = new System.Drawing.Size(269, 82);
+            this.txtPluginDescription.TabIndex = 1;
+            // 
+            // lblPluginVersion
+            // 
+            this.lblPluginVersion.AutoSize = true;
+            this.lblPluginVersion.Location = new System.Drawing.Point(3, 24);
+            this.lblPluginVersion.Name = "lblPluginVersion";
+            this.lblPluginVersion.Size = new System.Drawing.Size(74, 13);
+            this.lblPluginVersion.TabIndex = 1;
+            this.lblPluginVersion.Text = "Plugin Version";
             // 
             // PluginDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblPluginTitle);
+            this.Controls.Add(this.lblPluginVersion);
+            this.Controls.Add(this.txtPluginDescription);
             this.Name = "PluginDetails";
-            this.Size = new System.Drawing.Size(213, 217);
+            this.Size = new System.Drawing.Size(275, 149);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -54,6 +81,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPluginTitle;
+        private System.Windows.Forms.TextBox txtPluginDescription;
+        private System.Windows.Forms.Label lblPluginVersion;
     }
 }

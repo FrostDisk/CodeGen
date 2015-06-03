@@ -54,6 +54,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -71,12 +73,6 @@
     <Compile Include="Configuration\PluginAssembly.cs" />
     <Compile Include="Configuration\PluginsSettings.cs" />
     <Compile Include="Configuration\ProjectSettings.cs" />
-    <Compile Include="Controls\AssemblyDetails.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\AssemblyDetails.Designer.cs">
-      <DependentUpon>AssemblyDetails.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\BasicProjectProperties.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -168,13 +164,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\BaseAssemblyDetails.cs" />
     <Compile Include="Utils\MessageBoxHelper.cs" />
     <Compile Include="Utils\PluginsManager.cs" />
     <Compile Include="Utils\ProgramInfo.cs" />
     <Compile Include="Utils\ProgramSettings.cs" />
-    <EmbeddedResource Include="Controls\AssemblyDetails.resx">
-      <DependentUpon>AssemblyDetails.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\BasicProjectProperties.resx">
       <DependentUpon>BasicProjectProperties.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,5 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Reflection;
+using CodeGen.Plugin.Base;
 
 namespace CodeGen.Utils
 {
@@ -31,7 +34,20 @@ namespace CodeGen.Utils
 
         public static string AssemblyVersion
         {
-            get { return CurrentAssembly.GetName().Version.ToString(); }
+            get
+            {
+                var version = CurrentAssembly.GetName().Version.ToString();
+                if (version.EndsWith(".0.0"))
+                {
+                    return version.Substring(0, version.LastIndexOf(".0.0", StringComparison.Ordinal));
+                }
+                if (version.EndsWith(".0"))
+                {
+                    return version.Substring(0, version.LastIndexOf(".0", StringComparison.Ordinal));
+                }
+
+                return version;
+            }
         }
 
         public static string AssemblyDescription

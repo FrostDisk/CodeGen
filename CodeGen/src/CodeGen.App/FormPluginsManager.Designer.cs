@@ -140,7 +140,6 @@
             // 
             // openDialogImportPlugins
             // 
-            this.openDialogImportPlugins.FileName = "openFileDialog1";
             this.openDialogImportPlugins.Filter = "Compatible Plugin file (*.dll, *.zip)|*.dll;*.zip|Assembly file (*.dll)|*.dll";
             this.openDialogImportPlugins.Multiselect = true;
             // 

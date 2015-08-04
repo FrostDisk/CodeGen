@@ -1,9 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using CodeGen.Configuration;
 using CodeGen.Controls;
-using CodeGen.Plugin.Base;
 using CodeGen.Utils;
 
 namespace CodeGen
@@ -150,13 +150,13 @@ namespace CodeGen
             }
         }
 
-        private void workerCheckPlugins_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private void workerCheckPlugins_DoWork(object sender, DoWorkEventArgs e)
         {
             PluginsManager.UpdatePluginList();
             PluginsManager.CheckExistingPlugins();
         }
 
-        private void workerCheckPlugins_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        private void workerCheckPlugins_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             EnableControls(true);
             progressBarCheckPlugins.Visible = false;
@@ -164,7 +164,7 @@ namespace CodeGen
             UpdateAssemblyList();
         }
 
-        private void workerImportPlugins_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private void workerImportPlugins_DoWork(object sender, DoWorkEventArgs e)
         {
             foreach (string fileName in openDialogImportPlugins.FileNames)
             {
@@ -175,7 +175,7 @@ namespace CodeGen
             PluginsManager.CheckExistingPlugins();
         }
 
-        private void workerImportPlugins_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        private void workerImportPlugins_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             EnableControls(true);
             progressBarCheckPlugins.Visible = false;

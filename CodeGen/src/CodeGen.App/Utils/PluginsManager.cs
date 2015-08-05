@@ -509,8 +509,13 @@ namespace CodeGen.Utils
                     if (instance != null)
                     {
                         pluginType.Title = instance.Title;
+                        pluginType.CreatedBy = instance.CreatedBy;
+                        pluginType.Icon = instance.Icon;
                         pluginType.Description = instance.Description;
                         pluginType.Version = instance.Version;
+                        pluginType.ReleaseNotesUrl = instance.ReleaseNotesUrl;
+                        pluginType.AuthorWebsiteUrl = instance.AuthorWebsiteUrl;
+                        pluginType.DateInstalled = DateTime.Now;
                         pluginType.Class = type.FullName;
                         pluginType.Enabled = isBase;
                         pluginType.IsValid = true;

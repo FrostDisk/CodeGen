@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
+using System.Drawing;
+using CodeGen.Properties;
 
 namespace CodeGen.Core
 {
@@ -15,6 +17,16 @@ namespace CodeGen.Core
             get { return "Sql Server Base Query Template"; }
         }
 
+        public string CreatedBy
+        {
+            get { return ProgramInfo.AssemblyCompany; }
+        }
+
+        public Image Icon
+        {
+            get { return null; }
+        }
+
         public String Description
         {
             get { return "Sql Server Save/GetById/ListaAll Query Template"; }
@@ -23,6 +35,16 @@ namespace CodeGen.Core
         public String Version
         {
             get { return ProgramInfo.AssemblyVersion; }
+        }
+
+        public string ReleaseNotesUrl
+        {
+            get { return Resources.DefaultReleaseNotesUrl; }
+        }
+
+        public string AuthorWebsiteUrl
+        {
+            get { return Resources.DefaultAuthorWebsiteUrl; }
         }
 
         public PluginSettings Settings { get; private set; }

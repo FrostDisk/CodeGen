@@ -1,15 +1,10 @@
 ﻿using System;
+using System.Drawing;
 
 namespace CodeGen.Plugin.Base
 {
-    public interface IPluginBase
+    public interface IPluginBase : IPluginTypeBase
     {
-        String Title { get; }
-
-        String Description { get; }
-
-        String Version { get; }
-
         PluginSettings Settings { get; }
 
         void UpdateSettings(PluginSettings settings);

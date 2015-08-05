@@ -4,6 +4,8 @@ using System.Net.Configuration;
 using System.Windows.Forms;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
+using System.Drawing;
+using CodeGen.Properties;
 
 namespace CodeGen.Core
 {
@@ -16,6 +18,16 @@ namespace CodeGen.Core
             get { return "C# Base Code Template"; }
         }
 
+        public string CreatedBy
+        {
+            get { return ProgramInfo.AssemblyCompany; }
+        }
+
+        public Image Icon
+        {
+            get { return null; }
+        }
+
         public string Description
         {
             get { return "C# Domain/DataAccess Code Template"; }
@@ -24,6 +36,16 @@ namespace CodeGen.Core
         public String Version
         {
             get { return ProgramInfo.AssemblyVersion; }
+        }
+
+        public string ReleaseNotesUrl
+        {
+            get { return Resources.DefaultReleaseNotesUrl; }
+        }
+
+        public string AuthorWebsiteUrl
+        {
+            get { return Resources.DefaultAuthorWebsiteUrl; }
         }
 
         public PluginSettings Settings { get; private set; }

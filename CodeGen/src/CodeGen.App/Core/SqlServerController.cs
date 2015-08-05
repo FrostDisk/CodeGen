@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
+using CodeGen.Properties;
 
 namespace CodeGen.Core
 {
@@ -19,6 +21,16 @@ namespace CodeGen.Core
             get { return "Sql Server Access-Model Controller"; }
         }
 
+        public string CreatedBy
+        {
+            get { return ProgramInfo.AssemblyCompany; }
+        }
+
+        public Image Icon
+        {
+            get { return null; }
+        }
+
         public String Description
         {
             get { return "Sql Server Access-Model Controller"; }
@@ -27,6 +39,16 @@ namespace CodeGen.Core
         public String Version
         {
             get { return ProgramInfo.AssemblyVersion; }
+        }
+
+        public string ReleaseNotesUrl
+        {
+            get { return Resources.DefaultReleaseNotesUrl; }
+        }
+
+        public string AuthorWebsiteUrl
+        {
+            get { return Resources.DefaultAuthorWebsiteUrl; }
         }
 
         public PluginSettings Settings { get; private set; }

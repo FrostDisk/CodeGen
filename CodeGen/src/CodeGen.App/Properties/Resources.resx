@@ -205,4 +205,16 @@
   <data name="sp_ListAll" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Templates\sp_ListAll.sql.tpl;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="add_on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Images\add_on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DefaultAuthorWebsiteUrl" xml:space="preserve">
+    <value>http://www.frostdisk.com/</value>
+  </data>
+  <data name="DefaultCreatedBy" xml:space="preserve">
+    <value>FrostDisk Chile</value>
+  </data>
+  <data name="DefaultReleaseNotesUrl" xml:space="preserve">
+    <value />
+  </data>
 </root>

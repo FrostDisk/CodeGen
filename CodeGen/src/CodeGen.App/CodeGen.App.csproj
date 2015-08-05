@@ -230,6 +230,7 @@
     <Content Include="Resources\Icons\file_extension_dll.png" />
     <Content Include="Resources\Icons\file_extension_rtf.png" />
     <Content Include="Resources\Icons\file_extension_sit.png" />
+    <None Include="Resources\Images\add_on.png" />
     <None Include="Resources\Templates\sp_Delete.sql.tpl" />
     <None Include="Resources\Templates\sp_GetByID.sql.tpl" />
     <None Include="Resources\Templates\sp_ListAll.sql.tpl" />

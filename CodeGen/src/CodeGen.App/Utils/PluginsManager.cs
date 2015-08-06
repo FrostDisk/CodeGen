@@ -36,7 +36,7 @@ namespace CodeGen.Utils
             CheckAssembly(null, Assembly.GetExecutingAssembly(), settings, true);
 
             // Get DefaultPluginsLocation
-            string pluginsDirectory = settings.DirectoriesSettings.DefaultPluginsDirectory;
+            string pluginsDirectory = settings.DirectoriesSettings.PluginsDirectory;
 
             Uri pluginsDirectoryUri = new Uri(pluginsDirectory, UriKind.Absolute);
 
@@ -93,7 +93,7 @@ namespace CodeGen.Utils
                     // Check each assembly for plugins
                     if (CheckAssembly(relativePluginLocation, assembly, settings, false, false))
                     {
-                        string pluginTargetDirectory = Path.Combine(settings.DirectoriesSettings.DefaultPluginsDirectory, shortUniqueName);
+                        string pluginTargetDirectory = Path.Combine(settings.DirectoriesSettings.PluginsDirectory, shortUniqueName);
 
                         if (!Directory.Exists(pluginTargetDirectory))
                         {
@@ -109,7 +109,7 @@ namespace CodeGen.Utils
                 // Check each assembly for plugins
                 if (CheckAssembly(null, assembly, settings, false, false))
                 {
-                    string pluginTargetLocation = Path.Combine(settings.DirectoriesSettings.DefaultPluginsDirectory, Path.GetFileName(pluginLocation));
+                    string pluginTargetLocation = Path.Combine(settings.DirectoriesSettings.PluginsDirectory, Path.GetFileName(pluginLocation));
 
                     File.Copy(pluginLocation,pluginTargetLocation);
                 }
@@ -125,7 +125,7 @@ namespace CodeGen.Utils
             var settings = ProgramSettings.GetGlobalSettings();
 
             // Get DefaultPluginsLocation
-            string pluginsDirectory = settings.DirectoriesSettings.DefaultPluginsDirectory;
+            string pluginsDirectory = settings.DirectoriesSettings.PluginsDirectory;
 
             foreach (var pluginAssembly in settings.PluginsSettings.Plugins)
             {
@@ -644,7 +644,7 @@ namespace CodeGen.Utils
                             // Is not a base assembly and need to be loaded from the plugins directory
                             else
                             {
-                                string pluginsDirectory = settings.DirectoriesSettings.DefaultPluginsDirectory;
+                                string pluginsDirectory = settings.DirectoriesSettings.PluginsDirectory;
 
                                 string pluginLocation = Path.Combine(pluginsDirectory, pluginAssembly.File);
 
@@ -706,7 +706,7 @@ namespace CodeGen.Utils
                 // Is not a base assembly and need to be loaded from the plugins directory
                 else
                 {
-                    string pluginsDirectory = settings.DirectoriesSettings.DefaultPluginsDirectory;
+                    string pluginsDirectory = settings.DirectoriesSettings.PluginsDirectory;
 
                     string pluginLocation = Path.Combine(pluginsDirectory, assemblyFile);
 

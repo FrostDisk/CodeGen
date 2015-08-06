@@ -291,7 +291,10 @@ namespace CodeGen
 
         private void toolStripMenuItemOptions_Click(object sender, EventArgs e)
         {
+            FormOptions form = new FormOptions();
+            form.LoadLocalVariables();
 
+            form.ShowDialog();
         }
 
         #endregion

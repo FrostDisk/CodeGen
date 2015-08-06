@@ -67,6 +67,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOptions.Designer.cs">
+      <DependentUpon>FormOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfoCommon.cs" />
     <Compile Include="Configuration\DirectoriesSettings.cs" />
     <Compile Include="Configuration\GlobalSettings.cs" />
@@ -202,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNewProject.resx">
       <DependentUpon>FormNewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOptions.resx">
+      <DependentUpon>FormOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPluginsManager.resx">
       <DependentUpon>FormPluginsManager.cs</DependentUpon>

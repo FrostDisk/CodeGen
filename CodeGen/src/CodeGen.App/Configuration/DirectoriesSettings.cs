@@ -33,32 +33,32 @@ namespace CodeGen.Configuration
         }
 
         [XmlIgnore]
-        private string _defaultPluginsDirectory;
+        private string _pluginsDirectory;
 
-        [XmlElement("DefaultPluginsDirectory")]
-        public string DefaultPluginsDirectory
+        [XmlElement("PluginsDirectory")]
+        public string PluginsDirectory
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(_defaultPluginsDirectory))
+                if (string.IsNullOrWhiteSpace(_pluginsDirectory))
                 {
-                    _defaultPluginsDirectory = Path.Combine(ProgramSettings.SettingsFolder, "Plugins");
+                    _pluginsDirectory = Path.Combine(ProgramSettings.SettingsFolder, "Plugins");
                 }
 
-                if (!Directory.Exists(_defaultPluginsDirectory))
+                if (!Directory.Exists(_pluginsDirectory))
                 {
-                    Directory.CreateDirectory(_defaultPluginsDirectory);
+                    Directory.CreateDirectory(_pluginsDirectory);
                 }
 
-                return FolderHelper.PathAddBackslash(_defaultPluginsDirectory);
+                return FolderHelper.PathAddBackslash(_pluginsDirectory);
             }
-            set { _defaultPluginsDirectory = value; }
+            set { _pluginsDirectory = value; }
         }
 
         [XmlIgnore]
         private string _cacheDirectory;
 
-        [XmlElement("CacheLocation")]
+        [XmlElement("CacheDirectory")]
         public string CacheDirectory
         {
             get

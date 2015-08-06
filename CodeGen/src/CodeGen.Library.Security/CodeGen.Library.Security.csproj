@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base64EncryptorHelper.cs" />
-    <Compile Include="QueryStringEncryptorHelper.cs" />
+    <Compile Include="StringEncryptorHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

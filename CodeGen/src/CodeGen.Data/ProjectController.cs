@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using CodeGen.Plugin.Base;
+using CodeGen.Library.Security;
 
 namespace CodeGen.Data
 {
@@ -25,8 +26,11 @@ namespace CodeGen.Data
         }
 
 
-        public static void SaveProjectToStream(Project project, Stream projectStream)
+        public static void SaveProjectToStream(Project project, Stream projectStream, string encryptionKey)
         {
+            // Encrypt Connection String
+            project.EncryptedConnectionString = StringEncryptorHelper.Encrypt(project.ConnectionString, encryptionKey);
+
             using (StreamWriter streamWriter = new StreamWriter(projectStream, Encoding.UTF8))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(Project));
@@ -38,7 +42,7 @@ namespace CodeGen.Data
             project.IsUnsaved = false;
         }
 
-        public static Project OpenProjectFromLocation(string projectLocation)
+        public static Project OpenProjectFromLocation(string projectLocation, string decryptionKey)
         {
             using (StreamReader streamReader = new StreamReader(projectLocation, Encoding.UTF8))
             {
@@ -50,7 +54,7 @@ namespace CodeGen.Data
                 {
                     project.SaveLocation = projectLocation;
                     project.SaveDirectory = Path.GetDirectoryName(projectLocation);
-                    return RecalculateVariables(project);
+                    return RecalculateVariables(project, decryptionKey);
                 }
             }
 
@@ -111,11 +115,14 @@ namespace CodeGen.Data
             return project;
         }
 
-        private static Project RecalculateVariables(Project openProject)
+        private static Project RecalculateVariables(Project openProject, string decryptionKey)
         {
             openProject.IsNew = false;
             openProject.IsUnsaved = false;
             openProject.IsValid = true;
+
+            // Decript Connection String
+            openProject.ConnectionString = StringEncryptorHelper.Decrypt(openProject.EncryptedConnectionString, decryptionKey);
 
             return openProject;
         }

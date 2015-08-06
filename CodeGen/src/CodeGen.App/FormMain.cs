@@ -71,7 +71,7 @@ namespace CodeGen
 
         private void OpenProject(string projectLocation)
         {
-            _activeProject = ProjectController.OpenProjectFromLocation(projectLocation);
+            _activeProject = ProjectController.OpenProjectFromLocation(projectLocation, Resources.EncriptionKey);
 
             if(!_activeProject.IsValid)
             {
@@ -116,7 +116,7 @@ namespace CodeGen
 
             using (Stream projectStream = File.Open(_activeProject.SaveLocation, FileMode.Create, FileAccess.Write))
             {
-                ProjectController.SaveProjectToStream(_activeProject, projectStream);
+                ProjectController.SaveProjectToStream(_activeProject, projectStream, Resources.EncriptionKey);
             }
 
             UpdateWindowTitle();

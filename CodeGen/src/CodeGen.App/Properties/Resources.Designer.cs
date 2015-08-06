@@ -206,6 +206,15 @@ namespace CodeGen.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to _N&gt;Tx&apos;}rxm@a]Lg\z]dN3DBPNb(xwsMOgX2YVi&quot;Ktg*n-At&amp;u8&lt;rh&gt;Hlhs&quot;;;&amp;w.
+        /// </summary>
+        internal static string EncriptionKey {
+            get {
+                return ResourceManager.GetString("EncriptionKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap folder {

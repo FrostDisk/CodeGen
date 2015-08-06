@@ -23,6 +23,9 @@ namespace CodeGen.Domain
         public string Description { get; set; }
 
         [XmlElement("ConnectionString")]
+        public string EncryptedConnectionString { get; set; }
+
+        [XmlIgnore]
         public string ConnectionString { get; set; }
 
         [XmlElement("Properties")]
@@ -55,6 +58,7 @@ namespace CodeGen.Domain
             Version = 0;
             Type = EnumDatabaseTypes.SqlServer;
             Description = string.Empty;
+            EncryptedConnectionString = string.Empty;
             ConnectionString = string.Empty;
             //Properties = new ProjectProperties();
             //Entities = new List<ProjectEntity>();

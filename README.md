@@ -10,13 +10,19 @@ any database engine.
 
 All the documentation will be available in the project wiki. <https://github.com/FrostDisk/CodeGen/wiki>
 
+The Roadmap and pending tasks of the project are maintained in Trello. <https://trello.com/b/86qJDXUH/codegen>
+
 ## Installation
+
+* Download the source code from the repository
+* Open the solution in Visual Studio 2013 or 2015
+* Compile and Execute
 
 ## How to contribute
 
 The're several ways to contribute in this project. 
 
-* Submitting and resolving bugs and issues.
+* Submitting and/or resolving bugs and issues.
 * Developing and sharing your own plugins.
 * Helping with the documentation in the wiki.
 * Discuss and contribute anything related in the forums.
@@ -25,10 +31,11 @@ The're several ways to contribute in this project.
 
 ### Requirements
 
-* .NET Framework 4.5.1 (<http://www.microsoft.com/download/details.aspx?id=40779>)
-* Visual Studio Community 2013 (<http://www.visualstudio.com/products/visual-studio-community-vs.aspx>)
+* .NET Framework 4.5.2 (<http://www.microsoft.com/download/details.aspx?id=42642>)
+* Visual Studio Community 2013 or 2015 (<http://www.visualstudio.com/products/visual-studio-community-vs.aspx>)
 
 ## Related links
+
 * CodeGen Main Page <http://www.frostdisk.com/project/codegen/>
 * CodeGen Wiki <https://github.com/FrostDisk/CodeGen/wiki>
 * CodeGen Forum <http://foros.frostdisk.com/forum/9-codegen/>

@@ -58,19 +58,24 @@ namespace CodeGen.Controls
 
         private void GenerateProjectFolder(int number = 1)
         {
-            string projectName = StringHelper.ConvertToSafeCodeName(string.IsNullOrWhiteSpace(txtProjectName.Text) ? number == 1 ? DefaultProjectName : string.Format("{0} ({1})", DefaultProjectName, number) : txtProjectName.Text, false);
+            string projectName = string.IsNullOrWhiteSpace(txtProjectName.Text) ? number == 1 ? DefaultProjectName : string.Format("{0} ({1})", DefaultProjectName, number) : txtProjectName.Text;
+            string safeProjectName = StringHelper.ConvertToSafeFileName(projectName);
 
-            string projectLocation = Path.Combine(DefaultProjectLocation, projectName);
-            if (Directory.Exists(projectLocation) && !FolderHelper.IsDirectoryEmpty(projectLocation))
+            if (!string.IsNullOrWhiteSpace(safeProjectName))
             {
-                return;
-            }
+                string projectLocation = Path.Combine(DefaultProjectLocation, safeProjectName);
+                if (Directory.Exists(projectLocation) && !FolderHelper.IsDirectoryEmpty(projectLocation))
+                {
+                    GenerateProjectFolder(number + 1);
+                    return;
+                }
 
-            if (string.IsNullOrWhiteSpace(txtProjectName.Text))
-            {
-                txtProjectName.Text = projectName;
+                if (string.IsNullOrWhiteSpace(txtProjectName.Text))
+                {
+                    txtProjectName.Text = projectName;
+                }
+                txtProjectDirectory.Text = projectLocation;
             }
-            txtProjectDirectory.Text = projectLocation;
         }
 
         private void LoadDatabaseTypes()
@@ -84,7 +89,7 @@ namespace CodeGen.Controls
 
         public Project GetProject()
         {
-            Project project = ProjectController.CreateEmptyProject(txtProjectName.Text, txtProjectDirectory.Text);
+            Project project = ProjectController.CreateEmptyProject(txtProjectName.Text, StringHelper.ConvertToSafeFileName(txtProjectName.Text), txtProjectDirectory.Text);
 
             SupportedType item = (SupportedType) cmbDatabaseType.SelectedItem;
 

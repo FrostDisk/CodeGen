@@ -113,6 +113,13 @@ namespace CodeGen.Library.Formats
             return (checkIfStartWithNumber && (new Regex(StartWithNumber)).IsMatch(text) ? ClassNumberPrefix : string.Empty) + CleanSpecialCharacters(text).Replace(" ", "_");
         }
 
+        public static string ConvertToSafeFileName(string text)
+        {
+            Path.GetInvalidFileNameChars().ToList().ForEach(t => text = text.Replace(new string(t, 1), string.Empty));
+
+            return text;
+        }
+
         public static string ConvertToSafeConstantName(string text, bool checkIfStartWithNumber = true)
         {
             return ConvertToTitleCase(ConvertToSafeCodeName(text, checkIfStartWithNumber));

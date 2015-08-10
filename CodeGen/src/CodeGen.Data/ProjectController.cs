@@ -11,12 +11,12 @@ namespace CodeGen.Data
 {
     public static class ProjectController
     {
-        public static Project CreateEmptyProject(string projectName, string projectDirectory)
+        public static Project CreateEmptyProject(string projectName, string safeProjectName, string projectDirectory)
         {
             Project project = new Project();
             project.Name = projectName;
             project.Version = Project.ActiveVersion;
-            project.SaveLocation = Path.Combine(projectDirectory, string.Format("{0}.cgproj", projectName.ToLower()));
+            project.SaveLocation = Path.Combine(projectDirectory, string.Format("{0}.cgproj", safeProjectName.ToLower()));
             project.SaveDirectory = projectDirectory;
             project.IsNew = true;
             project.IsUnsaved = true;

@@ -267,12 +267,12 @@ namespace CodeGen
 
         #region project menu
 
-        private void toolStripMenuItemGenerateClass_Click(object sender, EventArgs e)
+        private void toolStripMenuItemGenerateCodeFile_Click(object sender, EventArgs e)
         {
             _activeControl.LoadGenerator<GenerateCodeFile>();
         }
 
-        private void toolStripMenuItemGenerateStoredProcedure_Click(object sender, EventArgs e)
+        private void toolStripMenuItemGenerateDatabaseScript_Click(object sender, EventArgs e)
         {
             _activeControl.LoadGenerator<GenerateCodeDatabase>();
         }

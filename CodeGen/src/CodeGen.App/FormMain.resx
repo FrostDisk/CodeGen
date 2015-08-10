@@ -192,23 +192,23 @@
   <data name="toolStripMenuItemFile.Text" xml:space="preserve">
     <value>&amp;File</value>
   </data>
-  <data name="toolStripMenuItemGenerateClass.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 22</value>
+  <data name="toolStripMenuItemGenerateCodeFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
   </data>
-  <data name="toolStripMenuItemGenerateClass.Text" xml:space="preserve">
-    <value>Generate &amp;Class...</value>
+  <data name="toolStripMenuItemGenerateCodeFile.Text" xml:space="preserve">
+    <value>Generate Source &amp;Code file...</value>
   </data>
-  <data name="toolStripMenuItemGenerateStoredProcedure.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 22</value>
+  <data name="toolStripMenuItemGenerateDatabaseScript.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
   </data>
-  <data name="toolStripMenuItemGenerateStoredProcedure.Text" xml:space="preserve">
-    <value>Generate &amp;Stored Procedure...</value>
+  <data name="toolStripMenuItemGenerateDatabaseScript.Text" xml:space="preserve">
+    <value>Generate Database &amp;script...</value>
   </data>
   <data name="toolStripProjectSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 6</value>
+    <value>216, 6</value>
   </data>
   <data name="toolStripMenuItemProjectProperties.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 22</value>
+    <value>219, 22</value>
   </data>
   <data name="toolStripMenuItemProjectProperties.Text" xml:space="preserve">
     <value>Project &amp;Properties...</value>
@@ -238,7 +238,7 @@
     <value>Options...</value>
   </data>
   <data name="toolStripMenuItemTools.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 20</value>
+    <value>47, 20</value>
   </data>
   <data name="toolStripMenuItemTools.Text" xml:space="preserve">
     <value>Tools</value>
@@ -2123,16 +2123,16 @@
   <data name="&gt;&gt;toolStripMenuItemProject.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItemGenerateClass.Name" xml:space="preserve">
-    <value>toolStripMenuItemGenerateClass</value>
+  <data name="&gt;&gt;toolStripMenuItemGenerateCodeFile.Name" xml:space="preserve">
+    <value>toolStripMenuItemGenerateCodeFile</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItemGenerateClass.Type" xml:space="preserve">
+  <data name="&gt;&gt;toolStripMenuItemGenerateCodeFile.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItemGenerateStoredProcedure.Name" xml:space="preserve">
-    <value>toolStripMenuItemGenerateStoredProcedure</value>
+  <data name="&gt;&gt;toolStripMenuItemGenerateDatabaseScript.Name" xml:space="preserve">
+    <value>toolStripMenuItemGenerateDatabaseScript</value>
   </data>
-  <data name="&gt;&gt;toolStripMenuItemGenerateStoredProcedure.Type" xml:space="preserve">
+  <data name="&gt;&gt;toolStripMenuItemGenerateDatabaseScript.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripProjectSeparator1.Name" xml:space="preserve">

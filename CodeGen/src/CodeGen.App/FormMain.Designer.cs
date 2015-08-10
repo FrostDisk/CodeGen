@@ -40,8 +40,8 @@
             this.toolStripFileSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemProject = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemGenerateClass = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemGenerateStoredProcedure = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemGenerateCodeFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemGenerateDatabaseScript = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripProjectSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemProjectProperties = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemTools = new System.Windows.Forms.ToolStripMenuItem();
@@ -136,26 +136,26 @@
             // toolStripMenuItemProject
             // 
             this.toolStripMenuItemProject.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemGenerateClass,
-            this.toolStripMenuItemGenerateStoredProcedure,
+            this.toolStripMenuItemGenerateCodeFile,
+            this.toolStripMenuItemGenerateDatabaseScript,
             this.toolStripProjectSeparator1,
             this.toolStripMenuItemProjectProperties});
             resources.ApplyResources(this.toolStripMenuItemProject, "toolStripMenuItemProject");
             this.toolStripMenuItemProject.Name = "toolStripMenuItemProject";
             // 
-            // toolStripMenuItemGenerateClass
+            // toolStripMenuItemGenerateCodeFile
             // 
-            this.toolStripMenuItemGenerateClass.Image = global::CodeGen.Properties.Resources.page_white_code;
-            this.toolStripMenuItemGenerateClass.Name = "toolStripMenuItemGenerateClass";
-            resources.ApplyResources(this.toolStripMenuItemGenerateClass, "toolStripMenuItemGenerateClass");
-            this.toolStripMenuItemGenerateClass.Click += new System.EventHandler(this.toolStripMenuItemGenerateClass_Click);
+            this.toolStripMenuItemGenerateCodeFile.Image = global::CodeGen.Properties.Resources.page_white_code;
+            this.toolStripMenuItemGenerateCodeFile.Name = "toolStripMenuItemGenerateCodeFile";
+            resources.ApplyResources(this.toolStripMenuItemGenerateCodeFile, "toolStripMenuItemGenerateCodeFile");
+            this.toolStripMenuItemGenerateCodeFile.Click += new System.EventHandler(this.toolStripMenuItemGenerateCodeFile_Click);
             // 
-            // toolStripMenuItemGenerateStoredProcedure
+            // toolStripMenuItemGenerateDatabaseScript
             // 
-            this.toolStripMenuItemGenerateStoredProcedure.Image = global::CodeGen.Properties.Resources.page_white_database;
-            this.toolStripMenuItemGenerateStoredProcedure.Name = "toolStripMenuItemGenerateStoredProcedure";
-            resources.ApplyResources(this.toolStripMenuItemGenerateStoredProcedure, "toolStripMenuItemGenerateStoredProcedure");
-            this.toolStripMenuItemGenerateStoredProcedure.Click += new System.EventHandler(this.toolStripMenuItemGenerateStoredProcedure_Click);
+            this.toolStripMenuItemGenerateDatabaseScript.Image = global::CodeGen.Properties.Resources.page_white_database;
+            this.toolStripMenuItemGenerateDatabaseScript.Name = "toolStripMenuItemGenerateDatabaseScript";
+            resources.ApplyResources(this.toolStripMenuItemGenerateDatabaseScript, "toolStripMenuItemGenerateDatabaseScript");
+            this.toolStripMenuItemGenerateDatabaseScript.Click += new System.EventHandler(this.toolStripMenuItemGenerateDatabaseScript_Click);
             // 
             // toolStripProjectSeparator1
             // 
@@ -260,8 +260,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemCloseProject;
         private System.Windows.Forms.ToolStripSeparator toolStripFileSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemExit;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGenerateClass;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGenerateStoredProcedure;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGenerateCodeFile;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemGenerateDatabaseScript;
         private System.Windows.Forms.ToolStripSeparator toolStripProjectSeparator1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemProjectProperties;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAbout;

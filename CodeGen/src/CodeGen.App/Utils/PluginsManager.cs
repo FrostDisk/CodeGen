@@ -11,6 +11,7 @@ using CodeGen.Data;
 using CodeGen.Domain;
 using CodeGen.Library.Formats;
 using CodeGen.Plugin.Base;
+using System.Runtime.InteropServices;
 
 namespace CodeGen.Utils
 {
@@ -45,7 +46,8 @@ namespace CodeGen.Utils
             {
                 Uri pluginLocationUri = new Uri(pluginLocation, UriKind.Absolute);
 
-                Assembly assembly = Assembly.LoadFile(pluginLocation);
+                byte[] assemblyBytes = File.ReadAllBytes(pluginLocation);
+                Assembly assembly = Assembly.Load(assemblyBytes);
 
                 string relativePluginLocation = pluginsDirectoryUri.MakeRelativeUri(pluginLocationUri).ToString();
 
@@ -86,7 +88,8 @@ namespace CodeGen.Utils
                 {
                     Uri pluginLocationUri = new Uri(extractedPluginLocation, UriKind.Absolute);
 
-                    Assembly assembly = Assembly.LoadFile(extractedPluginLocation);
+                    byte[] assemblyBytes = File.ReadAllBytes(extractedPluginLocation);
+                    Assembly assembly = Assembly.Load(assemblyBytes);
 
                     string relativePluginLocation = pluginTempDirectoryUri.MakeRelativeUri(pluginLocationUri).ToString();
 
@@ -97,21 +100,22 @@ namespace CodeGen.Utils
 
                         if (!Directory.Exists(pluginTargetDirectory))
                         {
-                            ZipFile.ExtractToDirectory(pluginLocation, pluginTargetDirectory);
+                            Directory.Move(pluginTempDirectory, pluginTargetDirectory);
                         }
                     }
                 }
             }
             else if (extension.Contains(".dll"))
             {
-                Assembly assembly = Assembly.LoadFile(pluginLocation);
+                byte[] assemblyBytes = File.ReadAllBytes(pluginLocation);
+                Assembly assembly = Assembly.Load(assemblyBytes);
 
                 // Check each assembly for plugins
                 if (CheckAssembly(null, assembly, settings, false, false))
                 {
                     string pluginTargetLocation = Path.Combine(settings.DirectoriesSettings.PluginsDirectory, Path.GetFileName(pluginLocation));
 
-                    File.Copy(pluginLocation,pluginTargetLocation);
+                    File.Copy(pluginLocation, pluginTargetLocation);
                 }
             }
         }
@@ -137,7 +141,9 @@ namespace CodeGen.Utils
                     {
                         // Load the assembly from the plugin folder
                         string pluginLocation = Path.Combine(pluginsDirectory, pluginAssembly.File);
-                        Assembly assembly = Assembly.LoadFile(pluginLocation);
+
+                        byte[] assemblyBytes = File.ReadAllBytes(pluginLocation);
+                        Assembly assembly = Assembly.Load(assemblyBytes);
 
                         bool isValidPlugin = false;
                         foreach (PluginType pluginType in pluginAssembly.Types)
@@ -159,7 +165,7 @@ namespace CodeGen.Utils
                                     }
                                 }
                             }
-                            catch
+                            catch(Exception ex)
                             {
                                 isValidPlugin = false;
                             }
@@ -167,7 +173,7 @@ namespace CodeGen.Utils
                             pluginType.Enabled = isValidPlugin && pluginType.Enabled;
                         } // -- fin foreach (PluginType pluginType in pluginAssembly.Types)
                     }
-                    catch
+                    catch(Exception ex)
                     {
                         pluginAssembly.IsValid = false;
                         pluginAssembly.Types.ForEach(t =>
@@ -195,7 +201,7 @@ namespace CodeGen.Utils
                                 isValidPlugin = true;
                             }
                         }
-                        catch
+                        catch(Exception ex)
                         {
                             isValidPlugin = false;
                         }
@@ -505,7 +511,7 @@ namespace CodeGen.Utils
                 try
                 {
                     // Try to create an instance and check if inherit for IPluginBase interface
-                    var instance = Activator.CreateInstance(type) as IPluginBase;
+                    var instance = assembly.CreateInstance(type.FullName) as IPluginBase;
                     if (instance != null)
                     {
                         pluginType.Title = instance.Title;
@@ -532,7 +538,7 @@ namespace CodeGen.Utils
                         isValidPlugin = true;
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
                     isValidPlugin = false;
                 }
@@ -542,12 +548,11 @@ namespace CodeGen.Utils
                     isValidAssembly = true;
 
                     // Get Assembly fileName
-                    string assemblyName = Path.GetFileName(assembly.Location);
+                    string assemblyName = assembly.GetName().Name;
+                    string guid = ((GuidAttribute)assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value;
 
                     // Check if assembly was already registered in the global settings
-                    var settingsAssembly = isBase
-                                            ? settings.PluginsSettings.Plugins.FirstOrDefault(a => a.File == assemblyName)
-                                            : settings.PluginsSettings.Plugins.FirstOrDefault(a => a.File == relativeLocation);
+                    var settingsAssembly = settings.PluginsSettings.Plugins.FirstOrDefault(a => a.Guid == guid);
 
                     // if not add to the list
                     if (settingsAssembly == null)
@@ -556,6 +561,7 @@ namespace CodeGen.Utils
 
                         settingsAssembly = new PluginAssembly();
                         settingsAssembly.Title = assemblyName;
+                        settingsAssembly.Guid = guid;
                         settingsAssembly.Version = assembly.GetName().Version.ToString();
                         settingsAssembly.File = isBase ? assemblyName : relativeLocation;
                         settingsAssembly.IsValid = true;

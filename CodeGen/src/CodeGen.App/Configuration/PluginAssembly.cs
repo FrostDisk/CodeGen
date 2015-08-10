@@ -14,6 +14,9 @@ namespace CodeGen.Configuration
         [XmlAttribute("Title")]
         public string Title { get; set; }
 
+        [XmlAttribute("Guid")]
+        public string Guid { get; set; }
+
         [XmlAttribute("Version")]
         public string Version { get; set; }
 

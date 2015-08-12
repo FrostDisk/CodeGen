@@ -17,8 +17,6 @@ namespace CodeGen.Plugin.Base
 
         Boolean HaveOptions { get; }
 
-        Boolean HaveComponents { get; }
-
         Boolean IsLoaded { get; }
 
         void Load(String projectName);

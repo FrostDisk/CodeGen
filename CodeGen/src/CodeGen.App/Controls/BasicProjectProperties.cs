@@ -89,7 +89,7 @@ namespace CodeGen.Controls
 
         public Project GetProject()
         {
-            Project project = ProjectController.CreateEmptyProject(txtProjectName.Text, StringHelper.ConvertToSafeFileName(txtProjectName.Text), txtProjectDirectory.Text);
+            Project project = ProjectController.CreateEmptyProject(txtProjectName.Text, txtProjectDirectory.Text);
 
             SupportedType item = (SupportedType) cmbDatabaseType.SelectedItem;
 

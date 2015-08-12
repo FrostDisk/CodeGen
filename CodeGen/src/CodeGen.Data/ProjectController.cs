@@ -6,13 +6,25 @@ using System.Text;
 using System.Xml.Serialization;
 using CodeGen.Plugin.Base;
 using CodeGen.Library.Security;
+using CodeGen.Library.Formats;
 
 namespace CodeGen.Data
 {
+    /// <summary>
+    /// ProjectController
+    /// </summary>
     public static class ProjectController
     {
-        public static Project CreateEmptyProject(string projectName, string safeProjectName, string projectDirectory)
+        /// <summary>
+        /// Creates the empty project.
+        /// </summary>
+        /// <param name="projectName">Name of the project.</param>
+        /// <param name="projectDirectory">The project directory.</param>
+        /// <returns></returns>
+        public static Project CreateEmptyProject(string projectName, string projectDirectory)
         {
+            string safeProjectName = StringHelper.ConvertToSafeFileName(projectName);
+
             Project project = new Project();
             project.Name = projectName;
             project.Version = Project.ActiveVersion;
@@ -26,6 +38,12 @@ namespace CodeGen.Data
         }
 
 
+        /// <summary>
+        /// Saves the project to stream.
+        /// </summary>
+        /// <param name="project">The project.</param>
+        /// <param name="projectStream">The project stream.</param>
+        /// <param name="encryptionKey">The encryption key.</param>
         public static void SaveProjectToStream(Project project, Stream projectStream, string encryptionKey)
         {
             // Encrypt Connection String
@@ -42,6 +60,12 @@ namespace CodeGen.Data
             project.IsUnsaved = false;
         }
 
+        /// <summary>
+        /// Opens the project from location.
+        /// </summary>
+        /// <param name="projectLocation">The project location.</param>
+        /// <param name="decryptionKey">The decryption key.</param>
+        /// <returns></returns>
         public static Project OpenProjectFromLocation(string projectLocation, string decryptionKey)
         {
             using (StreamReader streamReader = new StreamReader(projectLocation, Encoding.UTF8))
@@ -61,6 +85,13 @@ namespace CodeGen.Data
             return new Project();
         }
 
+        /// <summary>
+        /// Gets the plugin properties.
+        /// </summary>
+        /// <param name="project">The project.</param>
+        /// <param name="assemblyFile">The assembly file.</param>
+        /// <param name="plugin">The plugin.</param>
+        /// <returns></returns>
         public static ProjectPluginProperties GetPluginProperties(Project project, string assemblyFile, string plugin)
         {
             if (project.Properties == null
@@ -72,6 +103,12 @@ namespace CodeGen.Data
             return project.Properties.Plugins.FirstOrDefault(p => p.Assembly == assemblyFile && p.Type == plugin);
         }
 
+        /// <summary>
+        /// Updates the plugin settings.
+        /// </summary>
+        /// <param name="project">The project.</param>
+        /// <param name="plugin">The plugin.</param>
+        /// <returns></returns>
         public static Project UpdatePluginSettings(Project project, IGeneratorTemplate plugin)
         {
             if (project.Properties == null)

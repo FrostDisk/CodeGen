@@ -31,7 +31,7 @@ namespace CodeGen.Utils
 
         public string Url
         {
-            get { return "http://www.frostdisk.com/projects/codegen"; }
+            get { return "https://github.com/FrostDisk/CodeGen"; }
         }
     }
 }

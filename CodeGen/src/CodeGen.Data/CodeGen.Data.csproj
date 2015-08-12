@@ -52,6 +52,10 @@
       <Project>{cd81c9c1-ad1e-4bb7-be30-eaa7a584a377}</Project>
       <Name>CodeGen.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Library.Formats\CodeGen.Library.Formats.csproj">
+      <Project>{74e0c129-fc44-4298-a723-444b2d679566}</Project>
+      <Name>CodeGen.Library.Formats</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodeGen.Library.Security\CodeGen.Library.Security.csproj">
       <Project>{e03b6b18-3308-4703-a860-e764c52bf0b4}</Project>
       <Name>CodeGen.Library.Security</Name>

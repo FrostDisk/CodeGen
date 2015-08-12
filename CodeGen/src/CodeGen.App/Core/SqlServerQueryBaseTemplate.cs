@@ -69,11 +69,6 @@ namespace CodeGen.Core
             get { return true; }
         }
 
-        public Boolean HaveComponents
-        {
-            get { return GetComponents().Count > 0; }
-        }
-
         public Boolean IsLoaded { get; private set; }
 
         #endregion
@@ -136,22 +131,22 @@ namespace CodeGen.Core
                 {
                     case (int)eBaseTemplateComponent.SAVE:
                         {
-                            return string.Format("{0}{1}", generator.SaveStoredProcedureName, FileExtension);
+                            return generator.SaveStoredProcedureName + FileExtension;
                         }
 
                     case (int)eBaseTemplateComponent.GET_BY_ID:
                         {
-                            return string.Format("{0}{1}", generator.GetByIdStoredProcedureName, FileExtension);
+                            return generator.GetByIdStoredProcedureName + FileExtension;
                         }
 
                     case (int)eBaseTemplateComponent.LIST_ALL:
                         {
-                            return string.Format("{0}{1}", generator.ListAllStoredProcedureName, FileExtension);
+                            return generator.ListAllStoredProcedureName + FileExtension;
                         }
 
                     case (int)eBaseTemplateComponent.DELETE:
                         {
-                            return string.Format("{0}{1}", generator.DeleteStoredProcedureName, FileExtension);
+                            return generator.DeleteStoredProcedureName + FileExtension;
                         }
                 }
             }

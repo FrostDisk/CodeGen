@@ -1,17 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CodeGen.Domain
+﻿namespace CodeGen.Domain
 {
+    /// <summary>
+    /// Base Interface for Projects classes
+    /// </summary>
     public interface IProjectBase
     {
+        /// <summary>
+        /// Name
+        /// </summary>
         string Name { get; set; }
 
+        /// <summary>
+        /// Version
+        /// </summary>
         int Version { get; set; }
 
+        /// <summary>
+        /// Type
+        /// </summary>
         EnumDatabaseTypes Type { get; set; }
     }
 }

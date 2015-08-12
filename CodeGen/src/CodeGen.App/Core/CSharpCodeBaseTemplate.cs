@@ -70,11 +70,6 @@ namespace CodeGen.Core
             get { return true; }
         }
 
-        public Boolean HaveComponents
-        {
-            get { return GetComponents().Count > 0; }
-        }
-
         public Boolean IsLoaded { get; private set; }
 
         #endregion
@@ -135,12 +130,12 @@ namespace CodeGen.Core
                 {
                     case (int) eBaseTemplateComponent.DOMAIN:
                     {
-                        return string.Format("{0}{1}", generator.DomainClassName, FileExtension);
+                        return generator.DomainClassName + FileExtension;
                     }
 
                     case (int) eBaseTemplateComponent.DATA_ACCESS:
                     {
-                        return string.Format("{0}{1}", generator.DataAccessClassName, FileExtension);
+                        return generator.DataAccessClassName + FileExtension;
                     }
                 }
             }

@@ -1,17 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CodeGen.Domain
+﻿namespace CodeGen.Domain
 {
+    /// <summary>
+    /// Database Types Enumeration
+    /// </summary>
     public enum EnumDatabaseTypes
     {
-        SqlServer,
+        /// <summary>Access</summary>
+        Access,
+
+        /// <summary>DB2</summary>
+        DB2,
+
+        /// <summary>Derby</summary>
+        Derby,
+
+        /// <summary>Hadoop</summary>
+        Hadoop,
+
+        /// <summary>Informix</summary>
+        Informix,
+
+        /// <summary>MariaDB</summary>
+        MariaDB,
+
+        /// <summary>MySql</summary>
         MySql,
+
+        /// <summary>Oracle</summary>
+        Oracle,
+
+        /// <summary>PostgreSQL</summary>
         PostgreSQL,
-        MariaDb,
-        Oracle
+
+        /// <summary>SqlServer</summary>
+        SqlServer,
+
+        /// <summary>Sqlite</summary>
+        Sqlite
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
 using CodeGen.Properties;
+using CodeGen.Domain;
 
 namespace CodeGen.Core
 {
@@ -55,7 +56,7 @@ namespace CodeGen.Core
 
         public String DatabaseTypeCode
         {
-            get { return "SqlServer"; }
+            get { return EnumDatabaseTypes.SqlServer.ToString("G"); }
         }
 
         public Boolean IsLoaded { get; private set; }

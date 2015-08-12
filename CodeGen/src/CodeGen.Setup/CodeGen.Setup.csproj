@@ -102,6 +102,7 @@
   -->
   <UsingTask AssemblyFile="packages\WixSharp.1.0.22.3\build\SetEnvVar.dll" TaskName="SetEnvVar" />
   <PropertyGroup>
-    <PostBuildEvent>explorer "$(TargetDir)"</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

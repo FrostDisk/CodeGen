@@ -1,13 +1,6 @@
 ﻿using CodeGen.Configuration;
 using CodeGen.Utils;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CodeGen
@@ -35,7 +28,7 @@ namespace CodeGen
         {
             _settings = ProgramSettings.GetGlobalSettings();
 
-            txtDefaultProjectDirectory.Text = _settings.DirectoriesSettings.DefaultProjectDirectory;
+            txtDefaultProjectsDirectory.Text = _settings.DirectoriesSettings.DefaultProjectsDirectory;
             txtPluginsDirectory.Text = _settings.DirectoriesSettings.PluginsDirectory;
             txtCacheDirectory.Text = _settings.DirectoriesSettings.CacheDirectory;
             txtTempDirectory.Text = _settings.DirectoriesSettings.TempDirectory;
@@ -43,6 +36,11 @@ namespace CodeGen
 
         private bool Validate()
         {
+            if (string.IsNullOrWhiteSpace(txtDefaultProjectsDirectory.Text))
+            {
+
+            }
+
             return true;
         }
 
@@ -50,12 +48,12 @@ namespace CodeGen
 
         #region events
 
-        private void btnChangeDefaultProjectDirectory_Click(object sender, EventArgs e)
+        private void btnChangeDefaultProjectsDirectory_Click(object sender, EventArgs e)
         {
-            folderBrowserChangeDirectory.SelectedPath = txtDefaultProjectDirectory.Text;
+            folderBrowserChangeDirectory.SelectedPath = txtDefaultProjectsDirectory.Text;
             if( folderBrowserChangeDirectory.ShowDialog() == DialogResult.OK)
             {
-                txtDefaultProjectDirectory.Text = folderBrowserChangeDirectory.SelectedPath;
+                txtDefaultProjectsDirectory.Text = folderBrowserChangeDirectory.SelectedPath;
             }
         }
 
@@ -88,7 +86,7 @@ namespace CodeGen
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            _settings.DirectoriesSettings.DefaultProjectDirectory = txtDefaultProjectDirectory.Text;
+            _settings.DirectoriesSettings.DefaultProjectsDirectory = txtDefaultProjectsDirectory.Text;
             _settings.DirectoriesSettings.PluginsDirectory = txtPluginsDirectory.Text;
             _settings.DirectoriesSettings.CacheDirectory = txtCacheDirectory.Text;
             _settings.DirectoriesSettings.TempDirectory = txtTempDirectory.Text;

@@ -12,10 +12,5 @@ namespace CodeGen.Domain
     {
         [XmlArray("Parameters"), XmlArrayItem("Parameter")]
         public List<PluginParameter> Parameters { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("{0}, {1}", Assembly, Type);
-        }
     }
 }

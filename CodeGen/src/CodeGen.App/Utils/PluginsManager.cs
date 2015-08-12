@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Reflection;
-using System.Security.Policy;
-using CodeGen.Configuration;
+﻿using CodeGen.Configuration;
 using CodeGen.Core;
 using CodeGen.Data;
 using CodeGen.Domain;
 using CodeGen.Library.Formats;
 using CodeGen.Plugin.Base;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace CodeGen.Utils
@@ -67,7 +68,7 @@ namespace CodeGen.Utils
 
             string extension = Path.GetExtension(pluginLocation) ?? string.Empty;
 
-            if (extension.Contains(".zip"))
+            if (extension.EndsWith(".zip"))
             {
                 string shortUniqueName = StringHelper.CreateUniqueName(Path.GetFileNameWithoutExtension(pluginLocation));
 
@@ -105,7 +106,7 @@ namespace CodeGen.Utils
                     }
                 }
             }
-            else if (extension.Contains(".dll"))
+            else if (extension.EndsWith(".dll"))
             {
                 byte[] assemblyBytes = File.ReadAllBytes(pluginLocation);
                 Assembly assembly = Assembly.Load(assemblyBytes);
@@ -227,10 +228,12 @@ namespace CodeGen.Utils
             {
                 Type type = controller.GetType();
 
+                string guid = ((GuidAttribute)(type.Assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0])).Value;
+
                 supportedTypes.Add(new SupportedType
                 {
-                    Assembly = Path.GetFileName(type.Assembly.Location),
                     Name = string.Format("{0} ({1})", controller.Title, controller.Version),
+                    Guid = guid,
                     Type = type.FullName,
                     Item = controller
                 });
@@ -254,10 +257,12 @@ namespace CodeGen.Utils
             {
                 Type type = generator.GetType();
 
+                string guid = ((GuidAttribute)(type.Assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0])).Value;
+
                 supportedTypes.Add(new SupportedType
                 {
-                    Assembly = Path.GetFileName(type.Assembly.Location),
                     Name = string.Format("{0} ({1})", generator.Title, generator.Version),
+                    Guid = guid,
                     Type = type.FullName,
                     Item = generator
                 });
@@ -293,14 +298,17 @@ namespace CodeGen.Utils
         /// <returns></returns>
         public static List<string> GetTableListFromPlugin(string connectionString, ProjectPlugin plugin)
         {
-            var accessModel = GetPluginInstance<IAccessModelController>(plugin.Assembly, plugin.Type);
-
-            if (!accessModel.IsLoaded)
+            var accessModel = GetPluginInstance<IAccessModelController>(plugin.Guid, plugin.Type);
+            if (accessModel != null)
             {
-                accessModel.Load(connectionString);
-            }
+                if (!accessModel.IsLoaded)
+                {
+                    accessModel.Load(connectionString);
+                }
 
-            return accessModel.GetTableList();
+                return accessModel.GetTableList();
+            }
+            return new List<string>();
         }
 
         /// <summary>
@@ -312,14 +320,17 @@ namespace CodeGen.Utils
         /// <returns></returns>
         public static DatabaseEntity GetEntityInfoFromPlugin(string connectionString, ProjectPlugin plugin, string tableName)
         {
-            var accessModel = GetPluginInstance<IAccessModelController>(plugin.Assembly, plugin.Type);
-
-            if (!accessModel.IsLoaded)
+            var accessModel = GetPluginInstance<IAccessModelController>(plugin.Guid, plugin.Type);
+            if (accessModel != null)
             {
-                accessModel.Load(connectionString);
-            }
+                if (!accessModel.IsLoaded)
+                {
+                    accessModel.Load(connectionString);
+                }
 
-            return accessModel.GetEntityInfo(tableName);
+                return accessModel.GetEntityInfo(tableName);
+            }
+            return new DatabaseEntity();
         }
 
         /// <summary>
@@ -465,9 +476,10 @@ namespace CodeGen.Utils
                 if (template != null)
                 {
                     var type = template.GetType();
-                    var assemblyFile = Path.GetFileName(type.Assembly.Location);
 
-                    var pluginProperties = ProjectController.GetPluginProperties(project, assemblyFile, type.FullName);
+                    string guid = ((GuidAttribute)(type.Assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0])).Value;
+
+                    var pluginProperties = ProjectController.GetPluginProperties(project, guid, type.FullName);
 
                     if (pluginProperties != null && pluginProperties.Parameters != null)
                     {
@@ -500,6 +512,7 @@ namespace CodeGen.Utils
         private static bool CheckAssembly(string relativeLocation, Assembly assembly, GlobalSettings settings, bool isBase = false, bool addToSettings = true)
         {
             bool isValidAssembly = false;
+            bool isNew = false;
 
             // Check all public non-abstract classes
             foreach (Type type in assembly.GetExportedTypes().Where(t => t.IsClass && !t.IsAbstract))
@@ -580,6 +593,8 @@ namespace CodeGen.Utils
                         {
                             settings.PluginsSettings.Plugins.Add(settingsAssembly);
                         }
+
+                        isNew = true;
                     }
 
                     // Check if the Class was already registered in the assembly 
@@ -587,11 +602,13 @@ namespace CodeGen.Utils
                     {
                         // if not add to the list
                         settingsAssembly.Types.Add(pluginType);
+
+                        isNew = true;
                     }
                 }
             }
 
-            return isValidAssembly;
+            return isValidAssembly && isNew;
         }
 
         private static IAssemblyDetails GetAssemblyDetails(Assembly assembly)
@@ -679,16 +696,16 @@ namespace CodeGen.Utils
         /// Gets the plugin instance from the global settins.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="assemblyFile">The assembly file name.</param>
+        /// <param name="assemblyGuid">The assembly file name.</param>
         /// <param name="pluginType">Type of the plugin.</param>
         /// <returns>Instance object of the plugin</returns>
-        private static T GetPluginInstance<T>(string assemblyFile, string pluginType) where T : class, IPluginBase
+        private static T GetPluginInstance<T>(string assemblyGuid, string pluginType) where T : class, IPluginBase
         {
             // Get the global settings
             var settings = ProgramSettings.GetGlobalSettings();
 
             // Find the Assembly in the global settings
-            var globalAssembly = settings.PluginsSettings.Plugins.First(a => a.File == assemblyFile);
+            var globalAssembly = settings.PluginsSettings.Plugins.First(a => a.Guid == assemblyGuid);
 
             // Find the type in the assembly
             var globalAssemblyType = globalAssembly.Types.First(t => t.Class == pluginType);
@@ -703,7 +720,7 @@ namespace CodeGen.Utils
             if (!globalAssembly.IsLoaded)
             {
                 // Base Assembly means that are part of the application (not an external file)
-                if (string.IsNullOrWhiteSpace(assemblyFile) || globalAssembly.IsBase)
+                if (globalAssembly.IsBase)
                 {
                     globalAssembly.AssemblyInstance = Assembly.GetExecutingAssembly();
                     globalAssembly.IsLoaded = true;
@@ -714,10 +731,17 @@ namespace CodeGen.Utils
                 {
                     string pluginsDirectory = settings.DirectoriesSettings.PluginsDirectory;
 
-                    string pluginLocation = Path.Combine(pluginsDirectory, assemblyFile);
+                    string pluginLocation = Path.Combine(pluginsDirectory, globalAssembly.File);
 
-                    globalAssembly.AssemblyInstance = Assembly.LoadFile(pluginLocation);
-                    globalAssembly.IsLoaded = true;
+                    if (File.Exists(pluginLocation))
+                    {
+                        globalAssembly.AssemblyInstance = Assembly.LoadFile(pluginLocation);
+                        globalAssembly.IsLoaded = true;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
             }
 
@@ -729,6 +753,32 @@ namespace CodeGen.Utils
 
             // returns the instance of the plugin
             return (T) globalAssemblyType.PluginInstance;
+        }
+
+        public static string SaveIconOnCache(Image icon, GlobalSettings settings)
+        {
+            if (icon != null)
+            {
+                const string imageExtension = ".png";
+
+                string uniqueGuid = Guid.NewGuid().ToString("N");
+                string iconFilename = uniqueGuid + imageExtension;
+
+                string iconCacheLocation = Path.Combine(settings.DirectoriesSettings.CacheDirectory, iconFilename);
+
+                int index = 1;
+                while (File.Exists(iconCacheLocation))
+                {
+                    iconFilename = uniqueGuid + "_" + index + imageExtension;
+                    iconCacheLocation = Path.Combine(settings.DirectoriesSettings.CacheDirectory, iconFilename);
+                    index += 1;
+                }
+
+                icon.Save(iconCacheLocation, ImageFormat.Png);
+
+                return iconFilename;
+            }
+            return null;
         }
     }
 }

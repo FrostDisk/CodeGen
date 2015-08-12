@@ -33,7 +33,7 @@ namespace CodeGen
 
         public void LoadLocalVariables()
         {
-            ucBasicProjectProperties.DefaultProjectLocation = ProgramSettings.GetGlobalSettings().DirectoriesSettings.DefaultProjectDirectory;
+            ucBasicProjectProperties.DefaultProjectLocation = ProgramSettings.GetGlobalSettings().DirectoriesSettings.DefaultProjectsDirectory;
             ucBasicProjectProperties.DefaultProjectName = ProgramSettings.GetGlobalSettings().ProjectSettings.DefaultProjectName;
             ucBasicProjectProperties.LoadLocalVariables();
         }

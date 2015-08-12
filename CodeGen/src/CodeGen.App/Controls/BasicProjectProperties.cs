@@ -96,7 +96,7 @@ namespace CodeGen.Controls
             project.Type = PluginsManager.GetDataBaseType(item);
             project.Plugin = new ProjectPlugin
             {
-                Assembly = item.Assembly,
+                Guid = item.Guid,
                 Type = item.Type
             };
             project.Description = txtProjectDescription.Text;

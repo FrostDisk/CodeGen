@@ -7,6 +7,7 @@ using System.Xml.Serialization;
 using CodeGen.Plugin.Base;
 using CodeGen.Library.Security;
 using CodeGen.Library.Formats;
+using System.Runtime.InteropServices;
 
 namespace CodeGen.Data
 {
@@ -89,10 +90,10 @@ namespace CodeGen.Data
         /// Gets the plugin properties.
         /// </summary>
         /// <param name="project">The project.</param>
-        /// <param name="assemblyFile">The assembly file.</param>
+        /// <param name="guid">The assembly file.</param>
         /// <param name="plugin">The plugin.</param>
         /// <returns></returns>
-        public static ProjectPluginProperties GetPluginProperties(Project project, string assemblyFile, string plugin)
+        public static ProjectPluginProperties GetPluginProperties(Project project, string guid, string plugin)
         {
             if (project.Properties == null
                 || project.Properties.Plugins == null)
@@ -100,7 +101,7 @@ namespace CodeGen.Data
                 return null;
             }
 
-            return project.Properties.Plugins.FirstOrDefault(p => p.Assembly == assemblyFile && p.Type == plugin);
+            return project.Properties.Plugins.FirstOrDefault(p => p.Guid == guid && p.Type == plugin);
         }
 
         /// <summary>
@@ -122,13 +123,13 @@ namespace CodeGen.Data
             }
 
             var type = plugin.GetType();
-            var assemblyFile = Path.GetFileName(type.Assembly.Location);
+            string guid = ((GuidAttribute)(type.Assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0])).Value;
 
-            var pluginAssembly = project.Properties.Plugins.FirstOrDefault(p => p.Assembly == assemblyFile && p.Type == type.FullName);
+            var pluginAssembly = project.Properties.Plugins.FirstOrDefault(p => p.Guid == guid && p.Type == type.FullName);
             if (pluginAssembly == null)
             {
                 pluginAssembly = new ProjectPluginProperties();
-                pluginAssembly.Assembly = assemblyFile;
+                pluginAssembly.Guid = guid;
                 pluginAssembly.Type = type.FullName;
                 project.Properties.Plugins.Add(pluginAssembly);
             }

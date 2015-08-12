@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Serialization;
-using CodeGen.Domain;
-using CodeGen.Plugin.Base;
+﻿using CodeGen.Plugin.Base;
 
 namespace CodeGen.Core
 {
@@ -13,7 +6,7 @@ namespace CodeGen.Core
     {
         public string Name { get; set; }
 
-        public string Assembly { get; set; }
+        public string Guid { get; set; }
 
         public string Type { get; set; }
 

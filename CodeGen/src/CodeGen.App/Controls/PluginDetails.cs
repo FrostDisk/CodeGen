@@ -3,6 +3,9 @@ using System.Windows.Forms;
 using CodeGen.Configuration;
 using CodeGen.Properties;
 using System.Diagnostics;
+using System.Drawing;
+using CodeGen.Utils;
+using System.IO;
 
 namespace CodeGen.Controls
 {
@@ -28,7 +31,41 @@ namespace CodeGen.Controls
         public void LoadType(PluginType type)
         {
             _type = type;
-            pictureTypeIcon.Image = type.Icon == null ? Resources.add_on : type.Icon;
+
+            var globalSettings = ProgramSettings.GetGlobalSettings();
+
+            Image icon = Resources.add_on;
+
+            if (type.Icon != null)
+            {
+                icon = type.Icon;
+
+                if (string.IsNullOrWhiteSpace(type.IconPath))
+                {
+                    type.IconPath = PluginsManager.SaveIconOnCache(type.Icon, globalSettings);
+                }
+            }
+            else if (!string.IsNullOrWhiteSpace(type.IconPath))
+            {
+                string iconLocation = Path.Combine(globalSettings.DirectoriesSettings.CacheDirectory, type.IconPath);
+                if (File.Exists(iconLocation))
+                {
+                    type.Icon = Image.FromFile(iconLocation);
+                    icon = type.Icon;
+                }
+                else if (type.PluginInstance != null)
+                {
+                    type.Icon = type.PluginInstance.Icon;
+                    type.IconPath = PluginsManager.SaveIconOnCache(type.Icon, globalSettings);
+                    icon = type.Icon;
+                }
+                else
+                {
+                    type.IconPath = null;
+                }
+            }
+
+            pictureTypeIcon.Image = icon;
 
             lblCreatedBy.Text = type.CreatedBy;
             lblDateInstalled.Text = type.DateInstalled.ToShortDateString();

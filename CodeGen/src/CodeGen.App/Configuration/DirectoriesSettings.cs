@@ -10,26 +10,26 @@ namespace CodeGen.Configuration
     public class DirectoriesSettings
     {
         [XmlIgnore]
-        private string _defaultProjectDirectory;
+        private string _defaultProjectsDirectory;
 
-        [XmlElement("DefaultProjectDirectory")]
-        public string DefaultProjectDirectory
+        [XmlElement("DefaultProjectsDirectory")]
+        public string DefaultProjectsDirectory
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(_defaultProjectDirectory))
+                if (string.IsNullOrWhiteSpace(_defaultProjectsDirectory))
                 {
-                    _defaultProjectDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ProgramInfo.AssemblyProduct);
+                    _defaultProjectsDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ProgramInfo.AssemblyProduct);
                 }
 
-                if (!Directory.Exists(_defaultProjectDirectory))
+                if (!Directory.Exists(_defaultProjectsDirectory))
                 {
-                    Directory.CreateDirectory(_defaultProjectDirectory);
+                    Directory.CreateDirectory(_defaultProjectsDirectory);
                 }
 
-                return FolderHelper.PathAddBackslash(_defaultProjectDirectory);
+                return FolderHelper.PathAddBackslash(_defaultProjectsDirectory);
             }
-            set { _defaultProjectDirectory = value; }
+            set { _defaultProjectsDirectory = value; }
         }
 
         [XmlIgnore]

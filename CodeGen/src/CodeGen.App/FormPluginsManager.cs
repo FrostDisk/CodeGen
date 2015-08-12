@@ -158,6 +158,11 @@ namespace CodeGen
 
         private void workerCheckPlugins_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if(e.Error != null)
+            {
+                MessageBoxHelper.ProcessException(e.Error);
+            }
+
             EnableControls(true);
             progressBarCheckPlugins.Visible = false;
 
@@ -177,6 +182,11 @@ namespace CodeGen
 
         private void workerImportPlugins_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            if (e.Error != null)
+            {
+                MessageBoxHelper.ProcessException(e.Error);
+            }
+
             EnableControls(true);
             progressBarCheckPlugins.Visible = false;
 

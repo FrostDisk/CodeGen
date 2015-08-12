@@ -68,6 +68,7 @@
             this.pictureTypeIcon.Location = new System.Drawing.Point(3, 3);
             this.pictureTypeIcon.Name = "pictureTypeIcon";
             this.pictureTypeIcon.Size = new System.Drawing.Size(64, 64);
+            this.pictureTypeIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureTypeIcon.TabIndex = 2;
             this.pictureTypeIcon.TabStop = false;
             // 

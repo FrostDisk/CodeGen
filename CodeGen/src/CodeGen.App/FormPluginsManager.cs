@@ -191,6 +191,8 @@ namespace CodeGen
             progressBarCheckPlugins.Visible = false;
 
             UpdateAssemblyList();
+
+            ProgramSettings.SaveGlobalSettings();
         }
 
         #endregion

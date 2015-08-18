@@ -761,7 +761,7 @@ namespace CodeGen.Utils
             {
                 const string imageExtension = ".png";
 
-                string uniqueGuid = Guid.NewGuid().ToString("N");
+                string uniqueGuid = Guid.NewGuid().ToString("N"); // Remove -
                 string iconFilename = uniqueGuid + imageExtension;
 
                 string iconCacheLocation = Path.Combine(settings.DirectoriesSettings.CacheDirectory, iconFilename);

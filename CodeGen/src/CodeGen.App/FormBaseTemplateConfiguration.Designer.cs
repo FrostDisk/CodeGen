@@ -30,12 +30,11 @@
         {
             this.tabConfiguration = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutGeneral = new System.Windows.Forms.TableLayoutPanel();
             this.paramAuthorName = new CodeGen.Controls.TemplateParameter();
-            this.paramDataAccessNamespace = new CodeGen.Controls.TemplateParameter();
             this.paramDomainNamespace = new CodeGen.Controls.TemplateParameter();
-            this.paramDbHelperNamespace = new CodeGen.Controls.TemplateParameter();
-            this.paramAccessModelNamespace = new CodeGen.Controls.TemplateParameter();
+            this.paramDataAccessNamespace = new CodeGen.Controls.TemplateParameter();
+            this.paramConnectionStringKey = new CodeGen.Controls.TemplateParameter();
             this.tabClasses = new System.Windows.Forms.TabPage();
             this.tableLayoutClasses = new System.Windows.Forms.TableLayoutPanel();
             this.paramDomainPrefix = new CodeGen.Controls.TemplateParameter();
@@ -70,7 +69,7 @@
             this.btnAccept = new System.Windows.Forms.Button();
             this.tabConfiguration.SuspendLayout();
             this.tabGeneral.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutGeneral.SuspendLayout();
             this.tabClasses.SuspendLayout();
             this.tableLayoutClasses.SuspendLayout();
             this.tabProcedures.SuspendLayout();
@@ -99,7 +98,7 @@
             // 
             // tabGeneral
             // 
-            this.tabGeneral.Controls.Add(this.tableLayoutPanel1);
+            this.tabGeneral.Controls.Add(this.tableLayoutGeneral);
             this.tabGeneral.Location = new System.Drawing.Point(4, 22);
             this.tabGeneral.Name = "tabGeneral";
             this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
@@ -108,28 +107,26 @@
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
+            // tableLayoutGeneral
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.paramAuthorName, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.paramDataAccessNamespace, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.paramDomainNamespace, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.paramDbHelperNamespace, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.paramAccessModelNamespace, 0, 4);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(468, 272);
-            this.tableLayoutPanel1.TabIndex = 3;
+            this.tableLayoutGeneral.ColumnCount = 1;
+            this.tableLayoutGeneral.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutGeneral.Controls.Add(this.paramAuthorName, 0, 0);
+            this.tableLayoutGeneral.Controls.Add(this.paramDomainNamespace, 0, 1);
+            this.tableLayoutGeneral.Controls.Add(this.paramDataAccessNamespace, 0, 2);
+            this.tableLayoutGeneral.Controls.Add(this.paramConnectionStringKey, 0, 3);
+            this.tableLayoutGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutGeneral.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutGeneral.Name = "tableLayoutGeneral";
+            this.tableLayoutGeneral.RowCount = 5;
+            this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutGeneral.Size = new System.Drawing.Size(468, 272);
+            this.tableLayoutGeneral.TabIndex = 3;
             // 
             // paramAuthorName
             // 
@@ -148,23 +145,6 @@
             this.paramAuthorName.TabIndex = 0;
             this.paramAuthorName.Tooltip = "";
             // 
-            // paramDataAccessNamespace
-            // 
-            this.paramDataAccessNamespace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.paramDataAccessNamespace.DefaultValue = "MyProject.Data";
-            this.paramDataAccessNamespace.IsUpdated = false;
-            this.paramDataAccessNamespace.Location = new System.Drawing.Point(3, 107);
-            this.paramDataAccessNamespace.Name = "paramDataAccessNamespace";
-            this.paramDataAccessNamespace.ParameterCode = "NAMESPACE_DATAACCESS";
-            this.paramDataAccessNamespace.ParameterName = "DataAccess Namespace";
-            this.paramDataAccessNamespace.ParameterValue = "MyProject.Data";
-            this.paramDataAccessNamespace.ReadOnly = false;
-            this.paramDataAccessNamespace.Required = true;
-            this.paramDataAccessNamespace.Size = new System.Drawing.Size(462, 46);
-            this.paramDataAccessNamespace.TabIndex = 2;
-            this.paramDataAccessNamespace.Tooltip = "";
-            // 
             // paramDomainNamespace
             // 
             this.paramDomainNamespace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -182,39 +162,39 @@
             this.paramDomainNamespace.TabIndex = 1;
             this.paramDomainNamespace.Tooltip = "";
             // 
-            // paramDbHelperNamespace
+            // paramDataAccessNamespace
             // 
-            this.paramDbHelperNamespace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.paramDataAccessNamespace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.paramDbHelperNamespace.DefaultValue = "MyProject.AccessModel";
-            this.paramDbHelperNamespace.IsUpdated = false;
-            this.paramDbHelperNamespace.Location = new System.Drawing.Point(3, 159);
-            this.paramDbHelperNamespace.Name = "paramDbHelperNamespace";
-            this.paramDbHelperNamespace.ParameterCode = "NAMESPACE_DBHELPER";
-            this.paramDbHelperNamespace.ParameterName = "DBHelper Namespace";
-            this.paramDbHelperNamespace.ParameterValue = "MyProject.AccessModel";
-            this.paramDbHelperNamespace.ReadOnly = false;
-            this.paramDbHelperNamespace.Required = true;
-            this.paramDbHelperNamespace.Size = new System.Drawing.Size(462, 46);
-            this.paramDbHelperNamespace.TabIndex = 3;
-            this.paramDbHelperNamespace.Tooltip = "";
+            this.paramDataAccessNamespace.DefaultValue = "MyProject.Data";
+            this.paramDataAccessNamespace.IsUpdated = false;
+            this.paramDataAccessNamespace.Location = new System.Drawing.Point(3, 107);
+            this.paramDataAccessNamespace.Name = "paramDataAccessNamespace";
+            this.paramDataAccessNamespace.ParameterCode = "NAMESPACE_DATAACCESS";
+            this.paramDataAccessNamespace.ParameterName = "DataAccess Namespace";
+            this.paramDataAccessNamespace.ParameterValue = "MyProject.Data";
+            this.paramDataAccessNamespace.ReadOnly = false;
+            this.paramDataAccessNamespace.Required = true;
+            this.paramDataAccessNamespace.Size = new System.Drawing.Size(462, 46);
+            this.paramDataAccessNamespace.TabIndex = 2;
+            this.paramDataAccessNamespace.Tooltip = "";
             // 
-            // paramAccessModelNamespace
+            // paramConnectionStringKey
             // 
-            this.paramAccessModelNamespace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.paramConnectionStringKey.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.paramAccessModelNamespace.DefaultValue = "MyProject.Library.AccessModel";
-            this.paramAccessModelNamespace.IsUpdated = false;
-            this.paramAccessModelNamespace.Location = new System.Drawing.Point(3, 211);
-            this.paramAccessModelNamespace.Name = "paramAccessModelNamespace";
-            this.paramAccessModelNamespace.ParameterCode = "NAMESPACE_ACCESS_MODEL";
-            this.paramAccessModelNamespace.ParameterName = "Access Model Namespace";
-            this.paramAccessModelNamespace.ParameterValue = "MyProject.Library.AccessModel";
-            this.paramAccessModelNamespace.ReadOnly = false;
-            this.paramAccessModelNamespace.Required = true;
-            this.paramAccessModelNamespace.Size = new System.Drawing.Size(462, 46);
-            this.paramAccessModelNamespace.TabIndex = 4;
-            this.paramAccessModelNamespace.Tooltip = "";
+            this.paramConnectionStringKey.DefaultValue = "Connection.MyProject";
+            this.paramConnectionStringKey.IsUpdated = false;
+            this.paramConnectionStringKey.Location = new System.Drawing.Point(3, 159);
+            this.paramConnectionStringKey.Name = "paramConnectionStringKey";
+            this.paramConnectionStringKey.ParameterCode = "CONNECTIONSTRING_KEY";
+            this.paramConnectionStringKey.ParameterName = "ConnectionString Key";
+            this.paramConnectionStringKey.ParameterValue = "Connection.MyProject";
+            this.paramConnectionStringKey.ReadOnly = false;
+            this.paramConnectionStringKey.Required = true;
+            this.paramConnectionStringKey.Size = new System.Drawing.Size(462, 46);
+            this.paramConnectionStringKey.TabIndex = 4;
+            this.paramConnectionStringKey.Tooltip = "";
             // 
             // tabClasses
             // 
@@ -762,7 +742,7 @@
             this.Text = "Template Configuration";
             this.tabConfiguration.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutGeneral.ResumeLayout(false);
             this.tabClasses.ResumeLayout(false);
             this.tableLayoutClasses.ResumeLayout(false);
             this.tabProcedures.ResumeLayout(false);
@@ -807,9 +787,8 @@
         private Controls.TemplateParameter paramListAllMethodName;
         private Controls.TemplateParameter paramDeleteMethodName;
         private Controls.TemplateParameter paramBuildFunctionMethodName;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private Controls.TemplateParameter paramDbHelperNamespace;
-        private Controls.TemplateParameter paramAccessModelNamespace;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutGeneral;
+        private Controls.TemplateParameter paramConnectionStringKey;
         private System.Windows.Forms.TabPage tabAccessModel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Controls.TemplateParameter paramGetScalarMethodName;

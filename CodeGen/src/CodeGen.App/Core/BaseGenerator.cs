@@ -167,11 +167,7 @@ namespace CodeGen.Core
             template.ReplaceTag("DELETE_METHODNAME", Settings[CodeBaseConstants.DELETE_METHODNAME].Value, false);
             template.ReplaceTag("BUILDFUNCTION_METHODNAME", Settings[CodeBaseConstants.BUILDFUNCTION_METHODNAME].Value, false);
 
-            template.ReplaceTag("DBHELPER_INSTANCEOBJECT", Settings[CodeBaseConstants.DBHELPER_INSTANCEOBJECT].Value, false);
-            template.ReplaceTag("GETSCALAR_METHODNAME", Settings[CodeBaseConstants.GETSCALAR_METHODNAME].Value, false);
-            template.ReplaceTag("GETENTITY_METHODNAME", Settings[CodeBaseConstants.GETENTITY_METHODNAME].Value, false);
-            template.ReplaceTag("GETDATATABLE_METHODNAME", Settings[CodeBaseConstants.GETDATATABLE_METHODNAME].Value, false);
-            template.ReplaceTag("EXECUTESP_METHODNAME", Settings[CodeBaseConstants.EXECUTESP_METHODNAME].Value, false);
+            template.ReplaceTag("CONNECTIONSTRING_KEY", Settings[CodeBaseConstants.CONNECTIONSTRING_KEY].Value, false);
 
             template.ReplaceTag("AUTHOR_NAME", Settings[CodeBaseConstants.AUTHOR_NAME].Value, false);
             template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);

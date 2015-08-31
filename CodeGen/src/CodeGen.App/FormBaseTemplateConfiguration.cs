@@ -35,6 +35,8 @@ namespace CodeGen
         {
             InitializeComponent();
             PopulateDictionary();
+
+            paramAuthorName.ParameterValue = Environment.UserName;
         }
 
         #endregion

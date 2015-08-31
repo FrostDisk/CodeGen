@@ -30,10 +30,6 @@ namespace CodeGen.Core
         public const string LISTALL_METHODNAME = "LISTALL_METHODNAME";
         public const string DELETE_METHODNAME = "DELETE_METHODNAME";
         public const string BUILDFUNCTION_METHODNAME = "BUILDFUNCTION_METHODNAME";
-        public const string GETSCALAR_METHODNAME = "GETSCALAR_METHODNAME";
-        public const string GETENTITY_METHODNAME = "GETENTITY_METHODNAME";
-        public const string GETDATATABLE_METHODNAME = "GETDATATABLE_METHODNAME";
-        public const string EXECUTESP_METHODNAME = "EXECUTESP_METHODNAME";
-        public const string DBHELPER_INSTANCEOBJECT = "DBHELPER_INSTANCEOBJECT";
+        public const string CONNECTIONSTRING_KEY = "CONNECTIONSTRING_KEY";
     }
 }

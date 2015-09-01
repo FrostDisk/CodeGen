@@ -11,8 +11,6 @@ namespace CodeGen.Core
         public const string AUTHOR_NAME = "AUTHOR_NAME";
         public const string NAMESPACE_DATAACCESS = "NAMESPACE_DATAACCESS";
         public const string NAMESPACE_DOMAIN = "NAMESPACE_DOMAIN";
-        public const string NAMESPACE_DBHELPER = "NAMESPACE_DBHELPER";
-        public const string NAMESPACE_ACCESS_MODEL = "NAMESPACE_ACCESS_MODEL";
         public const string DOMAIN_PREFIX = "DOMAIN_PREFIX";
         public const string DOMAIN_SUFFIX = "DOMAIN_SUFFIX";
         public const string DATAACCESS_PREFIX = "DATAACCESS_PREFIX";

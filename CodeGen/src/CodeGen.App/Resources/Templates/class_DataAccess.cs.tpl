@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Xml;
 using {NAMESPACE_DOMAIN};
 
 //------------------------------------------------------------------------------
@@ -52,8 +53,8 @@ namespace {NAMESPACE_DATAACCESS}
                     /*-- BEGIN SECTION PARAMETERS */
                     /*-- BEGIN SECTION BIGINT AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.BigInt) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
                     /*-- END SECTION BIGINT */
-                    /*-- BEGIN SECTION BIGINT AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.Dinary) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
-                    /*-- END SECTION BIGINT */
+                    /*-- BEGIN SECTION BINARY AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.Binary) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
+                    /*-- END SECTION BINARY */
                     /*-- BEGIN SECTION BIT AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.Bit) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
                     /*-- END SECTION BIT */
                     /*-- BEGIN SECTION CHAR AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.Char) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
@@ -82,7 +83,7 @@ namespace {NAMESPACE_DATAACCESS}
                     /*-- END SECTION UNIQUEIDENTIFIER */
                     /*-- BEGIN SECTION SMALLDATETIME AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.SmallDateTime) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
                     /*-- END SECTION SMALLDATETIME */
-                    /*-- BEGIN SECTION SMALLINT AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.SmallInt) { Value = INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
+                    /*-- BEGIN SECTION SMALLINT AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.SmallInt) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
                     /*-- END SECTION SMALLINT */
                     /*-- BEGIN SECTION SMALLMONEY AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.SmallMoney) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
                     /*-- END SECTION SMALLMONEY */
@@ -96,14 +97,8 @@ namespace {NAMESPACE_DATAACCESS}
                     /*-- END SECTION VARBINARY */
                     /*-- BEGIN SECTION VARCHAR AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.VarChar) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
                     /*-- END SECTION VARCHAR */
-                    /*-- BEGIN SECTION VARIANT AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.Variant) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
-                    /*-- END SECTION VARIANT */
                     /*-- BEGIN SECTION XML AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.Xml) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
                     /*-- END SECTION XML */
-                    /*-- BEGIN SECTION UDT AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.Udt) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
-                    /*-- END SECTION UDT */
-                    /*-- BEGIN SECTION STRUCTURED AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.Structured) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
-                    /*-- END SECTION STRUCTURED */
                     /*-- BEGIN SECTION DATE AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.Date) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
                     /*-- END SECTION DATE */
                     /*-- BEGIN SECTION TIME AS VAR */command.Parameters.Add(new SqlParameter("@{VAR.PARAMETERNAME}", SqlDbType.Time) { Value = {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME} });
@@ -250,67 +245,61 @@ namespace {NAMESPACE_DATAACCESS}
             return new {CLASS_NAME_DOMAIN}
             {
                 /*-- BEGIN SECTION PROPERTIES */
-                /*-- BEGIN SECTION BIGINT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToInt64(row["{VAR.COLUMNNAME}"]) : 0,
+                /*-- BEGIN SECTION BIGINT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (long)row["{VAR.COLUMNNAME}"] : 0,
                 /*-- END SECTION BIGINT */
-                /*-- BEGIN SECTION BINARY AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToInt32(row["{VAR.COLUMNNAME}"]) : 0,
+                /*-- BEGIN SECTION BINARY AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (byte[])row["{VAR.COLUMNNAME}"] : null,
                 /*-- END SECTION BINARY */
-                /*-- BEGIN SECTION BIT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value && Convert.ToBoolean(row["{VAR.COLUMNNAME}"]),
+                /*-- BEGIN SECTION BIT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value && (bool)row["{VAR.COLUMNNAME}"],
                 /*-- END SECTION BIT */
-                /*-- BEGIN SECTION CHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION CHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (char[])row["{VAR.COLUMNNAME}"] : null,
                 /*-- END SECTION CHAR */
-                /*-- BEGIN SECTION DATETIME AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToDateTime(row["{VAR.COLUMNNAME}"]) : new DateTime(1900, 1, 1),
+                /*-- BEGIN SECTION DATETIME AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (DateTime)row["{VAR.COLUMNNAME}"] : new DateTime(1900, 1, 1),
                 /*-- END SECTION DATETIME */
-                /*-- BEGIN SECTION DECIMAL AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToDecimal(row["{VAR.COLUMNNAME}"]) : 0,
+                /*-- BEGIN SECTION DECIMAL AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (decimal)row["{VAR.COLUMNNAME}"] : 0,
                 /*-- END SECTION DECIMAL */
-                /*-- BEGIN SECTION FLOAT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToFloat(row["{VAR.COLUMNNAME}"]) : 0.0f,
+                /*-- BEGIN SECTION FLOAT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (float)row["{VAR.COLUMNNAME}"] : 0.0f,
                 /*-- END SECTION FLOAT */
-                /*-- BEGIN SECTION IMAGE AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"] : null,
+                /*-- BEGIN SECTION IMAGE AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (byte[])row["{VAR.COLUMNNAME}"] : null,
                 /*-- END SECTION IMAGE */
-                /*-- BEGIN SECTION INT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToInt32(row["{VAR.COLUMNNAME}"]) : 0,
+                /*-- BEGIN SECTION INT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (int)row["{VAR.COLUMNNAME}"] : 0,
                 /*-- END SECTION INT */
-                /*-- BEGIN SECTION MONEY AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION MONEY AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (decimal)row["{VAR.COLUMNNAME}"] : 0,
                 /*-- END SECTION MONEY */
-                /*-- BEGIN SECTION NCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION NCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (char[])row["{VAR.COLUMNNAME}"] : null,
                 /*-- END SECTION NCHAR */
-                /*-- BEGIN SECTION NTEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION NTEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (string)row["{VAR.COLUMNNAME}"] : string.Empty,
                 /*-- END SECTION NTEXT */
-                /*-- BEGIN SECTION NVARCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION NVARCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (string)row["{VAR.COLUMNNAME}"] : string.Empty,
                 /*-- END SECTION NVARCHAR */
-                /*-- BEGIN SECTION REAL AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToFloat(row["{VAR.COLUMNNAME}"]) : 0.0f,
+                /*-- BEGIN SECTION REAL AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (float)row["{VAR.COLUMNNAME}"] : 0.0f,
                 /*-- END SECTION REAL */
-                /*-- BEGIN SECTION UNIQUEIDENTIFIER AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToInt16(row["{VAR.COLUMNNAME}"]) : (short)0,
+                /*-- BEGIN SECTION UNIQUEIDENTIFIER AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (Guid)row["{VAR.COLUMNNAME}"] : new Guid(),
                 /*-- END SECTION UNIQUEIDENTIFIER */
-                /*-- BEGIN SECTION SMALLDATETIME AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToDateTime(row["{VAR.COLUMNNAME}"]) : new DateTime(1900, 1, 1),
+                /*-- BEGIN SECTION SMALLDATETIME AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (DateTime)row["{VAR.COLUMNNAME}"] : new DateTime(),
                 /*-- END SECTION SMALLDATETIME */
-                /*-- BEGIN SECTION SMALLINT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToInt16(row["{VAR.COLUMNNAME}"]) : (short)0,
+                /*-- BEGIN SECTION SMALLINT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (short)row["{VAR.COLUMNNAME}"] : (short)0,
                 /*-- END SECTION SMALLINT */
-                /*-- BEGIN SECTION MONEY AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
-                /*-- END SECTION MONEY */
-                /*-- BEGIN SECTION TEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION SMALLMONEY AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (decimal)row["{VAR.COLUMNNAME}"] : 0,
+                /*-- END SECTION SMALLMONEY */
+                /*-- BEGIN SECTION TEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (string)row["{VAR.COLUMNNAME}"] : string.Empty,
                 /*-- END SECTION TEXT */
-                /*-- BEGIN SECTION TIMESTAMP AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? TimeSpan.Parse(Convert.ToDateTime(row["{VAR.COLUMNNAME}"]).ToLongTimeString()) : new TimeSpan(0),
+                /*-- BEGIN SECTION TIMESTAMP AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (byte[])row["{VAR.COLUMNNAME}"] : null,
                 /*-- END SECTION TIMESTAMP */
-                /*-- BEGIN SECTION TINYINT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToInt16(row["{VAR.COLUMNNAME}"]) : (short)0,
+                /*-- BEGIN SECTION TINYINT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (byte)row["{VAR.COLUMNNAME}"] : (byte)0,
                 /*-- END SECTION TINYINT */
-                /*-- BEGIN SECTION VARBINARY AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToInt32(row["{VAR.COLUMNNAME}"]) : 0,
+                /*-- BEGIN SECTION VARBINARY AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (byte[])row["{VAR.COLUMNNAME}"] : null,
                 /*-- END SECTION VARBINARY */
-                /*-- BEGIN SECTION VARCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION VARCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (string)row["{VAR.COLUMNNAME}"] : string.Empty,
                 /*-- END SECTION VARCHAR */
-                /*-- BEGIN SECTION VARIANT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
-                /*-- END SECTION VARIANT */
-                /*-- BEGIN SECTION XML AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
+                /*-- BEGIN SECTION XML AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? new Func<XmlDocument>(() => { var x = new XmlDocument(); x.LoadXml(row["{VAR.COLUMNNAME}"].ToString()); return x; })() : new XmlDocument(),
                 /*-- END SECTION XML */
-                /*-- BEGIN SECTION UDT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
-                /*-- END SECTION UDT */
-                /*-- BEGIN SECTION STRUCTURED AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
-                /*-- END SECTION STRUCTURED */
-                /*-- BEGIN SECTION DATE AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToDateTime(row["{VAR.COLUMNNAME}"]) : new DateTime(1900, 1, 1),
+                /*-- BEGIN SECTION DATE AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (DateTime)row["{VAR.COLUMNNAME}"] : new DateTime(),
                 /*-- END SECTION DATE */
-                /*-- BEGIN SECTION TIME AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? TimeSpan.Parse(Convert.ToDateTime(row["{VAR.COLUMNNAME}"]).ToLongTimeString()) : new TimeSpan(0),
+                /*-- BEGIN SECTION TIME AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (TimeSpan)row["{VAR.COLUMNNAME}"] : new TimeSpan(0),
                 /*-- END SECTION TIME */
-                /*-- BEGIN SECTION DATETIME2 AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToDateTime(row["{VAR.COLUMNNAME}"]) : new DateTime(1900, 1, 1),
+                /*-- BEGIN SECTION DATETIME2 AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (DateTime)row["{VAR.COLUMNNAME}"] : new DateTime(),
                 /*-- END SECTION DATETIME2 */
-                /*-- BEGIN SECTION DATETIMEOFFSET AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? Convert.ToDateTime(row["{VAR.COLUMNNAME}"]) : new DateTime(1900, 1, 1),
+                /*-- BEGIN SECTION DATETIMEOFFSET AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? (DateTimeOffset)row["{VAR.COLUMNNAME}"] : new DateTimeOffset(),
                 /*-- END SECTION DATETIMEOFFSET */
                 /*-- END SECTION PROPERTIES */
             };

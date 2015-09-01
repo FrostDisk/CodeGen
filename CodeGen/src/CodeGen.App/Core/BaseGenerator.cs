@@ -149,8 +149,6 @@ namespace CodeGen.Core
 
             template.ReplaceTag("NAMESPACE_DOMAIN", Settings[CodeBaseConstants.NAMESPACE_DOMAIN].Value, false);
             template.ReplaceTag("NAMESPACE_DATAACCESS", Settings[CodeBaseConstants.NAMESPACE_DATAACCESS].Value, false);
-            template.ReplaceTag("NAMESPACE_DBHELPER", Settings[CodeBaseConstants.NAMESPACE_DBHELPER].Value, false);
-            template.ReplaceTag("NAMESPACE_ACCESS_MODEL", Settings[CodeBaseConstants.NAMESPACE_ACCESS_MODEL].Value, false);
 
             template.ReplaceTag("INSTANCE_NAME_DOMAIN", instanceEntityName, false);
             template.ReplaceTag("CLASS_NAME_DOMAIN", DomainClassName, false);

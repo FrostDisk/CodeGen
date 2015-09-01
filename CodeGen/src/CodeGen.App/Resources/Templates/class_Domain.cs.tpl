@@ -185,33 +185,12 @@ namespace {NAMESPACE_DOMAIN}
         public string {VAR.PROPERTYNAME} { get; set; }
         /*-- END SECTION VARCHAR */
 
-        /*-- BEGIN SECTION VARIANT AS VAR */
-        /// <summary>
-        /// {VAR.PROPERTYNAME}
-        /// </summary>
-        public string {VAR.PROPERTYNAME} { get; set; }
-        /*-- END SECTION VARIANT */
-
         /*-- BEGIN SECTION XML AS VAR */
         /// <summary>
         /// {VAR.PROPERTYNAME}
         /// </summary>
         public XmlDocument  {VAR.PROPERTYNAME} { get; set; }
         /*-- END SECTION XML */
-
-        /*-- BEGIN SECTION UDT AS VAR */
-        /// <summary>
-        /// {VAR.PROPERTYNAME}
-        /// </summary>
-        public string {VAR.PROPERTYNAME} { get; set; }
-        /*-- END SECTION UDT */
-
-        /*-- BEGIN SECTION STRUCTURED AS VAR */
-        /// <summary>
-        /// {VAR.PROPERTYNAME}
-        /// </summary>
-        public string {VAR.PROPERTYNAME} { get; set; }
-        /*-- END SECTION STRUCTURED */
 
         /*-- BEGIN SECTION DATE AS VAR */
         /// <summary>
@@ -257,7 +236,7 @@ namespace {NAMESPACE_DOMAIN}
             /*-- END SECTION BIT */
             /*-- BEGIN SECTION CHAR AS VAR */{VAR.PROPERTYNAME} = null;
             /*-- END SECTION CHAR */
-            /*-- BEGIN SECTION DATETIME AS VAR */{VAR.PROPERTYNAME} = new DateTime(1900, 1, 1);
+            /*-- BEGIN SECTION DATETIME AS VAR */{VAR.PROPERTYNAME} = new DateTime();
             /*-- END SECTION DATETIME */
             /*-- BEGIN SECTION DECIMAL AS VAR */{VAR.PROPERTYNAME} = 0;
             /*-- END SECTION DECIMAL */
@@ -279,7 +258,7 @@ namespace {NAMESPACE_DOMAIN}
             /*-- END SECTION REAL */
             /*-- BEGIN SECTION UNIQUEIDENTIFIER AS VAR */{VAR.PROPERTYNAME} = new Guid();
             /*-- END SECTION UNIQUEIDENTIFIER */
-            /*-- BEGIN SECTION SMALLDATETIME AS VAR */{VAR.PROPERTYNAME} = new DateTime(1900, 1, 1);
+            /*-- BEGIN SECTION SMALLDATETIME AS VAR */{VAR.PROPERTYNAME} = new DateTime();
             /*-- END SECTION SMALLDATETIME */
             /*-- BEGIN SECTION SMALLINT AS VAR */{VAR.PROPERTYNAME} = 0;
             /*-- END SECTION SMALLINT */
@@ -297,19 +276,15 @@ namespace {NAMESPACE_DOMAIN}
             /*-- END SECTION VARCHAR */
             /*-- BEGIN SECTION VARIANT AS VAR */{VAR.PROPERTYNAME} = string.Empty;
             /*-- END SECTION VARIANT */
-            /*-- BEGIN SECTION XML AS VAR */{VAR.PROPERTYNAME} = string.Empty;
+            /*-- BEGIN SECTION XML AS VAR */{VAR.PROPERTYNAME} = null;
             /*-- END SECTION XML */
-            /*-- BEGIN SECTION UDT AS VAR */{VAR.PROPERTYNAME} = string.Empty;
-            /*-- END SECTION UDT */
-            /*-- BEGIN SECTION STRUCTURED AS VAR */{VAR.PROPERTYNAME} = string.Empty;
-            /*-- END SECTION STRUCTURED */
-            /*-- BEGIN SECTION DATE AS VAR */{VAR.PROPERTYNAME} = new DateTime(1900, 1, 1);
+            /*-- BEGIN SECTION DATE AS VAR */{VAR.PROPERTYNAME} = new DateTime();
             /*-- END SECTION DATE */
             /*-- BEGIN SECTION TIME AS VAR */{VAR.PROPERTYNAME} = new TimeSpan(0);
             /*-- END SECTION TIME */
-            /*-- BEGIN SECTION DATETIME2 AS VAR */{VAR.PROPERTYNAME} = new DateTime(1900, 1, 1);
+            /*-- BEGIN SECTION DATETIME2 AS VAR */{VAR.PROPERTYNAME} = new DateTime();
             /*-- END SECTION DATETIME2 */
-            /*-- BEGIN SECTION DATETIMEOFFSET AS VAR */{VAR.PROPERTYNAME} = string.Empty;
+            /*-- BEGIN SECTION DATETIMEOFFSET AS VAR */{VAR.PROPERTYNAME} = new DateTimeOffset();
             /*-- END SECTION DATETIMEOFFSET */
             /*-- END SECTION PARAMETERS */
         }

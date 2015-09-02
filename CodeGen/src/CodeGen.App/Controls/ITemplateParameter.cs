@@ -22,7 +22,7 @@ namespace CodeGen.Controls
 
         void UpdateValue(string value);
 
-        bool Validate();
+        bool ValidateForm();
 
         void RestoreValue();
     }

@@ -91,7 +91,7 @@ namespace CodeGen.Controls
             txtValue.Text = value;
         }
 
-        public bool Validate()
+        public bool ValidateForm()
         {
             if (!Required)
             {

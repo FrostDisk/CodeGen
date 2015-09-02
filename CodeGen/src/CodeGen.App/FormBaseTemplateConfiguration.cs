@@ -103,7 +103,7 @@ namespace CodeGen
 
             foreach (var entry in _parameters)
             {
-                if (!entry.Value.Validate())
+                if (!entry.Value.ValidateForm())
                 {
                     messages.Add(string.Format("Parameter {0} is required", entry.Value.ParameterName));
                 }

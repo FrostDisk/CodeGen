@@ -5,6 +5,7 @@
 *.suo
 *.user
 *.sln.docstates
+*.db
 
 # Build results
 [Dd]ebug/
@@ -187,3 +188,5 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+
+/CodeGen/src/packages

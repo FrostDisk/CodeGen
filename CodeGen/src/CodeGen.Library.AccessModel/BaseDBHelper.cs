@@ -621,20 +621,20 @@ namespace CodeGen.Library.AccessModel
 
         public Transaction CreateTransaction(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
         {
-            return new Transaction(new SqlConnection(ConnectionString), isolationLevel);
+            return new Transaction(new SqlConnection(ConnectionString), isolationLevel, this);
         }
 
         private SqlConnection GetActiveConnection()
         {
             Transaction context = Transaction.Active;
 
-            return context != null ? context.connection : new SqlConnection(ConnectionString);
+            return context != null && context.instance == this ? context.connection : new SqlConnection(ConnectionString);
         }
 
         private void ConfigureParameters(IEnumerable<Parameter> parametros, SqlCommand command)
         {
             Transaction context = Transaction.Active;
-            if (context != null)
+            if (context != null && context.instance == this)
             {
                 command.Transaction = context.transaction;
             }
@@ -682,7 +682,7 @@ namespace CodeGen.Library.AccessModel
 
         internal void AbrirConexion(SqlConnection connection)
         {
-            if (Transaction.Active == null && connection != null && connection.State == ConnectionState.Closed)
+            if ((Transaction.Active == null || Transaction.Active.instance != this) && connection != null && connection.State == ConnectionState.Closed)
             {
                 connection.Open();
             }
@@ -690,7 +690,7 @@ namespace CodeGen.Library.AccessModel
 
         internal void CerrarConexion(SqlConnection connection)
         {
-            if (Transaction.Active == null && connection != null && connection.State != ConnectionState.Closed)
+            if ((Transaction.Active == null || Transaction.Active.instance != this) && connection != null && connection.State != ConnectionState.Closed)
             {
                 connection.Close();
             }

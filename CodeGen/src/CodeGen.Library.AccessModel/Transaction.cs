@@ -6,11 +6,13 @@ namespace CodeGen.Library.AccessModel
 {
     public class Transaction : ITransaction
     {
+        internal BaseDBHelper instance;
+
         internal SqlConnection connection;
 
         internal SqlTransaction transaction;
 
-        internal Transaction(SqlConnection sqlConnection, IsolationLevel isolationLevel)
+        internal Transaction(SqlConnection sqlConnection, IsolationLevel isolationLevel, BaseDBHelper dbHelper)
         {
             connection = sqlConnection;
             if (connection.State == ConnectionState.Closed)
@@ -19,6 +21,7 @@ namespace CodeGen.Library.AccessModel
             }
 
             transaction = connection.BeginTransaction(isolationLevel);
+            instance = dbHelper;
 
             _previous = _active;
             _active = this;

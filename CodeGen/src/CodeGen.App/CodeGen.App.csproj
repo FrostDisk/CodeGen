@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodeGen</RootNamespace>
     <AssemblyName>CodeGen</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <PublishUrl>publish\</PublishUrl>
@@ -27,6 +27,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -54,6 +55,9 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,27 +68,159 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormOptions.Designer.cs">
+      <DependentUpon>FormOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfoCommon.cs" />
+    <Compile Include="Configuration\DirectoriesSettings.cs" />
+    <Compile Include="Configuration\GlobalSettings.cs" />
+    <Compile Include="Configuration\PluginType.cs" />
+    <Compile Include="Configuration\PluginAssembly.cs" />
+    <Compile Include="Configuration\PluginsSettings.cs" />
+    <Compile Include="Configuration\ProjectSettings.cs" />
+    <Compile Include="Controls\BasicProjectProperties.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\BasicProjectProperties.Designer.cs">
+      <DependentUpon>BasicProjectProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GenerateCodeDatabase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GenerateCodeDatabase.Designer.cs">
+      <DependentUpon>GenerateCodeDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GenerateCodeFile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GenerateCodeFile.Designer.cs">
+      <DependentUpon>GenerateCodeFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ISettingsUserControl.cs" />
+    <Compile Include="Controls\ITemplateParameter.cs" />
+    <Compile Include="Controls\PluginDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PluginDetails.Designer.cs">
+      <DependentUpon>PluginDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ProjectWorkspace.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProjectWorkspace.Designer.cs">
+      <DependentUpon>ProjectWorkspace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TemplateParameter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TemplateParameter.Designer.cs">
+      <DependentUpon>TemplateParameter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\CodeBaseConstants.cs" />
+    <Compile Include="Core\BaseGenerator.cs" />
+    <Compile Include="Core\SqlServerQueryBaseTemplate.cs" />
+    <Compile Include="Core\CSharpCodeBaseTemplate.cs" />
+    <Compile Include="Controls\IBaseForm.cs" />
+    <Compile Include="Controls\IBaseUserControl.cs" />
+    <Compile Include="Controls\IGeneratorUserControl.cs" />
+    <Compile Include="Core\eBaseTemplateComponent.cs" />
+    <Compile Include="Core\SqlServerController.cs" />
+    <Compile Include="Core\SupportedType.cs" />
+    <Compile Include="FormAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBaseTemplateConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBaseTemplateConfiguration.Designer.cs">
+      <DependentUpon>FormBaseTemplateConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormGenerateConnectionString.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGenerateConnectionString.Designer.cs">
+      <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormNewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormNewProject.Designer.cs">
+      <DependentUpon>FormNewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPluginsManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPluginsManager.Designer.cs">
+      <DependentUpon>FormPluginsManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\BaseAssemblyDetails.cs" />
+    <Compile Include="Utils\MessageBoxHelper.cs" />
+    <Compile Include="Utils\PluginsManager.cs" />
+    <Compile Include="Utils\ProgramInfo.cs" />
+    <Compile Include="Utils\ProgramSettings.cs" />
+    <EmbeddedResource Include="Controls\BasicProjectProperties.resx">
+      <DependentUpon>BasicProjectProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GenerateCodeDatabase.resx">
+      <DependentUpon>GenerateCodeDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GenerateCodeFile.resx">
+      <DependentUpon>GenerateCodeFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PluginDetails.resx">
+      <DependentUpon>PluginDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProjectWorkspace.resx">
+      <DependentUpon>ProjectWorkspace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TemplateParameter.resx">
+      <DependentUpon>TemplateParameter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBaseTemplateConfiguration.resx">
+      <DependentUpon>FormBaseTemplateConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGenerateConnectionString.resx">
+      <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormNewProject.resx">
+      <DependentUpon>FormNewProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOptions.resx">
+      <DependentUpon>FormOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPluginsManager.resx">
+      <DependentUpon>FormPluginsManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -100,6 +236,42 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Content Include="Resources\Icons\file_extension_bin.png" />
+    <Content Include="Resources\Icons\file_extension_dll.png" />
+    <Content Include="Resources\Icons\file_extension_rtf.png" />
+    <Content Include="Resources\Icons\file_extension_sit.png" />
+    <None Include="Resources\Images\add_on.png" />
+    <None Include="Resources\Templates\sp_Delete.sql.tpl" />
+    <None Include="Resources\Templates\sp_GetByID.sql.tpl" />
+    <None Include="Resources\Templates\sp_ListAll.sql.tpl" />
+    <None Include="Resources\Templates\sp_Save.sql.tpl" />
+    <None Include="Resources\Templates\class_Domain.cs.tpl" />
+    <None Include="Resources\Templates\class_DataAccess.cs.tpl" />
+    <None Include="Resources\Icons\interface_preferences.png" />
+    <None Include="Resources\Icons\cog.png" />
+    <None Include="Resources\Icons\door_in.png" />
+    <None Include="Resources\Icons\diskette.png" />
+    <None Include="Resources\Icons\application_form_add.png" />
+    <None Include="Resources\Icons\help.png" />
+    <None Include="Resources\Icons\paste_plain.png" />
+    <None Include="Resources\Icons\page_white_php.png" />
+    <None Include="Resources\Icons\page_white_edit.png" />
+    <None Include="Resources\Icons\page_white_database.png" />
+    <None Include="Resources\Icons\page_white_csharp.png" />
+    <None Include="Resources\Icons\page_white_cplusplus.png" />
+    <None Include="Resources\Icons\page_white_code.png" />
+    <None Include="Resources\Icons\page_white_c.png" />
+    <None Include="Resources\Icons\database_add.png" />
+    <None Include="Resources\Icons\cut.png" />
+    <None Include="Resources\Icons\save_data.png" />
+    <None Include="Resources\Icons\save_as.png" />
+    <None Include="Resources\Icons\folder.png" />
+    <None Include="Resources\license_about.txt" />
+    <None Include="license.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\Icons\page_white_add.png" />
+    <None Include="Resources\FrostDisk_about.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CodeGen.Data\CodeGen.Data.csproj">
@@ -109,6 +281,22 @@
     <ProjectReference Include="..\CodeGen.Domain\CodeGen.Domain.csproj">
       <Project>{cd81c9c1-ad1e-4bb7-be30-eaa7a584a377}</Project>
       <Name>CodeGen.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Library.AccessModel\CodeGen.Library.AccessModel.csproj">
+      <Project>{07451D36-93F9-4598-8414-BE9269DB06F8}</Project>
+      <Name>CodeGen.Library.AccessModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Library.Formats\CodeGen.Library.Formats.csproj">
+      <Project>{74E0C129-FC44-4298-A723-444B2D679566}</Project>
+      <Name>CodeGen.Library.Formats</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Library.System\CodeGen.Library.System.csproj">
+      <Project>{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9}</Project>
+      <Name>CodeGen.Library.System</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Plugin.Base\CodeGen.Plugin.Base.csproj">
+      <Project>{25CD4C77-2763-4139-A22F-26A589857780}</Project>
+      <Name>CodeGen.Plugin.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +316,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodeGen.Data</RootNamespace>
     <AssemblyName>CodeGen.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,7 +41,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\CodeGen.App\Properties\AssemblyInfoCommon.cs">
+      <Link>Properties\AssemblyInfoCommon.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProjectController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeGen.Domain\CodeGen.Domain.csproj">
+      <Project>{cd81c9c1-ad1e-4bb7-be30-eaa7a584a377}</Project>
+      <Name>CodeGen.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Library.Formats\CodeGen.Library.Formats.csproj">
+      <Project>{74e0c129-fc44-4298-a723-444b2d679566}</Project>
+      <Name>CodeGen.Library.Formats</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Library.Security\CodeGen.Library.Security.csproj">
+      <Project>{e03b6b18-3308-4703-a860-e764c52bf0b4}</Project>
+      <Name>CodeGen.Library.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Plugin.Base\CodeGen.Plugin.Base.csproj">
+      <Project>{25cd4c77-2763-4139-a22f-26a589857780}</Project>
+      <Name>CodeGen.Plugin.Base</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

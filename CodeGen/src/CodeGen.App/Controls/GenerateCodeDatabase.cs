@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
+using System.IO;
 
 namespace CodeGen.Controls
 {
@@ -267,6 +268,13 @@ namespace CodeGen.Controls
                 saveDialogGeneratedCode.FileName = txtFileName.Text;
 
                 saveDialogGeneratedCode.ShowDialog();
+
+                if (saveDialogGeneratedCode.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllText(saveDialogGeneratedCode.FileName, txtGeneratedCode.Text);
+
+                    MessageBoxHelper.ShowGeneratedFileMessage(saveDialogGeneratedCode.FileName);
+                }
             }
             catch (Exception ex)
             {

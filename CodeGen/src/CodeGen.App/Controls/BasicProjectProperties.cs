@@ -58,7 +58,9 @@ namespace CodeGen.Controls
 
         private void GenerateProjectFolder(int number = 1)
         {
-            string projectName = string.IsNullOrWhiteSpace(txtProjectName.Text) ? number == 1 ? DefaultProjectName : string.Format("{0} ({1})", DefaultProjectName, number) : txtProjectName.Text;
+            string baseProjectName = string.IsNullOrWhiteSpace(txtProjectName.Text) ? DefaultProjectName : txtProjectName.Text;
+            string projectName = number == 1 ? baseProjectName : string.Format("{0} ({1})", baseProjectName, number);
+
             string safeProjectName = StringHelper.ConvertToSafeFileName(projectName);
 
             if (!string.IsNullOrWhiteSpace(safeProjectName))

@@ -190,7 +190,7 @@
     <value>ucBasicProjectProperties</value>
   </data>
   <data name="&gt;&gt;ucBasicProjectProperties.Type" xml:space="preserve">
-    <value>CodeGen.App.Controls.BasicProjectProperties, CodeGen.App.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>CodeGen.Controls.BasicProjectProperties, CodeGen, Version=0.9.1.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucBasicProjectProperties.Parent" xml:space="preserve">
     <value>$this</value>

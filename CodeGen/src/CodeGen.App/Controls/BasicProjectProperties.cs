@@ -136,6 +136,21 @@ namespace CodeGen.Controls
                 txtConnectionString.Focus();
                 return false;
             }
+            else
+            {
+                var item = cmbDatabaseType.SelectedItem as SupportedType;
+                if (item != null)
+                {
+                    var plugin = item.Item as IAccessModelController;
+                    if (plugin != null)
+                    {
+                        if(!plugin.ValidateConnectionString(txtConnectionString.Text))
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
 
             if (Directory.Exists(txtProjectDirectory.Text))
             {

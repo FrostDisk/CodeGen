@@ -10,6 +10,7 @@ using CodeGen.Plugin.Base;
 using CodeGen.Utils;
 using CodeGen.Properties;
 using CodeGen.Domain;
+using CodeGen.Library.AccessModel;
 
 namespace CodeGen.Core
 {
@@ -206,6 +207,20 @@ namespace CodeGen.Core
             }
 
             return entity;
+        }
+
+        public bool ValidateConnectionString(string connectionString)
+        {
+            try
+            {
+                return DatabaseUtils.CheckConnectionString(connectionString);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
+
+            return false;
         }
     }
 }

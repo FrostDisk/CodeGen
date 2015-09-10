@@ -17,5 +17,7 @@ namespace CodeGen.Plugin.Base
         List<string> GetTableList();
 
         DatabaseEntity GetEntityInfo(string tableName);
+
+        bool ValidateConnectionString(string connectionString);
     }
 }

@@ -33,7 +33,7 @@ namespace CodeGen
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNewProject));
             this.btnAccept = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.ucBasicProjectProperties = new BasicProjectProperties();
+            this.ucBasicProjectProperties = new CodeGen.Controls.BasicProjectProperties();
             this.SuspendLayout();
             // 
             // btnAccept

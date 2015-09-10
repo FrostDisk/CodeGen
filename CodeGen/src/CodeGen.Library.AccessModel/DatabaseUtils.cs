@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeGen.Library.AccessModel
 {
@@ -14,6 +11,12 @@ namespace CodeGen.Library.AccessModel
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             builder.ConnectionString = connectionString;
+
+            //using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+            //{
+            //    connection.Open();
+            //    connection.Close();
+            //}
 
             return true;
         }

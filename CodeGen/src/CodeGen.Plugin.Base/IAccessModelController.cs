@@ -18,6 +18,6 @@ namespace CodeGen.Plugin.Base
 
         DatabaseEntity GetEntityInfo(string tableName);
 
-        bool ValidateConnectionString(string connectionString);
+        bool CheckConnection(string connectionString);
     }
 }

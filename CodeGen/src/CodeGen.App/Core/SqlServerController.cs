@@ -209,7 +209,7 @@ namespace CodeGen.Core
             return entity;
         }
 
-        public bool ValidateConnectionString(string connectionString)
+        public bool CheckConnection(string connectionString)
         {
             try
             {

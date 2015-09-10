@@ -144,7 +144,7 @@ namespace CodeGen.Controls
                     var plugin = item.Item as IAccessModelController;
                     if (plugin != null)
                     {
-                        if(!plugin.ValidateConnectionString(txtConnectionString.Text))
+                        if(!plugin.CheckConnection(txtConnectionString.Text))
                         {
                             return false;
                         }

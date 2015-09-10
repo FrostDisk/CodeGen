@@ -266,8 +266,6 @@ namespace CodeGen.Controls
                 saveDialogGeneratedCode.Filter = ActiveTemplate.FileNameFilter;
                 saveDialogGeneratedCode.FileName = txtFileName.Text;
 
-                saveDialogGeneratedCode.ShowDialog();
-
                 if (saveDialogGeneratedCode.ShowDialog() == DialogResult.OK)
                 {
                     File.WriteAllText(saveDialogGeneratedCode.FileName, txtGeneratedCode.Text);

@@ -15,9 +15,9 @@ namespace CodeGen.Core
 {
     public sealed class SqlServerController : IAccessModelController
     {
-        private String _connectionString;
+        private string _connectionString;
 
-        public String Title
+        public string Title
         {
             get { return "Sql Server Access-Model Controller"; }
         }
@@ -32,12 +32,12 @@ namespace CodeGen.Core
             get { return null; }
         }
 
-        public String Description
+        public string Description
         {
             get { return "Sql Server Access-Model Controller"; }
         }
 
-        public String Version
+        public string Version
         {
             get { return ProgramInfo.AssemblyVersion; }
         }
@@ -54,21 +54,21 @@ namespace CodeGen.Core
 
         public PluginSettings Settings { get; private set; }
 
-        public String DatabaseTypeCode
+        public string DatabaseTypeCode
         {
             get { return EnumDatabaseTypes.SqlServer.ToString("G"); }
         }
 
-        public Boolean IsLoaded { get; private set; }
+        public bool IsLoaded { get; private set; }
 
-        public Boolean HaveCustomConnectionStringForm { get { return true; } }
+        public bool HaveCustomConnectionStringForm { get { return true; } }
 
         public void UpdateSettings(PluginSettings settings)
         {
 
         }
 
-        public Boolean Load(String connectionString)
+        public bool Load(string connectionString)
         {
             _connectionString = connectionString;
 
@@ -83,7 +83,7 @@ namespace CodeGen.Core
             return true;
         }
 
-        public Boolean ShowGenerateConnectionStringForm(out String connectionString)
+        public bool ShowGenerateConnectionStringForm(out string connectionString)
         {
             FormGenerateConnectionString form = new FormGenerateConnectionString();
             form.LoadLocalVariables();
@@ -98,7 +98,7 @@ namespace CodeGen.Core
             return false;
         }
 
-        public List<String> GetTableList()
+        public List<string> GetTableList()
         {
             if (!IsLoaded)
             {
@@ -121,7 +121,7 @@ namespace CodeGen.Core
             return tables;
         }
 
-        public DatabaseEntity GetEntityInfo(String tableName)
+        public DatabaseEntity GetEntityInfo(string tableName)
         {
             if (!IsLoaded)
             {

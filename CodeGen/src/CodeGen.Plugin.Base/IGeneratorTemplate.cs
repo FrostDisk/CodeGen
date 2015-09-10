@@ -1,32 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CodeGen.Plugin.Base
 {
     public interface IGeneratorTemplate : IPluginBase
     {
-        String LanguageCode { get; }
+        string LanguageCode { get; }
 
-        String FileExtension { get; }
+        string FileExtension { get; }
 
-        String FileNameFilter { get; }
+        string FileNameFilter { get; }
 
-        Boolean HaveOptions { get; }
+        bool HaveOptions { get; }
 
-        Boolean IsLoaded { get; }
+        bool IsLoaded { get; }
 
-        void Load(String projectName);
+        void Load(string projectName);
 
         bool ShowOptionsForm();
 
         List<GeneratorComponent> GetComponents();
 
-        String GenerateFileName(DatabaseEntity entity, Int32 componentId);
+        string GenerateFileName(DatabaseEntity entity, int componentId);
 
-        String Generate(DatabaseEntity entity, Int32 componentId);
+        string Generate(DatabaseEntity entity, int componentId);
     }
 }

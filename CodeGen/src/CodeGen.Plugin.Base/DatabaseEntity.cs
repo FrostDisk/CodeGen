@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CodeGen.Plugin.Base
 {
     public sealed class DatabaseEntity
     {
-        public String Qualifier { get; set; }
+        public string Qualifier { get; set; }
 
-        public String Owner { get; set; }
+        public string Owner { get; set; }
 
-        public String Name { get; set; }
+        public string Name { get; set; }
 
-        public String Type { get; set; }
+        public string Type { get; set; }
 
         public List<DatabaseEntityField> Fields { get; set; }
 

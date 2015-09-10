@@ -164,9 +164,9 @@
             // 
             // toolStripMenuItemProjectProperties
             // 
+            resources.ApplyResources(this.toolStripMenuItemProjectProperties, "toolStripMenuItemProjectProperties");
             this.toolStripMenuItemProjectProperties.Image = global::CodeGen.Properties.Resources.interface_preferences;
             this.toolStripMenuItemProjectProperties.Name = "toolStripMenuItemProjectProperties";
-            resources.ApplyResources(this.toolStripMenuItemProjectProperties, "toolStripMenuItemProjectProperties");
             // 
             // toolStripMenuItemTools
             // 

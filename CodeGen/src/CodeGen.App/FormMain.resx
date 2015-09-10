@@ -207,6 +207,9 @@
   <data name="toolStripProjectSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 6</value>
   </data>
+  <data name="toolStripMenuItemProjectProperties.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="toolStripMenuItemProjectProperties.Size" type="System.Drawing.Size, System.Drawing">
     <value>219, 22</value>
   </data>
@@ -238,7 +241,7 @@
     <value>Options...</value>
   </data>
   <data name="toolStripMenuItemTools.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 20</value>
+    <value>48, 20</value>
   </data>
   <data name="toolStripMenuItemTools.Text" xml:space="preserve">
     <value>Tools</value>

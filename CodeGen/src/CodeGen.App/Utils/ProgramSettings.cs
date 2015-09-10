@@ -58,13 +58,15 @@ namespace CodeGen.Utils
 
         public static void SaveGlobalSettings()
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(GlobalSettings));
-
             string settingsLocation = Path.Combine(SettingsFolder, Settings.Default.GlobalSettingsFilename);
+
+            var settings = GetGlobalSettings();
 
             using (StreamWriter file = new StreamWriter(settingsLocation))
             {
-                serializer.Serialize(file, GetGlobalSettings());
+                XmlSerializer serializer = new XmlSerializer(typeof(GlobalSettings));
+
+                serializer.Serialize(file, settings);
                 file.Close();
             }
         }

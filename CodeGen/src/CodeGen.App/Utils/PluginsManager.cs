@@ -22,6 +22,17 @@ namespace CodeGen.Utils
     public static class PluginsManager
     {
         /// <summary>
+        /// Checks if Plugins are Loaded into Global Settings
+        /// </summary>
+        /// <returns></returns>
+        public static bool CheckIfPluginsAreLoaded()
+        {
+            var settings = ProgramSettings.GetGlobalSettings();
+
+            return settings.PluginsSettings.Plugins.Count() > 0;
+        }
+
+        /// <summary>
         /// Updates the plugin list in the global settings.
         /// </summary>
         /// <remarks>

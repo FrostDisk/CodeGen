@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows.Forms;
 using CodeGen.Controls;
 using CodeGen.Utils;
+using System.Threading;
 
 namespace CodeGen
 {
@@ -191,6 +192,14 @@ namespace CodeGen
         {
             LoadLocalVariables();
             UpdateWindowTitle();
+
+            if (!PluginsManager.CheckIfPluginsAreLoaded())
+            {
+                menuMain.Enabled = false;
+                toolStripStatusLabelMain.Text = "Checking plugins";
+                statusStripMain.Refresh();
+                workerCheckPlugins.RunWorkerAsync();
+            }
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -307,6 +316,19 @@ namespace CodeGen
         }
 
         #endregion
+
+        private void workerCheckPlugins_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            PluginsManager.UpdatePluginList();
+            PluginsManager.CheckExistingPlugins();
+        }
+
+        private void workerCheckPlugins_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            menuMain.Enabled = true;
+            toolStripStatusLabelMain.Text = string.Empty;
+            statusStripMain.Refresh();
+        }
 
         #endregion
     }

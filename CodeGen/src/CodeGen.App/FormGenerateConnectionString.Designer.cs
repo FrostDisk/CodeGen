@@ -43,6 +43,7 @@
             this.rbtnWindowsAuthentication = new System.Windows.Forms.RadioButton();
             this.rbtnSqlServerAuthentication = new System.Windows.Forms.RadioButton();
             this.lblAuthentication = new System.Windows.Forms.Label();
+            this.workerLoadDatabases = new System.ComponentModel.BackgroundWorker();
             this.pnlAuthentication.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -131,6 +132,11 @@
             resources.ApplyResources(this.lblAuthentication, "lblAuthentication");
             this.lblAuthentication.Name = "lblAuthentication";
             // 
+            // workerLoadDatabases
+            // 
+            this.workerLoadDatabases.DoWork += new System.ComponentModel.DoWorkEventHandler(this.workerLoadDatabases_DoWork);
+            this.workerLoadDatabases.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.workerLoadDatabases_RunWorkerCompleted);
+            // 
             // FormGenerateConnectionString
             // 
             this.AcceptButton = this.btnAccept;
@@ -178,5 +184,6 @@
         private System.Windows.Forms.RadioButton rbtnSqlServerAuthentication;
         private System.Windows.Forms.RadioButton rbtnWindowsAuthentication;
         private System.Windows.Forms.Label lblAuthentication;
+        private System.ComponentModel.BackgroundWorker workerLoadDatabases;
     }
 }

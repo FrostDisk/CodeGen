@@ -387,6 +387,51 @@
   <data name="pnlAuthentication.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
+  <data name="&gt;&gt;rbtnWindowsAuthentication.Name" xml:space="preserve">
+    <value>rbtnWindowsAuthentication</value>
+  </data>
+  <data name="&gt;&gt;rbtnWindowsAuthentication.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rbtnWindowsAuthentication.Parent" xml:space="preserve">
+    <value>pnlAuthentication</value>
+  </data>
+  <data name="&gt;&gt;rbtnWindowsAuthentication.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;rbtnSqlServerAuthentication.Name" xml:space="preserve">
+    <value>rbtnSqlServerAuthentication</value>
+  </data>
+  <data name="&gt;&gt;rbtnSqlServerAuthentication.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rbtnSqlServerAuthentication.Parent" xml:space="preserve">
+    <value>pnlAuthentication</value>
+  </data>
+  <data name="&gt;&gt;rbtnSqlServerAuthentication.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pnlAuthentication.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 32</value>
+  </data>
+  <data name="pnlAuthentication.Size" type="System.Drawing.Size, System.Drawing">
+    <value>253, 46</value>
+  </data>
+  <data name="pnlAuthentication.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;pnlAuthentication.Name" xml:space="preserve">
+    <value>pnlAuthentication</value>
+  </data>
+  <data name="&gt;&gt;pnlAuthentication.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlAuthentication.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlAuthentication.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="rbtnWindowsAuthentication.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -444,27 +489,6 @@
   <data name="&gt;&gt;rbtnSqlServerAuthentication.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="pnlAuthentication.Location" type="System.Drawing.Point, System.Drawing">
-    <value>99, 32</value>
-  </data>
-  <data name="pnlAuthentication.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 46</value>
-  </data>
-  <data name="pnlAuthentication.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;pnlAuthentication.Name" xml:space="preserve">
-    <value>pnlAuthentication</value>
-  </data>
-  <data name="&gt;&gt;pnlAuthentication.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlAuthentication.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pnlAuthentication.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="lblAuthentication.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -492,6 +516,9 @@
   <data name="&gt;&gt;lblAuthentication.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <metadata name="workerLoadDatabases.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -506,6 +533,12 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Generate Connection String</value>
+  </data>
+  <data name="&gt;&gt;workerLoadDatabases.Name" xml:space="preserve">
+    <value>workerLoadDatabases</value>
+  </data>
+  <data name="&gt;&gt;workerLoadDatabases.Type" xml:space="preserve">
+    <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormGenerateConnectionString</value>

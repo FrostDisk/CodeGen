@@ -56,6 +56,18 @@ namespace CodeGen.Controls
             IsLoaded = true;
         }
 
+        public void EnableControls(bool enable)
+        {
+            txtProjectName.Enabled = enable;
+            btnSelectProjectLocation.Enabled = enable;
+
+            txtProjectDescription.Enabled = enable;
+            cmbDatabaseType.Enabled = enable;
+
+            txtConnectionString.Enabled = enable;
+            btnGenerateConnectionString.Enabled = enable && cmbDatabaseType.SelectedItem != null;
+        }
+
         private void GenerateProjectFolder(int number = 1)
         {
             string baseProjectName = string.IsNullOrWhiteSpace(txtProjectName.Text) ? DefaultProjectName : txtProjectName.Text;
@@ -123,7 +135,13 @@ namespace CodeGen.Controls
                 return false;
             }
 
-            if (cmbDatabaseType.SelectedItem == null)
+            bool _dataBaseTypeSelected = false;
+            Invoke((MethodInvoker)delegate
+            {
+                _dataBaseTypeSelected = cmbDatabaseType.SelectedItem == null;
+            });
+
+            if (_dataBaseTypeSelected)
             {
                 MessageBoxHelper.ValidationMessage("Database Type isn't specified");
                 cmbDatabaseType.Focus();
@@ -138,7 +156,12 @@ namespace CodeGen.Controls
             }
             else
             {
-                var item = cmbDatabaseType.SelectedItem as SupportedType;
+                SupportedType item = null;
+                Invoke((MethodInvoker)delegate
+                {
+                    item = cmbDatabaseType.SelectedItem as SupportedType;
+                });
+
                 if (item != null)
                 {
                     var plugin = item.Item as IAccessModelController;

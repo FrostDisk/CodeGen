@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-[assembly: AssemblyCompany("FrostDisk Chile")]
+[assembly: AssemblyCompany("FrostDisk")]
 [assembly: AssemblyProduct("CodeGen")]
 [assembly: AssemblyCopyright("Copyright FrostDisk© 2015")]
 [assembly: AssemblyTrademark("")]

@@ -12,11 +12,11 @@ namespace CodeGen.Library.AccessModel
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
             builder.ConnectionString = connectionString;
 
-            //using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
-            //{
-            //    connection.Open();
-            //    connection.Close();
-            //}
+            using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+            {
+                connection.Open();
+                connection.Close();
+            }
 
             return true;
         }

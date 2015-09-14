@@ -16,6 +16,9 @@ namespace CodeGen
 
         #region initialization
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormGenerateConnectionString"/> class.
+        /// </summary>
         public FormGenerateConnectionString()
         {
             InitializeComponent();
@@ -25,6 +28,9 @@ namespace CodeGen
 
         #region methods
 
+        /// <summary>
+        /// Loads the local variables.
+        /// </summary>
         public void LoadLocalVariables()
         {
             
@@ -52,14 +58,29 @@ namespace CodeGen
                      && rbtnSqlServerAuthentication.Checked)
                     || rbtnWindowsAuthentication.Checked))
             {
-                cmbDatabase.Items.Clear();
-                cmbDatabase.Items.AddRange(DatabaseUtils.GetDatabaseList(txtServerName.Text, txtLogin.Text, txtPassword.Text, rbtnWindowsAuthentication.Checked).ToArray());
+                Invoke((MethodInvoker)delegate
+                {
+                    cmbDatabase.Items.Clear();
+                    cmbDatabase.Items.AddRange(DatabaseUtils.GetDatabaseList(txtServerName.Text, txtLogin.Text, txtPassword.Text, rbtnWindowsAuthentication.Checked).ToArray());
+                });
             }
         }
 
         public string GetConnectionString()
         {
             return DatabaseUtils.CreateBasicConnectionString(txtServerName.Text, txtLogin.Text, txtPassword.Text, rbtnWindowsAuthentication.Checked, (string) cmbDatabase.SelectedItem);
+        }
+
+        private void EnableControls(bool enable)
+        {
+            txtServerName.Enabled = enable;
+            pnlAuthentication.Enabled = enable;
+
+            txtLogin.Enabled = enable && rbtnSqlServerAuthentication.Checked;
+            txtPassword.Enabled = enable && rbtnSqlServerAuthentication.Checked;
+
+            btnAccept.Enabled = enable;
+            btnCancel.Enabled = enable;
         }
 
         public bool ValidateForm()
@@ -110,14 +131,8 @@ namespace CodeGen
 
         private void cmbDatabaseName_Enter(object sender, EventArgs e)
         {
-            try
-            {
-                UpdateDatabaseList();
-            }
-            catch(Exception ex)
-            {
-                MessageBoxHelper.ProcessException(ex);
-            }
+            EnableControls(false);
+            workerLoadDatabases.RunWorkerAsync();
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
@@ -134,6 +149,21 @@ namespace CodeGen
             {
                 MessageBoxHelper.ProcessException(ex);
             }
+        }
+
+        private void workerLoadDatabases_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            UpdateDatabaseList();
+        }
+
+        private void workerLoadDatabases_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            if( e.Error != null)
+            {
+                MessageBoxHelper.ProcessException(e.Error);
+            }
+
+            EnableControls(true);
         }
 
         #endregion

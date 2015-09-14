@@ -3,6 +3,7 @@ using System.Linq;
 using CodeGen.Library.Formats;
 using CodeGen.Plugin.Base;
 using CodeGen.Properties;
+using System.Data;
 
 namespace CodeGen.Core
 {
@@ -141,7 +142,12 @@ namespace CodeGen.Core
             template.ReplaceSection("PROPERTIES", propertiesSectionList);
             template.ReplaceSection("PARAMETERS", parameterSectionList);
 
-            var primaryEntityField = Entity.Fields.First(f => f.IsPrimaryKey);
+            var primaryEntityField = Entity.Fields.FirstOrDefault(f => f.IsPrimaryKey);
+            if( primaryEntityField == null)
+            {
+                throw new DataException("Entity [" + Entity.Name + "] doesn't have primary key");
+            }
+
 
             template.ReplaceTag("PRIMARYKEY_DATATYPE", DataTypeHelper.GetCSharpType(primaryEntityField.SimpleTypeName), false);
             template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
@@ -213,7 +219,11 @@ namespace CodeGen.Core
             template.ReplaceSection("INSERT_COLUMNS", insertColumnsSectionList, ",");
             template.ReplaceSection("INSERT_PARAMETERS", insertParameterSectionList, ",");
 
-            var primaryEntityField = Entity.Fields.First(f => f.IsPrimaryKey);
+            var primaryEntityField = Entity.Fields.FirstOrDefault(f => f.IsPrimaryKey);
+            if (primaryEntityField == null)
+            {
+                throw new DataException("Entity [" + Entity.Name + "] doesn't have primary key");
+            }
 
             template.ReplaceTag("PRIMARYKEY_DATATYPE", primaryEntityField.TypeName, false);
             template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
@@ -245,7 +255,11 @@ namespace CodeGen.Core
 
             template.ReplaceSection("SELECT_COLUMNS", selectColumnsSectionList, ",");
 
-            var primaryEntityField = Entity.Fields.First(f => f.IsPrimaryKey);
+            var primaryEntityField = Entity.Fields.FirstOrDefault(f => f.IsPrimaryKey);
+            if (primaryEntityField == null)
+            {
+                throw new DataException("Entity [" + Entity.Name + "] doesn't have primary key");
+            }
 
             template.ReplaceTag("PRIMARYKEY_DATATYPE", primaryEntityField.TypeName, false);
             template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
@@ -290,7 +304,11 @@ namespace CodeGen.Core
         {
             TemplateFile template = TemplateFile.LoadTemplate(TemplateType.SQL, Resources.sp_Delete);
 
-            var primaryEntityField = Entity.Fields.First(f => f.IsPrimaryKey);
+            var primaryEntityField = Entity.Fields.FirstOrDefault(f => f.IsPrimaryKey);
+            if (primaryEntityField == null)
+            {
+                throw new DataException("Entity [" + Entity.Name + "] doesn't have primary key");
+            }
 
             template.ReplaceTag("PRIMARYKEY_DATATYPE", primaryEntityField.TypeName, false);
             template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);

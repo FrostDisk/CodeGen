@@ -5,6 +5,7 @@ using CodeGen.Core;
 using CodeGen.Domain;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
+using System.IO;
 
 namespace CodeGen.Controls
 {
@@ -95,16 +96,19 @@ namespace CodeGen.Controls
 
         private void UpdateFileName()
         {
-            string entityItem = (string)cmbDatabaseEntity.SelectedItem;
-
-            DatabaseEntity entity;
-            if (!_entities.TryGetValue(entityItem, out entity))
+            if (ActiveTemplate != null && cmbDatabaseEntity.SelectedItem != null)
             {
-                entity = PluginsManager.GetEntityInfoFromPlugin(Project.ConnectionString, Project.Plugin, entityItem);
-                _entities[entityItem] = entity;
-            }
+                string entityItem = (string)cmbDatabaseEntity.SelectedItem;
 
-            txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (int)cmbComponent.SelectedValue);
+                DatabaseEntity entity;
+                if (!_entities.TryGetValue(entityItem, out entity))
+                {
+                    entity = PluginsManager.GetEntityInfoFromPlugin(Project.ConnectionString, Project.Plugin, entityItem);
+                    _entities[entityItem] = entity;
+                }
+
+                txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (int)cmbComponent.SelectedValue);
+            }
         }
 
         private void EnableButtons()
@@ -124,6 +128,8 @@ namespace CodeGen.Controls
         {
             try
             {
+                UpdateFileName();
+
                 EnableButtons();
             }
             catch (Exception ex)
@@ -190,10 +196,7 @@ namespace CodeGen.Controls
                             OnControlUpdate(this, new EventArgs());
                         }
 
-                        if (cmbDatabaseEntity.SelectedItem != null)
-                        {
-                            UpdateFileName();
-                        }
+                        UpdateFileName();
                     }
                 }
 
@@ -209,10 +212,7 @@ namespace CodeGen.Controls
         {
             try
             {
-                if (ActiveTemplate != null && cmbDatabaseEntity.SelectedItem != null)
-                {
-                    UpdateFileName();
-                }
+                UpdateFileName();
 
                 EnableButtons();
             }
@@ -273,7 +273,12 @@ namespace CodeGen.Controls
                 saveDialogGeneratedCode.Filter = ActiveTemplate.FileNameFilter;
                 saveDialogGeneratedCode.FileName = txtFileName.Text;
 
-                saveDialogGeneratedCode.ShowDialog();
+                if(saveDialogGeneratedCode.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllText(saveDialogGeneratedCode.FileName, txtGeneratedCode.Text);
+
+                    MessageBoxHelper.ShowGeneratedFileMessage(saveDialogGeneratedCode.FileName);
+                }
             }
             catch (Exception ex)
             {

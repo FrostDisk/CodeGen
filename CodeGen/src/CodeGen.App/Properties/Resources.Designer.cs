@@ -83,10 +83,11 @@ namespace CodeGen.Properties {
         /// <summary>
         ///   Looks up a localized string similar to using System;
         ///using System.Collections.Generic;
+        ///using System.Configuration;
         ///using System.Data;
+        ///using System.Data.SqlClient;
+        ///using System.Xml;
         ///using {NAMESPACE_DOMAIN};
-        ///using {NAMESPACE_DBHELPER};
-        ///using {NAMESPACE_ACCESS_MODEL};
         ///
         /////------------------------------------------------------------------------------
         ///// &lt;auto-generated&gt;
@@ -95,7 +96,7 @@ namespace CodeGen.Properties {
         /////     Changes to this file may cause incorrect behavior and will be lost if
         /////     the code is regenerated.
         ///// &lt;/auto-generated&gt;
-        /////------------------------------------------------------------------ [rest of string was truncated]&quot;;.
+        /////-------------------------------------------------- [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string class_DataAccess {
             get {
@@ -105,6 +106,7 @@ namespace CodeGen.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to using System;
+        ///using System.Xml;
         ///
         /////------------------------------------------------------------------------------
         ///// &lt;auto-generated&gt;
@@ -119,8 +121,7 @@ namespace CodeGen.Properties {
         ///{
         ///    /// &lt;summary&gt;
         ///    /// Domain Class {CLASS_NAME_DOMAIN}
-        ///    /// &lt;/summary&gt;
-        ///    /// &lt;autho [rest of string was truncated]&quot;;.
+        ///    /// &lt;/summa [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string class_Domain {
             get {
@@ -168,7 +169,7 @@ namespace CodeGen.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FrostDisk Chile.
+        ///   Looks up a localized string similar to FrostDisk.
         /// </summary>
         internal static string DefaultCreatedBy {
             get {

@@ -13,7 +13,7 @@ namespace CodeGen.Core
     {
         #region properties
 
-        public String Title
+        public string Title
         {
             get { return "C# Base Code Template"; }
         }
@@ -33,7 +33,7 @@ namespace CodeGen.Core
             get { return "C# Domain/DataAccess Code Template"; }
         }
 
-        public String Version
+        public string Version
         {
             get { return ProgramInfo.AssemblyVersion; }
         }
@@ -50,27 +50,27 @@ namespace CodeGen.Core
 
         public PluginSettings Settings { get; private set; }
 
-        public String LanguageCode
+        public string LanguageCode
         {
             get { return "CSharp"; }
         }
 
-        public String FileExtension
+        public string FileExtension
         {
             get { return ".cs"; }
         }
 
-        public String FileNameFilter
+        public string FileNameFilter
         {
             get { return "Visual C# Files (*.cs)|*.cs"; }
         }
 
-        public Boolean HaveOptions
+        public bool HaveOptions
         {
             get { return true; }
         }
 
-        public Boolean IsLoaded { get; private set; }
+        public bool IsLoaded { get; private set; }
 
         #endregion
 
@@ -93,7 +93,7 @@ namespace CodeGen.Core
             }
         }
 
-        public void Load(String projectName)
+        public void Load(string projectName)
         {
             FormBaseTemplateConfiguration.Instance.ReplaceMyProject(projectName);
             IsLoaded = true;
@@ -120,7 +120,7 @@ namespace CodeGen.Core
             };
         }
 
-        public String GenerateFileName(DatabaseEntity entity, Int32 componentId)
+        public string GenerateFileName(DatabaseEntity entity, int componentId)
         {
             if (FormBaseTemplateConfiguration.Instance.ValidateForm(false))
             {
@@ -143,7 +143,7 @@ namespace CodeGen.Core
             return string.Empty;
         }
 
-        public String Generate(DatabaseEntity entity, Int32 componentId)
+        public string Generate(DatabaseEntity entity, int componentId)
         {
             if (FormBaseTemplateConfiguration.Instance.ValidateForm())
             {

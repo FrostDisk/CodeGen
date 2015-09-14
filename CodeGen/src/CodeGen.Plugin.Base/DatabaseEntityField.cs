@@ -1,33 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CodeGen.Plugin.Base
+﻿namespace CodeGen.Plugin.Base
 {
     public sealed class DatabaseEntityField
     {
-        public String ColumnName { get; set; }
+        public string ColumnName { get; set; }
 
-        public Boolean IsPrimaryKey { get; set; }
+        public bool IsPrimaryKey { get; set; }
 
-        public Int16 DataType { get; set; }
+        public short DataType { get; set; }
 
-        public String TypeName { get; set; }
+        public string TypeName { get; set; }
 
-        public String SimpleTypeName { get; set; }
+        public string SimpleTypeName { get; set; }
 
-        public Int32 Precision { get; set; }
+        public int Precision { get; set; }
 
-        public Int32 Length { get; set; }
+        public int Length { get; set; }
 
-        public Int16? Scale { get; set; }
+        public short? Scale { get; set; }
 
-        public Int16? Radix { get; set; }
+        public short? Radix { get; set; }
 
-        public Boolean IsNullable { get; set; }
+        public bool IsNullable { get; set; }
 
-        public String DefaultValue { get; set; }
+        public string DefaultValue { get; set; }
     }
 }

@@ -18,6 +18,8 @@ namespace CodeGen
 
         public Project Project { get; private set; }
 
+        private bool _validationResult;
+
         #endregion
 
         #region initialization
@@ -38,22 +40,45 @@ namespace CodeGen
             ucBasicProjectProperties.LoadLocalVariables();
         }
 
+        private void EnableControls(bool enable)
+        {
+            ucBasicProjectProperties.EnableControls(enable);
+            btnAccept.Enabled = enable;
+            btnCancel.Enabled = enable;
+        }
+
         #endregion
 
         #region events
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            if (ucBasicProjectProperties.ValidateForm())
-            {
-                Project = ucBasicProjectProperties.GetProject();
-                DialogResult = DialogResult.OK;
-            }
+            EnableControls(false);
+
+            _validationResult = false;
+            workerValidateForm.RunWorkerAsync();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void workerValidateForm_DoWork(object sender, DoWorkEventArgs e)
+        {
+            _validationResult = ucBasicProjectProperties.ValidateForm();
+        }
+
+        private void workerValidateForm_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            EnableControls(true);
+
+            if (_validationResult)
+            {
+                Project = ucBasicProjectProperties.GetProject();
+                DialogResult = DialogResult.OK;
+                Close();
+            }
         }
 
         #endregion

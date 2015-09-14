@@ -33,7 +33,8 @@ namespace CodeGen
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNewProject));
             this.btnAccept = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.ucBasicProjectProperties = new BasicProjectProperties();
+            this.ucBasicProjectProperties = new CodeGen.Controls.BasicProjectProperties();
+            this.workerValidateForm = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // btnAccept
@@ -59,6 +60,11 @@ namespace CodeGen
             this.ucBasicProjectProperties.IsLoaded = false;
             this.ucBasicProjectProperties.Name = "ucBasicProjectProperties";
             // 
+            // workerValidateForm
+            // 
+            this.workerValidateForm.DoWork += new System.ComponentModel.DoWorkEventHandler(this.workerValidateForm_DoWork);
+            this.workerValidateForm.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.workerValidateForm_RunWorkerCompleted);
+            // 
             // FormNewProject
             // 
             this.AcceptButton = this.btnAccept;
@@ -83,5 +89,6 @@ namespace CodeGen
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.Button btnCancel;
         private BasicProjectProperties ucBasicProjectProperties;
+        private System.ComponentModel.BackgroundWorker workerValidateForm;
     }
 }

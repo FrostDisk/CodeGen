@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows.Forms;
 using CodeGen.Controls;
 using CodeGen.Utils;
+using System.ComponentModel;
 
 namespace CodeGen
 {
@@ -34,7 +35,7 @@ namespace CodeGen
 
         private void LoadLocalVariables()
         {
-            openFileDialogProject.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openFileDialogProject.InitialDirectory = ProgramSettings.GetGlobalSettings().DirectoriesSettings.DefaultProjectsDirectory;
 
             if(string.IsNullOrWhiteSpace(ProjectLocation))
             {
@@ -189,78 +190,141 @@ namespace CodeGen
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            LoadLocalVariables();
-            UpdateWindowTitle();
+            try {
+                LoadLocalVariables();
+                UpdateWindowTitle();
+
+                if (!PluginsManager.CheckIfPluginsAreLoaded())
+                {
+                    menuMain.Enabled = false;
+                    toolStripStatusLabelMain.Text = "Checking plugins";
+                    statusStripMain.Refresh();
+                    workerCheckPlugins.RunWorkerAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Settings.Default.IsMaximized = WindowState.Equals(FormWindowState.Maximized);
-            Settings.Default.WindowSizeWidth = Size.Width;
-            Settings.Default.WindowSizeHeight = Size.Height;
-            Settings.Default.WindowPositionX = Location.X;
-            Settings.Default.WindowPositionY = Location.Y;
+            try
+            {
+                Settings.Default.IsMaximized = WindowState.Equals(FormWindowState.Maximized);
+                Settings.Default.WindowSizeWidth = Size.Width;
+                Settings.Default.WindowSizeHeight = Size.Height;
+                Settings.Default.WindowPositionX = Location.X;
+                Settings.Default.WindowPositionY = Location.Y;
 
-            Settings.Default.Save();
+                Settings.Default.Save();
 
-            ProgramSettings.SaveGlobalSettings();
+                ProgramSettings.SaveGlobalSettings();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
         }
 
         #region file menu
 
-        private void toolStripMenuItemNewProject_Click(object sender, System.EventArgs e)
+        private void toolStripMenuItemNewProject_Click(object sender, EventArgs e)
         {
-            SaveAndCloseProject(false);
-
-            FormNewProject form = new FormNewProject();
-            form.LoadLocalVariables();
-
-            if (form.ShowDialog() == DialogResult.OK)
+            try
             {
-                _activeProject = form.Project;
+                SaveAndCloseProject(false);
 
-                _activeControl = new ProjectWorkspace();
-                _activeControl.Dock = DockStyle.Fill;
-                _activeControl.Project = _activeProject;
-                _activeControl.OnProjectChange += activeControl_OnProjectChange;
-                _activeControl.LoadLocalVariables();
+                FormNewProject form = new FormNewProject();
+                form.LoadLocalVariables();
 
-                UpdateWindowTitle();
-                UpdateMenuControls();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    _activeProject = form.Project;
 
-                panelMain.Visible = true;
-                panelMain.Controls.Add(_activeControl);
+                    _activeControl = new ProjectWorkspace();
+                    _activeControl.Dock = DockStyle.Fill;
+                    _activeControl.Project = _activeProject;
+                    _activeControl.OnProjectChange += activeControl_OnProjectChange;
+                    _activeControl.LoadLocalVariables();
+
+                    UpdateWindowTitle();
+                    UpdateMenuControls();
+
+                    panelMain.Visible = true;
+                    panelMain.Controls.Add(_activeControl);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void toolStripMenuItemOpenProject_Click(object sender, EventArgs e)
         {
-            SaveAndCloseProject(false);
-
-            if(openFileDialogProject.ShowDialog() == DialogResult.OK)
+            try
             {
-                OpenProject(openFileDialogProject.FileName);
+                SaveAndCloseProject(false);
+
+                if (openFileDialogProject.ShowDialog() == DialogResult.OK)
+                {
+                    OpenProject(openFileDialogProject.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void toolStripMenuItemCloseProject_Click(object sender, EventArgs e)
         {
-            SaveAndCloseProject(false);
+            try
+            {
+                SaveAndCloseProject(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
         }
 
         private void toolStripMenuItemSaveProject_Click(object sender, EventArgs e)
         {
-            SaveProject(false);
+            try
+            {
+                SaveProject(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
         }
 
         private void toolStripMenuItemSaveProjectAs_Click(object sender, EventArgs e)
         {
-            SaveProject(true);
+            try
+            {
+                SaveProject(true);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
         }
 
         private void toolStripMenuItemExit_Click(object sender, EventArgs e)
         {
-            SaveAndCloseProject(true);
+            try
+            {
+                SaveAndCloseProject(true);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
         }
 
         #endregion
@@ -269,12 +333,26 @@ namespace CodeGen
 
         private void toolStripMenuItemGenerateCodeFile_Click(object sender, EventArgs e)
         {
-            _activeControl.LoadGenerator<GenerateCodeFile>();
+            try
+            {
+                _activeControl.LoadGenerator<GenerateCodeFile>();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
         }
 
         private void toolStripMenuItemGenerateDatabaseScript_Click(object sender, EventArgs e)
         {
-            _activeControl.LoadGenerator<GenerateCodeDatabase>();
+            try
+            {
+                _activeControl.LoadGenerator<GenerateCodeDatabase>();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
         }
 
         #endregion
@@ -283,18 +361,32 @@ namespace CodeGen
 
         private void toolStripMenuItemPluginsManager_Click(object sender, EventArgs e)
         {
-            FormPluginsManager form = new FormPluginsManager();
-            form.LoadLocalVariables();
+            try
+            {
+                FormPluginsManager form = new FormPluginsManager();
+                form.LoadLocalVariables();
 
-            form.ShowDialog();
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
         }
 
         private void toolStripMenuItemOptions_Click(object sender, EventArgs e)
         {
-            FormOptions form = new FormOptions();
-            form.LoadLocalVariables();
+            try
+            {
+                FormOptions form = new FormOptions();
+                form.LoadLocalVariables();
 
-            form.ShowDialog();
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
         }
 
         #endregion
@@ -307,6 +399,24 @@ namespace CodeGen
         }
 
         #endregion
+
+        private void workerCheckPlugins_DoWork(object sender, DoWorkEventArgs e)
+        {
+            PluginsManager.UpdatePluginList();
+            PluginsManager.CheckExistingPlugins();
+        }
+
+        private void workerCheckPlugins_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if( e.Error != null)
+            {
+                MessageBoxHelper.ProcessException(e.Error);
+            }
+
+            menuMain.Enabled = true;
+            toolStripStatusLabelMain.Text = string.Empty;
+            statusStripMain.Refresh();
+        }
 
         #endregion
     }

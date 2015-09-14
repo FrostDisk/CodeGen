@@ -190,7 +190,7 @@
     <value>ucBasicProjectProperties</value>
   </data>
   <data name="&gt;&gt;ucBasicProjectProperties.Type" xml:space="preserve">
-    <value>CodeGen.App.Controls.BasicProjectProperties, CodeGen.App.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>CodeGen.Controls.BasicProjectProperties, CodeGen, Version=0.9.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ucBasicProjectProperties.Parent" xml:space="preserve">
     <value>$this</value>
@@ -198,6 +198,9 @@
   <data name="&gt;&gt;ucBasicProjectProperties.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="workerValidateForm.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -212,6 +215,12 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>New Project</value>
+  </data>
+  <data name="&gt;&gt;workerValidateForm.Name" xml:space="preserve">
+    <value>workerValidateForm</value>
+  </data>
+  <data name="&gt;&gt;workerValidateForm.Type" xml:space="preserve">
+    <value>System.ComponentModel.BackgroundWorker, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormNewProject</value>

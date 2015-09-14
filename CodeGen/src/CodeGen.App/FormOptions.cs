@@ -34,7 +34,7 @@ namespace CodeGen
             txtTempDirectory.Text = _settings.DirectoriesSettings.TempDirectory;
         }
 
-        private bool Validate()
+        private bool ValidateForm()
         {
             if (string.IsNullOrWhiteSpace(txtDefaultProjectsDirectory.Text))
             {

@@ -19,5 +19,10 @@ namespace CodeGen.Utils
         {
             MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        internal static void ShowGeneratedFileMessage(string fileName)
+        {
+            MessageBox.Show("File saved on location: " + fileName, "File saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

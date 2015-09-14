@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CodeGen.Plugin.Base
 {
     public interface IAccessModelController : IPluginBase
     {
-        String DatabaseTypeCode { get; }
+        string DatabaseTypeCode { get; }
 
-        Boolean IsLoaded { get; }
+        bool IsLoaded { get; }
 
-        Boolean HaveCustomConnectionStringForm { get; }
+        bool HaveCustomConnectionStringForm { get; }
 
-        Boolean Load(String connectionString);
+        bool Load(string connectionString);
 
-        Boolean ShowGenerateConnectionStringForm(out String connectionString);
+        bool ShowGenerateConnectionStringForm(out string connectionString);
 
-        List<String> GetTableList();
+        List<string> GetTableList();
 
-        DatabaseEntity GetEntityInfo(String tableName);
+        DatabaseEntity GetEntityInfo(string tableName);
+
+        bool CheckConnection(string connectionString);
     }
 }

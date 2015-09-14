@@ -1,7 +1,4 @@
-﻿using System;
-using System.Drawing;
-
-namespace CodeGen.Plugin.Base
+﻿namespace CodeGen.Plugin.Base
 {
     public interface IPluginBase : IPluginTypeBase
     {

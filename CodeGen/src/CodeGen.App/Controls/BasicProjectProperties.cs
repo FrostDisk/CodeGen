@@ -56,9 +56,23 @@ namespace CodeGen.Controls
             IsLoaded = true;
         }
 
+        public void EnableControls(bool enable)
+        {
+            txtProjectName.Enabled = enable;
+            btnSelectProjectLocation.Enabled = enable;
+
+            txtProjectDescription.Enabled = enable;
+            cmbDatabaseType.Enabled = enable;
+
+            txtConnectionString.Enabled = enable;
+            btnGenerateConnectionString.Enabled = enable && cmbDatabaseType.SelectedItem != null;
+        }
+
         private void GenerateProjectFolder(int number = 1)
         {
-            string projectName = string.IsNullOrWhiteSpace(txtProjectName.Text) ? number == 1 ? DefaultProjectName : string.Format("{0} ({1})", DefaultProjectName, number) : txtProjectName.Text;
+            string baseProjectName = string.IsNullOrWhiteSpace(txtProjectName.Text) ? DefaultProjectName : txtProjectName.Text;
+            string projectName = number == 1 ? baseProjectName : string.Format("{0} ({1})", baseProjectName, number);
+
             string safeProjectName = StringHelper.ConvertToSafeFileName(projectName);
 
             if (!string.IsNullOrWhiteSpace(safeProjectName))
@@ -121,7 +135,13 @@ namespace CodeGen.Controls
                 return false;
             }
 
-            if (cmbDatabaseType.SelectedItem == null)
+            bool _dataBaseTypeSelected = false;
+            Invoke((MethodInvoker)delegate
+            {
+                _dataBaseTypeSelected = cmbDatabaseType.SelectedItem == null;
+            });
+
+            if (_dataBaseTypeSelected)
             {
                 MessageBoxHelper.ValidationMessage("Database Type isn't specified");
                 cmbDatabaseType.Focus();
@@ -133,6 +153,26 @@ namespace CodeGen.Controls
                 MessageBoxHelper.ValidationMessage("Connection string isn't specified");
                 txtConnectionString.Focus();
                 return false;
+            }
+            else
+            {
+                SupportedType item = null;
+                Invoke((MethodInvoker)delegate
+                {
+                    item = cmbDatabaseType.SelectedItem as SupportedType;
+                });
+
+                if (item != null)
+                {
+                    var plugin = item.Item as IAccessModelController;
+                    if (plugin != null)
+                    {
+                        if(!plugin.CheckConnection(txtConnectionString.Text))
+                        {
+                            return false;
+                        }
+                    }
+                }
             }
 
             if (Directory.Exists(txtProjectDirectory.Text))

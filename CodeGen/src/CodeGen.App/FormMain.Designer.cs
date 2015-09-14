@@ -52,10 +52,12 @@
             this.toolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.panelMain = new System.Windows.Forms.Panel();
             this.statusStripMain = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabelMain = new System.Windows.Forms.ToolStripStatusLabel();
             this.saveFileDialogProject = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogProject = new System.Windows.Forms.OpenFileDialog();
+            this.workerCheckPlugins = new System.ComponentModel.BackgroundWorker();
             this.menuMain.SuspendLayout();
-            this.panelMain.SuspendLayout();
+            this.statusStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuMain
@@ -164,9 +166,9 @@
             // 
             // toolStripMenuItemProjectProperties
             // 
+            resources.ApplyResources(this.toolStripMenuItemProjectProperties, "toolStripMenuItemProjectProperties");
             this.toolStripMenuItemProjectProperties.Image = global::CodeGen.Properties.Resources.interface_preferences;
             this.toolStripMenuItemProjectProperties.Name = "toolStripMenuItemProjectProperties";
-            resources.ApplyResources(this.toolStripMenuItemProjectProperties, "toolStripMenuItemProjectProperties");
             // 
             // toolStripMenuItemTools
             // 
@@ -212,14 +214,23 @@
             // panelMain
             // 
             this.panelMain.BackColor = System.Drawing.SystemColors.Control;
-            this.panelMain.Controls.Add(this.statusStripMain);
             resources.ApplyResources(this.panelMain, "panelMain");
             this.panelMain.Name = "panelMain";
             // 
             // statusStripMain
             // 
+            this.statusStripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
+            this.statusStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabelMain});
             resources.ApplyResources(this.statusStripMain, "statusStripMain");
             this.statusStripMain.Name = "statusStripMain";
+            this.statusStripMain.ShowItemToolTips = true;
+            // 
+            // toolStripStatusLabelMain
+            // 
+            this.toolStripStatusLabelMain.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.toolStripStatusLabelMain.Name = "toolStripStatusLabelMain";
+            resources.ApplyResources(this.toolStripStatusLabelMain, "toolStripStatusLabelMain");
             // 
             // saveFileDialogProject
             // 
@@ -229,20 +240,26 @@
             // 
             resources.ApplyResources(this.openFileDialogProject, "openFileDialogProject");
             // 
+            // workerCheckPlugins
+            // 
+            this.workerCheckPlugins.DoWork += new System.ComponentModel.DoWorkEventHandler(this.workerCheckPlugins_DoWork);
+            this.workerCheckPlugins.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.workerCheckPlugins_RunWorkerCompleted);
+            // 
             // FormMain
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.Controls.Add(this.panelMain);
+            this.Controls.Add(this.statusStripMain);
             this.Controls.Add(this.menuMain);
             this.Name = "FormMain";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();
-            this.panelMain.ResumeLayout(false);
-            this.panelMain.PerformLayout();
+            this.statusStripMain.ResumeLayout(false);
+            this.statusStripMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,7 +292,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemPluginsManager;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemOptions;
         private System.Windows.Forms.ToolStripSeparator toolStripToolsSeparator1;
-
+        private System.ComponentModel.BackgroundWorker workerCheckPlugins;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelMain;
     }
 }
 

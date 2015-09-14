@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-[assembly: AssemblyCompany("FrostDisk Chile")]
+[assembly: AssemblyCompany("FrostDisk")]
 [assembly: AssemblyProduct("CodeGen")]
 [assembly: AssemblyCopyright("Copyright FrostDisk© 2015")]
 [assembly: AssemblyTrademark("")]
@@ -16,5 +16,5 @@
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.9.0.0")]
-[assembly: AssemblyFileVersion("0.9.0.0")]
+[assembly: AssemblyVersion("0.9.1.0")]
+[assembly: AssemblyFileVersion("0.9.1.0")]

@@ -8,6 +8,10 @@ using CodeGen.Utils;
 
 namespace CodeGen
 {
+    /// <summary>
+    /// Plugin Manager Form Dialog
+    /// </summary>
+    /// <seealso cref="Form" />
     public partial class FormPluginsManager : Form
     {
         #region properties
@@ -16,6 +20,9 @@ namespace CodeGen
 
         #region initialization
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormPluginsManager"/> class.
+        /// </summary>
         public FormPluginsManager()
         {
             InitializeComponent();
@@ -25,10 +32,17 @@ namespace CodeGen
 
         #region methods
 
+        /// <summary>
+        /// Loads the local variables.
+        /// </summary>
         public void LoadLocalVariables()
         {
         }
 
+        /// <summary>
+        /// Enables the controls.
+        /// </summary>
+        /// <param name="enable">if set to <c>true</c> [enable].</param>
         public void EnableControls(bool enable)
         {
             listPluginsList.Enabled = enable;
@@ -37,6 +51,9 @@ namespace CodeGen
             btnClose.Enabled = enable;
         }
 
+        /// <summary>
+        /// Updates the assembly list.
+        /// </summary>
         public void UpdateAssemblyList()
         {
             var globalSettings = ProgramSettings.GetGlobalSettings();
@@ -74,6 +91,10 @@ namespace CodeGen
             }
         }
 
+        /// <summary>
+        /// Loads the plugin.
+        /// </summary>
+        /// <param name="type">The type.</param>
         public void LoadPlugin(PluginType type)
         {
             pnlPluginDetails.Controls.Clear();

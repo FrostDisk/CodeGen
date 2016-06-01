@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CodeGen.Controls;
 using CodeGen.Library.Formats;
@@ -14,12 +8,19 @@ using CodeGen.Utils;
 
 namespace CodeGen
 {
+    /// <summary>
+    /// Base Template Configuration Form
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class FormBaseTemplateConfiguration : Form
     {
         #region properties
 
         private static FormBaseTemplateConfiguration _instance;
 
+        /// <summary>
+        /// Singleton Instance of this Class
+        /// </summary>
         public static FormBaseTemplateConfiguration Instance
         {
             get { return _instance ?? (_instance = new FormBaseTemplateConfiguration()); }
@@ -31,6 +32,9 @@ namespace CodeGen
 
         #region initialization
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormBaseTemplateConfiguration"/> class.
+        /// </summary>
         public FormBaseTemplateConfiguration()
         {
             InitializeComponent();
@@ -43,6 +47,10 @@ namespace CodeGen
 
         #region methods
 
+        /// <summary>
+        /// Replace the 'MyProject' name
+        /// </summary>
+        /// <param name="projectName">Name of the project.</param>
         public void ReplaceMyProject(string projectName)
         {
             string safeName = StringHelper.ConvertToSafeCodeName(projectName);
@@ -56,6 +64,10 @@ namespace CodeGen
             }
         }
 
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <returns></returns>
         public PluginSettings GetSettings()
         {
             PluginSettings settings = new PluginSettings();
@@ -73,6 +85,10 @@ namespace CodeGen
             return settings;
         }
 
+        /// <summary>
+        /// Save the settings 
+        /// </summary>
+        /// <param name="restartValues">if set to <c>true</c> [restart values].</param>
         public void FinishSetting(bool restartValues = false)
         {
             foreach (var entry in _parameters)
@@ -88,6 +104,11 @@ namespace CodeGen
             }
         }
 
+        /// <summary>
+        /// Updates the setting.
+        /// </summary>
+        /// <param name="code">The code.</param>
+        /// <param name="value">The value.</param>
         public void UpdateSetting(string code, string value)
         {
             ITemplateParameter parameter = _parameters[code];
@@ -97,6 +118,11 @@ namespace CodeGen
             }
         }
 
+        /// <summary>
+        /// Validates the form.
+        /// </summary>
+        /// <param name="showMessages">if set to <c>true</c> [show messages].</param>
+        /// <returns></returns>
         public bool ValidateForm(bool showMessages = true)
         {
             List<string> messages = new List<string>();

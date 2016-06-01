@@ -11,12 +11,20 @@ using CodeGen.Library.Formats;
 
 namespace CodeGen.Controls
 {
+    /// <summary>
+    /// TemplateParameter
+    /// </summary>
+    /// <seealso cref="UserControl" />
+    /// <seealso cref="ITemplateParameter" />
     public partial class TemplateParameter : UserControl, ITemplateParameter
     {
         #region properties
 
         private string _savedValue;
 
+        /// <summary>
+        /// ParameterName
+        /// </summary>
         [Browsable(true)]
         public string ParameterName
         {
@@ -24,6 +32,9 @@ namespace CodeGen.Controls
             set { lblName.Text = value; }
         }
 
+        /// <summary>
+        /// ParameterCode
+        /// </summary>
         [Browsable(true)]
         public string ParameterCode
         {
@@ -31,6 +42,9 @@ namespace CodeGen.Controls
             set { lblCode.Text = value; }
         }
 
+        /// <summary>
+        /// ParameterValue
+        /// </summary>
         [Browsable(true)]
         public string ParameterValue
         {
@@ -38,15 +52,30 @@ namespace CodeGen.Controls
             set { txtValue.Text = value; }
         }
 
+        /// <summary>
+        /// IsUpdated
+        /// </summary>
         public bool IsUpdated { get; set; }
 
+        /// <summary>
+        /// DefaultValue
+        /// </summary>
         [Browsable(true)]
         public string DefaultValue { get; set; }
 
+        /// <summary>
+        /// IsDefaultValue
+        /// </summary>
         public bool IsDefaultValue { get; private set; }
 
+        /// <summary>
+        /// Type
+        /// </summary>
         public Type Type { get { return typeof (string); } }
 
+        /// <summary>
+        /// Tooltip
+        /// </summary>
         [Browsable(true)]
         public string Tooltip
         {
@@ -54,6 +83,9 @@ namespace CodeGen.Controls
             set { toolTipParameter.SetToolTip(txtValue, value); }
         }
 
+        /// <summary>
+        /// ReadOnly
+        /// </summary>
         [Browsable(true)]
         public bool ReadOnly
         {
@@ -61,6 +93,9 @@ namespace CodeGen.Controls
             set { txtValue.ReadOnly = value; }
         }
 
+        /// <summary>
+        /// Required
+        /// </summary>
         [Browsable(true)]
         public bool Required { get; set; }
 
@@ -68,6 +103,9 @@ namespace CodeGen.Controls
 
         #region initialization
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TemplateParameter"/> class.
+        /// </summary>
         public TemplateParameter()
         {
             InitializeComponent();
@@ -80,6 +118,10 @@ namespace CodeGen.Controls
 
         #region methods
 
+        /// <summary>
+        /// Updates the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
         public void UpdateValue(string value)
         {
             if (!IsUpdated && !StringHelper.AreEquals(value, _savedValue))
@@ -91,6 +133,10 @@ namespace CodeGen.Controls
             txtValue.Text = value;
         }
 
+        /// <summary>
+        /// Validates the form.
+        /// </summary>
+        /// <returns></returns>
         public bool ValidateForm()
         {
             if (!Required)
@@ -101,6 +147,9 @@ namespace CodeGen.Controls
             return !string.IsNullOrWhiteSpace(txtValue.Text);
         }
 
+        /// <summary>
+        /// Restores the value.
+        /// </summary>
         public void RestoreValue()
         {
             if (IsUpdated)

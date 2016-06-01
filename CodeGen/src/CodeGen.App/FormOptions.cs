@@ -5,16 +5,26 @@ using System.Windows.Forms;
 
 namespace CodeGen
 {
+    /// <summary>
+    /// FormOptions
+    /// </summary>
+    /// <seealso cref="Form" />
     public partial class FormOptions : Form
     {
         #region properties
 
-        public GlobalSettings _settings { get; set; }
+        /// <summary>
+        /// Gets or sets the _settings.
+        /// </summary>
+        private GlobalSettings _settings { get; set; }
 
         #endregion
 
         #region initialization
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormOptions"/> class.
+        /// </summary>
         public FormOptions()
         {
             InitializeComponent();
@@ -24,6 +34,9 @@ namespace CodeGen
 
         #region methods
 
+        /// <summary>
+        /// Loads the local variables.
+        /// </summary>
         public void LoadLocalVariables()
         {
             _settings = ProgramSettings.GetGlobalSettings();

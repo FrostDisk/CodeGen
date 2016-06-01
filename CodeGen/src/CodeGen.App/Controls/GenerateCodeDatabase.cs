@@ -9,23 +9,53 @@ using System.IO;
 
 namespace CodeGen.Controls
 {
+    /// <summary>
+    /// GenerateCodeDatabase
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.UserControl" />
+    /// <seealso cref="CodeGen.Controls.IGeneratorUserControl" />
     public partial class GenerateCodeDatabase : UserControl, IGeneratorUserControl
     {
         #region properties
 
+        /// <summary>
+        /// Project
+        /// </summary>
         public Project Project { get; set; }
 
+        /// <summary>
+        /// IsLoaded
+        /// </summary>
         public bool IsLoaded { get; set; }
 
+        /// <summary>
+        /// Occurs when [on control update].
+        /// </summary>
         public event EventHandler OnControlUpdate;
 
+        /// <summary>
+        /// Occurs when [on settings update].
+        /// </summary>
         public event EventHandler OnSettingsUpdate;
 
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
+        /// <value>
+        /// The settings.
+        /// </value>
+        /// <exception cref="NotImplementedException"></exception>
         public PluginSettings Settings
         {
             get { throw new NotImplementedException(); }
         }
 
+        /// <summary>
+        /// Gets the active template.
+        /// </summary>
+        /// <value>
+        /// The active template.
+        /// </value>
         public IGeneratorTemplate ActiveTemplate { get; private set; }
 
         private Dictionary<string, DatabaseEntity> _entities;
@@ -34,6 +64,9 @@ namespace CodeGen.Controls
 
         #region initialization
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateCodeDatabase"/> class.
+        /// </summary>
         public GenerateCodeDatabase()
         {
             InitializeComponent();
@@ -45,6 +78,10 @@ namespace CodeGen.Controls
 
         #region methods
 
+        /// <summary>
+        /// Updates the settings.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
         public void UpdateSettings(PluginSettings settings)
         {
             if (cmbTemplate.SelectedItem == null)
@@ -53,6 +90,9 @@ namespace CodeGen.Controls
             }
         }
 
+        /// <summary>
+        /// Loads the local variables.
+        /// </summary>
         public void LoadLocalVariables()
         {
             cmbDatabaseEntity.Items.Clear();
@@ -64,6 +104,10 @@ namespace CodeGen.Controls
             cmbTemplate.ValueMember = "Name";
         }
 
+        /// <summary>
+        /// Validates the form.
+        /// </summary>
+        /// <returns></returns>
         public bool ValidateForm()
         {
             if (cmbDatabaseEntity.SelectedItem == null)

@@ -10,6 +10,10 @@ using System.ComponentModel;
 
 namespace CodeGen
 {
+    /// <summary>
+    /// FormMain
+    /// </summary>
+    /// <seealso cref="Form" />
     public partial class FormMain : Form
     {
         #region properties
@@ -18,12 +22,18 @@ namespace CodeGen
 
         private ProjectWorkspace _activeControl;
 
+        /// <summary>
+        /// Full-path project location
+        /// </summary>
         public string ProjectLocation { get; set; }
 
         #endregion
 
         #region initialization
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormMain"/> class.
+        /// </summary>
         public FormMain()
         {
             InitializeComponent();
@@ -35,8 +45,10 @@ namespace CodeGen
 
         private void LoadLocalVariables()
         {
+            // Recover saved project directory (or load default if isn't any)
             openFileDialogProject.InitialDirectory = ProgramSettings.GetGlobalSettings().DirectoriesSettings.DefaultProjectsDirectory;
 
+            // Detect if the application was loaded with a project (double clic on a project file)
             if(string.IsNullOrWhiteSpace(ProjectLocation))
             {
                 _activeProject = new Project();
@@ -50,6 +62,7 @@ namespace CodeGen
 
         private void UpdateMenuControls()
         {
+            // Block controls if is there a active project loaded
             bool enable = _activeProject.IsValid;
 
             toolStripMenuItemProject.Enabled = enable;
@@ -61,6 +74,7 @@ namespace CodeGen
 
         private void UpdateWindowTitle()
         {
+            // Shows an * in the Window title to mark if the project has any unsaved changes
             Text = _activeProject.IsValid
                     ? string.Format(_activeProject.IsUnsaved ? "*{0} - {1} {2}" : "{0} - {1} {2}", _activeProject.Name, ProgramInfo.AssemblyProduct, ProgramInfo.AssemblyVersion)
                     : string.Format("{0} {1}", ProgramInfo.AssemblyProduct, ProgramInfo.AssemblyVersion);
@@ -94,6 +108,7 @@ namespace CodeGen
 
         private void SaveProject(bool showSaveDialog)
         {
+            // To differentiate from "Save" and "Save as"
             if(showSaveDialog)
             {
                 saveFileDialogProject.InitialDirectory = _activeProject.SaveLocation;
@@ -103,6 +118,8 @@ namespace CodeGen
                     _activeProject.SaveLocation = saveFileDialogProject.FileName;
                 }
             }
+
+            // In case the project is new, the "Save" always show the SaveDialog
             else if(_activeProject.IsNew)
             {
                 string projectDirectory = _activeProject.SaveDirectory;
@@ -115,6 +132,7 @@ namespace CodeGen
 
             BlockWindowControls(true);
 
+            // Serialize the instance of the project class in a Xml file and save it in a file
             using (Stream projectStream = File.Open(_activeProject.SaveLocation, FileMode.Create, FileAccess.Write))
             {
                 ProjectController.SaveProjectToStream(_activeProject, projectStream, Resources.EncriptionKey);
@@ -142,6 +160,7 @@ namespace CodeGen
         {
             bool close = true;
 
+            // Check if there a open project and has unsaved changes
             if(_activeProject.IsValid && _activeProject.IsUnsaved)
             {
                 DialogResult dialogResult = MessageBox.Show("There are unsaved changes. Do you want to save now?", "Unsaved Changes", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -190,7 +209,8 @@ namespace CodeGen
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            try {
+            try
+            {
                 LoadLocalVariables();
                 UpdateWindowTitle();
 
@@ -212,6 +232,7 @@ namespace CodeGen
         {
             try
             {
+                // Store some global configuration to save
                 Settings.Default.IsMaximized = WindowState.Equals(FormWindowState.Maximized);
                 Settings.Default.WindowSizeWidth = Size.Width;
                 Settings.Default.WindowSizeHeight = Size.Height;
@@ -266,6 +287,7 @@ namespace CodeGen
         {
             try
             {
+                // Before opening a new project, save the active project (if there's any)
                 SaveAndCloseProject(false);
 
                 if (openFileDialogProject.ShowDialog() == DialogResult.OK)

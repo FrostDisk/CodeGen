@@ -7,73 +7,119 @@ using System.Windows.Forms;
 
 namespace CodeGen.Core
 {
+    /// <summary>
+    /// SqlServerQueryBaseTemplate
+    /// </summary>
+    /// <seealso cref="IQueryGeneratorTemplate" />
     public sealed class SqlServerQueryBaseTemplate : IQueryGeneratorTemplate
     {
         #region properties
 
+        /// <summary>
+        /// Title
+        /// </summary>
         public string Title
         {
             get { return "Sql Server Base Query Template"; }
         }
 
+        /// <summary>
+        /// CreatedBy
+        /// </summary>
         public string CreatedBy
         {
             get { return ProgramInfo.AssemblyCompany; }
         }
 
+        /// <summary>
+        /// Icon
+        /// </summary>
         public Image Icon
         {
             get { return null; }
         }
 
+        /// <summary>
+        /// Description
+        /// </summary>
         public string Description
         {
             get { return "Sql Server Save/GetById/ListaAll Query Template"; }
         }
 
+        /// <summary>
+        /// Version
+        /// </summary>
         public string Version
         {
             get { return ProgramInfo.AssemblyVersion; }
         }
 
+        /// <summary>
+        /// Release Notes Url
+        /// </summary>
         public string ReleaseNotesUrl
         {
             get { return Resources.DefaultReleaseNotesUrl; }
         }
 
+        /// <summary>
+        /// Author Website Url
+        /// </summary>
         public string AuthorWebsiteUrl
         {
             get { return Resources.DefaultAuthorWebsiteUrl; }
         }
 
+        /// <summary>
+        /// Settings
+        /// </summary>
         public PluginSettings Settings { get; private set; }
 
+        /// <summary>
+        /// Language Code
+        /// </summary>
         public string LanguageCode
         {
             get { return "SqlServer"; }
         }
 
+        /// <summary>
+        /// File Extension
+        /// </summary>
         public string FileExtension
         {
             get { return ".sql"; }
         }
 
+        /// <summary>
+        /// FileName Filter
+        /// </summary>
         public string FileNameFilter
         {
             get { return "SQL Server files (*.sql)|*.sql"; }
         }
 
+        /// <summary>
+        /// Have Options
+        /// </summary>
         public bool HaveOptions
         {
             get { return true; }
         }
 
+        /// <summary>
+        /// Is Loaded
+        /// </summary>
         public bool IsLoaded { get; private set; }
 
         #endregion
 
         #region initialization
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlServerQueryBaseTemplate"/> class.
+        /// </summary>
         public SqlServerQueryBaseTemplate()
         {
             Settings = FormBaseTemplateConfiguration.Instance.GetSettings();
@@ -83,6 +129,10 @@ namespace CodeGen.Core
 
         #region methods
 
+        /// <summary>
+        /// Updates the settings.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
         public void UpdateSettings(PluginSettings settings)
         {
             foreach (PluginSettingValue settingValue in settings)
@@ -91,12 +141,20 @@ namespace CodeGen.Core
             }
         }
 
+        /// <summary>
+        /// Loads the specified project name.
+        /// </summary>
+        /// <param name="projectName">Name of the project.</param>
         public void Load(string projectName)
         {
             FormBaseTemplateConfiguration.Instance.ReplaceMyProject(projectName);
             IsLoaded = true;
         }
 
+        /// <summary>
+        /// Shows the options form.
+        /// </summary>
+        /// <returns></returns>
         public bool ShowOptionsForm()
         {
             var result = FormBaseTemplateConfiguration.Instance.ShowDialog();
@@ -109,6 +167,10 @@ namespace CodeGen.Core
             return false;
         }
 
+        /// <summary>
+        /// Gets the components.
+        /// </summary>
+        /// <returns></returns>
         public List<GeneratorComponent> GetComponents()
         {
             return new List<GeneratorComponent>
@@ -120,6 +182,12 @@ namespace CodeGen.Core
             };
         }
 
+        /// <summary>
+        /// Generates the name of the file.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <param name="componentId">The component identifier.</param>
+        /// <returns></returns>
         public string GenerateFileName(DatabaseEntity entity, int componentId)
         {
             if (FormBaseTemplateConfiguration.Instance.ValidateForm(false))
@@ -153,6 +221,12 @@ namespace CodeGen.Core
             return string.Empty;
         }
 
+        /// <summary>
+        /// Generates the specified entity.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <param name="componentId">The component identifier.</param>
+        /// <returns></returns>
         public string Generate(DatabaseEntity entity, int componentId)
         {
             if (FormBaseTemplateConfiguration.Instance.ValidateForm())

@@ -4,12 +4,18 @@ using CodeGen.Properties;
 
 namespace CodeGen.Configuration
 {
+    /// <summary>
+    /// ProjectSettings
+    /// </summary>
     [Serializable]
     public class ProjectSettings
     {
         [XmlIgnore]
-        public string _defaultProjectName;
+        private string _defaultProjectName;
 
+        /// <summary>
+        /// Gets the default name of the project.
+        /// </summary>
         [XmlElement("DefaultProjectName")]
         public string DefaultProjectName
         {

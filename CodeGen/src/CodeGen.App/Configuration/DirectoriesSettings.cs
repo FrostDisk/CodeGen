@@ -6,12 +6,18 @@ using CodeGen.Utils;
 
 namespace CodeGen.Configuration
 {
+    /// <summary>
+    /// Directories Settings 
+    /// </summary>
     [Serializable]
     public class DirectoriesSettings
     {
         [XmlIgnore]
         private string _defaultProjectsDirectory;
 
+        /// <summary>
+        /// Default Projects Directory
+        /// </summary>
         [XmlElement("DefaultProjectsDirectory")]
         public string DefaultProjectsDirectory
         {
@@ -35,6 +41,9 @@ namespace CodeGen.Configuration
         [XmlIgnore]
         private string _pluginsDirectory;
 
+        /// <summary>
+        /// Plugins Directory
+        /// </summary>
         [XmlElement("PluginsDirectory")]
         public string PluginsDirectory
         {
@@ -58,6 +67,9 @@ namespace CodeGen.Configuration
         [XmlIgnore]
         private string _cacheDirectory;
 
+        /// <summary>
+        /// Cache Directory
+        /// </summary>
         [XmlElement("CacheDirectory")]
         public string CacheDirectory
         {
@@ -81,6 +93,9 @@ namespace CodeGen.Configuration
         [XmlIgnore]
         private string _tempDirectory;
 
+        /// <summary>
+        /// Temp Directory
+        /// </summary>
         [XmlElement("TempDirectory")]
         public string TempDirectory
         {

@@ -9,18 +9,38 @@ using System.IO;
 
 namespace CodeGen.Controls
 {
+    /// <summary>
+    /// GenerateCodeFile
+    /// </summary>
+    /// <seealso cref="UserControl" />
+    /// <seealso cref="IGeneratorUserControl" />
     public partial class GenerateCodeFile : UserControl, IGeneratorUserControl
     {
         #region properties
 
+        /// <summary>
+        /// Project
+        /// </summary>
         public Project Project { get; set; }
 
+        /// <summary>
+        /// IsLoaded
+        /// </summary>
         public bool IsLoaded { get; set; }
 
+        /// <summary>
+        /// Occurs when [on control update].
+        /// </summary>
         public event EventHandler OnControlUpdate;
 
+        /// <summary>
+        /// Occurs when [on settings update].
+        /// </summary>
         public event EventHandler OnSettingsUpdate;
 
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
         public PluginSettings Settings
         {
             get
@@ -33,6 +53,12 @@ namespace CodeGen.Controls
             }
         }
 
+        /// <summary>
+        /// Gets the active template.
+        /// </summary>
+        /// <value>
+        /// The active template.
+        /// </value>
         public IGeneratorTemplate ActiveTemplate { get; private set; }
 
         private Dictionary<string, DatabaseEntity> _entities;
@@ -41,6 +67,9 @@ namespace CodeGen.Controls
 
         #region initialization
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateCodeFile"/> class.
+        /// </summary>
         public GenerateCodeFile()
         {
             InitializeComponent();
@@ -52,6 +81,10 @@ namespace CodeGen.Controls
 
         #region methods
 
+        /// <summary>
+        /// Updates the settings.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
         public void UpdateSettings(PluginSettings settings)
         {
             if (cmbTemplate.SelectedItem == null)
@@ -60,6 +93,9 @@ namespace CodeGen.Controls
             }
         }
 
+        /// <summary>
+        /// Loads the local variables.
+        /// </summary>
         public void LoadLocalVariables()
         {
             cmbDatabaseEntity.Items.Clear();
@@ -71,6 +107,10 @@ namespace CodeGen.Controls
             cmbTemplate.ValueMember = "Name";
         }
 
+        /// <summary>
+        /// Validates the form.
+        /// </summary>
+        /// <returns></returns>
         public bool ValidateForm()
         {
             if (cmbDatabaseEntity.SelectedItem == null)

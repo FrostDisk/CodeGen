@@ -177,7 +177,7 @@ namespace CodeGen.Utils
                                     }
                                 }
                             }
-                            catch(Exception ex)
+                            catch(Exception)
                             {
                                 isValidPlugin = false;
                             }
@@ -185,7 +185,7 @@ namespace CodeGen.Utils
                             pluginType.Enabled = isValidPlugin && pluginType.Enabled;
                         } // -- fin foreach (PluginType pluginType in pluginAssembly.Types)
                     }
-                    catch(Exception ex)
+                    catch(Exception)
                     {
                         pluginAssembly.IsValid = false;
                         pluginAssembly.Types.ForEach(t =>
@@ -213,7 +213,7 @@ namespace CodeGen.Utils
                                 isValidPlugin = true;
                             }
                         }
-                        catch(Exception ex)
+                        catch(Exception)
                         {
                             isValidPlugin = false;
                         }
@@ -562,7 +562,7 @@ namespace CodeGen.Utils
                         isValidPlugin = true;
                     }
                 }
-                catch(Exception ex)
+                catch(Exception)
                 {
                     isValidPlugin = false;
                 }
@@ -766,6 +766,12 @@ namespace CodeGen.Utils
             return (T) globalAssemblyType.PluginInstance;
         }
 
+        /// <summary>
+        /// Saves the Assembly Icon cache in disk
+        /// </summary>
+        /// <param name="icon">The icon.</param>
+        /// <param name="settings">The settings.</param>
+        /// <returns>File Path of the Icon</returns>
         public static string SaveIconOnCache(Image icon, GlobalSettings settings)
         {
             if (icon != null)

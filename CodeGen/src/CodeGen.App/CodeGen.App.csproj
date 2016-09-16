@@ -68,6 +68,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\AspNetMvcCoreCodeTemplate.cs" />
+    <Compile Include="Core\AspNetMvcCoreConstants.cs" />
+    <Compile Include="Core\AspNetMvcCoreGenerator.cs" />
+    <Compile Include="Core\eAspNetMvcCoreTemplateComponent.cs" />
+    <Compile Include="FormAspNetMvcCoreTemplateConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAspNetMvcCoreTemplateConfiguration.Designer.cs">
+      <DependentUpon>FormAspNetMvcCoreTemplateConfiguration.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +208,9 @@
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAspNetMvcCoreTemplateConfiguration.resx">
+      <DependentUpon>FormAspNetMvcCoreTemplateConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBaseTemplateConfiguration.resx">
       <DependentUpon>FormBaseTemplateConfiguration.cs</DependentUpon>
     </EmbeddedResource>
@@ -241,6 +254,7 @@
     <Content Include="Resources\Icons\file_extension_rtf.png" />
     <Content Include="Resources\Icons\file_extension_sit.png" />
     <None Include="Resources\Images\add_on.png" />
+    <None Include="Resources\Templates\class_Model.cs.tpl" />
     <None Include="Resources\Templates\sp_Delete.sql.tpl" />
     <None Include="Resources\Templates\sp_GetByID.sql.tpl" />
     <None Include="Resources\Templates\sp_ListAll.sql.tpl" />

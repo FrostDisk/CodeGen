@@ -18,11 +18,11 @@ namespace CodeGen.Core
         #region properties
 
         /// <summary>
-        /// Title
+        /// Author Website Url
         /// </summary>
-        public string Title
+        public string AuthorWebsiteUrl
         {
-            get { return "C# Base Code Template"; }
+            get { return Resources.DefaultAuthorWebsiteUrl; }
         }
 
         /// <summary>
@@ -34,56 +34,11 @@ namespace CodeGen.Core
         }
 
         /// <summary>
-        /// Icon
-        /// </summary>
-        public Image Icon
-        {
-            get { return null; }
-        }
-
-        /// <summary>
         /// Description
         /// </summary>
         public string Description
         {
             get { return "C# Domain/DataAccess Code Template"; }
-        }
-
-        /// <summary>
-        /// Version
-        /// </summary>
-        public string Version
-        {
-            get { return ProgramInfo.AssemblyVersion; }
-        }
-
-        /// <summary>
-        /// Release Notes Url
-        /// </summary>
-        public string ReleaseNotesUrl
-        {
-            get { return Resources.DefaultReleaseNotesUrl; }
-        }
-
-        /// <summary>
-        /// Author Website Url
-        /// </summary>
-        public string AuthorWebsiteUrl
-        {
-            get { return Resources.DefaultAuthorWebsiteUrl; }
-        }
-
-        /// <summary>
-        /// Settings
-        /// </summary>
-        public PluginSettings Settings { get; private set; }
-
-        /// <summary>
-        /// LanguageCode
-        /// </summary>
-        public string LanguageCode
-        {
-            get { return "CSharp"; }
         }
 
         /// <summary>
@@ -111,9 +66,55 @@ namespace CodeGen.Core
         }
 
         /// <summary>
+        /// Icon
+        /// </summary>
+        public Image Icon
+        {
+            get { return null; }
+        }
+
+        /// <summary>
         /// Is Loaded
         /// </summary>
         public bool IsLoaded { get; private set; }
+
+        /// <summary>
+        /// LanguageCode
+        /// </summary>
+        public string LanguageCode
+        {
+            get { return "CSharp"; }
+        }
+
+        /// <summary>
+        /// Release Notes Url
+        /// </summary>
+        public string ReleaseNotesUrl
+        {
+            get { return Resources.DefaultReleaseNotesUrl; }
+        }
+
+        /// <summary>
+        /// Settings
+        /// </summary>
+        public PluginSettings Settings { get; private set; }
+
+
+        /// <summary>
+        /// Title
+        /// </summary>
+        public string Title
+        {
+            get { return "C# Base Code Template"; }
+        }
+
+        /// <summary>
+        /// Version
+        /// </summary>
+        public string Version
+        {
+            get { return ProgramInfo.AssemblyVersion; }
+        }
 
         #endregion
 
@@ -132,15 +133,74 @@ namespace CodeGen.Core
         #region methods
 
         /// <summary>
-        /// Updates the settings.
+        /// Generates the specified entity.
         /// </summary>
-        /// <param name="settings">The settings.</param>
-        public void UpdateSettings(PluginSettings settings)
+        /// <param name="entity">The entity.</param>
+        /// <param name="componentId">The component identifier.</param>
+        /// <returns></returns>
+        public string Generate(DatabaseEntity entity, int componentId)
         {
-            foreach (PluginSettingValue settingValue in settings)
+            if (FormBaseTemplateConfiguration.Instance.ValidateForm())
             {
-                FormBaseTemplateConfiguration.Instance.UpdateSetting(settingValue.Key, settingValue.Value);
+                BaseGenerator generator = new BaseGenerator(Settings, entity);
+
+                switch (componentId)
+                {
+                    case (int)eBaseTemplateComponent.DOMAIN:
+                        {
+                            return generator.GenerateCodeDomain();
+                        }
+
+                    case (int)eBaseTemplateComponent.DATA_ACCESS:
+                        {
+                            return generator.GenerateCodeDataAccess();
+                        }
+                }
             }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Generates the name of the file.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <param name="componentId">The component identifier.</param>
+        /// <returns></returns>
+        public string GenerateFileName(DatabaseEntity entity, int componentId)
+        {
+            if (FormBaseTemplateConfiguration.Instance.ValidateForm(false))
+            {
+                BaseGenerator generator = new BaseGenerator(Settings, entity);
+
+                switch (componentId)
+                {
+                    case (int)eBaseTemplateComponent.DOMAIN:
+                        {
+                            return generator.DomainClassName + FileExtension;
+                        }
+
+                    case (int)eBaseTemplateComponent.DATA_ACCESS:
+                        {
+                            return generator.DataAccessClassName + FileExtension;
+                        }
+                }
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Gets the components.
+        /// </summary>
+        /// <returns></returns>
+        public List<GeneratorComponent> GetComponents()
+        {
+            return new List<GeneratorComponent>
+            {
+                new GeneratorComponent((int) eBaseTemplateComponent.DOMAIN, "Domain"),
+                new GeneratorComponent((int) eBaseTemplateComponent.DATA_ACCESS, "Data Access"),
+            };
         }
 
         /// <summary>
@@ -169,75 +229,17 @@ namespace CodeGen.Core
             return false;
         }
 
+        
         /// <summary>
-        /// Gets the components.
+        /// Updates the settings.
         /// </summary>
-        /// <returns></returns>
-        public List<GeneratorComponent> GetComponents()
+        /// <param name="settings">The settings.</param>
+        public void UpdateSettings(PluginSettings settings)
         {
-            return new List<GeneratorComponent>
+            foreach (PluginSettingValue settingValue in settings)
             {
-                new GeneratorComponent((int) eBaseTemplateComponent.DOMAIN, "Domain"),
-                new GeneratorComponent((int) eBaseTemplateComponent.DATA_ACCESS, "Data Access"),
-            };
-        }
-
-        /// <summary>
-        /// Generates the name of the file.
-        /// </summary>
-        /// <param name="entity">The entity.</param>
-        /// <param name="componentId">The component identifier.</param>
-        /// <returns></returns>
-        public string GenerateFileName(DatabaseEntity entity, int componentId)
-        {
-            if (FormBaseTemplateConfiguration.Instance.ValidateForm(false))
-            {
-                BaseGenerator generator = new BaseGenerator(Settings, entity);
-
-                switch (componentId)
-                {
-                    case (int) eBaseTemplateComponent.DOMAIN:
-                    {
-                        return generator.DomainClassName + FileExtension;
-                    }
-
-                    case (int) eBaseTemplateComponent.DATA_ACCESS:
-                    {
-                        return generator.DataAccessClassName + FileExtension;
-                    }
-                }
+                FormBaseTemplateConfiguration.Instance.UpdateSetting(settingValue.Key, settingValue.Value);
             }
-
-            return string.Empty;
-        }
-
-        /// <summary>
-        /// Generates the specified entity.
-        /// </summary>
-        /// <param name="entity">The entity.</param>
-        /// <param name="componentId">The component identifier.</param>
-        /// <returns></returns>
-        public string Generate(DatabaseEntity entity, int componentId)
-        {
-            if (FormBaseTemplateConfiguration.Instance.ValidateForm())
-            {
-                BaseGenerator generator = new BaseGenerator(Settings, entity);
-
-                switch (componentId)
-                {
-                    case (int) eBaseTemplateComponent.DOMAIN:
-                    {
-                        return generator.GenerateCodeDomain();
-                    }
-
-                    case (int) eBaseTemplateComponent.DATA_ACCESS:
-                    {
-                        return generator.GenerateCodeDataAccess();
-                    }
-                }
-            }
-
-            return string.Empty;
         }
 
         #endregion

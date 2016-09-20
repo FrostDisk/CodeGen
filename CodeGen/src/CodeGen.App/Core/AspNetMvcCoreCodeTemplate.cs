@@ -1,12 +1,9 @@
 ﻿using CodeGen.Plugin.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using CodeGen.Utils;
 using CodeGen.Properties;
+using CodeGen.Utils;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace CodeGen.Core
 {
@@ -95,6 +92,24 @@ namespace CodeGen.Core
 
         public string Generate(DatabaseEntity entity, int componentId)
         {
+            if (FormAspNetMvcCoreTemplateConfiguration.Instance.ValidateForm())
+            {
+                AspNetMvcCoreGenerator generator = new AspNetMvcCoreGenerator(Settings, entity);
+
+                switch (componentId)
+                {
+                    case (int)eAspNetMvcCoreTemplateComponent.MODEL:
+                        {
+                            return generator.GenerateCodeModel();
+                        }
+
+                    //case (int)eBaseTemplateComponent.DATA_ACCESS:
+                    //    {
+                    //        return generator.GenerateCodeDataAccess();
+                    //    }
+                }
+            }
+
             return string.Empty;
         }
 
@@ -126,24 +141,34 @@ namespace CodeGen.Core
             return new List<GeneratorComponent>
             {
                 new GeneratorComponent((int) eAspNetMvcCoreTemplateComponent.MODEL, "Model"),
-                new GeneratorComponent((int) eAspNetMvcCoreTemplateComponent.CONTROLLER, "Controller"),
+                //new GeneratorComponent((int) eAspNetMvcCoreTemplateComponent.CONTROLLER, "Controller"),
             };
         }
 
         public void Load(string projectName)
         {
-            FormBaseTemplateConfiguration.Instance.ReplaceMyProject(projectName);
+            FormAspNetMvcCoreTemplateConfiguration.Instance.ReplaceMyProject(projectName);
             IsLoaded = true;
         }
 
         public bool ShowOptionsForm()
         {
-            return true;
+            var result = FormAspNetMvcCoreTemplateConfiguration.Instance.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                Settings = FormAspNetMvcCoreTemplateConfiguration.Instance.GetSettings();
+                return true;
+            }
+            return false;
         }
 
         public void UpdateSettings(PluginSettings settings)
         {
-            
+            foreach (PluginSettingValue settingValue in settings)
+            {
+                FormAspNetMvcCoreTemplateConfiguration.Instance.UpdateSetting(settingValue.Key, settingValue.Value);
+            }
         }
     }
 }

@@ -220,4 +220,7 @@
   <data name="EncriptionKey" xml:space="preserve">
     <value>_N&gt;Tx'}rxm@a]Lg\z]dN3DBPNb(xwsMOgX2YVi"Ktg*n-At&amp;u8&lt;rh&gt;Hlhs";;&amp;w</value>
   </data>
+  <data name="class_Model" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Templates\class_Model.cs.tpl;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
 </root>

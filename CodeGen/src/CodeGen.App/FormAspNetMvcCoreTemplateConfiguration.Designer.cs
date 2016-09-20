@@ -37,8 +37,8 @@
             this.paramConnectionStringKey = new CodeGen.Controls.TemplateParameter();
             this.tabClasses = new System.Windows.Forms.TabPage();
             this.tableLayoutClasses = new System.Windows.Forms.TableLayoutPanel();
-            this.paramDomainPrefix = new CodeGen.Controls.TemplateParameter();
-            this.paramDomainSuffix = new CodeGen.Controls.TemplateParameter();
+            this.paramModelPrefix = new CodeGen.Controls.TemplateParameter();
+            this.paramModelSuffix = new CodeGen.Controls.TemplateParameter();
             this.paramDataAccessPrefix = new CodeGen.Controls.TemplateParameter();
             this.paramDataAccessSuffix = new CodeGen.Controls.TemplateParameter();
             this.tabProcedures = new System.Windows.Forms.TabPage();
@@ -212,8 +212,8 @@
             this.tableLayoutClasses.ColumnCount = 2;
             this.tableLayoutClasses.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutClasses.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutClasses.Controls.Add(this.paramDomainPrefix, 0, 0);
-            this.tableLayoutClasses.Controls.Add(this.paramDomainSuffix, 1, 0);
+            this.tableLayoutClasses.Controls.Add(this.paramModelPrefix, 0, 0);
+            this.tableLayoutClasses.Controls.Add(this.paramModelSuffix, 1, 0);
             this.tableLayoutClasses.Controls.Add(this.paramDataAccessPrefix, 0, 1);
             this.tableLayoutClasses.Controls.Add(this.paramDataAccessSuffix, 1, 1);
             this.tableLayoutClasses.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -227,39 +227,39 @@
             this.tableLayoutClasses.Size = new System.Drawing.Size(468, 272);
             this.tableLayoutClasses.TabIndex = 4;
             // 
-            // paramDomainPrefix
+            // paramModelPrefix
             // 
-            this.paramDomainPrefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.paramModelPrefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.paramDomainPrefix.DefaultValue = null;
-            this.paramDomainPrefix.IsUpdated = false;
-            this.paramDomainPrefix.Location = new System.Drawing.Point(3, 3);
-            this.paramDomainPrefix.Name = "paramDomainPrefix";
-            this.paramDomainPrefix.ParameterCode = "DOMAIN_PREFIX";
-            this.paramDomainPrefix.ParameterName = "Domain Prefix";
-            this.paramDomainPrefix.ParameterValue = "";
-            this.paramDomainPrefix.ReadOnly = false;
-            this.paramDomainPrefix.Required = false;
-            this.paramDomainPrefix.Size = new System.Drawing.Size(228, 46);
-            this.paramDomainPrefix.TabIndex = 0;
-            this.paramDomainPrefix.Tooltip = "";
+            this.paramModelPrefix.DefaultValue = null;
+            this.paramModelPrefix.IsUpdated = false;
+            this.paramModelPrefix.Location = new System.Drawing.Point(3, 3);
+            this.paramModelPrefix.Name = "paramModelPrefix";
+            this.paramModelPrefix.ParameterCode = "MODEL_PREFIX";
+            this.paramModelPrefix.ParameterName = "Model Prefix";
+            this.paramModelPrefix.ParameterValue = "";
+            this.paramModelPrefix.ReadOnly = false;
+            this.paramModelPrefix.Required = false;
+            this.paramModelPrefix.Size = new System.Drawing.Size(228, 46);
+            this.paramModelPrefix.TabIndex = 0;
+            this.paramModelPrefix.Tooltip = "";
             // 
-            // paramDomainSuffix
+            // paramModelSuffix
             // 
-            this.paramDomainSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.paramModelSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.paramDomainSuffix.DefaultValue = null;
-            this.paramDomainSuffix.IsUpdated = false;
-            this.paramDomainSuffix.Location = new System.Drawing.Point(237, 3);
-            this.paramDomainSuffix.Name = "paramDomainSuffix";
-            this.paramDomainSuffix.ParameterCode = "DOMAIN_SUFFIX";
-            this.paramDomainSuffix.ParameterName = "Domain Suffix";
-            this.paramDomainSuffix.ParameterValue = "";
-            this.paramDomainSuffix.ReadOnly = false;
-            this.paramDomainSuffix.Required = false;
-            this.paramDomainSuffix.Size = new System.Drawing.Size(228, 46);
-            this.paramDomainSuffix.TabIndex = 1;
-            this.paramDomainSuffix.Tooltip = "";
+            this.paramModelSuffix.DefaultValue = null;
+            this.paramModelSuffix.IsUpdated = false;
+            this.paramModelSuffix.Location = new System.Drawing.Point(237, 3);
+            this.paramModelSuffix.Name = "paramModelSuffix";
+            this.paramModelSuffix.ParameterCode = "MODEL_SUFFIX";
+            this.paramModelSuffix.ParameterName = "Model Suffix";
+            this.paramModelSuffix.ParameterValue = "";
+            this.paramModelSuffix.ReadOnly = false;
+            this.paramModelSuffix.Required = false;
+            this.paramModelSuffix.Size = new System.Drawing.Size(228, 46);
+            this.paramModelSuffix.TabIndex = 1;
+            this.paramModelSuffix.Tooltip = "";
             // 
             // paramDataAccessPrefix
             // 
@@ -768,10 +768,10 @@
         private Controls.TemplateParameter paramModelNamespace;
         private Controls.TemplateParameter paramDataAccessNamespace;
         private System.Windows.Forms.TableLayoutPanel tableLayoutClasses;
-        private Controls.TemplateParameter paramDomainPrefix;
+        private Controls.TemplateParameter paramModelPrefix;
         private Controls.TemplateParameter paramDataAccessSuffix;
         private Controls.TemplateParameter paramDataAccessPrefix;
-        private Controls.TemplateParameter paramDomainSuffix;
+        private Controls.TemplateParameter paramModelSuffix;
         private System.Windows.Forms.TableLayoutPanel tableLayoutProcedures;
         private Controls.TemplateParameter paramSavePrefix;
         private Controls.TemplateParameter paramSaveSuffix;

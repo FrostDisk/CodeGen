@@ -18,14 +18,14 @@ namespace CodeGen
     {
         #region properties
 
-        private static FormBaseTemplateConfiguration _instance;
+        private static FormAspNetMvcCoreTemplateConfiguration _instance;
 
         /// <summary>
         /// Singleton Instance of this Class
         /// </summary>
-        public static FormBaseTemplateConfiguration Instance
+        public static FormAspNetMvcCoreTemplateConfiguration Instance
         {
-            get { return _instance ?? (_instance = new FormBaseTemplateConfiguration()); }
+            get { return _instance ?? (_instance = new FormAspNetMvcCoreTemplateConfiguration()); }
         }
 
         private Dictionary<string, ITemplateParameter> _parameters;
@@ -35,7 +35,7 @@ namespace CodeGen
         #region initialization
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FormBaseTemplateConfiguration"/> class.
+        /// Initializes a new instance of the <see cref="FormAspNetMvcCoreTemplateConfiguration"/> class.
         /// </summary>
         public FormAspNetMvcCoreTemplateConfiguration()
         {

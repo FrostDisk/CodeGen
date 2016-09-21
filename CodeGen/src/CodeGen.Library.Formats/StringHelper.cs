@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Design.PluralizationServices;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -151,6 +152,20 @@ namespace CodeGen.Library.Formats
             }
 
             return (sb.ToString().Normalize(NormalizationForm.FormC));
+        }
+
+        public static string Pluralize(string word)
+        {
+            PluralizationService service = PluralizationService.CreateService(CultureInfo.CreateSpecificCulture("en-US"));
+
+            return service.IsPlural(word) ? word : service.Pluralize(word);
+        }
+
+        public static string Singularize(string word)
+        {
+            PluralizationService service = PluralizationService.CreateService(CultureInfo.CreateSpecificCulture("en-US"));
+
+            return service.IsSingular(word) ? word : service.Singularize(word);
         }
     }
 }

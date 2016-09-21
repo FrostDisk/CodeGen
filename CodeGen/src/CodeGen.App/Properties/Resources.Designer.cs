@@ -81,6 +81,15 @@ namespace CodeGen.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string class_Controller {
+            get {
+                return ResourceManager.GetString("class_Controller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to using System;
         ///using System.Collections.Generic;
         ///using System.Configuration;
@@ -145,8 +154,8 @@ namespace CodeGen.Properties {
         ///namespace {NAMESPACE_MODEL}
         ///{
         ///    /// &lt;summary&gt;
-        ///    /// Domain Class {CLASS_NAME_MODEL}
-        ///    /// &lt;/summary [rest of string was truncated]&quot;;.
+        ///    /// Model Class {CLASS_NAME_MODEL}
+        ///    /// &lt;/summary&gt; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string class_Model {
             get {

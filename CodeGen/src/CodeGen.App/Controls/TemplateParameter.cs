@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CodeGen.Library.Formats;
 
@@ -158,6 +152,15 @@ namespace CodeGen.Controls
                 IsUpdated = false;
             }
 
+        }
+
+        /// <summary>
+        /// ToString
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return ParameterCode + " = \"" + ParameterValue + "\"";
         }
 
         #endregion

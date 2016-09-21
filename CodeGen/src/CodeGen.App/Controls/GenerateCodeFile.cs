@@ -149,6 +149,10 @@ namespace CodeGen.Controls
 
                 txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (int)cmbComponent.SelectedValue);
             }
+            else
+            {
+                txtFileName.Text = string.Empty;
+            }
         }
 
         private void EnableButtons()

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Configuration;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;

@@ -10,7 +10,7 @@ using System.Xml;
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace {NAMESPACE_MODEL}
+namespace {NAMESPACE_MODELS}
 {
     /// <summary>
     /// Model Class {CLASS_NAME_MODEL}

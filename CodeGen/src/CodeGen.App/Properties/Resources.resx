@@ -226,4 +226,19 @@
   <data name="class_Controller" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Templates\class_Controller.cs.tpl;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="view_Create" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Templates\view_Create.cshtml.tpl;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="view_Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Templates\view_Delete.cshtml.tpl;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="view_Details" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Templates\view_Details.cshtml.tpl;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="view_Edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Templates\view_Edit.cshtml.tpl;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="view_Index" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Templates\view_Index.cshtml.tpl;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
 </root>

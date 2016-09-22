@@ -144,7 +144,7 @@ namespace CodeGen.Controls
                     _entities[entityItem] = entity;
                 }
 
-                txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (int)cmbComponent.SelectedValue);
+                txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (GeneratorComponent)cmbComponent.SelectedItem);
             }
         }
 
@@ -274,7 +274,7 @@ namespace CodeGen.Controls
                         _entities[tableName] = entity;
                     }
 
-                    var code = ActiveTemplate.Generate(entity, (int)cmbComponent.SelectedValue);
+                    var code = ActiveTemplate.Generate(entity, (GeneratorComponent)cmbComponent.SelectedItem);
 
                     if (!string.IsNullOrWhiteSpace(code))
                     {
@@ -307,7 +307,9 @@ namespace CodeGen.Controls
         {
             try
             {
-                saveDialogGeneratedCode.Filter = ActiveTemplate.FileNameFilter;
+                var component = (GeneratorComponent)cmbComponent.SelectedItem;
+
+                saveDialogGeneratedCode.Filter = DefaultFilters.Filters[component.Extension];
                 saveDialogGeneratedCode.FileName = txtFileName.Text;
 
                 if (saveDialogGeneratedCode.ShowDialog() == DialogResult.OK)

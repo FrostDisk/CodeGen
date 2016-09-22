@@ -8,7 +8,7 @@ namespace CodeGen.Controls
     /// <summary>
     /// ProjectWorkspace
     /// </summary>
-    /// <seealso cref="System.Windows.Forms.UserControl" />
+    /// <seealso cref="UserControl" />
     public partial class ProjectWorkspace : UserControl
     {
         #region properties

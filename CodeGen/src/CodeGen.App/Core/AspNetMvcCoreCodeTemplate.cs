@@ -14,6 +14,8 @@ namespace CodeGen.Core
     {
         #region properties
 
+        private static string _defaultCsExtension = ".cs";
+        private static string _defaultCshtmlExtension = ".cshtml";
         /// <summary>
         /// AuthorWebsiteUrl
         /// </summary>
@@ -35,23 +37,7 @@ namespace CodeGen.Core
         /// </summary>
         public string Description
         {
-            get { return "ASP.NET MVC Core Model/View/Controller Code Template"; }
-        }
-
-        /// <summary>
-        /// FileExtension
-        /// </summary>
-        public string FileExtension
-        {
-            get { return ".cs"; }
-        }
-
-        /// <summary>
-        /// FileNameFilter
-        /// </summary>
-        public string FileNameFilter
-        {
-            get { return "Visual C# Files (*.cs)|*.cs"; }
+            get { return "ASP.NET MVC Core Models/View/Controller Code Template"; }
         }
 
         /// <summary>
@@ -76,14 +62,6 @@ namespace CodeGen.Core
         public bool IsLoaded
         {
             get; private set;
-        }
-
-        /// <summary>
-        /// LanguageCode
-        /// </summary>
-        public string LanguageCode
-        {
-            get { return "CSharp"; }
         }
 
         /// <summary>
@@ -136,25 +114,23 @@ namespace CodeGen.Core
         /// Generate
         /// </summary>
         /// <param name="entity"></param>
-        /// <param name="componentId"></param>
+        /// <param name="component"></param>
         /// <returns></returns>
-        public string Generate(DatabaseEntity entity, int componentId)
+        public string Generate(DatabaseEntity entity, GeneratorComponent component)
         {
             if (FormAspNetMvcCoreTemplateConfiguration.Instance.ValidateForm())
             {
                 AspNetMvcCoreGenerator generator = new AspNetMvcCoreGenerator(Settings, entity);
 
-                switch (componentId)
+                switch (component.Id)
                 {
-                    case (int)eAspNetMvcCoreTemplateComponent.MODEL:
-                        {
-                            return generator.GenerateCodeModel();
-                        }
-
-                    case (int)eAspNetMvcCoreTemplateComponent.CONTROLLER:
-                        {
-                            return generator.GenerateCodeController();
-                        }
+                    case (int)eAspNetMvcCoreTemplateComponent.MODEL: { return generator.GenerateCodeModel(); }
+                    case (int)eAspNetMvcCoreTemplateComponent.CONTROLLER: { return generator.GenerateCodeController(); }
+                    case (int)eAspNetMvcCoreTemplateComponent.VIEW_CREATE: { return generator.GenerateViewCreate(); }
+                    case (int)eAspNetMvcCoreTemplateComponent.VIEW_DELETE: { return generator.GenerateViewDelete(); }
+                    case (int)eAspNetMvcCoreTemplateComponent.VIEW_DETAILS: { return generator.GenerateViewDetails(); }
+                    case (int)eAspNetMvcCoreTemplateComponent.VIEW_EDIT: { return generator.GenerateViewEdit(); }
+                    case (int)eAspNetMvcCoreTemplateComponent.VIEW_INDEX: { return generator.GenerateViewIndex(); }
                 }
             }
 
@@ -165,25 +141,24 @@ namespace CodeGen.Core
         /// GenerateFileName
         /// </summary>
         /// <param name="entity"></param>
-        /// <param name="componentId"></param>
+        /// <param name="component"></param>
         /// <returns></returns>
-        public string GenerateFileName(DatabaseEntity entity, int componentId)
+        public string GenerateFileName(DatabaseEntity entity, GeneratorComponent component)
         {
             if (FormAspNetMvcCoreTemplateConfiguration.Instance.ValidateForm(false))
             {
                 AspNetMvcCoreGenerator generator = new AspNetMvcCoreGenerator(Settings, entity);
 
-                switch (componentId)
+                switch (component.Id)
                 {
-                    case (int)eAspNetMvcCoreTemplateComponent.MODEL:
-                        {
-                            return generator.ModelClassName + FileExtension;
-                        }
+                    case (int)eAspNetMvcCoreTemplateComponent.MODEL: { return generator.ModelClassName + _defaultCsExtension; }
+                    case (int)eAspNetMvcCoreTemplateComponent.CONTROLLER: { return generator.ControllerClassName + _defaultCsExtension; }
+                    case (int)eAspNetMvcCoreTemplateComponent.VIEW_CREATE: { return Settings[AspNetMvcCoreConstants.CREATE_VIEWNAME].Value + _defaultCshtmlExtension; }
+                    case (int)eAspNetMvcCoreTemplateComponent.VIEW_DELETE: { return Settings[AspNetMvcCoreConstants.DELETE_VIEWNAME].Value + _defaultCshtmlExtension; }
+                    case (int)eAspNetMvcCoreTemplateComponent.VIEW_DETAILS: { return Settings[AspNetMvcCoreConstants.DETAILS_VIEWNAME].Value + _defaultCshtmlExtension; }
+                    case (int)eAspNetMvcCoreTemplateComponent.VIEW_EDIT: { return Settings[AspNetMvcCoreConstants.EDIT_VIEWNAME].Value + _defaultCshtmlExtension; }
+                    case (int)eAspNetMvcCoreTemplateComponent.VIEW_INDEX: { return Settings[AspNetMvcCoreConstants.INDEX_VIEWNAME].Value + _defaultCshtmlExtension; }
 
-                    case (int)eAspNetMvcCoreTemplateComponent.CONTROLLER:
-                        {
-                            return generator.ControllerClassName + FileExtension;
-                        }
                 }
             }
 
@@ -198,8 +173,13 @@ namespace CodeGen.Core
         {
             return new List<GeneratorComponent>
             {
-                new GeneratorComponent((int) eAspNetMvcCoreTemplateComponent.MODEL, "Model Class"),
-                new GeneratorComponent((int) eAspNetMvcCoreTemplateComponent.CONTROLLER, "Controller Class"),
+                new GeneratorComponent((int) eAspNetMvcCoreTemplateComponent.MODEL, "Model Class", _defaultCsExtension),
+                new GeneratorComponent((int) eAspNetMvcCoreTemplateComponent.CONTROLLER, "Controller Class", _defaultCsExtension),
+                new GeneratorComponent((int) eAspNetMvcCoreTemplateComponent.VIEW_CREATE, "Create View Page", _defaultCshtmlExtension),
+                new GeneratorComponent((int) eAspNetMvcCoreTemplateComponent.VIEW_DELETE, "Delete View Page", _defaultCshtmlExtension),
+                new GeneratorComponent((int) eAspNetMvcCoreTemplateComponent.VIEW_DETAILS, "Details View Page", _defaultCshtmlExtension),
+                new GeneratorComponent((int) eAspNetMvcCoreTemplateComponent.VIEW_EDIT, "Edit View Page", _defaultCshtmlExtension),
+                new GeneratorComponent((int) eAspNetMvcCoreTemplateComponent.VIEW_INDEX, "Index View Page", _defaultCshtmlExtension),
             };
         }
 

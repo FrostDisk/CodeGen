@@ -32,7 +32,7 @@ namespace CodeGen.Core
         /// <summary>
         /// ViewName
         /// </summary>
-        public string ViewName { get; private set; }
+        public string ViewBaseName { get; private set; }
 
         /// <summary>
         /// CleanEntityName
@@ -47,7 +47,8 @@ namespace CodeGen.Core
             CleanEntityName = StringHelper.ConvertToSafeCodeName(StringHelper.RemovePrefix(entity.Name)).Replace("_", string.Empty);
             ModelClassName = string.Format("{0}{1}{2}", Settings[AspNetMvcCoreConstants.MODEL_PREFIX].Value, CleanEntityName, Settings[AspNetMvcCoreConstants.MODEL_SUFFIX].Value);
             ControllerClassName = string.Format("{0}{1}{2}", Settings[AspNetMvcCoreConstants.CONTROLLER_PREFIX].Value, CleanEntityName, Settings[AspNetMvcCoreConstants.CONTROLLER_SUFFIX].Value);
-            ViewName = string.Format("{0}{1}{2}", Settings[AspNetMvcCoreConstants.VIEW_PREFIX].Value, StringHelper.Pluralize(CleanEntityName), Settings[AspNetMvcCoreConstants.VIEW_SUFFIX].Value);
+            ViewBaseName = StringHelper.Pluralize(CleanEntityName);
+
 
         }
 
@@ -55,7 +56,7 @@ namespace CodeGen.Core
         /// Generars the codigo domain.
         /// </summary>
         /// <returns></returns>
-        public string GenerateCodeModel()
+        internal string GenerateCodeModel()
         {
             TemplateFile template = TemplateFile.LoadTemplate(TemplateType.CS, Resources.class_Model);
 
@@ -111,7 +112,7 @@ namespace CodeGen.Core
             template.ReplaceTag("INSTANCE_NAME_MODEL", instanceEntityName, false);
             template.ReplaceTag("CLASS_NAME_MODEL", ModelClassName, false);
             template.ReplaceTag("CLASS_NAME_CONTROLLER", ControllerClassName, false);
-            template.ReplaceTag("VIEW_NAME", ViewName, false);
+            template.ReplaceTag("VIEW_NAME", ViewBaseName, false);
             template.ReplaceTag("PROPERTIES_MODEL", string.Join(",", Entity.Fields.Select(t => t.ColumnName)), false);
 
             template.ReplaceTag("DETAILS_METHODNAME", Settings[AspNetMvcCoreConstants.DETAILS_METHODNAME].Value, false);
@@ -120,6 +121,205 @@ namespace CodeGen.Core
             template.ReplaceTag("DELETE_METHODNAME", Settings[AspNetMvcCoreConstants.DELETE_METHODNAME].Value, false);
 
             template.ReplaceTag("DBCONTEXT_NAME", Settings[AspNetMvcCoreConstants.DBCONTEXT_NAME].Value, false);
+
+            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcCoreConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
+
+            return template.Content;
+        }
+
+        internal string GenerateViewCreate()
+        {
+            TemplateFile template = TemplateFile.LoadTemplate(TemplateType.HTML, Resources.view_Create);
+
+            var instanceEntityName = StringHelper.ConverToInstanceName(CleanEntityName);
+
+            var primaryEntityField = Entity.Fields.FirstOrDefault(f => f.IsPrimaryKey);
+            if (primaryEntityField == null)
+            {
+                throw new DataException("Entity [" + Entity.Name + "] doesn't have primary key");
+            }
+
+            TemplateSection sectionForm = template.ExtractSection("FORM");
+
+            TemplateSectionCollection propertiesFormList = new TemplateSectionCollection();
+
+            foreach (var entityField in Entity.Fields)
+            {
+                TemplateSection fieldSection = sectionForm.ExtractSection("FIELD");
+                fieldSection.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                propertiesFormList.AddSection(fieldSection);
+            }
+
+            template.ReplaceSection("FORM", propertiesFormList);
+
+            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcCoreConstants.NAMESPACE_MODELS].Value, false);
+            template.ReplaceTag("CLASS_NAME_MODEL", ModelClassName, false);
+
+            template.ReplaceTag("CREATE_VIEWNAME", Settings[AspNetMvcCoreConstants.CREATE_VIEWNAME].Value, false);
+            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcCoreConstants.INDEX_VIEWNAME].Value, false);
+
+            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcCoreConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
+
+            return template.Content;
+        }
+
+        internal string GenerateViewDelete()
+        {
+            TemplateFile template = TemplateFile.LoadTemplate(TemplateType.HTML, Resources.view_Delete);
+
+            var instanceEntityName = StringHelper.ConverToInstanceName(CleanEntityName);
+
+            var primaryEntityField = Entity.Fields.FirstOrDefault(f => f.IsPrimaryKey);
+            if (primaryEntityField == null)
+            {
+                throw new DataException("Entity [" + Entity.Name + "] doesn't have primary key");
+            }
+
+            TemplateSection sectionForm = template.ExtractSection("FORM");
+
+            TemplateSectionCollection propertiesFormList = new TemplateSectionCollection();
+
+            foreach (var entityField in Entity.Fields)
+            {
+                TemplateSection fieldSection = sectionForm.ExtractSection("FIELD");
+                fieldSection.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                propertiesFormList.AddSection(fieldSection);
+            }
+
+            template.ReplaceSection("FORM", propertiesFormList);
+
+            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcCoreConstants.NAMESPACE_MODELS].Value, false);
+            template.ReplaceTag("CLASS_NAME_MODEL", ModelClassName, false);
+
+            template.ReplaceTag("DELETE_VIEWNAME", Settings[AspNetMvcCoreConstants.DELETE_VIEWNAME].Value, false);
+            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcCoreConstants.INDEX_VIEWNAME].Value, false);
+
+            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcCoreConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
+
+            return template.Content;
+        }
+
+        internal string GenerateViewDetails()
+        {
+            TemplateFile template = TemplateFile.LoadTemplate(TemplateType.HTML, Resources.view_Details);
+
+            var instanceEntityName = StringHelper.ConverToInstanceName(CleanEntityName);
+
+            var primaryEntityField = Entity.Fields.FirstOrDefault(f => f.IsPrimaryKey);
+            if (primaryEntityField == null)
+            {
+                throw new DataException("Entity [" + Entity.Name + "] doesn't have primary key");
+            }
+
+            TemplateSection sectionForm = template.ExtractSection("FORM");
+
+            TemplateSectionCollection propertiesFormList = new TemplateSectionCollection();
+
+            foreach (var entityField in Entity.Fields)
+            {
+                TemplateSection fieldSection = sectionForm.ExtractSection("FIELD");
+                fieldSection.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                propertiesFormList.AddSection(fieldSection);
+            }
+
+            template.ReplaceSection("FORM", propertiesFormList);
+
+            template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
+            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcCoreConstants.NAMESPACE_MODELS].Value, false);
+            template.ReplaceTag("CLASS_NAME_MODEL", ModelClassName, false);
+
+            template.ReplaceTag("DETAILS_VIEWNAME", Settings[AspNetMvcCoreConstants.DETAILS_VIEWNAME].Value, false);
+            template.ReplaceTag("EDIT_VIEWNAME", Settings[AspNetMvcCoreConstants.EDIT_VIEWNAME].Value, false);
+            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcCoreConstants.INDEX_VIEWNAME].Value, false);
+
+            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcCoreConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
+
+            return template.Content;
+        }
+
+        internal string GenerateViewEdit()
+        {
+            TemplateFile template = TemplateFile.LoadTemplate(TemplateType.HTML, Resources.view_Edit);
+
+            var instanceEntityName = StringHelper.ConverToInstanceName(CleanEntityName);
+
+            var primaryEntityField = Entity.Fields.FirstOrDefault(f => f.IsPrimaryKey);
+            if (primaryEntityField == null)
+            {
+                throw new DataException("Entity [" + Entity.Name + "] doesn't have primary key");
+            }
+
+            TemplateSection sectionForm = template.ExtractSection("FORM");
+
+            TemplateSectionCollection propertiesFormList = new TemplateSectionCollection();
+
+            foreach (var entityField in Entity.Fields.Where(f => !f.IsPrimaryKey))
+            {
+                TemplateSection fieldSection = sectionForm.ExtractSection("FIELD");
+                fieldSection.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                propertiesFormList.AddSection(fieldSection);
+            }
+
+            template.ReplaceSection("FORM", propertiesFormList);
+
+            template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
+            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcCoreConstants.NAMESPACE_MODELS].Value, false);
+            template.ReplaceTag("CLASS_NAME_MODEL", ModelClassName, false);
+
+            template.ReplaceTag("EDIT_VIEWNAME", Settings[AspNetMvcCoreConstants.EDIT_VIEWNAME].Value, false);
+            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcCoreConstants.INDEX_VIEWNAME].Value, false);
+
+            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcCoreConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
+
+            return template.Content;
+        }
+
+        internal string GenerateViewIndex()
+        {
+            TemplateFile template = TemplateFile.LoadTemplate(TemplateType.HTML, Resources.view_Index);
+
+            var instanceEntityName = StringHelper.ConverToInstanceName(CleanEntityName);
+
+            var primaryEntityField = Entity.Fields.FirstOrDefault(f => f.IsPrimaryKey);
+            if (primaryEntityField == null)
+            {
+                throw new DataException("Entity [" + Entity.Name + "] doesn't have primary key");
+            }
+
+            TemplateSection sectionHeader = template.ExtractSection("HEADER");
+            TemplateSection sectionRow = template.ExtractSection("ROW");
+
+            TemplateSectionCollection propertiesHeaderList = new TemplateSectionCollection();
+            TemplateSectionCollection propertiesRowList = new TemplateSectionCollection();
+
+            foreach (var entityField in Entity.Fields)
+            {
+                TemplateSection columnSection = sectionHeader.ExtractSection("COLUMN");
+                columnSection.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                propertiesHeaderList.AddSection(columnSection);
+
+                columnSection = sectionRow.ExtractSection("COLUMN");
+                columnSection.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                propertiesRowList.AddSection(columnSection);
+            }
+
+            template.ReplaceSection("HEADER", propertiesHeaderList);
+            template.ReplaceSection("ROW", propertiesRowList);
+
+            template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
+            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcCoreConstants.NAMESPACE_MODELS].Value, false);
+            template.ReplaceTag("CLASS_NAME_MODEL", ModelClassName, false);
+
+            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcCoreConstants.INDEX_VIEWNAME].Value, false);
+            template.ReplaceTag("CREATE_VIEWNAME", Settings[AspNetMvcCoreConstants.CREATE_VIEWNAME].Value, false);
+            template.ReplaceTag("EDIT_VIEWNAME", Settings[AspNetMvcCoreConstants.EDIT_VIEWNAME].Value, false);
+            template.ReplaceTag("DETAILS_VIEWNAME", Settings[AspNetMvcCoreConstants.DETAILS_VIEWNAME].Value, false);
+            template.ReplaceTag("DELETE_VIEWNAME", Settings[AspNetMvcCoreConstants.DELETE_VIEWNAME].Value, false);
 
             template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcCoreConstants.AUTHOR_NAME].Value, false);
             template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);

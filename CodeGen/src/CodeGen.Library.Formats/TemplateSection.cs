@@ -202,6 +202,7 @@ namespace CodeGen.Library.Formats
             switch (SectionType)
             {
                 case TemplateType.ASPX: { regexPatternSection = new Regex(RegularExpressionsPatterns.TemplateGenericAspxSection, RegexOptions.IgnoreCase); break; }
+                case TemplateType.HTML: { regexPatternSection = new Regex(RegularExpressionsPatterns.TemplateGenericHtmlSection, RegexOptions.IgnoreCase); break; }
                 case TemplateType.CS: { regexPatternSection = new Regex(RegularExpressionsPatterns.TemplateGenericCsSection, RegexOptions.IgnoreCase); break; }
                 case TemplateType.SQL: { regexPatternSection = new Regex(RegularExpressionsPatterns.TemplateGenericSqlSection, RegexOptions.IgnoreCase); break; }
                 case TemplateType.CPP: { regexPatternSection = new Regex(RegularExpressionsPatterns.TemplateGenericCppSection, RegexOptions.IgnoreCase); break; }
@@ -338,6 +339,7 @@ namespace CodeGen.Library.Formats
             switch (SectionType)
             {
                 case TemplateType.ASPX: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateAspxSection, sectionName), RegexOptions.IgnoreCase); break; }
+                case TemplateType.HTML: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateHtmlSection, sectionName), RegexOptions.IgnoreCase); break; }
                 case TemplateType.CS: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateCsSection, sectionName), RegexOptions.IgnoreCase); break; }
                 case TemplateType.SQL: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateSqlSection, sectionName), RegexOptions.IgnoreCase); break; }
                 case TemplateType.CPP: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateCppSection, sectionName), RegexOptions.IgnoreCase); break; }

@@ -81,7 +81,25 @@ namespace CodeGen.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to using System;
+        ///using System.Collections.Generic;
+        ///using System.Linq;
+        ///using System.Threading.Tasks;
+        ///using Microsoft.AspNetCore.Mvc;
+        ///using Microsoft.AspNetCore.Mvc.Rendering;
+        ///using Microsoft.EntityFrameworkCore;
+        ///using {NAMESPACE_DBCONTEXT};
+        ///using {NAMESPACE_MODELS};
+        ///
+        ///namespace {NAMESPACE_CONTROLLER}
+        ///{
+        ///    public class {CLASS_NAME_CONTROLLER} : Controller
+        ///    {
+        ///        private readonly {DBCONTEXT_NAME} _context;
+        ///
+        ///        public {CLASS_NAME_CONTROLLER}({DBCONTEXT_NAME} context)
+        ///        {
+        ///        [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string class_Controller {
             get {
@@ -151,11 +169,11 @@ namespace CodeGen.Properties {
         ///// &lt;/auto-generated&gt;
         /////------------------------------------------------------------------------------
         ///
-        ///namespace {NAMESPACE_MODEL}
+        ///namespace {NAMESPACE_MODELS}
         ///{
         ///    /// &lt;summary&gt;
         ///    /// Model Class {CLASS_NAME_MODEL}
-        ///    /// &lt;/summary&gt; [rest of string was truncated]&quot;;.
+        ///    /// &lt;/summary [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string class_Model {
             get {
@@ -517,6 +535,51 @@ namespace CodeGen.Properties {
         internal static string sp_Save {
             get {
                 return ResourceManager.GetString("sp_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string view_Create {
+            get {
+                return ResourceManager.GetString("view_Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string view_Delete {
+            get {
+                return ResourceManager.GetString("view_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string view_Details {
+            get {
+                return ResourceManager.GetString("view_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string view_Edit {
+            get {
+                return ResourceManager.GetString("view_Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string view_Index {
+            get {
+                return ResourceManager.GetString("view_Index", resourceCulture);
             }
         }
     }

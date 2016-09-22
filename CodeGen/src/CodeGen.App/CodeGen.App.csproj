@@ -71,6 +71,7 @@
     <Compile Include="Core\AspNetMvcCoreCodeTemplate.cs" />
     <Compile Include="Core\AspNetMvcCoreConstants.cs" />
     <Compile Include="Core\AspNetMvcCoreGenerator.cs" />
+    <Compile Include="Core\DefaultFilters.cs" />
     <Compile Include="Core\eAspNetMvcCoreTemplateComponent.cs" />
     <Compile Include="FormAspNetMvcCoreTemplateConfiguration.cs">
       <SubType>Form</SubType>
@@ -232,7 +233,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -243,6 +244,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Templates\view_Create.cshtml.tpl" />
+    <None Include="Resources\Templates\view_Delete.cshtml.tpl" />
+    <None Include="Resources\Templates\view_Details.cshtml.tpl" />
+    <None Include="Resources\Templates\view_Edit.cshtml.tpl" />
+    <None Include="Resources\Templates\view_Index.cshtml.tpl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

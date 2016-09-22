@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CodeGen.Core
+﻿namespace CodeGen.Core
 {
     /// <summary>
     /// AspNetMvcCoreConstants
@@ -23,6 +17,9 @@ namespace CodeGen.Core
         /// <summary>NAMESPACE_DBCONTEXT</summary>
         public const string NAMESPACE_DBCONTEXT = "NAMESPACE_DBCONTEXT";
 
+        /// <summary>DBCONTEXT_NAME</summary>
+        public const string DBCONTEXT_NAME = "DBCONTEXT_NAME";
+
         /// <summary>MODEL_PREFIX</summary>
         public const string MODEL_PREFIX = "MODEL_PREFIX";
 
@@ -34,12 +31,6 @@ namespace CodeGen.Core
 
         /// <summary>CONTROLLER_SUFFIX</summary>
         public const string CONTROLLER_SUFFIX = "CONTROLLER_SUFFIX";
-
-        /// <summary>CONTROLLER_PREFIX</summary>
-        public const string VIEW_PREFIX = "VIEW_PREFIX";
-
-        /// <summary>CONTROLLER_SUFFIX</summary>
-        public const string VIEW_SUFFIX = "VIEW_SUFFIX";
 
         /// <summary>DETAILS_METHODNAME</summary>
         public const string DETAILS_METHODNAME = "DETAILS_METHODNAME";
@@ -53,7 +44,19 @@ namespace CodeGen.Core
         /// <summary>DELETE_METHODNAME</summary>
         public const string DELETE_METHODNAME = "DELETE_METHODNAME";
 
-        /// <summary>DBCONTEXT_NAME</summary>
-        public const string DBCONTEXT_NAME = "DBCONTEXT_NAME";
+        /// <summary>DETAILS_VIEWNAME</summary>
+        public const string DETAILS_VIEWNAME = "DETAILS_VIEWNAME";
+
+        /// <summary>CREATE_VIEWNAME</summary>
+        public const string CREATE_VIEWNAME = "CREATE_VIEWNAME";
+
+        /// <summary>EDIT_VIEWNAME</summary>
+        public const string EDIT_VIEWNAME = "EDIT_VIEWNAME";
+
+        /// <summary>DELETE_VIEWNAME</summary>
+        public const string DELETE_VIEWNAME = "DELETE_VIEWNAME";
+
+        /// <summary>INDEX_VIEWNAME</summary>
+        public const string INDEX_VIEWNAME = "INDEX_VIEWNAME";
     }
 }

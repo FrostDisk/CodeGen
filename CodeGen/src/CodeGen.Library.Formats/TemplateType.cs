@@ -16,6 +16,11 @@
         ASPX,
 
         /// <summary>
+        /// html
+        /// </summary>
+        HTML,
+
+        /// <summary>
         /// Sql
         /// </summary>
         SQL,

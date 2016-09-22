@@ -16,6 +16,11 @@ namespace CodeGen.Core
         #region properties
 
         /// <summary>
+        /// File Extension
+        /// </summary>
+        private static string _defaultFileExtension = ".sql";
+
+        /// <summary>
         /// Title
         /// </summary>
         public string Title
@@ -75,30 +80,6 @@ namespace CodeGen.Core
         /// Settings
         /// </summary>
         public PluginSettings Settings { get; private set; }
-
-        /// <summary>
-        /// Language Code
-        /// </summary>
-        public string LanguageCode
-        {
-            get { return "SqlServer"; }
-        }
-
-        /// <summary>
-        /// File Extension
-        /// </summary>
-        public string FileExtension
-        {
-            get { return ".sql"; }
-        }
-
-        /// <summary>
-        /// FileName Filter
-        /// </summary>
-        public string FileNameFilter
-        {
-            get { return "SQL Server files (*.sql)|*.sql"; }
-        }
 
         /// <summary>
         /// Have Options
@@ -175,10 +156,10 @@ namespace CodeGen.Core
         {
             return new List<GeneratorComponent>
             {
-                new GeneratorComponent((int) eBaseTemplateComponent.SAVE, "Save"),
-                new GeneratorComponent((int) eBaseTemplateComponent.GET_BY_ID, "GetByID"),
-                new GeneratorComponent((int) eBaseTemplateComponent.LIST_ALL, "ListAll"),
-                new GeneratorComponent((int) eBaseTemplateComponent.DELETE, "Delete"),
+                new GeneratorComponent((int) eBaseTemplateComponent.SAVE, "Save Stored Procedure", _defaultFileExtension),
+                new GeneratorComponent((int) eBaseTemplateComponent.GET_BY_ID, "GetByID Stored Procedure", _defaultFileExtension),
+                new GeneratorComponent((int) eBaseTemplateComponent.LIST_ALL, "ListAll Stored Procedure", _defaultFileExtension),
+                new GeneratorComponent((int) eBaseTemplateComponent.DELETE, "Delete Stored Procedure", _defaultFileExtension),
             };
         }
 
@@ -186,35 +167,20 @@ namespace CodeGen.Core
         /// Generates the name of the file.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <param name="componentId">The component identifier.</param>
+        /// <param name="component">The component identifier.</param>
         /// <returns></returns>
-        public string GenerateFileName(DatabaseEntity entity, int componentId)
+        public string GenerateFileName(DatabaseEntity entity, GeneratorComponent component)
         {
             if (FormBaseTemplateConfiguration.Instance.ValidateForm(false))
             {
                 BaseGenerator generator = new BaseGenerator(Settings, entity);
 
-                switch (componentId)
+                switch (component.Id)
                 {
-                    case (int)eBaseTemplateComponent.SAVE:
-                        {
-                            return generator.SaveStoredProcedureName + FileExtension;
-                        }
-
-                    case (int)eBaseTemplateComponent.GET_BY_ID:
-                        {
-                            return generator.GetByIdStoredProcedureName + FileExtension;
-                        }
-
-                    case (int)eBaseTemplateComponent.LIST_ALL:
-                        {
-                            return generator.ListAllStoredProcedureName + FileExtension;
-                        }
-
-                    case (int)eBaseTemplateComponent.DELETE:
-                        {
-                            return generator.DeleteStoredProcedureName + FileExtension;
-                        }
+                    case (int)eBaseTemplateComponent.SAVE: { return generator.SaveStoredProcedureName + _defaultFileExtension; }
+                    case (int)eBaseTemplateComponent.GET_BY_ID: { return generator.GetByIdStoredProcedureName + _defaultFileExtension; }
+                    case (int)eBaseTemplateComponent.LIST_ALL: { return generator.ListAllStoredProcedureName + _defaultFileExtension; }
+                    case (int)eBaseTemplateComponent.DELETE: { return generator.DeleteStoredProcedureName + _defaultFileExtension; }
                 }
             }
 
@@ -225,35 +191,20 @@ namespace CodeGen.Core
         /// Generates the specified entity.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <param name="componentId">The component identifier.</param>
+        /// <param name="component">The component identifier.</param>
         /// <returns></returns>
-        public string Generate(DatabaseEntity entity, int componentId)
+        public string Generate(DatabaseEntity entity, GeneratorComponent component)
         {
             if (FormBaseTemplateConfiguration.Instance.ValidateForm())
             {
                 BaseGenerator generator = new BaseGenerator(Settings, entity);
 
-                switch (componentId)
+                switch (component.Id)
                 {
-                    case (int)eBaseTemplateComponent.SAVE:
-                        {
-                            return generator.GenerateScriptSave();
-                        }
-
-                    case (int)eBaseTemplateComponent.GET_BY_ID:
-                        {
-                            return generator.GenerateScriptGetById();
-                        }
-
-                    case (int)eBaseTemplateComponent.LIST_ALL:
-                        {
-                            return generator.GenerateScriptListAll();
-                        }
-
-                    case (int)eBaseTemplateComponent.DELETE:
-                        {
-                            return generator.GenerateScriptDelete();
-                        }
+                    case (int)eBaseTemplateComponent.SAVE: { return generator.GenerateScriptSave(); }
+                    case (int)eBaseTemplateComponent.GET_BY_ID: { return generator.GenerateScriptGetById(); }
+                    case (int)eBaseTemplateComponent.LIST_ALL: { return generator.GenerateScriptListAll(); }
+                    case (int)eBaseTemplateComponent.DELETE: { return generator.GenerateScriptDelete(); }
                 }
             }
 

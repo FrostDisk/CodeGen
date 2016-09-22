@@ -47,7 +47,7 @@ namespace CodeGen.Controls
             {
                 if (cmbTemplate.SelectedItem != null)
                 {
-                    return PluginsManager.GetSettingsFromPlugin(cmbTemplate.SelectedItem as SupportedType);
+                    return PluginsManager.GetSettingsFromPlugin((SupportedType)cmbTemplate.SelectedItem);
                 }
                 return null;
             }
@@ -89,7 +89,7 @@ namespace CodeGen.Controls
         {
             if (cmbTemplate.SelectedItem == null)
             {
-                PluginsManager.UpdateSettingsForPlugin(cmbTemplate.SelectedItem as SupportedType, settings);
+                PluginsManager.UpdateSettingsForPlugin((SupportedType)cmbTemplate.SelectedItem, settings);
             }
         }
 
@@ -147,7 +147,7 @@ namespace CodeGen.Controls
                     _entities[entityItem] = entity;
                 }
 
-                txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (int)cmbComponent.SelectedValue);
+                txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (GeneratorComponent)cmbComponent.SelectedItem);
             }
             else
             {
@@ -281,7 +281,7 @@ namespace CodeGen.Controls
                         _entities[tableName] = entity;
                     }
 
-                    var code = ActiveTemplate.Generate(entity, (int) cmbComponent.SelectedValue);
+                    var code = ActiveTemplate.Generate(entity, (GeneratorComponent) cmbComponent.SelectedItem);
 
                     if (!string.IsNullOrWhiteSpace(code))
                     {
@@ -314,7 +314,9 @@ namespace CodeGen.Controls
         {
             try
             {
-                saveDialogGeneratedCode.Filter = ActiveTemplate.FileNameFilter;
+                var component = (GeneratorComponent)cmbComponent.SelectedItem;
+
+                saveDialogGeneratedCode.Filter = DefaultFilters.Filters[component.Extension];
                 saveDialogGeneratedCode.FileName = txtFileName.Text;
 
                 if(saveDialogGeneratedCode.ShowDialog() == DialogResult.OK)

@@ -111,10 +111,13 @@ namespace CodeGen
         /// <param name="value">The value.</param>
         public void UpdateSetting(string code, string value)
         {
-            ITemplateParameter parameter = _parameters[code];
-            if (parameter != null && !string.IsNullOrWhiteSpace(value))
+            if (_parameters.ContainsKey(code))
             {
-                parameter.UpdateValue(value);
+                ITemplateParameter parameter = _parameters[code];
+                if (parameter != null && !string.IsNullOrWhiteSpace(value))
+                {
+                    parameter.UpdateValue(value);
+                }
             }
         }
 

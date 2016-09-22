@@ -42,17 +42,9 @@ namespace CodeGen.Core
         /// <summary>
         /// File Extension
         /// </summary>
-        public string FileExtension
+        public string DefaultFileExtension
         {
             get { return ".cs"; }
-        }
-
-        /// <summary>
-        /// FileName Filter
-        /// </summary>
-        public string FileNameFilter
-        {
-            get { return "Visual C# Files (*.cs)|*.cs"; }
         }
 
         /// <summary>
@@ -75,14 +67,6 @@ namespace CodeGen.Core
         /// Is Loaded
         /// </summary>
         public bool IsLoaded { get; private set; }
-
-        /// <summary>
-        /// LanguageCode
-        /// </summary>
-        public string LanguageCode
-        {
-            get { return "CSharp"; }
-        }
 
         /// <summary>
         /// Release Notes Url
@@ -134,25 +118,18 @@ namespace CodeGen.Core
         /// Generates the specified entity.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <param name="componentId">The component identifier.</param>
+        /// <param name="component">The component identifier.</param>
         /// <returns></returns>
-        public string Generate(DatabaseEntity entity, int componentId)
+        public string Generate(DatabaseEntity entity, GeneratorComponent component)
         {
             if (FormBaseTemplateConfiguration.Instance.ValidateForm())
             {
                 BaseGenerator generator = new BaseGenerator(Settings, entity);
 
-                switch (componentId)
+                switch (component.Id)
                 {
-                    case (int)eBaseTemplateComponent.DOMAIN:
-                        {
-                            return generator.GenerateCodeDomain();
-                        }
-
-                    case (int)eBaseTemplateComponent.DATA_ACCESS:
-                        {
-                            return generator.GenerateCodeDataAccess();
-                        }
+                    case (int)eBaseTemplateComponent.DOMAIN: { return generator.GenerateCodeDomain(); }
+                    case (int)eBaseTemplateComponent.DATA_ACCESS: { return generator.GenerateCodeDataAccess(); }
                 }
             }
 
@@ -163,25 +140,18 @@ namespace CodeGen.Core
         /// Generates the name of the file.
         /// </summary>
         /// <param name="entity">The entity.</param>
-        /// <param name="componentId">The component identifier.</param>
+        /// <param name="component">The component identifier.</param>
         /// <returns></returns>
-        public string GenerateFileName(DatabaseEntity entity, int componentId)
+        public string GenerateFileName(DatabaseEntity entity, GeneratorComponent component)
         {
             if (FormBaseTemplateConfiguration.Instance.ValidateForm(false))
             {
                 BaseGenerator generator = new BaseGenerator(Settings, entity);
 
-                switch (componentId)
+                switch (component.Id)
                 {
-                    case (int)eBaseTemplateComponent.DOMAIN:
-                        {
-                            return generator.DomainClassName + FileExtension;
-                        }
-
-                    case (int)eBaseTemplateComponent.DATA_ACCESS:
-                        {
-                            return generator.DataAccessClassName + FileExtension;
-                        }
+                    case (int)eBaseTemplateComponent.DOMAIN: { return generator.DomainClassName + DefaultFileExtension; }
+                    case (int)eBaseTemplateComponent.DATA_ACCESS: { return generator.DataAccessClassName + DefaultFileExtension; }
                 }
             }
 
@@ -196,8 +166,8 @@ namespace CodeGen.Core
         {
             return new List<GeneratorComponent>
             {
-                new GeneratorComponent((int) eBaseTemplateComponent.DOMAIN, "Domain"),
-                new GeneratorComponent((int) eBaseTemplateComponent.DATA_ACCESS, "Data Access"),
+                new GeneratorComponent((int) eBaseTemplateComponent.DOMAIN, "Domain", ".cs"),
+                new GeneratorComponent((int) eBaseTemplateComponent.DATA_ACCESS, "Data Access", ".cs"),
             };
         }
 

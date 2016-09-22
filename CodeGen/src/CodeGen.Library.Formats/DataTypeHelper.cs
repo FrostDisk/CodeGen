@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace CodeGen.Library.Formats
 {
+    /// <summary>
+    /// DataTypeHelper
+    /// </summary>
     public static class DataTypeHelper
     {
         private static readonly Dictionary<string, string> _values = new Dictionary<string, string>
@@ -29,6 +28,11 @@ namespace CodeGen.Library.Formats
             {"longblob", "object"}
         };
 
+        /// <summary>
+        /// GetCSharpType
+        /// </summary>
+        /// <param name="sqlDataType"></param>
+        /// <returns></returns>
         public static string GetCSharpType(string sqlDataType)
         {
             string cSharpDataType;

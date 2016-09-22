@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace CodeGen
 {
+    /// <summary>
+    /// FormAspNetMvcCoreTemplateConfiguration
+    /// </summary>
     public partial class FormAspNetMvcCoreTemplateConfiguration : Form
     {
         #region properties
@@ -107,10 +110,13 @@ namespace CodeGen
         /// <param name="value">The value.</param>
         public void UpdateSetting(string code, string value)
         {
-            ITemplateParameter parameter = _parameters[code];
-            if (parameter != null && !string.IsNullOrWhiteSpace(value))
+            if (_parameters.ContainsKey(code))
             {
-                parameter.UpdateValue(value);
+                ITemplateParameter parameter = _parameters[code];
+                if (parameter != null && !string.IsNullOrWhiteSpace(value))
+                {
+                    parameter.UpdateValue(value);
+                }
             }
         }
 

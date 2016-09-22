@@ -31,28 +31,31 @@
             this.tabConfiguration = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
             this.tableLayoutGeneral = new System.Windows.Forms.TableLayoutPanel();
-            this.tabClasses = new System.Windows.Forms.TabPage();
-            this.tableLayoutClasses = new System.Windows.Forms.TableLayoutPanel();
-            this.tabController = new System.Windows.Forms.TabPage();
-            this.tableLayoutController = new System.Windows.Forms.TableLayoutPanel();
-            this.tabDatabase = new System.Windows.Forms.TabPage();
-            this.tableLayoutDatabase = new System.Windows.Forms.TableLayoutPanel();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnAccept = new System.Windows.Forms.Button();
             this.paramAuthorName = new CodeGen.Controls.TemplateParameter();
             this.paramModelsNamespace = new CodeGen.Controls.TemplateParameter();
             this.paramControllerNamespace = new CodeGen.Controls.TemplateParameter();
             this.paramDatabaseContextNamespace = new CodeGen.Controls.TemplateParameter();
+            this.tabClasses = new System.Windows.Forms.TabPage();
+            this.tableLayoutClasses = new System.Windows.Forms.TableLayoutPanel();
             this.paramModelPrefix = new CodeGen.Controls.TemplateParameter();
             this.paramModelSuffix = new CodeGen.Controls.TemplateParameter();
             this.paramControllerPrefix = new CodeGen.Controls.TemplateParameter();
             this.paramControllerSuffix = new CodeGen.Controls.TemplateParameter();
-            this.paramViewPrefix = new CodeGen.Controls.TemplateParameter();
-            this.paramViewSuffix = new CodeGen.Controls.TemplateParameter();
+            this.tabController = new System.Windows.Forms.TabPage();
+            this.tableLayoutController = new System.Windows.Forms.TableLayoutPanel();
             this.paramDetailsMethodName = new CodeGen.Controls.TemplateParameter();
             this.paramCreateMethodName = new CodeGen.Controls.TemplateParameter();
             this.paramEditMethodName = new CodeGen.Controls.TemplateParameter();
             this.paramDeleteMethodName = new CodeGen.Controls.TemplateParameter();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnAccept = new System.Windows.Forms.Button();
+            this.tabViews = new System.Windows.Forms.TabPage();
+            this.tableLayoutViews = new System.Windows.Forms.TableLayoutPanel();
+            this.paramDetailsViewName = new CodeGen.Controls.TemplateParameter();
+            this.paramCreateViewName = new CodeGen.Controls.TemplateParameter();
+            this.paramEditViewName = new CodeGen.Controls.TemplateParameter();
+            this.paramDeleteViewName = new CodeGen.Controls.TemplateParameter();
+            this.paramIndexViewName = new CodeGen.Controls.TemplateParameter();
             this.paramDatabaseContextClassName = new CodeGen.Controls.TemplateParameter();
             this.tabConfiguration.SuspendLayout();
             this.tabGeneral.SuspendLayout();
@@ -61,8 +64,8 @@
             this.tableLayoutClasses.SuspendLayout();
             this.tabController.SuspendLayout();
             this.tableLayoutController.SuspendLayout();
-            this.tabDatabase.SuspendLayout();
-            this.tableLayoutDatabase.SuspendLayout();
+            this.tabViews.SuspendLayout();
+            this.tableLayoutViews.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabConfiguration
@@ -73,7 +76,7 @@
             this.tabConfiguration.Controls.Add(this.tabGeneral);
             this.tabConfiguration.Controls.Add(this.tabClasses);
             this.tabConfiguration.Controls.Add(this.tabController);
-            this.tabConfiguration.Controls.Add(this.tabDatabase);
+            this.tabConfiguration.Controls.Add(this.tabViews);
             this.tabConfiguration.Location = new System.Drawing.Point(12, 12);
             this.tabConfiguration.Name = "tabConfiguration";
             this.tabConfiguration.SelectedIndex = 0;
@@ -99,6 +102,7 @@
             this.tableLayoutGeneral.Controls.Add(this.paramModelsNamespace, 0, 1);
             this.tableLayoutGeneral.Controls.Add(this.paramControllerNamespace, 0, 2);
             this.tableLayoutGeneral.Controls.Add(this.paramDatabaseContextNamespace, 0, 3);
+            this.tableLayoutGeneral.Controls.Add(this.paramDatabaseContextClassName, 0, 4);
             this.tableLayoutGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutGeneral.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutGeneral.Name = "tableLayoutGeneral";
@@ -111,123 +115,6 @@
             this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutGeneral.Size = new System.Drawing.Size(468, 272);
             this.tableLayoutGeneral.TabIndex = 3;
-            // 
-            // tabClasses
-            // 
-            this.tabClasses.Controls.Add(this.tableLayoutClasses);
-            this.tabClasses.Location = new System.Drawing.Point(4, 22);
-            this.tabClasses.Name = "tabClasses";
-            this.tabClasses.Padding = new System.Windows.Forms.Padding(3);
-            this.tabClasses.Size = new System.Drawing.Size(474, 278);
-            this.tabClasses.TabIndex = 1;
-            this.tabClasses.Text = "Classes";
-            this.tabClasses.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutClasses
-            // 
-            this.tableLayoutClasses.ColumnCount = 2;
-            this.tableLayoutClasses.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutClasses.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutClasses.Controls.Add(this.paramModelPrefix, 0, 0);
-            this.tableLayoutClasses.Controls.Add(this.paramModelSuffix, 1, 0);
-            this.tableLayoutClasses.Controls.Add(this.paramControllerPrefix, 0, 1);
-            this.tableLayoutClasses.Controls.Add(this.paramControllerSuffix, 1, 1);
-            this.tableLayoutClasses.Controls.Add(this.paramViewPrefix, 0, 2);
-            this.tableLayoutClasses.Controls.Add(this.paramViewSuffix, 1, 2);
-            this.tableLayoutClasses.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutClasses.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutClasses.Name = "tableLayoutClasses";
-            this.tableLayoutClasses.RowCount = 4;
-            this.tableLayoutClasses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutClasses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutClasses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutClasses.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutClasses.Size = new System.Drawing.Size(468, 272);
-            this.tableLayoutClasses.TabIndex = 4;
-            // 
-            // tabController
-            // 
-            this.tabController.Controls.Add(this.tableLayoutController);
-            this.tabController.Location = new System.Drawing.Point(4, 22);
-            this.tabController.Name = "tabController";
-            this.tabController.Padding = new System.Windows.Forms.Padding(3);
-            this.tabController.Size = new System.Drawing.Size(474, 278);
-            this.tabController.TabIndex = 3;
-            this.tabController.Text = "Controller";
-            this.tabController.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutController
-            // 
-            this.tableLayoutController.ColumnCount = 1;
-            this.tableLayoutController.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutController.Controls.Add(this.paramDetailsMethodName, 0, 0);
-            this.tableLayoutController.Controls.Add(this.paramCreateMethodName, 0, 1);
-            this.tableLayoutController.Controls.Add(this.paramEditMethodName, 0, 2);
-            this.tableLayoutController.Controls.Add(this.paramDeleteMethodName, 0, 3);
-            this.tableLayoutController.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutController.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutController.Name = "tableLayoutController";
-            this.tableLayoutController.RowCount = 6;
-            this.tableLayoutController.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutController.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutController.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutController.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutController.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutController.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutController.Size = new System.Drawing.Size(468, 272);
-            this.tableLayoutController.TabIndex = 0;
-            // 
-            // tabDatabase
-            // 
-            this.tabDatabase.Controls.Add(this.tableLayoutDatabase);
-            this.tabDatabase.Location = new System.Drawing.Point(4, 22);
-            this.tabDatabase.Name = "tabDatabase";
-            this.tabDatabase.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDatabase.Size = new System.Drawing.Size(474, 278);
-            this.tabDatabase.TabIndex = 4;
-            this.tabDatabase.Text = "Database";
-            this.tabDatabase.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutDatabase
-            // 
-            this.tableLayoutDatabase.ColumnCount = 1;
-            this.tableLayoutDatabase.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutDatabase.Controls.Add(this.paramDatabaseContextClassName, 0, 0);
-            this.tableLayoutDatabase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutDatabase.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutDatabase.Name = "tableLayoutDatabase";
-            this.tableLayoutDatabase.RowCount = 6;
-            this.tableLayoutDatabase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutDatabase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutDatabase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutDatabase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutDatabase.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutDatabase.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutDatabase.Size = new System.Drawing.Size(468, 272);
-            this.tableLayoutDatabase.TabIndex = 1;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(419, 322);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 101;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnAccept
-            // 
-            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAccept.Location = new System.Drawing.Point(338, 322);
-            this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(75, 23);
-            this.btnAccept.TabIndex = 100;
-            this.btnAccept.Text = "Accept";
-            this.btnAccept.UseVisualStyleBackColor = true;
-            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // paramAuthorName
             // 
@@ -297,6 +184,37 @@
             this.paramDatabaseContextNamespace.TabIndex = 3;
             this.paramDatabaseContextNamespace.Tooltip = "";
             // 
+            // tabClasses
+            // 
+            this.tabClasses.Controls.Add(this.tableLayoutClasses);
+            this.tabClasses.Location = new System.Drawing.Point(4, 22);
+            this.tabClasses.Name = "tabClasses";
+            this.tabClasses.Padding = new System.Windows.Forms.Padding(3);
+            this.tabClasses.Size = new System.Drawing.Size(474, 278);
+            this.tabClasses.TabIndex = 1;
+            this.tabClasses.Text = "Classes";
+            this.tabClasses.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutClasses
+            // 
+            this.tableLayoutClasses.ColumnCount = 2;
+            this.tableLayoutClasses.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutClasses.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutClasses.Controls.Add(this.paramModelPrefix, 0, 0);
+            this.tableLayoutClasses.Controls.Add(this.paramModelSuffix, 1, 0);
+            this.tableLayoutClasses.Controls.Add(this.paramControllerPrefix, 0, 1);
+            this.tableLayoutClasses.Controls.Add(this.paramControllerSuffix, 1, 1);
+            this.tableLayoutClasses.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutClasses.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutClasses.Name = "tableLayoutClasses";
+            this.tableLayoutClasses.RowCount = 4;
+            this.tableLayoutClasses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutClasses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutClasses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutClasses.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutClasses.Size = new System.Drawing.Size(468, 272);
+            this.tableLayoutClasses.TabIndex = 4;
+            // 
             // paramModelPrefix
             // 
             this.paramModelPrefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -365,39 +283,37 @@
             this.paramControllerSuffix.TabIndex = 13;
             this.paramControllerSuffix.Tooltip = "";
             // 
-            // paramViewPrefix
+            // tabController
             // 
-            this.paramViewPrefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.paramViewPrefix.DefaultValue = null;
-            this.paramViewPrefix.IsUpdated = false;
-            this.paramViewPrefix.Location = new System.Drawing.Point(3, 107);
-            this.paramViewPrefix.Name = "paramViewPrefix";
-            this.paramViewPrefix.ParameterCode = "VIEW_PREFIX";
-            this.paramViewPrefix.ParameterName = "View Prefix";
-            this.paramViewPrefix.ParameterValue = "";
-            this.paramViewPrefix.ReadOnly = false;
-            this.paramViewPrefix.Required = false;
-            this.paramViewPrefix.Size = new System.Drawing.Size(228, 46);
-            this.paramViewPrefix.TabIndex = 14;
-            this.paramViewPrefix.Tooltip = "";
+            this.tabController.Controls.Add(this.tableLayoutController);
+            this.tabController.Location = new System.Drawing.Point(4, 22);
+            this.tabController.Name = "tabController";
+            this.tabController.Padding = new System.Windows.Forms.Padding(3);
+            this.tabController.Size = new System.Drawing.Size(474, 278);
+            this.tabController.TabIndex = 3;
+            this.tabController.Text = "Controller";
+            this.tabController.UseVisualStyleBackColor = true;
             // 
-            // paramViewSuffix
+            // tableLayoutController
             // 
-            this.paramViewSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.paramViewSuffix.DefaultValue = "";
-            this.paramViewSuffix.IsUpdated = false;
-            this.paramViewSuffix.Location = new System.Drawing.Point(237, 107);
-            this.paramViewSuffix.Name = "paramViewSuffix";
-            this.paramViewSuffix.ParameterCode = "VIEW_SUFFIX";
-            this.paramViewSuffix.ParameterName = "View Suffix";
-            this.paramViewSuffix.ParameterValue = "";
-            this.paramViewSuffix.ReadOnly = false;
-            this.paramViewSuffix.Required = false;
-            this.paramViewSuffix.Size = new System.Drawing.Size(228, 46);
-            this.paramViewSuffix.TabIndex = 15;
-            this.paramViewSuffix.Tooltip = "";
+            this.tableLayoutController.ColumnCount = 1;
+            this.tableLayoutController.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutController.Controls.Add(this.paramDetailsMethodName, 0, 0);
+            this.tableLayoutController.Controls.Add(this.paramCreateMethodName, 0, 1);
+            this.tableLayoutController.Controls.Add(this.paramEditMethodName, 0, 2);
+            this.tableLayoutController.Controls.Add(this.paramDeleteMethodName, 0, 3);
+            this.tableLayoutController.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutController.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutController.Name = "tableLayoutController";
+            this.tableLayoutController.RowCount = 6;
+            this.tableLayoutController.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutController.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutController.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutController.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutController.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutController.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutController.Size = new System.Drawing.Size(468, 272);
+            this.tableLayoutController.TabIndex = 0;
             // 
             // paramDetailsMethodName
             // 
@@ -467,21 +383,162 @@
             this.paramDeleteMethodName.TabIndex = 23;
             this.paramDeleteMethodName.Tooltip = "";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(419, 322);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 101;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnAccept
+            // 
+            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAccept.Location = new System.Drawing.Point(338, 322);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(75, 23);
+            this.btnAccept.TabIndex = 100;
+            this.btnAccept.Text = "Accept";
+            this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
+            // 
+            // tabViews
+            // 
+            this.tabViews.Controls.Add(this.tableLayoutViews);
+            this.tabViews.Location = new System.Drawing.Point(4, 22);
+            this.tabViews.Name = "tabViews";
+            this.tabViews.Padding = new System.Windows.Forms.Padding(3);
+            this.tabViews.Size = new System.Drawing.Size(474, 278);
+            this.tabViews.TabIndex = 5;
+            this.tabViews.Text = "Views";
+            this.tabViews.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutViews
+            // 
+            this.tableLayoutViews.ColumnCount = 1;
+            this.tableLayoutViews.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutViews.Controls.Add(this.paramDetailsViewName, 0, 0);
+            this.tableLayoutViews.Controls.Add(this.paramCreateViewName, 0, 1);
+            this.tableLayoutViews.Controls.Add(this.paramEditViewName, 0, 2);
+            this.tableLayoutViews.Controls.Add(this.paramDeleteViewName, 0, 3);
+            this.tableLayoutViews.Controls.Add(this.paramIndexViewName, 0, 4);
+            this.tableLayoutViews.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutViews.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutViews.Name = "tableLayoutViews";
+            this.tableLayoutViews.RowCount = 6;
+            this.tableLayoutViews.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutViews.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutViews.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutViews.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutViews.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutViews.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutViews.Size = new System.Drawing.Size(468, 272);
+            this.tableLayoutViews.TabIndex = 0;
+            // 
+            // paramDetailsViewName
+            // 
+            this.paramDetailsViewName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.paramDetailsViewName.DefaultValue = "Details";
+            this.paramDetailsViewName.IsUpdated = false;
+            this.paramDetailsViewName.Location = new System.Drawing.Point(3, 3);
+            this.paramDetailsViewName.Name = "paramDetailsViewName";
+            this.paramDetailsViewName.ParameterCode = "DETAILS_VIEWNAME";
+            this.paramDetailsViewName.ParameterName = "Details View Name";
+            this.paramDetailsViewName.ParameterValue = "Details";
+            this.paramDetailsViewName.ReadOnly = false;
+            this.paramDetailsViewName.Required = true;
+            this.paramDetailsViewName.Size = new System.Drawing.Size(462, 46);
+            this.paramDetailsViewName.TabIndex = 20;
+            this.paramDetailsViewName.Tooltip = "";
+            // 
+            // paramCreateViewName
+            // 
+            this.paramCreateViewName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.paramCreateViewName.DefaultValue = "Create";
+            this.paramCreateViewName.IsUpdated = false;
+            this.paramCreateViewName.Location = new System.Drawing.Point(3, 55);
+            this.paramCreateViewName.Name = "paramCreateViewName";
+            this.paramCreateViewName.ParameterCode = "CREATE_VIEWNAME";
+            this.paramCreateViewName.ParameterName = "Create View Name";
+            this.paramCreateViewName.ParameterValue = "Create";
+            this.paramCreateViewName.ReadOnly = false;
+            this.paramCreateViewName.Required = true;
+            this.paramCreateViewName.Size = new System.Drawing.Size(462, 46);
+            this.paramCreateViewName.TabIndex = 21;
+            this.paramCreateViewName.Tooltip = "";
+            // 
+            // paramEditViewName
+            // 
+            this.paramEditViewName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.paramEditViewName.DefaultValue = "Edit";
+            this.paramEditViewName.IsUpdated = false;
+            this.paramEditViewName.Location = new System.Drawing.Point(3, 107);
+            this.paramEditViewName.Name = "paramEditViewName";
+            this.paramEditViewName.ParameterCode = "EDIT_VIEWNAME";
+            this.paramEditViewName.ParameterName = "Edit View Name";
+            this.paramEditViewName.ParameterValue = "Edit";
+            this.paramEditViewName.ReadOnly = false;
+            this.paramEditViewName.Required = true;
+            this.paramEditViewName.Size = new System.Drawing.Size(462, 46);
+            this.paramEditViewName.TabIndex = 22;
+            this.paramEditViewName.Tooltip = "";
+            // 
+            // paramDeleteViewName
+            // 
+            this.paramDeleteViewName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.paramDeleteViewName.DefaultValue = "Delete";
+            this.paramDeleteViewName.IsUpdated = false;
+            this.paramDeleteViewName.Location = new System.Drawing.Point(3, 159);
+            this.paramDeleteViewName.Name = "paramDeleteViewName";
+            this.paramDeleteViewName.ParameterCode = "DELETE_VIEWNAME";
+            this.paramDeleteViewName.ParameterName = "Delete View Name";
+            this.paramDeleteViewName.ParameterValue = "Delete";
+            this.paramDeleteViewName.ReadOnly = false;
+            this.paramDeleteViewName.Required = true;
+            this.paramDeleteViewName.Size = new System.Drawing.Size(462, 46);
+            this.paramDeleteViewName.TabIndex = 23;
+            this.paramDeleteViewName.Tooltip = "";
+            // 
+            // paramIndexViewName
+            // 
+            this.paramIndexViewName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.paramIndexViewName.DefaultValue = "Index";
+            this.paramIndexViewName.IsUpdated = false;
+            this.paramIndexViewName.Location = new System.Drawing.Point(3, 211);
+            this.paramIndexViewName.Name = "paramIndexViewName";
+            this.paramIndexViewName.ParameterCode = "INDEX_VIEWNAME";
+            this.paramIndexViewName.ParameterName = "Index View Name";
+            this.paramIndexViewName.ParameterValue = "Index";
+            this.paramIndexViewName.ReadOnly = false;
+            this.paramIndexViewName.Required = true;
+            this.paramIndexViewName.Size = new System.Drawing.Size(462, 46);
+            this.paramIndexViewName.TabIndex = 24;
+            this.paramIndexViewName.Tooltip = "";
+            // 
             // paramDatabaseContextClassName
             // 
             this.paramDatabaseContextClassName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.paramDatabaseContextClassName.DefaultValue = "ApplicationDbContext";
+            this.paramDatabaseContextClassName.DefaultValue = "MyProjectDbContext";
             this.paramDatabaseContextClassName.IsUpdated = false;
-            this.paramDatabaseContextClassName.Location = new System.Drawing.Point(3, 3);
+            this.paramDatabaseContextClassName.Location = new System.Drawing.Point(3, 211);
             this.paramDatabaseContextClassName.Name = "paramDatabaseContextClassName";
             this.paramDatabaseContextClassName.ParameterCode = "DBCONTEXT_NAME";
             this.paramDatabaseContextClassName.ParameterName = "Database Context Class Name";
-            this.paramDatabaseContextClassName.ParameterValue = "ApplicationDbContext";
+            this.paramDatabaseContextClassName.ParameterValue = "MyProjectDbContext";
             this.paramDatabaseContextClassName.ReadOnly = false;
             this.paramDatabaseContextClassName.Required = true;
             this.paramDatabaseContextClassName.Size = new System.Drawing.Size(462, 46);
-            this.paramDatabaseContextClassName.TabIndex = 30;
+            this.paramDatabaseContextClassName.TabIndex = 31;
             this.paramDatabaseContextClassName.Tooltip = "";
             // 
             // FormAspNetMvcCoreTemplateConfiguration
@@ -507,8 +564,8 @@
             this.tableLayoutClasses.ResumeLayout(false);
             this.tabController.ResumeLayout(false);
             this.tableLayoutController.ResumeLayout(false);
-            this.tabDatabase.ResumeLayout(false);
-            this.tableLayoutDatabase.ResumeLayout(false);
+            this.tabViews.ResumeLayout(false);
+            this.tableLayoutViews.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -535,11 +592,14 @@
         private Controls.TemplateParameter paramEditMethodName;
         private Controls.TemplateParameter paramDeleteMethodName;
         private System.Windows.Forms.TableLayoutPanel tableLayoutGeneral;
-        private Controls.TemplateParameter paramDatabaseContextClassName;
         private Controls.TemplateParameter paramDatabaseContextNamespace;
-        private System.Windows.Forms.TabPage tabDatabase;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutDatabase;
-        private Controls.TemplateParameter paramViewPrefix;
-        private Controls.TemplateParameter paramViewSuffix;
+        private System.Windows.Forms.TabPage tabViews;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutViews;
+        private Controls.TemplateParameter paramDetailsViewName;
+        private Controls.TemplateParameter paramCreateViewName;
+        private Controls.TemplateParameter paramEditViewName;
+        private Controls.TemplateParameter paramDeleteViewName;
+        private Controls.TemplateParameter paramIndexViewName;
+        private Controls.TemplateParameter paramDatabaseContextClassName;
     }
 }

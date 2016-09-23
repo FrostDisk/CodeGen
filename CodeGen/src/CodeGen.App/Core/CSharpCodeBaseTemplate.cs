@@ -16,6 +16,11 @@ namespace CodeGen.Core
         #region properties
 
         /// <summary>
+        /// File Extension
+        /// </summary>
+        public string _defaultFileExtension = ".cs";
+
+        /// <summary>
         /// Author Website Url
         /// </summary>
         public string AuthorWebsiteUrl
@@ -37,14 +42,6 @@ namespace CodeGen.Core
         public string Description
         {
             get { return "C# Domain/DataAccess Code Template"; }
-        }
-
-        /// <summary>
-        /// File Extension
-        /// </summary>
-        public string DefaultFileExtension
-        {
-            get { return ".cs"; }
         }
 
         /// <summary>
@@ -150,8 +147,8 @@ namespace CodeGen.Core
 
                 switch (component.Id)
                 {
-                    case (int)eBaseTemplateComponent.DOMAIN: { return generator.DomainClassName + DefaultFileExtension; }
-                    case (int)eBaseTemplateComponent.DATA_ACCESS: { return generator.DataAccessClassName + DefaultFileExtension; }
+                    case (int)eBaseTemplateComponent.DOMAIN: { return generator.DomainClassName + _defaultFileExtension; }
+                    case (int)eBaseTemplateComponent.DATA_ACCESS: { return generator.DataAccessClassName + _defaultFileExtension; }
                 }
             }
 
@@ -166,8 +163,8 @@ namespace CodeGen.Core
         {
             return new List<GeneratorComponent>
             {
-                new GeneratorComponent((int) eBaseTemplateComponent.DOMAIN, "Domain", ".cs"),
-                new GeneratorComponent((int) eBaseTemplateComponent.DATA_ACCESS, "Data Access", ".cs"),
+                new GeneratorComponent((int) eBaseTemplateComponent.DOMAIN, "Domain", _defaultFileExtension),
+                new GeneratorComponent((int) eBaseTemplateComponent.DATA_ACCESS, "Data Access", _defaultFileExtension),
             };
         }
 

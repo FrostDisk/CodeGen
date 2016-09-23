@@ -4,6 +4,9 @@ using System.Data.SqlClient;
 
 namespace CodeGen.Library.AccessModel
 {
+    /// <summary>
+    /// Transaction
+    /// </summary>
     public class Transaction : ITransaction
     {
         internal BaseDBHelper instance;
@@ -33,6 +36,9 @@ namespace CodeGen.Library.AccessModel
 
         private readonly Transaction _previous;
 
+        /// <summary>
+        /// Active
+        /// </summary>
         public static Transaction Active
         {
             get
@@ -41,8 +47,14 @@ namespace CodeGen.Library.AccessModel
             }
         }
 
+        /// <summary>
+        /// IsCommitted
+        /// </summary>
         public bool IsCommitted { get; set; }
 
+        /// <summary>
+        /// Rollback
+        /// </summary>
         public void Rollback()
         {
             transaction.Rollback();
@@ -50,6 +62,9 @@ namespace CodeGen.Library.AccessModel
             Close();
         }
 
+        /// <summary>
+        /// Commit
+        /// </summary>
         public void Commit()
         {
             transaction.Commit();
@@ -57,6 +72,9 @@ namespace CodeGen.Library.AccessModel
             Close();
         }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
         public void Dispose()
         {
             if (!IsCommitted)

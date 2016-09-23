@@ -33,6 +33,12 @@ namespace CodeGen.Library.AccessModel
         /// </summary>
         public string ComplexDataTypeName { get; private set; }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="type"></param>
         public Parameter(string name, object value, ParameterType type = ParameterType.DEFAULT)
         {
             Name = name;
@@ -42,6 +48,11 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public Parameter(string name, bool value)
         {
             Name = name;
@@ -51,6 +62,11 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public Parameter(string name, float value)
         {
             Name = name;
@@ -60,6 +76,11 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public Parameter(string name, double value)
         {
             Name = name;
@@ -69,6 +90,11 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public Parameter(string name, double? value)
         {
             Name = name;
@@ -78,6 +104,11 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public Parameter(string name, decimal value)
         {
             Name = name;
@@ -87,6 +118,11 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public Parameter(string name, decimal? value)
         {
             Name = name;
@@ -96,6 +132,11 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public Parameter(string name, long value)
         {
             Name = name;
@@ -105,6 +146,11 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public Parameter(string name, long? value)
         {
             Name = name;
@@ -114,6 +160,11 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public Parameter(string name, int value)
         {
             Name = name;
@@ -123,6 +174,11 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public Parameter(string name, int? value)
         {
             Name = name;
@@ -132,6 +188,11 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public Parameter(string name, short? value)
         {
             Name = name;
@@ -141,6 +202,11 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public Parameter(string name, short value)
         {
             Name = name;
@@ -150,6 +216,13 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="isText"></param>
+        /// <param name="isLongText"></param>
         public Parameter(string name, string value, bool isText = false, bool isLongText = false)
         {
             Name = name;
@@ -159,6 +232,12 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="isSimpleDate"></param>
         public Parameter(string name, DateTime value, bool isSimpleDate = false)
         {
             Name = name;
@@ -168,6 +247,11 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
         public Parameter(string name, Guid value)
         {
             Name = name;
@@ -177,6 +261,12 @@ namespace CodeGen.Library.AccessModel
             ComplexDataTypeName = string.Empty;
         }
 
+        /// <summary>
+        /// Parameter
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="dataTypeName"></param>
         public Parameter(string name, DataTable value, string dataTypeName)
         {
             Name = name;

@@ -219,6 +219,8 @@ namespace CodeGen.Core
             {
                 FormAspNetMvcCoreTemplateConfiguration.Instance.UpdateSetting(settingValue.Key, settingValue.Value);
             }
+
+            Settings = FormAspNetMvcCoreTemplateConfiguration.Instance.GetSettings();
         }
     }
 }

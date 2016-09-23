@@ -205,6 +205,8 @@ namespace CodeGen.Core
             {
                 FormBaseTemplateConfiguration.Instance.UpdateSetting(settingValue.Key, settingValue.Value);
             }
+
+            Settings = FormBaseTemplateConfiguration.Instance.GetSettings();
         }
 
         #endregion

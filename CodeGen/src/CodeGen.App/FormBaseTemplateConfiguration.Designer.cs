@@ -59,7 +59,7 @@
             this.paramDeleteMethodName = new CodeGen.Controls.TemplateParameter();
             this.paramBuildFunctionMethodName = new CodeGen.Controls.TemplateParameter();
             this.tabAccessModel = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutAccessModel = new System.Windows.Forms.TableLayoutPanel();
             this.paramGetScalarMethodName = new CodeGen.Controls.TemplateParameter();
             this.paramGetEntityMethodName = new CodeGen.Controls.TemplateParameter();
             this.paramGetDataTableMethodName = new CodeGen.Controls.TemplateParameter();
@@ -77,7 +77,7 @@
             this.tabDataAccess.SuspendLayout();
             this.tableLayoutDataAccess.SuspendLayout();
             this.tabAccessModel.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutAccessModel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabConfiguration
@@ -587,7 +587,7 @@
             // 
             // tabAccessModel
             // 
-            this.tabAccessModel.Controls.Add(this.tableLayoutPanel2);
+            this.tabAccessModel.Controls.Add(this.tableLayoutAccessModel);
             this.tabAccessModel.Location = new System.Drawing.Point(4, 22);
             this.tabAccessModel.Name = "tabAccessModel";
             this.tabAccessModel.Padding = new System.Windows.Forms.Padding(3);
@@ -596,27 +596,27 @@
             this.tabAccessModel.Text = "AccessModel";
             this.tabAccessModel.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel2
+            // tableLayoutAccessModel
             // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.paramGetScalarMethodName, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.paramGetEntityMethodName, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.paramGetDataTableMethodName, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.paramExecuteStoredProcedureMethodName, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.paramDBHelperInstanceObject, 0, 4);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 6;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(468, 272);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.tableLayoutAccessModel.ColumnCount = 1;
+            this.tableLayoutAccessModel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutAccessModel.Controls.Add(this.paramGetScalarMethodName, 0, 0);
+            this.tableLayoutAccessModel.Controls.Add(this.paramGetEntityMethodName, 0, 1);
+            this.tableLayoutAccessModel.Controls.Add(this.paramGetDataTableMethodName, 0, 2);
+            this.tableLayoutAccessModel.Controls.Add(this.paramExecuteStoredProcedureMethodName, 0, 3);
+            this.tableLayoutAccessModel.Controls.Add(this.paramDBHelperInstanceObject, 0, 4);
+            this.tableLayoutAccessModel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutAccessModel.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutAccessModel.Name = "tableLayoutAccessModel";
+            this.tableLayoutAccessModel.RowCount = 6;
+            this.tableLayoutAccessModel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutAccessModel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutAccessModel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutAccessModel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutAccessModel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutAccessModel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutAccessModel.Size = new System.Drawing.Size(468, 272);
+            this.tableLayoutAccessModel.TabIndex = 0;
             // 
             // paramGetScalarMethodName
             // 
@@ -750,7 +750,7 @@
             this.tabDataAccess.ResumeLayout(false);
             this.tableLayoutDataAccess.ResumeLayout(false);
             this.tabAccessModel.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutAccessModel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -790,7 +790,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutGeneral;
         private Controls.TemplateParameter paramConnectionStringKey;
         private System.Windows.Forms.TabPage tabAccessModel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutAccessModel;
         private Controls.TemplateParameter paramGetScalarMethodName;
         private Controls.TemplateParameter paramGetEntityMethodName;
         private Controls.TemplateParameter paramGetDataTableMethodName;

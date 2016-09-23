@@ -14,61 +14,107 @@ using CodeGen.Library.AccessModel;
 
 namespace CodeGen.Core
 {
+    /// <summary>
+    /// SqlServerController
+    /// </summary>
+    /// <seealso cref="CodeGen.Plugin.Base.IAccessModelController" />
     public sealed class SqlServerController : IAccessModelController
     {
         private string _connectionString;
 
+        /// <summary>
+        /// Title
+        /// </summary>
         public string Title
         {
             get { return "Sql Server Access-Model Controller"; }
         }
 
+        /// <summary>
+        /// CreatedBy
+        /// </summary>
         public string CreatedBy
         {
             get { return ProgramInfo.AssemblyCompany; }
         }
 
+        /// <summary>
+        /// Icon
+        /// </summary>
         public Image Icon
         {
             get { return null; }
         }
 
+        /// <summary>
+        /// Description
+        /// </summary>
         public string Description
         {
             get { return "Sql Server Access-Model Controller"; }
         }
 
+        /// <summary>
+        /// Version
+        /// </summary>
         public string Version
         {
             get { return ProgramInfo.AssemblyVersion; }
         }
 
+        /// <summary>
+        /// Release Notes Url
+        /// </summary>
         public string ReleaseNotesUrl
         {
             get { return Resources.DefaultReleaseNotesUrl; }
         }
 
+        /// <summary>
+        /// Author Website Url
+        /// </summary>
         public string AuthorWebsiteUrl
         {
             get { return Resources.DefaultAuthorWebsiteUrl; }
         }
 
+        /// <summary>
+        /// Instance settings object
+        /// </summary>
         public PluginSettings Settings { get; private set; }
 
+        /// <summary>
+        /// DatabaseTypeCode
+        /// </summary>
         public string DatabaseTypeCode
         {
             get { return EnumDatabaseTypes.SqlServer.ToString("G"); }
         }
 
+        /// <summary>
+        /// IsLoaded
+        /// </summary>
         public bool IsLoaded { get; private set; }
 
+        /// <summary>
+        /// Have Custom ConnectionString Form
+        /// </summary>
         public bool HaveCustomConnectionStringForm { get { return true; } }
 
+        /// <summary>
+        /// Updates the settings.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
         public void UpdateSettings(PluginSettings settings)
         {
 
         }
 
+        /// <summary>
+        /// Loads the specified connection string.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
+        /// <returns></returns>
         public bool Load(string connectionString)
         {
             _connectionString = connectionString;
@@ -84,6 +130,11 @@ namespace CodeGen.Core
             return true;
         }
 
+        /// <summary>
+        /// Shows the generate connection string form.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
+        /// <returns></returns>
         public bool ShowGenerateConnectionStringForm(out string connectionString)
         {
             FormGenerateConnectionString form = new FormGenerateConnectionString();
@@ -99,6 +150,11 @@ namespace CodeGen.Core
             return false;
         }
 
+        /// <summary>
+        /// Gets the table list.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="ApplicationException">The Controller isn't loaded</exception>
         public List<string> GetTableList()
         {
             if (!IsLoaded)
@@ -122,6 +178,13 @@ namespace CodeGen.Core
             return tables;
         }
 
+        /// <summary>
+        /// Gets the entity information.
+        /// </summary>
+        /// <param name="tableName">Name of the table.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ApplicationException">The Controller isn't loaded</exception>
+        /// <exception cref="DataException">Table not found in database</exception>
         public DatabaseEntity GetEntityInfo(string tableName)
         {
             if (!IsLoaded)
@@ -209,6 +272,11 @@ namespace CodeGen.Core
             return entity;
         }
 
+        /// <summary>
+        /// Checks the connection.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
+        /// <returns></returns>
         public bool CheckConnection(string connectionString)
         {
             try

@@ -6,6 +6,9 @@ using CodeGen.Properties;
 
 namespace CodeGen.Utils
 {
+    /// <summary>
+    /// Static Class to store global configuration 
+    /// </summary>
     public static class ProgramSettings
     {
         internal static string SettingsFolder
@@ -15,6 +18,10 @@ namespace CodeGen.Utils
 
         private static GlobalSettings _loadedGlobalSettings;
 
+        /// <summary>
+        /// Load the global configuration settings for the application instance
+        /// </summary>
+        /// <returns></returns>
         public static GlobalSettings GetGlobalSettings()
         {
             if (_loadedGlobalSettings != null)
@@ -56,6 +63,9 @@ namespace CodeGen.Utils
             return _loadedGlobalSettings;
         }
 
+        /// <summary>
+        /// Saves the global configuration in a file
+        /// </summary>
         public static void SaveGlobalSettings()
         {
             string settingsLocation = Path.Combine(SettingsFolder, Settings.Default.GlobalSettingsFilename);

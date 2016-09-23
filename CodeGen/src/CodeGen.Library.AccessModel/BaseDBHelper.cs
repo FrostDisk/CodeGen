@@ -9,18 +9,40 @@ using CodeGen.Library.System.Configuration;
 
 namespace CodeGen.Library.AccessModel
 {
+    /// <summary>
+    /// BaseDBHelper
+    /// </summary>
     public class BaseDBHelper : IDBHelper
     {
+        /// <summary>
+        /// ConnectionString
+        /// </summary>
         public string ConnectionString { get; private set; }
 
+        /// <summary>
+        /// ConnectionStringKey
+        /// </summary>
         public string ConnectionStringKey { get; private set; }
 
+        /// <summary>
+        /// BaseDBHelper
+        /// </summary>
+        /// <param name="connectionStringKey"></param>
+        /// <param name="isFullConnectionString"></param>
         public BaseDBHelper(string connectionStringKey, bool isFullConnectionString = false)
         {
             ConnectionStringKey = !isFullConnectionString ? connectionStringKey : string.Empty;
             ConnectionString = isFullConnectionString ? connectionStringKey : ConfigHelper.GetConnectionString(connectionStringKey);
         }
 
+        /// <summary>
+        /// GetEntity
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parameters"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public T GetEntity<T>(string storedProcedureName, ParameterCollection parameters, Func<DataRow, T> buildFunction) where T : new()
         {
             DataTable table = new DataTable();
@@ -50,6 +72,14 @@ namespace CodeGen.Library.AccessModel
             return table.Rows.Count > 0 ? buildFunction(table.Rows[0]) : new T();
         }
 
+        /// <summary>
+        /// GetEntity
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parameters"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public T GetEntity<T>(string storedProcedureName, ParameterCollection parameters, Func<IDataReader, T> buildFunction) where T : new()
         {
             T item = new T();
@@ -84,6 +114,14 @@ namespace CodeGen.Library.AccessModel
             return item;
         }
 
+        /// <summary>
+        /// GetEntity
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parameter"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public T GetEntity<T>(string storedProcedureName, Parameter parameter, Func<DataRow, T> buildFunction) where T : new()
         {
             return GetEntity(storedProcedureName,
@@ -94,6 +132,14 @@ namespace CodeGen.Library.AccessModel
                                   buildFunction);
         }
 
+        /// <summary>
+        /// GetEntity
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parameter"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public T GetEntity<T>(string storedProcedureName, Parameter parameter, Func<IDataReader, T> buildFunction) where T : new()
         {
             return GetEntity(storedProcedureName,
@@ -104,16 +150,38 @@ namespace CodeGen.Library.AccessModel
                                   buildFunction);
         }
 
+        /// <summary>
+        /// GetEntity
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public T GetEntity<T>(string storedProcedureName, Func<DataRow, T> buildFunction) where T : new()
         {
             return GetEntity(storedProcedureName, new ParameterCollection(), buildFunction);
         }
 
+        /// <summary>
+        /// GetEntity
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public T GetEntity<T>(string storedProcedureName, Func<IDataReader, T> buildFunction) where T : new()
         {
             return GetEntity(storedProcedureName, new ParameterCollection(), buildFunction);
         }
 
+        /// <summary>
+        /// GetEntityFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="parameters"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public T GetEntityFromSql<T>(string query, ParameterCollection parameters, Func<DataRow, T> buildFunction) where T : new()
         {
             DataTable table = new DataTable();
@@ -143,6 +211,14 @@ namespace CodeGen.Library.AccessModel
             return table.Rows.Count > 0 ? buildFunction(table.Rows[0]) : new T();
         }
 
+        /// <summary>
+        /// GetEntityFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="parameters"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public T GetEntityFromSql<T>(string query, ParameterCollection parameters, Func<IDataReader, T> buildFunction) where T : new()
         {
             T item = new T();
@@ -177,6 +253,14 @@ namespace CodeGen.Library.AccessModel
             return item;
         }
 
+        /// <summary>
+        /// GetEntityFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="parameter"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public T GetEntityFromSql<T>(string query, Parameter parameter, Func<DataRow, T> buildFunction) where T : new()
         {
             return GetEntityFromSql(query,
@@ -187,6 +271,14 @@ namespace CodeGen.Library.AccessModel
                                          buildFunction);
         }
 
+        /// <summary>
+        /// GetEntityFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="parameter"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public T GetEntityFromSql<T>(string query, Parameter parameter, Func<IDataReader, T> buildFunction) where T : new()
         {
             return GetEntityFromSql(query,
@@ -197,16 +289,38 @@ namespace CodeGen.Library.AccessModel
                                          buildFunction);
         }
 
+        /// <summary>
+        /// GetEntityFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public T GetEntityFromSql<T>(string query, Func<DataRow, T> buildFunction) where T : new()
         {
             return GetEntityFromSql(query, new ParameterCollection(), buildFunction);
         }
 
+        /// <summary>
+        /// GetEntityFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public T GetEntityFromSql<T>(string query, Func<IDataReader, T> buildFunction) where T : new()
         {
             return GetEntityFromSql(query, new ParameterCollection(), buildFunction);
         }
 
+        /// <summary>
+        /// GetCollection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parameters"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public List<T> GetCollection<T>(string storedProcedureName, ParameterCollection parameters, Func<DataRow, T> buildFunction) where T : new()
         {
             DataTable table = new DataTable();
@@ -236,6 +350,14 @@ namespace CodeGen.Library.AccessModel
             return (from DataRow row in table.Rows select buildFunction(row)).ToList();
         }
 
+        /// <summary>
+        /// GetCollection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parameters"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public List<T> GetCollection<T>(string storedProcedureName, ParameterCollection parameters, Func<IDataReader, T> buildFunction) where T : new()
         {
             List<T> lista = new List<T>();
@@ -271,6 +393,14 @@ namespace CodeGen.Library.AccessModel
             return lista;
         }
 
+        /// <summary>
+        /// GetCollection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parameter"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public List<T> GetCollection<T>(string storedProcedureName, Parameter parameter, Func<DataRow, T> buildFunction) where T : new()
         {
             return GetCollection(storedProcedureName,
@@ -281,6 +411,14 @@ namespace CodeGen.Library.AccessModel
                                     buildFunction);
         }
 
+        /// <summary>
+        /// GetCollection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parameter"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public List<T> GetCollection<T>(string storedProcedureName, Parameter parameter, Func<IDataReader, T> buildFunction) where T : new()
         {
             return GetCollection(storedProcedureName,
@@ -291,16 +429,38 @@ namespace CodeGen.Library.AccessModel
                                     buildFunction);
         }
 
+        /// <summary>
+        /// GetCollection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public List<T> GetCollection<T>(string storedProcedureName, Func<DataRow, T> buildFunction) where T : new()
         {
             return GetCollection(storedProcedureName, new ParameterCollection(), buildFunction);
         }
 
+        /// <summary>
+        /// GetCollection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public List<T> GetCollection<T>(string storedProcedureName, Func<IDataReader, T> buildFunction) where T : new()
         {
             return GetCollection(storedProcedureName, new ParameterCollection(), buildFunction);
         }
 
+        /// <summary>
+        /// GetCollectionFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="parameters"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public List<T> GetCollectionFromSql<T>(string query, ParameterCollection parameters, Func<DataRow, T> buildFunction) where T : new()
         {
             DataTable table = new DataTable();
@@ -330,6 +490,14 @@ namespace CodeGen.Library.AccessModel
             return (from DataRow row in table.Rows select buildFunction(row)).ToList();
         }
 
+        /// <summary>
+        /// GetCollectionFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="parameters"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public List<T> GetCollectionFromSql<T>(string query, ParameterCollection parameters, Func<IDataReader, T> buildFunction) where T : new()
         {
             List<T> lista = new List<T>();
@@ -365,6 +533,14 @@ namespace CodeGen.Library.AccessModel
             return lista;
         }
 
+        /// <summary>
+        /// GetCollectionFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="parameter"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public List<T> GetCollectionFromSql<T>(string query, Parameter parameter, Func<DataRow, T> buildFunction) where T : new()
         {
             return GetCollectionFromSql(query,
@@ -375,6 +551,14 @@ namespace CodeGen.Library.AccessModel
                                            buildFunction);
         }
 
+        /// <summary>
+        /// GetCollectionFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="parameter"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public List<T> GetCollectionFromSql<T>(string query, Parameter parameter, Func<IDataReader, T> buildFunction) where T : new()
         {
             return GetCollectionFromSql(query,
@@ -385,16 +569,36 @@ namespace CodeGen.Library.AccessModel
                                            buildFunction);
         }
 
+        /// <summary>
+        /// GetCollectionFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public List<T> GetCollectionFromSql<T>(string query, Func<DataRow, T> buildFunction) where T : new()
         {
             return GetCollectionFromSql(query, new ParameterCollection(), buildFunction);
         }
 
+        /// <summary>
+        /// GetCollectionFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="buildFunction"></param>
+        /// <returns></returns>
         public List<T> GetCollectionFromSql<T>(string query, Func<IDataReader, T> buildFunction) where T : new()
         {
             return GetCollectionFromSql(query, new ParameterCollection(), buildFunction);
         }
 
+        /// <summary>
+        /// GetDataTable
+        /// </summary>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parametros"></param>
+        /// <returns></returns>
         public DataTable GetDataTable(string storedProcedureName, ParameterCollection parametros = null)
         {
             DataTable table = new DataTable("Results");
@@ -424,6 +628,12 @@ namespace CodeGen.Library.AccessModel
             return table;
         }
 
+        /// <summary>
+        /// GetDataTable
+        /// </summary>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public DataTable GetDataTable(string storedProcedureName, Parameter parameter)
         {
             return GetDataTable(storedProcedureName,
@@ -433,6 +643,12 @@ namespace CodeGen.Library.AccessModel
                                         });
         }
 
+        /// <summary>
+        /// GetDataTableFromSql
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public DataTable GetDataTableFromSql(string query, ParameterCollection parameters = null)
         {
             DataTable table = new DataTable("Results");
@@ -462,6 +678,12 @@ namespace CodeGen.Library.AccessModel
             return table;
         }
 
+        /// <summary>
+        /// GetDataTableFromSql
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public DataTable GetDataTableFromSql(string query, Parameter parameter)
         {
             return GetDataTableFromSql(query,
@@ -471,6 +693,13 @@ namespace CodeGen.Library.AccessModel
                                                });
         }
 
+        /// <summary>
+        /// GetScalar
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public T GetScalar<T>(string storedProcedureName, ParameterCollection parameters = null)
         {
             object result;
@@ -499,6 +728,13 @@ namespace CodeGen.Library.AccessModel
             return (T)Convert.ChangeType(result, typeof(T));
         }
 
+        /// <summary>
+        /// GetScalar
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public T GetScalar<T>(string storedProcedureName, Parameter parameter)
         {
             return GetScalar<T>(storedProcedureName,
@@ -508,6 +744,13 @@ namespace CodeGen.Library.AccessModel
                                          });
         }
 
+        /// <summary>
+        /// GetScalarFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public T GetScalarFromSql<T>(string query, ParameterCollection parameters = null)
         {
             object result;
@@ -536,6 +779,13 @@ namespace CodeGen.Library.AccessModel
             return (T)Convert.ChangeType(result, typeof(T));
         }
 
+        /// <summary>
+        /// GetScalarFromSql
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="query"></param>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public T GetScalarFromSql<T>(string query, Parameter parameter)
         {
             return GetScalarFromSql<T>(query,
@@ -545,6 +795,12 @@ namespace CodeGen.Library.AccessModel
                                                 });
         }
 
+        /// <summary>
+        /// ExecuteStoredProcedure
+        /// </summary>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public int ExecuteStoredProcedure(string storedProcedureName, ParameterCollection parameters = null)
         {
             int result;
@@ -573,6 +829,12 @@ namespace CodeGen.Library.AccessModel
             return result;
         }
 
+        /// <summary>
+        /// ExecuteStoredProcedure
+        /// </summary>
+        /// <param name="storedProcedureName"></param>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public int ExecuteStoredProcedure(string storedProcedureName, Parameter parameter)
         {
             return ExecuteStoredProcedure(storedProcedureName,
@@ -582,6 +844,12 @@ namespace CodeGen.Library.AccessModel
                                              });
         }
 
+        /// <summary>
+        /// ExecuteSql
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         public int ExecuteSql(string query, ParameterCollection parameters = null)
         {
             int result;
@@ -610,6 +878,12 @@ namespace CodeGen.Library.AccessModel
             return result;
         }
 
+        /// <summary>
+        /// ExecuteSql
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
         public int ExecuteSql(string query, Parameter parameter)
         {
             return ExecuteSql(query,
@@ -619,6 +893,11 @@ namespace CodeGen.Library.AccessModel
                                    });
         }
 
+        /// <summary>
+        /// CreateTransaction
+        /// </summary>
+        /// <param name="isolationLevel"></param>
+        /// <returns></returns>
         public Transaction CreateTransaction(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
         {
             return new Transaction(new SqlConnection(ConnectionString), isolationLevel, this);

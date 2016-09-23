@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Windows.Forms;
-using CodeGen.Controls;
-using CodeGen.Core;
 using CodeGen.Library.AccessModel;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
 
 namespace CodeGen
 {
+    /// <summary>
+    /// Generate ConnectionString Form
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
+    /// <seealso cref="CodeGen.Plugin.Base.IConnectionStringForm" />
     public partial class FormGenerateConnectionString : Form, IConnectionStringForm
     {
         #region properties
@@ -66,6 +69,10 @@ namespace CodeGen
             }
         }
 
+        /// <summary>
+        /// Gets the connection string.
+        /// </summary>
+        /// <returns></returns>
         public string GetConnectionString()
         {
             return DatabaseUtils.CreateBasicConnectionString(txtServerName.Text, txtLogin.Text, txtPassword.Text, rbtnWindowsAuthentication.Checked, (string) cmbDatabase.SelectedItem);
@@ -83,6 +90,10 @@ namespace CodeGen
             btnCancel.Enabled = enable;
         }
 
+        /// <summary>
+        /// Validates the form.
+        /// </summary>
+        /// <returns></returns>
         public bool ValidateForm()
         {
             if(string.IsNullOrWhiteSpace(txtServerName.Text))

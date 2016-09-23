@@ -1,6 +1,6 @@
 ﻿namespace CodeGen.Library.Formats
 {
-    internal class TemplateTags
+    internal static class TemplateTags
     {
         internal static readonly string SectionBegin = "begin";
         internal static readonly string SectionEnd = "end";

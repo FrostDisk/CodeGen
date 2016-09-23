@@ -68,6 +68,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\AspNetMvcCoreCodeTemplate.cs" />
+    <Compile Include="Core\AspNetMvcCoreConstants.cs" />
+    <Compile Include="Core\AspNetMvcCoreGenerator.cs" />
+    <Compile Include="Core\DefaultFilters.cs" />
+    <Compile Include="Core\eAspNetMvcCoreTemplateComponent.cs" />
+    <Compile Include="FormAspNetMvcCoreTemplateConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAspNetMvcCoreTemplateConfiguration.Designer.cs">
+      <DependentUpon>FormAspNetMvcCoreTemplateConfiguration.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +209,9 @@
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAspNetMvcCoreTemplateConfiguration.resx">
+      <DependentUpon>FormAspNetMvcCoreTemplateConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBaseTemplateConfiguration.resx">
       <DependentUpon>FormBaseTemplateConfiguration.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,7 +233,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -230,17 +244,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Templates\view_Create.cshtml.tpl" />
+    <None Include="Resources\Templates\view_Delete.cshtml.tpl" />
+    <None Include="Resources\Templates\view_Details.cshtml.tpl" />
+    <None Include="Resources\Templates\view_Edit.cshtml.tpl" />
+    <None Include="Resources\Templates\view_Index.cshtml.tpl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\Templates\class_Controller.cs.tpl" />
     <Content Include="Resources\Icons\file_extension_bin.png" />
     <Content Include="Resources\Icons\file_extension_dll.png" />
     <Content Include="Resources\Icons\file_extension_rtf.png" />
     <Content Include="Resources\Icons\file_extension_sit.png" />
     <None Include="Resources\Images\add_on.png" />
+    <None Include="Resources\Templates\class_Model.cs.tpl" />
     <None Include="Resources\Templates\sp_Delete.sql.tpl" />
     <None Include="Resources\Templates\sp_GetByID.sql.tpl" />
     <None Include="Resources\Templates\sp_ListAll.sql.tpl" />

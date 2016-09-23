@@ -11,20 +11,37 @@ using CodeGen.Utils;
 
 namespace CodeGen.Controls
 {
+    /// <summary>
+    /// BasicProjectProperties
+    /// </summary>
+    /// <seealso cref="UserControl" />
+    /// <seealso cref="IBaseUserControl" />
     public partial class BasicProjectProperties : UserControl, IBaseUserControl
     {
         #region properties
 
+        /// <summary>
+        /// Gets or sets the default project location.
+        /// </summary>
         public string DefaultProjectLocation { get; set; }
 
+        /// <summary>
+        /// Gets or sets the default name of the project.
+        /// </summary>
         public string DefaultProjectName { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is loaded.
+        /// </summary>
         public bool IsLoaded { get; set; }
 
         #endregion
 
         #region initialization
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BasicProjectProperties"/> class.
+        /// </summary>
         public BasicProjectProperties()
         {
             InitializeComponent();
@@ -38,6 +55,14 @@ namespace CodeGen.Controls
 
         #region methods
 
+        /// <summary>
+        /// Loads the local variables.
+        /// </summary>
+        /// <exception cref="System.NullReferenceException">
+        /// DefaultProjectLocation isn't defined
+        /// or
+        /// DefaultProjectName isn't defined
+        /// </exception>
         public void LoadLocalVariables()
         {
             if (string.IsNullOrWhiteSpace(DefaultProjectLocation))
@@ -56,6 +81,10 @@ namespace CodeGen.Controls
             IsLoaded = true;
         }
 
+        /// <summary>
+        /// Enables the controls.
+        /// </summary>
+        /// <param name="enable">if set to <c>true</c> [enable].</param>
         public void EnableControls(bool enable)
         {
             txtProjectName.Enabled = enable;
@@ -101,6 +130,10 @@ namespace CodeGen.Controls
             btnGenerateConnectionString.Enabled = false;
         }
 
+        /// <summary>
+        /// Gets the project.
+        /// </summary>
+        /// <returns></returns>
         public Project GetProject()
         {
             Project project = ProjectController.CreateEmptyProject(txtProjectName.Text, txtProjectDirectory.Text);
@@ -119,6 +152,10 @@ namespace CodeGen.Controls
             return project;
         }
 
+        /// <summary>
+        /// Validates the form.
+        /// </summary>
+        /// <returns></returns>
         public bool ValidateForm()
         {
             if (string.IsNullOrWhiteSpace(txtProjectName.Text))

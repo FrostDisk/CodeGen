@@ -9,30 +9,56 @@ using System.IO;
 
 namespace CodeGen.Controls
 {
+    /// <summary>
+    /// GenerateCodeFile
+    /// </summary>
+    /// <seealso cref="UserControl" />
+    /// <seealso cref="IGeneratorUserControl" />
     public partial class GenerateCodeFile : UserControl, IGeneratorUserControl
     {
         #region properties
 
+        /// <summary>
+        /// Project
+        /// </summary>
         public Project Project { get; set; }
 
+        /// <summary>
+        /// IsLoaded
+        /// </summary>
         public bool IsLoaded { get; set; }
 
+        /// <summary>
+        /// Occurs when [on control update].
+        /// </summary>
         public event EventHandler OnControlUpdate;
 
+        /// <summary>
+        /// Occurs when [on settings update].
+        /// </summary>
         public event EventHandler OnSettingsUpdate;
 
+        /// <summary>
+        /// Gets the settings.
+        /// </summary>
         public PluginSettings Settings
         {
             get
             {
                 if (cmbTemplate.SelectedItem != null)
                 {
-                    return PluginsManager.GetSettingsFromPlugin(cmbTemplate.SelectedItem as SupportedType);
+                    return PluginsManager.GetSettingsFromPlugin((SupportedType)cmbTemplate.SelectedItem);
                 }
                 return null;
             }
         }
 
+        /// <summary>
+        /// Gets the active template.
+        /// </summary>
+        /// <value>
+        /// The active template.
+        /// </value>
         public IGeneratorTemplate ActiveTemplate { get; private set; }
 
         private Dictionary<string, DatabaseEntity> _entities;
@@ -41,6 +67,9 @@ namespace CodeGen.Controls
 
         #region initialization
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateCodeFile"/> class.
+        /// </summary>
         public GenerateCodeFile()
         {
             InitializeComponent();
@@ -52,14 +81,21 @@ namespace CodeGen.Controls
 
         #region methods
 
+        /// <summary>
+        /// Updates the settings.
+        /// </summary>
+        /// <param name="settings">The settings.</param>
         public void UpdateSettings(PluginSettings settings)
         {
             if (cmbTemplate.SelectedItem == null)
             {
-                PluginsManager.UpdateSettingsForPlugin(cmbTemplate.SelectedItem as SupportedType, settings);
+                PluginsManager.UpdateSettingsForPlugin((SupportedType)cmbTemplate.SelectedItem, settings);
             }
         }
 
+        /// <summary>
+        /// Loads the local variables.
+        /// </summary>
         public void LoadLocalVariables()
         {
             cmbDatabaseEntity.Items.Clear();
@@ -71,6 +107,10 @@ namespace CodeGen.Controls
             cmbTemplate.ValueMember = "Name";
         }
 
+        /// <summary>
+        /// Validates the form.
+        /// </summary>
+        /// <returns></returns>
         public bool ValidateForm()
         {
             if (cmbDatabaseEntity.SelectedItem == null)
@@ -107,7 +147,11 @@ namespace CodeGen.Controls
                     _entities[entityItem] = entity;
                 }
 
-                txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (int)cmbComponent.SelectedValue);
+                txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (GeneratorComponent)cmbComponent.SelectedItem);
+            }
+            else
+            {
+                txtFileName.Text = string.Empty;
             }
         }
 
@@ -237,7 +281,7 @@ namespace CodeGen.Controls
                         _entities[tableName] = entity;
                     }
 
-                    var code = ActiveTemplate.Generate(entity, (int) cmbComponent.SelectedValue);
+                    var code = ActiveTemplate.Generate(entity, (GeneratorComponent) cmbComponent.SelectedItem);
 
                     if (!string.IsNullOrWhiteSpace(code))
                     {
@@ -270,7 +314,9 @@ namespace CodeGen.Controls
         {
             try
             {
-                saveDialogGeneratedCode.Filter = ActiveTemplate.FileNameFilter;
+                var component = (GeneratorComponent)cmbComponent.SelectedItem;
+
+                saveDialogGeneratedCode.Filter = DefaultFilters.Filters[component.Extension];
                 saveDialogGeneratedCode.FileName = txtFileName.Text;
 
                 if(saveDialogGeneratedCode.ShowDialog() == DialogResult.OK)

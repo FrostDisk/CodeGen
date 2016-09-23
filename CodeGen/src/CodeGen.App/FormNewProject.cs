@@ -1,21 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CodeGen.Domain;
 using CodeGen.Utils;
 
 namespace CodeGen
 {
+    /// <summary>
+    /// Form Dialog with 
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class FormNewProject : Form
     {
         #region properties
 
+        /// <summary>
+        /// Project object Instance
+        /// </summary>
         public Project Project { get; private set; }
 
         private bool _validationResult;
@@ -24,6 +25,9 @@ namespace CodeGen
 
         #region initialization
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FormNewProject"/> class.
+        /// </summary>
         public FormNewProject()
         {
             InitializeComponent();           
@@ -33,6 +37,9 @@ namespace CodeGen
 
         #region methods
 
+        /// <summary>
+        /// Loads the local variables.
+        /// </summary>
         public void LoadLocalVariables()
         {
             ucBasicProjectProperties.DefaultProjectLocation = ProgramSettings.GetGlobalSettings().DirectoriesSettings.DefaultProjectsDirectory;

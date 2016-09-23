@@ -17,7 +17,12 @@ namespace CodeGen.Utils
 
         public static void ProcessException(Exception ex)
         {
+#if DEBUG
+            MessageBox.Show(ex.Message + Environment.NewLine + Environment.NewLine + ex.StackTrace, ex.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+#else
             MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+#endif
+
         }
 
         internal static void ShowGeneratedFileMessage(string fileName)

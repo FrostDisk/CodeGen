@@ -5,8 +5,16 @@ using System.Linq;
 
 namespace CodeGen.Library.AccessModel
 {
+    /// <summary>
+    /// DatabaseUtils
+    /// </summary>
     public static class DatabaseUtils
     {
+        /// <summary>
+        /// CheckConnectionString
+        /// </summary>
+        /// <param name="connectionString"></param>
+        /// <returns></returns>
         public static bool CheckConnectionString(string connectionString)
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
@@ -21,6 +29,15 @@ namespace CodeGen.Library.AccessModel
             return true;
         }
 
+        /// <summary>
+        /// CreateBasicConnectionString
+        /// </summary>
+        /// <param name="dataSource"></param>
+        /// <param name="userId"></param>
+        /// <param name="password"></param>
+        /// <param name="integratedSecurity"></param>
+        /// <param name="initialCatalog"></param>
+        /// <returns></returns>
         public static string CreateBasicConnectionString(string dataSource, string userId, string password, bool integratedSecurity, string initialCatalog)
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
@@ -40,6 +57,14 @@ namespace CodeGen.Library.AccessModel
             return builder.ConnectionString;
         }
 
+        /// <summary>
+        /// GetDatabaseList
+        /// </summary>
+        /// <param name="dataSource"></param>
+        /// <param name="userId"></param>
+        /// <param name="password"></param>
+        /// <param name="integratedSecurity"></param>
+        /// <returns></returns>
         public static List<string> GetDatabaseList(string dataSource, string userId, string password, bool integratedSecurity)
         {
             List<string> databaseList = new List<string>();

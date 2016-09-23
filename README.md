@@ -10,7 +10,7 @@ any database engine.
 
 All the documentation will be available in the project wiki. <https://github.com/FrostDisk/CodeGen/wiki>
 
-The Roadmap and pending tasks of the project are maintained in Trello. <https://trello.com/b/86qJDXUH/codegen>
+The Roadmap and pending tasks of the project are maintained in Trello. <https://trello.com/b/86qJDXUH>
 
 ## Installation
 
@@ -25,7 +25,6 @@ The're several ways to contribute in this project.
 * Submitting and/or resolving bugs and issues.
 * Developing and sharing your own plugins.
 * Helping with the documentation in the wiki.
-* Discuss and contribute anything related in the forums.
 
 ## Source Code
 
@@ -38,7 +37,6 @@ The're several ways to contribute in this project.
 
 * CodeGen Main Page <http://www.frostdisk.com/project/codegen/>
 * CodeGen Wiki <https://github.com/FrostDisk/CodeGen/wiki>
-* CodeGen Forum <http://foros.frostdisk.com/forum/9-codegen/>
 * FrostDisk Blog <http://www.frostdisk.com/blog/>
 
 ## Licensing

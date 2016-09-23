@@ -9,6 +9,10 @@ using System.IO;
 
 namespace CodeGen.Controls
 {
+    /// <summary>
+    /// PluginDetails
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.UserControl" />
     public partial class PluginDetails : UserControl
     {
         #region properties
@@ -19,6 +23,9 @@ namespace CodeGen.Controls
 
         #region initialization
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PluginDetails"/> class.
+        /// </summary>
         public PluginDetails()
         {
             InitializeComponent();
@@ -28,6 +35,10 @@ namespace CodeGen.Controls
 
         #region methods
 
+        /// <summary>
+        /// Loads the type.
+        /// </summary>
+        /// <param name="type">The type.</param>
         public void LoadType(PluginType type)
         {
             _type = type;

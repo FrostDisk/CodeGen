@@ -2,7 +2,7 @@
 
 [assembly: AssemblyCompany("FrostDisk")]
 [assembly: AssemblyProduct("CodeGen")]
-[assembly: AssemblyCopyright("Copyright FrostDisk© 201`6")]
+[assembly: AssemblyCopyright("Copyright FrostDisk© 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

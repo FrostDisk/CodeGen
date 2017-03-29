@@ -28,7 +28,7 @@ namespace {NAMESPACE_MODELS}
         /// <summary>
         /// {VAR.PROPERTYNAME}
         /// </summary>
-		[Display(Name = "{VAR.PROPERTYNAME}")]
+        [Display(Name = "{VAR.PROPERTYNAME}")]
         public long {VAR.PROPERTYNAME} { get; set; }
         /*-- END SECTION BIGINT */
 
@@ -36,7 +36,7 @@ namespace {NAMESPACE_MODELS}
         /// <summary>
         /// {VAR.PROPERTYNAME}
         /// </summary>
-		[Display(Name = "{VAR.PROPERTYNAME}")]
+        [Display(Name = "{VAR.PROPERTYNAME}")]
         public byte[] {VAR.PROPERTYNAME} { get; set; }
         /*-- END SECTION BINARY */
 

@@ -35,6 +35,8 @@
             this.paramDomainNamespace = new CodeGen.Controls.TemplateParameter();
             this.paramDataAccessNamespace = new CodeGen.Controls.TemplateParameter();
             this.paramConnectionStringKey = new CodeGen.Controls.TemplateParameter();
+            this.paramDbHelperNamespace = new CodeGen.Controls.TemplateParameter();
+            this.paramAccessModelNamespace = new CodeGen.Controls.TemplateParameter();
             this.tabClasses = new System.Windows.Forms.TabPage();
             this.tableLayoutClasses = new System.Windows.Forms.TableLayoutPanel();
             this.paramDomainPrefix = new CodeGen.Controls.TemplateParameter();
@@ -58,6 +60,7 @@
             this.paramListAllMethodName = new CodeGen.Controls.TemplateParameter();
             this.paramDeleteMethodName = new CodeGen.Controls.TemplateParameter();
             this.paramBuildFunctionMethodName = new CodeGen.Controls.TemplateParameter();
+            this.templateParameterDataAccessTemplate1 = new CodeGen.Controls.TemplateParameterDataAccessTemplate();
             this.tabAccessModel = new System.Windows.Forms.TabPage();
             this.tableLayoutAccessModel = new System.Windows.Forms.TableLayoutPanel();
             this.paramGetScalarMethodName = new CodeGen.Controls.TemplateParameter();
@@ -93,7 +96,7 @@
             this.tabConfiguration.Location = new System.Drawing.Point(12, 12);
             this.tabConfiguration.Name = "tabConfiguration";
             this.tabConfiguration.SelectedIndex = 0;
-            this.tabConfiguration.Size = new System.Drawing.Size(482, 304);
+            this.tabConfiguration.Size = new System.Drawing.Size(482, 372);
             this.tabConfiguration.TabIndex = 0;
             // 
             // tabGeneral
@@ -102,7 +105,7 @@
             this.tabGeneral.Location = new System.Drawing.Point(4, 22);
             this.tabGeneral.Name = "tabGeneral";
             this.tabGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGeneral.Size = new System.Drawing.Size(474, 278);
+            this.tabGeneral.Size = new System.Drawing.Size(474, 346);
             this.tabGeneral.TabIndex = 0;
             this.tabGeneral.Text = "General";
             this.tabGeneral.UseVisualStyleBackColor = true;
@@ -115,24 +118,26 @@
             this.tableLayoutGeneral.Controls.Add(this.paramDomainNamespace, 0, 1);
             this.tableLayoutGeneral.Controls.Add(this.paramDataAccessNamespace, 0, 2);
             this.tableLayoutGeneral.Controls.Add(this.paramConnectionStringKey, 0, 3);
+            this.tableLayoutGeneral.Controls.Add(this.paramDbHelperNamespace, 0, 4);
+            this.tableLayoutGeneral.Controls.Add(this.paramAccessModelNamespace, 0, 5);
             this.tableLayoutGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutGeneral.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutGeneral.Name = "tableLayoutGeneral";
-            this.tableLayoutGeneral.RowCount = 5;
+            this.tableLayoutGeneral.RowCount = 7;
+            this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutGeneral.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutGeneral.Size = new System.Drawing.Size(468, 272);
+            this.tableLayoutGeneral.Size = new System.Drawing.Size(468, 340);
             this.tableLayoutGeneral.TabIndex = 3;
             // 
             // paramAuthorName
             // 
-            this.paramAuthorName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramAuthorName.DefaultValue = "";
+            this.paramAuthorName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramAuthorName.IsUpdated = false;
             this.paramAuthorName.Location = new System.Drawing.Point(3, 3);
             this.paramAuthorName.Name = "paramAuthorName";
@@ -147,9 +152,8 @@
             // 
             // paramDomainNamespace
             // 
-            this.paramDomainNamespace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramDomainNamespace.DefaultValue = "MyProject.Domain";
+            this.paramDomainNamespace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramDomainNamespace.IsUpdated = false;
             this.paramDomainNamespace.Location = new System.Drawing.Point(3, 55);
             this.paramDomainNamespace.Name = "paramDomainNamespace";
@@ -164,9 +168,8 @@
             // 
             // paramDataAccessNamespace
             // 
-            this.paramDataAccessNamespace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramDataAccessNamespace.DefaultValue = "MyProject.Data";
+            this.paramDataAccessNamespace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramDataAccessNamespace.IsUpdated = false;
             this.paramDataAccessNamespace.Location = new System.Drawing.Point(3, 107);
             this.paramDataAccessNamespace.Name = "paramDataAccessNamespace";
@@ -181,9 +184,8 @@
             // 
             // paramConnectionStringKey
             // 
-            this.paramConnectionStringKey.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramConnectionStringKey.DefaultValue = "Connection.MyProject";
+            this.paramConnectionStringKey.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramConnectionStringKey.IsUpdated = false;
             this.paramConnectionStringKey.Location = new System.Drawing.Point(3, 159);
             this.paramConnectionStringKey.Name = "paramConnectionStringKey";
@@ -196,13 +198,45 @@
             this.paramConnectionStringKey.TabIndex = 4;
             this.paramConnectionStringKey.Tooltip = "";
             // 
+            // paramDbHelperNamespace
+            // 
+            this.paramDbHelperNamespace.DefaultValue = "MyProject.AccessModel";
+            this.paramDbHelperNamespace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.paramDbHelperNamespace.IsUpdated = false;
+            this.paramDbHelperNamespace.Location = new System.Drawing.Point(3, 211);
+            this.paramDbHelperNamespace.Name = "paramDbHelperNamespace";
+            this.paramDbHelperNamespace.ParameterCode = "NAMESPACE_DBHELPER";
+            this.paramDbHelperNamespace.ParameterName = "DBHelper Namespace";
+            this.paramDbHelperNamespace.ParameterValue = "MyProject.AccessModel";
+            this.paramDbHelperNamespace.ReadOnly = false;
+            this.paramDbHelperNamespace.Required = true;
+            this.paramDbHelperNamespace.Size = new System.Drawing.Size(462, 46);
+            this.paramDbHelperNamespace.TabIndex = 5;
+            this.paramDbHelperNamespace.Tooltip = "";
+            // 
+            // paramAccessModelNamespace
+            // 
+            this.paramAccessModelNamespace.DefaultValue = "MyProject.Library.AccessModel";
+            this.paramAccessModelNamespace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.paramAccessModelNamespace.IsUpdated = false;
+            this.paramAccessModelNamespace.Location = new System.Drawing.Point(3, 263);
+            this.paramAccessModelNamespace.Name = "paramAccessModelNamespace";
+            this.paramAccessModelNamespace.ParameterCode = "NAMESPACE_ACCESS_MODEL";
+            this.paramAccessModelNamespace.ParameterName = "Access Model Namespace";
+            this.paramAccessModelNamespace.ParameterValue = "MyProject.Library.AccessModel";
+            this.paramAccessModelNamespace.ReadOnly = false;
+            this.paramAccessModelNamespace.Required = true;
+            this.paramAccessModelNamespace.Size = new System.Drawing.Size(462, 46);
+            this.paramAccessModelNamespace.TabIndex = 6;
+            this.paramAccessModelNamespace.Tooltip = "";
+            // 
             // tabClasses
             // 
             this.tabClasses.Controls.Add(this.tableLayoutClasses);
             this.tabClasses.Location = new System.Drawing.Point(4, 22);
             this.tabClasses.Name = "tabClasses";
             this.tabClasses.Padding = new System.Windows.Forms.Padding(3);
-            this.tabClasses.Size = new System.Drawing.Size(474, 278);
+            this.tabClasses.Size = new System.Drawing.Size(474, 346);
             this.tabClasses.TabIndex = 1;
             this.tabClasses.Text = "Classes";
             this.tabClasses.UseVisualStyleBackColor = true;
@@ -224,14 +258,13 @@
             this.tableLayoutClasses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutClasses.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutClasses.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutClasses.Size = new System.Drawing.Size(468, 272);
+            this.tableLayoutClasses.Size = new System.Drawing.Size(468, 340);
             this.tableLayoutClasses.TabIndex = 4;
             // 
             // paramDomainPrefix
             // 
-            this.paramDomainPrefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramDomainPrefix.DefaultValue = null;
+            this.paramDomainPrefix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramDomainPrefix.IsUpdated = false;
             this.paramDomainPrefix.Location = new System.Drawing.Point(3, 3);
             this.paramDomainPrefix.Name = "paramDomainPrefix";
@@ -246,9 +279,8 @@
             // 
             // paramDomainSuffix
             // 
-            this.paramDomainSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramDomainSuffix.DefaultValue = null;
+            this.paramDomainSuffix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramDomainSuffix.IsUpdated = false;
             this.paramDomainSuffix.Location = new System.Drawing.Point(237, 3);
             this.paramDomainSuffix.Name = "paramDomainSuffix";
@@ -263,9 +295,8 @@
             // 
             // paramDataAccessPrefix
             // 
-            this.paramDataAccessPrefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramDataAccessPrefix.DefaultValue = null;
+            this.paramDataAccessPrefix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramDataAccessPrefix.IsUpdated = false;
             this.paramDataAccessPrefix.Location = new System.Drawing.Point(3, 55);
             this.paramDataAccessPrefix.Name = "paramDataAccessPrefix";
@@ -280,9 +311,8 @@
             // 
             // paramDataAccessSuffix
             // 
-            this.paramDataAccessSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramDataAccessSuffix.DefaultValue = "DataAccess";
+            this.paramDataAccessSuffix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramDataAccessSuffix.IsUpdated = false;
             this.paramDataAccessSuffix.Location = new System.Drawing.Point(237, 55);
             this.paramDataAccessSuffix.Name = "paramDataAccessSuffix";
@@ -301,7 +331,7 @@
             this.tabProcedures.Location = new System.Drawing.Point(4, 22);
             this.tabProcedures.Name = "tabProcedures";
             this.tabProcedures.Padding = new System.Windows.Forms.Padding(3);
-            this.tabProcedures.Size = new System.Drawing.Size(474, 278);
+            this.tabProcedures.Size = new System.Drawing.Size(474, 346);
             this.tabProcedures.TabIndex = 2;
             this.tabProcedures.Text = "Procedures";
             this.tabProcedures.UseVisualStyleBackColor = true;
@@ -328,14 +358,13 @@
             this.tableLayoutProcedures.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutProcedures.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutProcedures.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutProcedures.Size = new System.Drawing.Size(468, 272);
+            this.tableLayoutProcedures.Size = new System.Drawing.Size(468, 340);
             this.tableLayoutProcedures.TabIndex = 0;
             // 
             // paramSavePrefix
             // 
-            this.paramSavePrefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramSavePrefix.DefaultValue = "sp_";
+            this.paramSavePrefix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramSavePrefix.IsUpdated = true;
             this.paramSavePrefix.Location = new System.Drawing.Point(3, 3);
             this.paramSavePrefix.Name = "paramSavePrefix";
@@ -350,9 +379,8 @@
             // 
             // paramSaveSuffix
             // 
-            this.paramSaveSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramSaveSuffix.DefaultValue = "_Save";
+            this.paramSaveSuffix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramSaveSuffix.IsUpdated = false;
             this.paramSaveSuffix.Location = new System.Drawing.Point(237, 3);
             this.paramSaveSuffix.Name = "paramSaveSuffix";
@@ -367,9 +395,8 @@
             // 
             // paramGetByIdPrefix
             // 
-            this.paramGetByIdPrefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramGetByIdPrefix.DefaultValue = "sp_";
+            this.paramGetByIdPrefix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramGetByIdPrefix.IsUpdated = false;
             this.paramGetByIdPrefix.Location = new System.Drawing.Point(3, 55);
             this.paramGetByIdPrefix.Name = "paramGetByIdPrefix";
@@ -384,9 +411,8 @@
             // 
             // paramGetByIdSuffix
             // 
-            this.paramGetByIdSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramGetByIdSuffix.DefaultValue = "_GetByID";
+            this.paramGetByIdSuffix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramGetByIdSuffix.IsUpdated = false;
             this.paramGetByIdSuffix.Location = new System.Drawing.Point(237, 55);
             this.paramGetByIdSuffix.Name = "paramGetByIdSuffix";
@@ -401,9 +427,8 @@
             // 
             // paramListAllPrefix
             // 
-            this.paramListAllPrefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramListAllPrefix.DefaultValue = "sp_";
+            this.paramListAllPrefix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramListAllPrefix.IsUpdated = false;
             this.paramListAllPrefix.Location = new System.Drawing.Point(3, 107);
             this.paramListAllPrefix.Name = "paramListAllPrefix";
@@ -418,9 +443,8 @@
             // 
             // paramListAllSuffix
             // 
-            this.paramListAllSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramListAllSuffix.DefaultValue = "_ListAll";
+            this.paramListAllSuffix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramListAllSuffix.IsUpdated = false;
             this.paramListAllSuffix.Location = new System.Drawing.Point(237, 107);
             this.paramListAllSuffix.Name = "paramListAllSuffix";
@@ -435,9 +459,8 @@
             // 
             // paramDeletePrefix
             // 
-            this.paramDeletePrefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramDeletePrefix.DefaultValue = "sp_";
+            this.paramDeletePrefix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramDeletePrefix.IsUpdated = false;
             this.paramDeletePrefix.Location = new System.Drawing.Point(3, 159);
             this.paramDeletePrefix.Name = "paramDeletePrefix";
@@ -452,9 +475,8 @@
             // 
             // paramDeleteSuffix
             // 
-            this.paramDeleteSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramDeleteSuffix.DefaultValue = "_Delete";
+            this.paramDeleteSuffix.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramDeleteSuffix.IsUpdated = false;
             this.paramDeleteSuffix.Location = new System.Drawing.Point(237, 159);
             this.paramDeleteSuffix.Name = "paramDeleteSuffix";
@@ -473,7 +495,7 @@
             this.tabDataAccess.Location = new System.Drawing.Point(4, 22);
             this.tabDataAccess.Name = "tabDataAccess";
             this.tabDataAccess.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDataAccess.Size = new System.Drawing.Size(474, 278);
+            this.tabDataAccess.Size = new System.Drawing.Size(474, 346);
             this.tabDataAccess.TabIndex = 3;
             this.tabDataAccess.Text = "DataAccess";
             this.tabDataAccess.UseVisualStyleBackColor = true;
@@ -481,30 +503,31 @@
             // tableLayoutDataAccess
             // 
             this.tableLayoutDataAccess.ColumnCount = 1;
-            this.tableLayoutDataAccess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutDataAccess.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutDataAccess.Controls.Add(this.paramSaveMethodName, 0, 0);
             this.tableLayoutDataAccess.Controls.Add(this.paramGetByIdMethodName, 0, 1);
             this.tableLayoutDataAccess.Controls.Add(this.paramListAllMethodName, 0, 2);
             this.tableLayoutDataAccess.Controls.Add(this.paramDeleteMethodName, 0, 3);
             this.tableLayoutDataAccess.Controls.Add(this.paramBuildFunctionMethodName, 0, 4);
+            this.tableLayoutDataAccess.Controls.Add(this.templateParameterDataAccessTemplate1, 0, 5);
             this.tableLayoutDataAccess.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutDataAccess.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutDataAccess.Name = "tableLayoutDataAccess";
-            this.tableLayoutDataAccess.RowCount = 6;
+            this.tableLayoutDataAccess.RowCount = 7;
+            this.tableLayoutDataAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutDataAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutDataAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutDataAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutDataAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutDataAccess.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutDataAccess.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutDataAccess.Size = new System.Drawing.Size(468, 272);
+            this.tableLayoutDataAccess.Size = new System.Drawing.Size(468, 340);
             this.tableLayoutDataAccess.TabIndex = 0;
             // 
             // paramSaveMethodName
             // 
-            this.paramSaveMethodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramSaveMethodName.DefaultValue = "Save";
+            this.paramSaveMethodName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramSaveMethodName.IsUpdated = false;
             this.paramSaveMethodName.Location = new System.Drawing.Point(3, 3);
             this.paramSaveMethodName.Name = "paramSaveMethodName";
@@ -519,9 +542,8 @@
             // 
             // paramGetByIdMethodName
             // 
-            this.paramGetByIdMethodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramGetByIdMethodName.DefaultValue = "GetByID";
+            this.paramGetByIdMethodName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramGetByIdMethodName.IsUpdated = false;
             this.paramGetByIdMethodName.Location = new System.Drawing.Point(3, 55);
             this.paramGetByIdMethodName.Name = "paramGetByIdMethodName";
@@ -536,9 +558,8 @@
             // 
             // paramListAllMethodName
             // 
-            this.paramListAllMethodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramListAllMethodName.DefaultValue = "ListAll";
+            this.paramListAllMethodName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramListAllMethodName.IsUpdated = false;
             this.paramListAllMethodName.Location = new System.Drawing.Point(3, 107);
             this.paramListAllMethodName.Name = "paramListAllMethodName";
@@ -553,9 +574,8 @@
             // 
             // paramDeleteMethodName
             // 
-            this.paramDeleteMethodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramDeleteMethodName.DefaultValue = "Delete";
+            this.paramDeleteMethodName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramDeleteMethodName.IsUpdated = false;
             this.paramDeleteMethodName.Location = new System.Drawing.Point(3, 159);
             this.paramDeleteMethodName.Name = "paramDeleteMethodName";
@@ -570,9 +590,8 @@
             // 
             // paramBuildFunctionMethodName
             // 
-            this.paramBuildFunctionMethodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramBuildFunctionMethodName.DefaultValue = "BuildFunction";
+            this.paramBuildFunctionMethodName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramBuildFunctionMethodName.IsUpdated = false;
             this.paramBuildFunctionMethodName.Location = new System.Drawing.Point(3, 211);
             this.paramBuildFunctionMethodName.Name = "paramBuildFunctionMethodName";
@@ -585,13 +604,29 @@
             this.paramBuildFunctionMethodName.TabIndex = 8;
             this.paramBuildFunctionMethodName.Tooltip = "";
             // 
+            // templateParameterDataAccessTemplate1
+            // 
+            this.templateParameterDataAccessTemplate1.DefaultValue = "default";
+            this.templateParameterDataAccessTemplate1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.templateParameterDataAccessTemplate1.IsUpdated = false;
+            this.templateParameterDataAccessTemplate1.Location = new System.Drawing.Point(3, 263);
+            this.templateParameterDataAccessTemplate1.Name = "templateParameterDataAccessTemplate1";
+            this.templateParameterDataAccessTemplate1.ParameterCode = "DATAACCESS_TEMPLATE";
+            this.templateParameterDataAccessTemplate1.ParameterName = "Data Access Template  Type";
+            this.templateParameterDataAccessTemplate1.ParameterValue = "default";
+            this.templateParameterDataAccessTemplate1.ReadOnly = false;
+            this.templateParameterDataAccessTemplate1.Required = true;
+            this.templateParameterDataAccessTemplate1.Size = new System.Drawing.Size(462, 46);
+            this.templateParameterDataAccessTemplate1.TabIndex = 9;
+            this.templateParameterDataAccessTemplate1.Tooltip = "";
+            // 
             // tabAccessModel
             // 
             this.tabAccessModel.Controls.Add(this.tableLayoutAccessModel);
             this.tabAccessModel.Location = new System.Drawing.Point(4, 22);
             this.tabAccessModel.Name = "tabAccessModel";
             this.tabAccessModel.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAccessModel.Size = new System.Drawing.Size(474, 278);
+            this.tabAccessModel.Size = new System.Drawing.Size(474, 346);
             this.tabAccessModel.TabIndex = 4;
             this.tabAccessModel.Text = "AccessModel";
             this.tabAccessModel.UseVisualStyleBackColor = true;
@@ -615,14 +650,13 @@
             this.tableLayoutAccessModel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutAccessModel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.tableLayoutAccessModel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutAccessModel.Size = new System.Drawing.Size(468, 272);
+            this.tableLayoutAccessModel.Size = new System.Drawing.Size(468, 340);
             this.tableLayoutAccessModel.TabIndex = 0;
             // 
             // paramGetScalarMethodName
             // 
-            this.paramGetScalarMethodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramGetScalarMethodName.DefaultValue = "GetScalar";
+            this.paramGetScalarMethodName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramGetScalarMethodName.IsUpdated = true;
             this.paramGetScalarMethodName.Location = new System.Drawing.Point(3, 3);
             this.paramGetScalarMethodName.Name = "paramGetScalarMethodName";
@@ -637,9 +671,8 @@
             // 
             // paramGetEntityMethodName
             // 
-            this.paramGetEntityMethodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramGetEntityMethodName.DefaultValue = "GetEntity";
+            this.paramGetEntityMethodName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramGetEntityMethodName.IsUpdated = true;
             this.paramGetEntityMethodName.Location = new System.Drawing.Point(3, 55);
             this.paramGetEntityMethodName.Name = "paramGetEntityMethodName";
@@ -654,9 +687,8 @@
             // 
             // paramGetDataTableMethodName
             // 
-            this.paramGetDataTableMethodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramGetDataTableMethodName.DefaultValue = "GetDataTable";
+            this.paramGetDataTableMethodName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramGetDataTableMethodName.IsUpdated = true;
             this.paramGetDataTableMethodName.Location = new System.Drawing.Point(3, 107);
             this.paramGetDataTableMethodName.Name = "paramGetDataTableMethodName";
@@ -671,9 +703,8 @@
             // 
             // paramExecuteStoredProcedureMethodName
             // 
-            this.paramExecuteStoredProcedureMethodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.paramExecuteStoredProcedureMethodName.DefaultValue = "ExecuteStoredProcedure";
+            this.paramExecuteStoredProcedureMethodName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramExecuteStoredProcedureMethodName.IsUpdated = true;
             this.paramExecuteStoredProcedureMethodName.Location = new System.Drawing.Point(3, 159);
             this.paramExecuteStoredProcedureMethodName.Name = "paramExecuteStoredProcedureMethodName";
@@ -689,6 +720,7 @@
             // paramDBHelperInstanceObject
             // 
             this.paramDBHelperInstanceObject.DefaultValue = "DBHelper.Instance";
+            this.paramDBHelperInstanceObject.Dock = System.Windows.Forms.DockStyle.Fill;
             this.paramDBHelperInstanceObject.IsUpdated = true;
             this.paramDBHelperInstanceObject.Location = new System.Drawing.Point(3, 211);
             this.paramDBHelperInstanceObject.Name = "paramDBHelperInstanceObject";
@@ -697,7 +729,7 @@
             this.paramDBHelperInstanceObject.ParameterValue = "DBHelper.Instance";
             this.paramDBHelperInstanceObject.ReadOnly = false;
             this.paramDBHelperInstanceObject.Required = true;
-            this.paramDBHelperInstanceObject.Size = new System.Drawing.Size(436, 46);
+            this.paramDBHelperInstanceObject.Size = new System.Drawing.Size(462, 46);
             this.paramDBHelperInstanceObject.TabIndex = 4;
             this.paramDBHelperInstanceObject.Tooltip = "";
             // 
@@ -705,7 +737,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(419, 322);
+            this.btnCancel.Location = new System.Drawing.Point(419, 390);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -716,7 +748,7 @@
             // btnAccept
             // 
             this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAccept.Location = new System.Drawing.Point(338, 322);
+            this.btnAccept.Location = new System.Drawing.Point(338, 390);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(75, 23);
             this.btnAccept.TabIndex = 2;
@@ -728,7 +760,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 357);
+            this.ClientSize = new System.Drawing.Size(506, 425);
             this.Controls.Add(this.tabConfiguration);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.btnCancel);
@@ -796,5 +828,8 @@
         private Controls.TemplateParameter paramGetDataTableMethodName;
         private Controls.TemplateParameter paramExecuteStoredProcedureMethodName;
         private Controls.TemplateParameter paramDBHelperInstanceObject;
+        private Controls.TemplateParameter paramDbHelperNamespace;
+        private Controls.TemplateParameter paramAccessModelNamespace;
+        private Controls.TemplateParameterDataAccessTemplate templateParameterDataAccessTemplate1;
     }
 }

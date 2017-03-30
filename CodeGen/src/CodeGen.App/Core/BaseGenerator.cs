@@ -115,7 +115,21 @@ namespace CodeGen.Core
         /// <returns></returns>
         public string GenerateCodeDataAccess()
         {
-            TemplateFile template = TemplateFile.LoadTemplate(TemplateType.CS, Resources.class_DataAccess);
+            TemplateFile template;
+            string templateType = Settings[CodeBaseConstants.DATAACCESS_TEMPLATE].Value;            
+            if (templateType.Equals("en"))
+            {
+                template = TemplateFile.LoadTemplate(TemplateType.CS, Resources.class_DataAccess_en);
+            }
+            else if (templateType.Equals("es"))
+            {
+                template = TemplateFile.LoadTemplate(TemplateType.CS, Resources.class_DataAccess_es);
+            }
+            else
+            {
+                template = TemplateFile.LoadTemplate(TemplateType.CS, Resources.class_DataAccess);
+            }
+            
 
             TemplateSection sectionProperties = template.ExtractSection("PROPERTIES");
             TemplateSection sectionParameters = template.ExtractSection("PARAMETERS");
@@ -155,6 +169,8 @@ namespace CodeGen.Core
 
             template.ReplaceTag("NAMESPACE_DOMAIN", Settings[CodeBaseConstants.NAMESPACE_DOMAIN].Value, false);
             template.ReplaceTag("NAMESPACE_DATAACCESS", Settings[CodeBaseConstants.NAMESPACE_DATAACCESS].Value, false);
+            template.ReplaceTag("NAMESPACE_DBHELPER", Settings[CodeBaseConstants.NAMESPACE_DBHELPER].Value, false);
+            template.ReplaceTag("NAMESPACE_ACCESS_MODEL", Settings[CodeBaseConstants.NAMESPACE_ACCESS_MODEL].Value, false);
 
             template.ReplaceTag("INSTANCE_NAME_DOMAIN", instanceEntityName, false);
             template.ReplaceTag("CLASS_NAME_DOMAIN", DomainClassName, false);
@@ -172,6 +188,11 @@ namespace CodeGen.Core
             template.ReplaceTag("BUILDFUNCTION_METHODNAME", Settings[CodeBaseConstants.BUILDFUNCTION_METHODNAME].Value, false);
 
             template.ReplaceTag("CONNECTIONSTRING_KEY", Settings[CodeBaseConstants.CONNECTIONSTRING_KEY].Value, false);
+            template.ReplaceTag("DBHELPER_INSTANCEOBJECT", Settings[CodeBaseConstants.DBHELPER_INSTANCEOBJECT].Value, false);
+            template.ReplaceTag("GETSCALAR_METHODNAME", Settings[CodeBaseConstants.GETSCALAR_METHODNAME].Value, false);
+            template.ReplaceTag("GETENTITY_METHODNAME", Settings[CodeBaseConstants.GETENTITY_METHODNAME].Value, false);
+            template.ReplaceTag("GETDATATABLE_METHODNAME", Settings[CodeBaseConstants.GETDATATABLE_METHODNAME].Value, false);
+            template.ReplaceTag("EXECUTESP_METHODNAME", Settings[CodeBaseConstants.EXECUTESP_METHODNAME].Value, false);
 
             template.ReplaceTag("AUTHOR_NAME", Settings[CodeBaseConstants.AUTHOR_NAME].Value, false);
             template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);

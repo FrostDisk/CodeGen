@@ -47,7 +47,14 @@ namespace CodeGen.Controls
         /// <exception cref="NotImplementedException"></exception>
         public PluginSettings Settings
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                if (cmbTemplate.SelectedItem != null)
+                {
+                    return PluginsManager.GetSettingsFromPlugin((SupportedType)cmbTemplate.SelectedItem);
+                }
+                return null;
+            }
         }
 
         /// <summary>
@@ -145,6 +152,10 @@ namespace CodeGen.Controls
                 }
 
                 txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (GeneratorComponent)cmbComponent.SelectedItem);
+            }
+            else
+            {
+                txtFileName.Text = string.Empty;
             }
         }
 

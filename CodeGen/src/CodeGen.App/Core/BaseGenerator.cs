@@ -221,18 +221,21 @@ namespace CodeGen.Core
                 parameterSection.ReplaceTag("DATATYPE", entityField.TypeName);
                 parameterSectionList.AddSection(parameterSection);
 
-                TemplateSection updateParameterSection = sectionUpdateParameters.ExtractSection("DEFAULT");
-                updateParameterSection.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
-                updateParameterSection.ReplaceTag("PARAMETERNAME", entityField.ColumnName);
-                updateParameterSectionList.AddSection(updateParameterSection);
+                if (!entityField.IsPrimaryKey)
+                {
+                    TemplateSection updateParameterSection = sectionUpdateParameters.ExtractSection("DEFAULT");
+                    updateParameterSection.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                    updateParameterSection.ReplaceTag("PARAMETERNAME", entityField.ColumnName);
+                    updateParameterSectionList.AddSection(updateParameterSection);
 
-                TemplateSection insertColumnsSection = sectionInsertColumns.ExtractSection("DEFAULT");
-                insertColumnsSection.ReplaceTag("COLUMNNAME", entityField.ColumnName);
-                insertColumnsSectionList.AddSection(insertColumnsSection);
+                    TemplateSection insertColumnsSection = sectionInsertColumns.ExtractSection("DEFAULT");
+                    insertColumnsSection.ReplaceTag("COLUMNNAME", entityField.ColumnName);
+                    insertColumnsSectionList.AddSection(insertColumnsSection);
 
-                TemplateSection insertParameterSection = sectionInsertParameters.ExtractSection("DEFAULT");
-                insertParameterSection.ReplaceTag("PARAMETERNAME", entityField.ColumnName);
-                insertParameterSectionList.AddSection(insertParameterSection);
+                    TemplateSection insertParameterSection = sectionInsertParameters.ExtractSection("DEFAULT");
+                    insertParameterSection.ReplaceTag("PARAMETERNAME", entityField.ColumnName);
+                    insertParameterSectionList.AddSection(insertParameterSection);
+                }
             }
 
             template.ReplaceSection("PARAMETERS", parameterSectionList, ",");

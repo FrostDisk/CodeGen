@@ -26,7 +26,7 @@ BEGIN
 
     DECLARE @identity {PRIMARYKEY_DATATYPE}
 
-    SET @identity = {PRIMARYKEY_DATATYPE}
+    SET @identity = @{PRIMARYKEY_PARAMETERNAME}
 
     IF @identity > 0
     BEGIN

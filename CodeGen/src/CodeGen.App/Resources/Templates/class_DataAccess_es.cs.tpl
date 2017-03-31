@@ -132,7 +132,7 @@ namespace {NAMESPACE_DATAACCESS}
         /// <created>{CREATION_DATE}</created>
         /// <param name="{PRIMARYKEY_LOCAL_VARIABLE}">ID de {CLASS_NAME_DOMAIN}.</param>
         /// <returns>Referencia a una clase <see cref="{CLASS_NAME_DOMAIN}"/>.</returns>
-        public static void {DELETE_METHODNAME}({PRIMARYKEY_DATATYPE} {PRIMARYKEY_LOCAL_VARIABLE})
+        public static int {DELETE_METHODNAME}({PRIMARYKEY_DATATYPE} {PRIMARYKEY_LOCAL_VARIABLE})
         {
             Parametro parametro = new Parametro("@{PRIMARYKEY_PARAMETERNAME}", {PRIMARYKEY_LOCAL_VARIABLE});
 

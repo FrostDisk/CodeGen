@@ -68,14 +68,14 @@ namespace {NAMESPACE_DATAACCESS}
                 /*-- END SECTION NVARCHAR */
                 /*-- BEGIN SECTION TEXT AS VAR */new Parametro("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION TEXT */
+                /*-- BEGIN SECTION TIMESTAMP AS VAR */new Parametro("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- END SECTION TIMESTAMP */
                 /*-- BEGIN SECTION NTEXT AS VAR */new Parametro("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION NTEXT */
                 /*-- BEGIN SECTION MEDIUMTEXT AS VAR */new Parametro("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION MEDIUMTEXT */
                 /*-- BEGIN SECTION LONGTEXT AS VAR */new Parametro("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION LONGTEXT */
-                /*-- BEGIN SECTION TIMESTAMP AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
-                /*-- END SECTION TIMESTAMP */
                 /*-- BEGIN SECTION ENUM AS VAR */new Parametro("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION ENUM */
                 /*-- BEGIN SECTION BIT AS VAR */new Parametro("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
@@ -178,6 +178,8 @@ namespace {NAMESPACE_DATAACCESS}
                 /*-- END SECTION NVARCHAR */
                 /*-- BEGIN SECTION TEXT AS VAR */{VAR.PROPERTYNAME} = fila["{VAR.COLUMNNAME}"] != DBNull.Value ? fila["{VAR.COLUMNNAME}"].ToString() : string.Empty,
                 /*-- END SECTION TEXT */
+                /*-- BEGIN SECTION TIMESTAMP AS VAR */{VAR.PROPERTYNAME} = fila["{VAR.COLUMNNAME}"] != DBNull.Value ? (byte[])fila["{VAR.COLUMNNAME}"] : null,
+                /*-- END SECTION TIMESTAMP */
                 /*-- BEGIN SECTION NTEXT AS VAR */{VAR.PROPERTYNAME} = fila["{VAR.COLUMNNAME}"] != DBNull.Value ? fila["{VAR.COLUMNNAME}"].ToString() : string.Empty,
                 /*-- END SECTION NTEXT */
                 /*-- BEGIN SECTION MEDIUMTEXT AS VAR */{VAR.PROPERTYNAME} = fila["{VAR.COLUMNNAME}"] != DBNull.Value ? fila["{VAR.COLUMNNAME}"].ToString() : string.Empty,

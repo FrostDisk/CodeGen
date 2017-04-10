@@ -319,7 +319,7 @@ namespace CodeGen.Controls
                 saveDialogGeneratedCode.Filter = DefaultFilters.Filters[component.Extension];
                 saveDialogGeneratedCode.FileName = txtFileName.Text;
 
-                if(saveDialogGeneratedCode.ShowDialog() == DialogResult.OK)
+                if (saveDialogGeneratedCode.ShowDialog() == DialogResult.OK)
                 {
                     File.WriteAllText(saveDialogGeneratedCode.FileName, txtGeneratedCode.Text);
 

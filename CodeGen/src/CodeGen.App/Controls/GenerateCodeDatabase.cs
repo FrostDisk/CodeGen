@@ -41,10 +41,6 @@ namespace CodeGen.Controls
         /// <summary>
         /// Gets the settings.
         /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        /// <exception cref="NotImplementedException"></exception>
         public PluginSettings Settings
         {
             get
@@ -93,7 +89,7 @@ namespace CodeGen.Controls
         {
             if (cmbTemplate.SelectedItem == null)
             {
-                PluginsManager.UpdateSettingsForPlugin(cmbTemplate.SelectedItem as SupportedType, settings);
+                PluginsManager.UpdateSettingsForPlugin((SupportedType)cmbTemplate.SelectedItem, settings);
             }
         }
 
@@ -230,7 +226,7 @@ namespace CodeGen.Controls
             {
                 if (cmbTemplate.SelectedItem != null)
                 {
-                    var templateItem = (SupportedType)cmbTemplate.SelectedItem;
+                    var templateItem = (SupportedType) cmbTemplate.SelectedItem;
 
                     if (PluginsManager.ShowTemplateOptions(templateItem))
                     {
@@ -276,7 +272,7 @@ namespace CodeGen.Controls
             {
                 if (ValidateForm())
                 {
-                    string tableName = (string)cmbDatabaseEntity.SelectedItem;
+                    string tableName = (string) cmbDatabaseEntity.SelectedItem;
 
                     DatabaseEntity entity;
                     if (!_entities.TryGetValue(tableName, out entity))
@@ -285,7 +281,7 @@ namespace CodeGen.Controls
                         _entities[tableName] = entity;
                     }
 
-                    var code = ActiveTemplate.Generate(entity, (GeneratorComponent)cmbComponent.SelectedItem);
+                    var code = ActiveTemplate.Generate(entity, (GeneratorComponent) cmbComponent.SelectedItem);
 
                     if (!string.IsNullOrWhiteSpace(code))
                     {

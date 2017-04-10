@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
-using CodeGen.Plugin.Base;
-using CodeGen.Utils;
-using System.Drawing;
+﻿using CodeGen.Plugin.Base;
 using CodeGen.Properties;
+using CodeGen.Utils;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace CodeGen.Core
 {
@@ -18,7 +18,7 @@ namespace CodeGen.Core
         /// <summary>
         /// File Extension
         /// </summary>
-        public string _defaultFileExtension = ".cs";
+        private const string _defaultFileExtension = ".cs";
 
         /// <summary>
         /// Author Website Url
@@ -77,7 +77,6 @@ namespace CodeGen.Core
         /// Settings
         /// </summary>
         public PluginSettings Settings { get; private set; }
-
 
         /// <summary>
         /// Title
@@ -194,7 +193,6 @@ namespace CodeGen.Core
             return false;
         }
 
-        
         /// <summary>
         /// Updates the settings.
         /// </summary>

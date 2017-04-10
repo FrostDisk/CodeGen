@@ -18,30 +18,22 @@ namespace CodeGen.Core
         /// <summary>
         /// File Extension
         /// </summary>
-        private static string _defaultFileExtension = ".sql";
+        private const string _defaultFileExtension = ".sql";
 
         /// <summary>
-        /// Title
+        /// Author Website Url
         /// </summary>
-        public string Title
+        public string AuthorWebsiteUrl
         {
-            get { return "Sql Server Base Query Template"; }
+            get { return Resources.DefaultAuthorWebsiteUrl; }
         }
 
         /// <summary>
-        /// CreatedBy
+        /// Created By
         /// </summary>
         public string CreatedBy
         {
             get { return ProgramInfo.AssemblyCompany; }
-        }
-
-        /// <summary>
-        /// Icon
-        /// </summary>
-        public Image Icon
-        {
-            get { return null; }
         }
 
         /// <summary>
@@ -53,12 +45,25 @@ namespace CodeGen.Core
         }
 
         /// <summary>
-        /// Version
+        /// Have Options
         /// </summary>
-        public string Version
+        public bool HaveOptions
         {
-            get { return ProgramInfo.AssemblyVersion; }
+            get { return true; }
         }
+
+        /// <summary>
+        /// Icon
+        /// </summary>
+        public Image Icon
+        {
+            get { return null; }
+        }
+
+        /// <summary>
+        /// Is Loaded
+        /// </summary>
+        public bool IsLoaded { get; private set; }
 
         /// <summary>
         /// Release Notes Url
@@ -69,30 +74,25 @@ namespace CodeGen.Core
         }
 
         /// <summary>
-        /// Author Website Url
-        /// </summary>
-        public string AuthorWebsiteUrl
-        {
-            get { return Resources.DefaultAuthorWebsiteUrl; }
-        }
-
-        /// <summary>
         /// Settings
         /// </summary>
         public PluginSettings Settings { get; private set; }
 
         /// <summary>
-        /// Have Options
+        /// Title
         /// </summary>
-        public bool HaveOptions
+        public string Title
         {
-            get { return true; }
+            get { return "Sql Server Base Query Template"; }
         }
 
         /// <summary>
-        /// Is Loaded
+        /// Version
         /// </summary>
-        public bool IsLoaded { get; private set; }
+        public string Version
+        {
+            get { return ProgramInfo.AssemblyVersion; }
+        }
 
         #endregion
 
@@ -111,15 +111,66 @@ namespace CodeGen.Core
         #region methods
 
         /// <summary>
-        /// Updates the settings.
+        /// Generates the specified entity.
         /// </summary>
-        /// <param name="settings">The settings.</param>
-        public void UpdateSettings(PluginSettings settings)
+        /// <param name="entity">The entity.</param>
+        /// <param name="component">The component identifier.</param>
+        /// <returns></returns>
+        public string Generate(DatabaseEntity entity, GeneratorComponent component)
         {
-            foreach (PluginSettingValue settingValue in settings)
+            if (FormBaseTemplateConfiguration.Instance.ValidateForm())
             {
-                FormBaseTemplateConfiguration.Instance.UpdateSetting(settingValue.Key, settingValue.Value);
+                BaseGenerator generator = new BaseGenerator(Settings, entity);
+
+                switch (component.Id)
+                {
+                    case (int)eBaseTemplateComponent.SAVE: { return generator.GenerateScriptSave(); }
+                    case (int)eBaseTemplateComponent.GET_BY_ID: { return generator.GenerateScriptGetById(); }
+                    case (int)eBaseTemplateComponent.LIST_ALL: { return generator.GenerateScriptListAll(); }
+                    case (int)eBaseTemplateComponent.DELETE: { return generator.GenerateScriptDelete(); }
+                }
             }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Generates the name of the file.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <param name="component">The component identifier.</param>
+        /// <returns></returns>
+        public string GenerateFileName(DatabaseEntity entity, GeneratorComponent component)
+        {
+            if (FormBaseTemplateConfiguration.Instance.ValidateForm(false))
+            {
+                BaseGenerator generator = new BaseGenerator(Settings, entity);
+
+                switch (component.Id)
+                {
+                    case (int)eBaseTemplateComponent.SAVE: { return generator.SaveStoredProcedureName + _defaultFileExtension; }
+                    case (int)eBaseTemplateComponent.GET_BY_ID: { return generator.GetByIdStoredProcedureName + _defaultFileExtension; }
+                    case (int)eBaseTemplateComponent.LIST_ALL: { return generator.ListAllStoredProcedureName + _defaultFileExtension; }
+                    case (int)eBaseTemplateComponent.DELETE: { return generator.DeleteStoredProcedureName + _defaultFileExtension; }
+                }
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Gets the components.
+        /// </summary>
+        /// <returns></returns>
+        public List<GeneratorComponent> GetComponents()
+        {
+            return new List<GeneratorComponent>
+            {
+                new GeneratorComponent((int) eBaseTemplateComponent.SAVE, "Save Stored Procedure", _defaultFileExtension),
+                new GeneratorComponent((int) eBaseTemplateComponent.GET_BY_ID, "GetByID Stored Procedure", _defaultFileExtension),
+                new GeneratorComponent((int) eBaseTemplateComponent.LIST_ALL, "ListAll Stored Procedure", _defaultFileExtension),
+                new GeneratorComponent((int) eBaseTemplateComponent.DELETE, "Delete Stored Procedure", _defaultFileExtension),
+            };
         }
 
         /// <summary>
@@ -149,66 +200,17 @@ namespace CodeGen.Core
         }
 
         /// <summary>
-        /// Gets the components.
+        /// Updates the settings.
         /// </summary>
-        /// <returns></returns>
-        public List<GeneratorComponent> GetComponents()
+        /// <param name="settings">The settings.</param>
+        public void UpdateSettings(PluginSettings settings)
         {
-            return new List<GeneratorComponent>
+            foreach (PluginSettingValue settingValue in settings)
             {
-                new GeneratorComponent((int) eBaseTemplateComponent.SAVE, "Save Stored Procedure", _defaultFileExtension),
-                new GeneratorComponent((int) eBaseTemplateComponent.GET_BY_ID, "GetByID Stored Procedure", _defaultFileExtension),
-                new GeneratorComponent((int) eBaseTemplateComponent.LIST_ALL, "ListAll Stored Procedure", _defaultFileExtension),
-                new GeneratorComponent((int) eBaseTemplateComponent.DELETE, "Delete Stored Procedure", _defaultFileExtension),
-            };
-        }
-
-        /// <summary>
-        /// Generates the name of the file.
-        /// </summary>
-        /// <param name="entity">The entity.</param>
-        /// <param name="component">The component identifier.</param>
-        /// <returns></returns>
-        public string GenerateFileName(DatabaseEntity entity, GeneratorComponent component)
-        {
-            if (FormBaseTemplateConfiguration.Instance.ValidateForm(false))
-            {
-                BaseGenerator generator = new BaseGenerator(Settings, entity);
-
-                switch (component.Id)
-                {
-                    case (int)eBaseTemplateComponent.SAVE: { return generator.SaveStoredProcedureName + _defaultFileExtension; }
-                    case (int)eBaseTemplateComponent.GET_BY_ID: { return generator.GetByIdStoredProcedureName + _defaultFileExtension; }
-                    case (int)eBaseTemplateComponent.LIST_ALL: { return generator.ListAllStoredProcedureName + _defaultFileExtension; }
-                    case (int)eBaseTemplateComponent.DELETE: { return generator.DeleteStoredProcedureName + _defaultFileExtension; }
-                }
+                FormBaseTemplateConfiguration.Instance.UpdateSetting(settingValue.Key, settingValue.Value);
             }
 
-            return string.Empty;
-        }
-
-        /// <summary>
-        /// Generates the specified entity.
-        /// </summary>
-        /// <param name="entity">The entity.</param>
-        /// <param name="component">The component identifier.</param>
-        /// <returns></returns>
-        public string Generate(DatabaseEntity entity, GeneratorComponent component)
-        {
-            if (FormBaseTemplateConfiguration.Instance.ValidateForm())
-            {
-                BaseGenerator generator = new BaseGenerator(Settings, entity);
-
-                switch (component.Id)
-                {
-                    case (int)eBaseTemplateComponent.SAVE: { return generator.GenerateScriptSave(); }
-                    case (int)eBaseTemplateComponent.GET_BY_ID: { return generator.GenerateScriptGetById(); }
-                    case (int)eBaseTemplateComponent.LIST_ALL: { return generator.GenerateScriptListAll(); }
-                    case (int)eBaseTemplateComponent.DELETE: { return generator.GenerateScriptDelete(); }
-                }
-            }
-
-            return string.Empty;
+            Settings = FormBaseTemplateConfiguration.Instance.GetSettings();
         }
 
         #endregion

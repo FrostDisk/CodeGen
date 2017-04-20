@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using CodeGen.Domain;
 using CodeGen.Utils;
+using NLog;
 
 namespace CodeGen
 {
@@ -13,6 +14,8 @@ namespace CodeGen
     public partial class FormNewProject : Form
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Project object Instance

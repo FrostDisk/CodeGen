@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using CodeGen.Library.Formats;
+using NLog;
 
 namespace CodeGen.Controls
 {
@@ -13,6 +14,8 @@ namespace CodeGen.Controls
     public partial class TemplateParameterDataAccessTemplate : UserControl, ITemplateParameter
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         private string _savedValue;
 

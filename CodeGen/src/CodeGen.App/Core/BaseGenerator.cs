@@ -4,11 +4,14 @@ using CodeGen.Library.Formats;
 using CodeGen.Plugin.Base;
 using CodeGen.Properties;
 using System.Data;
+using NLog;
 
 namespace CodeGen.Core
 {
     internal class BaseGenerator
     {
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Settings
         /// </summary>

@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using CodeGen.Configuration;
 using CodeGen.Controls;
 using CodeGen.Utils;
+using NLog;
 
 namespace CodeGen
 {
@@ -15,6 +16,8 @@ namespace CodeGen
     public partial class FormPluginsManager : Form
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 

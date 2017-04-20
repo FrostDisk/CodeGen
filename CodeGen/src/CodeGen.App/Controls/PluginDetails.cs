@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using CodeGen.Utils;
 using System.IO;
+using NLog;
 
 namespace CodeGen.Controls
 {
@@ -16,6 +17,8 @@ namespace CodeGen.Controls
     public partial class PluginDetails : UserControl
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         private PluginType _type;
 

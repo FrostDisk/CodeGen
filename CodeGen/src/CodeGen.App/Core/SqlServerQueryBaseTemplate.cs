@@ -1,6 +1,7 @@
 ﻿using CodeGen.Plugin.Base;
 using CodeGen.Properties;
 using CodeGen.Utils;
+using NLog;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -14,6 +15,8 @@ namespace CodeGen.Core
     public sealed class SqlServerQueryBaseTemplate : IQueryGeneratorTemplate
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// File Extension

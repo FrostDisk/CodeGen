@@ -11,6 +11,7 @@ using CodeGen.Utils;
 using CodeGen.Properties;
 using CodeGen.Domain;
 using CodeGen.Library.AccessModel;
+using NLog;
 
 namespace CodeGen.Core
 {
@@ -20,6 +21,8 @@ namespace CodeGen.Core
     /// <seealso cref="CodeGen.Plugin.Base.IAccessModelController" />
     public sealed class SqlServerController : IAccessModelController
     {
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         private string _connectionString;
 
         /// <summary>

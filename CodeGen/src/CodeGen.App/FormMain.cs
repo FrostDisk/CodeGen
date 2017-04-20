@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using CodeGen.Controls;
 using CodeGen.Utils;
 using System.ComponentModel;
+using NLog;
 
 namespace CodeGen
 {
@@ -17,6 +18,8 @@ namespace CodeGen
     public partial class FormMain : Form
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         private Project _activeProject;
 

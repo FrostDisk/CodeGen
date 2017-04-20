@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using CodeGen.Library.AccessModel;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
+using NLog;
 
 namespace CodeGen
 {
@@ -14,6 +15,8 @@ namespace CodeGen
     public partial class FormGenerateConnectionString : Form, IConnectionStringForm
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         #endregion
 

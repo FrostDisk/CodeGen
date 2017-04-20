@@ -3,6 +3,7 @@ using System.IO;
 using System.Xml.Serialization;
 using CodeGen.Configuration;
 using CodeGen.Properties;
+using NLog;
 
 namespace CodeGen.Utils
 {
@@ -11,6 +12,8 @@ namespace CodeGen.Utils
     /// </summary>
     public static class ProgramSettings
     {
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         internal static string SettingsFolder
         {
             get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), ProgramInfo.AssemblyCompany, ProgramInfo.AssemblyProduct); }

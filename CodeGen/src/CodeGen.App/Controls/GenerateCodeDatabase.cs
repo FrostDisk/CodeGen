@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
 using System.IO;
+using NLog;
 
 namespace CodeGen.Controls
 {
@@ -17,6 +18,8 @@ namespace CodeGen.Controls
     public partial class GenerateCodeDatabase : UserControl, IGeneratorUserControl
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Project

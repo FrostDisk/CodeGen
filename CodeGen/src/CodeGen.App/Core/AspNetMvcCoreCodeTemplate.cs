@@ -1,6 +1,7 @@
 ﻿using CodeGen.Plugin.Base;
 using CodeGen.Properties;
 using CodeGen.Utils;
+using NLog;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -13,6 +14,8 @@ namespace CodeGen.Core
     public sealed class AspNetMvcCoreCodeTemplate : ICodeGeneratorTemplate
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         private static string _defaultCsExtension = ".cs";
         private static string _defaultCshtmlExtension = ".cshtml";

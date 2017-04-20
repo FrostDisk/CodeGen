@@ -1,5 +1,6 @@
 ﻿using CodeGen.Configuration;
 using CodeGen.Utils;
+using NLog;
 using System;
 using System.Windows.Forms;
 
@@ -12,6 +13,8 @@ namespace CodeGen
     public partial class FormOptions : Form
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Gets or sets the _settings.

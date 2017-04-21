@@ -315,10 +315,7 @@ namespace CodeGen.Utils
             var accessModel = GetPluginInstance<IAccessModelController>(plugin.Guid, plugin.Type);
             if (accessModel != null)
             {
-                if (!accessModel.IsLoaded)
-                {
-                    accessModel.Load(connectionString);
-                }
+                accessModel.Load(connectionString);
 
                 return accessModel.GetTableList();
             }

@@ -39,6 +39,7 @@
             this.paramAccessModelNamespace = new CodeGen.Controls.TemplateParameter();
             this.tabClasses = new System.Windows.Forms.TabPage();
             this.tableLayoutClasses = new System.Windows.Forms.TableLayoutPanel();
+            this.templateParameter2 = new CodeGen.Controls.TemplateParameter();
             this.paramDomainPrefix = new CodeGen.Controls.TemplateParameter();
             this.paramDomainSuffix = new CodeGen.Controls.TemplateParameter();
             this.paramDataAccessPrefix = new CodeGen.Controls.TemplateParameter();
@@ -70,6 +71,12 @@
             this.paramDBHelperInstanceObject = new CodeGen.Controls.TemplateParameter();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAccept = new System.Windows.Forms.Button();
+            this.tabAccessModelAsync = new System.Windows.Forms.TabPage();
+            this.tableLayoutAccessModelAsync = new System.Windows.Forms.TableLayoutPanel();
+            this.paramGetScalarAsyncMethodName = new CodeGen.Controls.TemplateParameter();
+            this.paramGetEntityAsyncMethodName = new CodeGen.Controls.TemplateParameter();
+            this.paramGetDataTableAsyncMethodName = new CodeGen.Controls.TemplateParameter();
+            this.paramExecuteStoredAsyncProcedureMethodName = new CodeGen.Controls.TemplateParameter();
             this.tabConfiguration.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.tableLayoutGeneral.SuspendLayout();
@@ -81,6 +88,8 @@
             this.tableLayoutDataAccess.SuspendLayout();
             this.tabAccessModel.SuspendLayout();
             this.tableLayoutAccessModel.SuspendLayout();
+            this.tabAccessModelAsync.SuspendLayout();
+            this.tableLayoutAccessModelAsync.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabConfiguration
@@ -93,6 +102,7 @@
             this.tabConfiguration.Controls.Add(this.tabProcedures);
             this.tabConfiguration.Controls.Add(this.tabDataAccess);
             this.tabConfiguration.Controls.Add(this.tabAccessModel);
+            this.tabConfiguration.Controls.Add(this.tabAccessModelAsync);
             this.tabConfiguration.Location = new System.Drawing.Point(12, 12);
             this.tabConfiguration.Name = "tabConfiguration";
             this.tabConfiguration.SelectedIndex = 0;
@@ -246,6 +256,7 @@
             this.tableLayoutClasses.ColumnCount = 2;
             this.tableLayoutClasses.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutClasses.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutClasses.Controls.Add(this.templateParameter2, 0, 2);
             this.tableLayoutClasses.Controls.Add(this.paramDomainPrefix, 0, 0);
             this.tableLayoutClasses.Controls.Add(this.paramDomainSuffix, 1, 0);
             this.tableLayoutClasses.Controls.Add(this.paramDataAccessPrefix, 0, 1);
@@ -260,6 +271,23 @@
             this.tableLayoutClasses.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutClasses.Size = new System.Drawing.Size(468, 340);
             this.tableLayoutClasses.TabIndex = 4;
+            // 
+            // templateParameter2
+            // 
+            this.tableLayoutClasses.SetColumnSpan(this.templateParameter2, 2);
+            this.templateParameter2.DefaultValue = "Async";
+            this.templateParameter2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.templateParameter2.IsUpdated = false;
+            this.templateParameter2.Location = new System.Drawing.Point(3, 107);
+            this.templateParameter2.Name = "templateParameter2";
+            this.templateParameter2.ParameterCode = "ASYNC_METHODS_SUFFIX";
+            this.templateParameter2.ParameterName = "DataAccess Asynchronous Methods Suffix";
+            this.templateParameter2.ParameterValue = "Async";
+            this.templateParameter2.ReadOnly = false;
+            this.templateParameter2.Required = false;
+            this.templateParameter2.Size = new System.Drawing.Size(462, 46);
+            this.templateParameter2.TabIndex = 5;
+            this.templateParameter2.Tooltip = "";
             // 
             // paramDomainPrefix
             // 
@@ -756,6 +784,102 @@
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
+            // tabAccessModelAsync
+            // 
+            this.tabAccessModelAsync.Controls.Add(this.tableLayoutAccessModelAsync);
+            this.tabAccessModelAsync.Location = new System.Drawing.Point(4, 22);
+            this.tabAccessModelAsync.Name = "tabAccessModelAsync";
+            this.tabAccessModelAsync.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAccessModelAsync.Size = new System.Drawing.Size(474, 346);
+            this.tabAccessModelAsync.TabIndex = 5;
+            this.tabAccessModelAsync.Text = "AccessModel Async";
+            this.tabAccessModelAsync.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutAccessModelAsync
+            // 
+            this.tableLayoutAccessModelAsync.ColumnCount = 1;
+            this.tableLayoutAccessModelAsync.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutAccessModelAsync.Controls.Add(this.paramGetScalarAsyncMethodName, 0, 0);
+            this.tableLayoutAccessModelAsync.Controls.Add(this.paramGetEntityAsyncMethodName, 0, 1);
+            this.tableLayoutAccessModelAsync.Controls.Add(this.paramGetDataTableAsyncMethodName, 0, 2);
+            this.tableLayoutAccessModelAsync.Controls.Add(this.paramExecuteStoredAsyncProcedureMethodName, 0, 3);
+            this.tableLayoutAccessModelAsync.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutAccessModelAsync.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutAccessModelAsync.Name = "tableLayoutAccessModelAsync";
+            this.tableLayoutAccessModelAsync.RowCount = 6;
+            this.tableLayoutAccessModelAsync.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutAccessModelAsync.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutAccessModelAsync.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutAccessModelAsync.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutAccessModelAsync.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutAccessModelAsync.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutAccessModelAsync.Size = new System.Drawing.Size(468, 340);
+            this.tableLayoutAccessModelAsync.TabIndex = 0;
+            // 
+            // paramGetScalarAsyncMethodName
+            // 
+            this.paramGetScalarAsyncMethodName.DefaultValue = "GetScalarAsync";
+            this.paramGetScalarAsyncMethodName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.paramGetScalarAsyncMethodName.IsUpdated = true;
+            this.paramGetScalarAsyncMethodName.Location = new System.Drawing.Point(3, 3);
+            this.paramGetScalarAsyncMethodName.Name = "paramGetScalarAsyncMethodName";
+            this.paramGetScalarAsyncMethodName.ParameterCode = "GETSCALAR_ASYNC_METHODNAME";
+            this.paramGetScalarAsyncMethodName.ParameterName = "GetScalarAsync Method Name";
+            this.paramGetScalarAsyncMethodName.ParameterValue = "GetScalarAsync";
+            this.paramGetScalarAsyncMethodName.ReadOnly = false;
+            this.paramGetScalarAsyncMethodName.Required = true;
+            this.paramGetScalarAsyncMethodName.Size = new System.Drawing.Size(462, 46);
+            this.paramGetScalarAsyncMethodName.TabIndex = 0;
+            this.paramGetScalarAsyncMethodName.Tooltip = "";
+            // 
+            // paramGetEntityAsyncMethodName
+            // 
+            this.paramGetEntityAsyncMethodName.DefaultValue = "GetEntityAsync";
+            this.paramGetEntityAsyncMethodName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.paramGetEntityAsyncMethodName.IsUpdated = true;
+            this.paramGetEntityAsyncMethodName.Location = new System.Drawing.Point(3, 55);
+            this.paramGetEntityAsyncMethodName.Name = "paramGetEntityAsyncMethodName";
+            this.paramGetEntityAsyncMethodName.ParameterCode = "GETENTITY_ASYNC_METHODNAME";
+            this.paramGetEntityAsyncMethodName.ParameterName = "GetEntityAsync Method Name";
+            this.paramGetEntityAsyncMethodName.ParameterValue = "GetEntityAsync";
+            this.paramGetEntityAsyncMethodName.ReadOnly = false;
+            this.paramGetEntityAsyncMethodName.Required = true;
+            this.paramGetEntityAsyncMethodName.Size = new System.Drawing.Size(462, 46);
+            this.paramGetEntityAsyncMethodName.TabIndex = 1;
+            this.paramGetEntityAsyncMethodName.Tooltip = "";
+            // 
+            // paramGetDataTableAsyncMethodName
+            // 
+            this.paramGetDataTableAsyncMethodName.DefaultValue = "GetDataTableAsync";
+            this.paramGetDataTableAsyncMethodName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.paramGetDataTableAsyncMethodName.IsUpdated = true;
+            this.paramGetDataTableAsyncMethodName.Location = new System.Drawing.Point(3, 107);
+            this.paramGetDataTableAsyncMethodName.Name = "paramGetDataTableAsyncMethodName";
+            this.paramGetDataTableAsyncMethodName.ParameterCode = "GETDATATABLE_ASYNC_METHODNAME";
+            this.paramGetDataTableAsyncMethodName.ParameterName = "GetDataTableAsync Method Name";
+            this.paramGetDataTableAsyncMethodName.ParameterValue = "GetDataTableAsync";
+            this.paramGetDataTableAsyncMethodName.ReadOnly = false;
+            this.paramGetDataTableAsyncMethodName.Required = true;
+            this.paramGetDataTableAsyncMethodName.Size = new System.Drawing.Size(462, 46);
+            this.paramGetDataTableAsyncMethodName.TabIndex = 2;
+            this.paramGetDataTableAsyncMethodName.Tooltip = "";
+            // 
+            // paramExecuteStoredAsyncProcedureMethodName
+            // 
+            this.paramExecuteStoredAsyncProcedureMethodName.DefaultValue = "ExecuteStoredProcedureAsync";
+            this.paramExecuteStoredAsyncProcedureMethodName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.paramExecuteStoredAsyncProcedureMethodName.IsUpdated = true;
+            this.paramExecuteStoredAsyncProcedureMethodName.Location = new System.Drawing.Point(3, 159);
+            this.paramExecuteStoredAsyncProcedureMethodName.Name = "paramExecuteStoredAsyncProcedureMethodName";
+            this.paramExecuteStoredAsyncProcedureMethodName.ParameterCode = "EXECUTESP_ASYNC_METHODNAME";
+            this.paramExecuteStoredAsyncProcedureMethodName.ParameterName = "ExecuteStoredProcedureAsync Method Name";
+            this.paramExecuteStoredAsyncProcedureMethodName.ParameterValue = "ExecuteStoredProcedureAsync";
+            this.paramExecuteStoredAsyncProcedureMethodName.ReadOnly = false;
+            this.paramExecuteStoredAsyncProcedureMethodName.Required = true;
+            this.paramExecuteStoredAsyncProcedureMethodName.Size = new System.Drawing.Size(462, 46);
+            this.paramExecuteStoredAsyncProcedureMethodName.TabIndex = 3;
+            this.paramExecuteStoredAsyncProcedureMethodName.Tooltip = "";
+            // 
             // FormBaseTemplateConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -783,6 +907,8 @@
             this.tableLayoutDataAccess.ResumeLayout(false);
             this.tabAccessModel.ResumeLayout(false);
             this.tableLayoutAccessModel.ResumeLayout(false);
+            this.tabAccessModelAsync.ResumeLayout(false);
+            this.tableLayoutAccessModelAsync.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -831,5 +957,12 @@
         private Controls.TemplateParameter paramDbHelperNamespace;
         private Controls.TemplateParameter paramAccessModelNamespace;
         private Controls.TemplateParameterDataAccessTemplate templateParameterDataAccessTemplate1;
+        private Controls.TemplateParameter templateParameter2;
+        private System.Windows.Forms.TabPage tabAccessModelAsync;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutAccessModelAsync;
+        private Controls.TemplateParameter paramGetScalarAsyncMethodName;
+        private Controls.TemplateParameter paramGetEntityAsyncMethodName;
+        private Controls.TemplateParameter paramGetDataTableAsyncMethodName;
+        private Controls.TemplateParameter paramExecuteStoredAsyncProcedureMethodName;
     }
 }

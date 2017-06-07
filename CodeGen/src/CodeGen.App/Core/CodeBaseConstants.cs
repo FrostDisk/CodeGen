@@ -32,6 +32,9 @@
         /// <summary>DATAACCESS_SUFFIX</summary>
         public const string DATAACCESS_SUFFIX = "DATAACCESS_SUFFIX";
 
+        /// <summary>DATAACCESS_SUFFIX</summary>
+        public const string ASYNC_METHODS_SUFFIX = "ASYNC_METHODS_SUFFIX";
+
         /// <summary>SAVE_PREFIX</summary>
         public const string SAVE_PREFIX = "SAVE_PREFIX";
 
@@ -88,6 +91,18 @@
 
         /// <summary>EXECUTESP_METHODNAME</summary>
         public const string EXECUTESP_METHODNAME = "EXECUTESP_METHODNAME";
+
+        /// <summary>GETSCALAR_ASYNC_METHODNAME</summary>
+        public const string GETSCALAR_ASYNC_METHODNAME = "GETSCALAR_ASYNC_METHODNAME";
+
+        /// <summary>GETENTITY_ASYNC_METHODNAME</summary>
+        public const string GETENTITY_ASYNC_METHODNAME = "GETENTITY_ASYNC_METHODNAME";
+
+        /// <summary>GETDATATABLE_ASYNC_METHODNAME</summary>
+        public const string GETDATATABLE_ASYNC_METHODNAME = "GETDATATABLE_ASYNC_METHODNAME";
+
+        /// <summary>EXECUTESP_METHODNAME</summary>
+        public const string EXECUTESP_ASYNC_METHODNAME = "EXECUTESP_ASYNC_METHODNAME";
 
         /// <summary>DBHELPER_INSTANCEOBJECT</summary>
         public const string DBHELPER_INSTANCEOBJECT = "DBHELPER_INSTANCEOBJECT";

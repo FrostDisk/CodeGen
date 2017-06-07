@@ -131,6 +131,14 @@ namespace CodeGen.Properties {
             }
         }
 
+        internal static string class_DataAccess_async
+        {
+            get
+            {
+                return ResourceManager.GetString("class_DataAccess_async", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to using System;
         ///using System.Collections.Generic;
@@ -157,6 +165,14 @@ namespace CodeGen.Properties {
             }
         }
 
+        internal static string class_DataAccess_async_en
+        {
+            get
+            {
+                return ResourceManager.GetString("class_DataAccess_async_en", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   Looks up a localized string similar to using System;
         ///using System.Collections.Generic;
@@ -180,6 +196,14 @@ namespace CodeGen.Properties {
             get
             {
                 return ResourceManager.GetString("class_DataAccess_es", resourceCulture);
+            }
+        }
+
+        internal static string class_DataAccess_async_es
+        {
+            get
+            {
+                return ResourceManager.GetString("class_DataAccess_async_es", resourceCulture);
             }
         }
 

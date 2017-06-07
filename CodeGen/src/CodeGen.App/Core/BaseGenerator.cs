@@ -132,38 +132,37 @@ namespace CodeGen.Core
             {
                 template = TemplateFile.LoadTemplate(TemplateType.CS, Resources.class_DataAccess);
             }
-            
 
-            TemplateSection sectionProperties = template.ExtractSection("PROPERTIES");
+            var primaryEntityField = Entity.Fields.FirstOrDefault(f => f.IsPrimaryKey);
+            if (primaryEntityField == null)
+            {
+                throw new DataException("Entity [" + Entity.Name + "] doesn't have primary key");
+            }
+
             TemplateSection sectionParameters = template.ExtractSection("PARAMETERS");
+            TemplateSection sectionProperties = template.ExtractSection("PROPERTIES");
 
-            TemplateSectionCollection propertiesSectionList = new TemplateSectionCollection();
-            TemplateSectionCollection parameterSectionList = new TemplateSectionCollection();
+            TemplateSectionCollection sectionParameterList = new TemplateSectionCollection();
+            TemplateSectionCollection sectionPropertyList = new TemplateSectionCollection();
 
             var instanceEntityName = StringHelper.ConverToInstanceName(CleanEntityName);
 
             foreach (var entityField in Entity.Fields)
             {
-                TemplateSection propertySection = sectionParameters.ExtractSection(entityField.SimpleTypeName);
-                propertySection.ReplaceTag("PARAMETERNAME", entityField.ColumnName);
-                propertySection.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
-                propertySection.ReplaceTag("INSTANCE_NAME_DOMAIN", instanceEntityName, false);
-                parameterSectionList.AddSection(propertySection);
+                TemplateSection sectionParameter = sectionParameters.ExtractSection(entityField.SimpleTypeName);
+                sectionParameter.ReplaceTag("PARAMETERNAME", entityField.ColumnName);
+                sectionParameter.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                sectionParameter.ReplaceTag("INSTANCE_NAME_DOMAIN", instanceEntityName, false);
+                sectionParameterList.AddSection(sectionParameter);
 
-                TemplateSection parameterSection = sectionProperties.ExtractSection(entityField.SimpleTypeName);
-                parameterSection.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
-                parameterSection.ReplaceTag("COLUMNNAME", entityField.ColumnName);
-                propertiesSectionList.AddSection(parameterSection);
+                TemplateSection sectionProperty = sectionProperties.ExtractSection(entityField.SimpleTypeName);
+                sectionProperty.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                sectionProperty.ReplaceTag("COLUMNNAME", entityField.ColumnName);
+                sectionPropertyList.AddSection(sectionProperty);
             }
 
-            template.ReplaceSection("PROPERTIES", propertiesSectionList);
-            template.ReplaceSection("PARAMETERS", parameterSectionList);
-
-            var primaryEntityField = Entity.Fields.FirstOrDefault(f => f.IsPrimaryKey);
-            if( primaryEntityField == null)
-            {
-                throw new DataException("Entity [" + Entity.Name + "] doesn't have primary key");
-            }
+            template.ReplaceSection("PARAMETERS", sectionParameterList);
+            template.ReplaceSection("PROPERTIES", sectionPropertyList);
 
 
             template.ReplaceTag("PRIMARYKEY_DATATYPE", DataTypeHelper.GetCSharpType(primaryEntityField.SimpleTypeName), false);
@@ -196,6 +195,115 @@ namespace CodeGen.Core
             template.ReplaceTag("GETENTITY_METHODNAME", Settings[CodeBaseConstants.GETENTITY_METHODNAME].Value, false);
             template.ReplaceTag("GETDATATABLE_METHODNAME", Settings[CodeBaseConstants.GETDATATABLE_METHODNAME].Value, false);
             template.ReplaceTag("EXECUTESP_METHODNAME", Settings[CodeBaseConstants.EXECUTESP_METHODNAME].Value, false);
+
+            template.ReplaceTag("AUTHOR_NAME", Settings[CodeBaseConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
+
+            return template.Content;
+        }
+
+        public string GenerateCodeDataAccessAsync()
+        {
+            TemplateFile template;
+            string templateType = Settings[CodeBaseConstants.DATAACCESS_TEMPLATE].Value;
+            if (templateType.Equals("en"))
+            {
+                template = TemplateFile.LoadTemplate(TemplateType.CS, Resources.class_DataAccess_async_en);
+            }
+            else if (templateType.Equals("es"))
+            {
+                template = TemplateFile.LoadTemplate(TemplateType.CS, Resources.class_DataAccess_async_es);
+            }
+            else
+            {
+                template = TemplateFile.LoadTemplate(TemplateType.CS, Resources.class_DataAccess_async);
+            }
+
+            var primaryEntityField = Entity.Fields.FirstOrDefault(f => f.IsPrimaryKey);
+            if (primaryEntityField == null)
+            {
+                throw new DataException("Entity [" + Entity.Name + "] doesn't have primary key");
+            }
+
+            TemplateSection sectionParameters = template.ExtractSection("PARAMETERS");
+            TemplateSection sectionParametersAsync = template.ExtractSection("PARAMETERS_ASYNC");
+            TemplateSection sectionProperties = template.ExtractSection("PROPERTIES");
+            TemplateSection sectionPropertiesAsync = template.ExtractSection("PROPERTIES_ASYNC");
+
+            TemplateSectionCollection sectionParameterList = new TemplateSectionCollection();
+            TemplateSectionCollection sectionParameterAsyncList = new TemplateSectionCollection();
+            TemplateSectionCollection sectionPropertyList = new TemplateSectionCollection();
+            TemplateSectionCollection sectionPropertyAsyncList = new TemplateSectionCollection();
+
+            var instanceEntityName = StringHelper.ConverToInstanceName(CleanEntityName);
+
+            foreach (var entityField in Entity.Fields)
+            {
+                TemplateSection sectionProperty = sectionProperties.ExtractSection(entityField.SimpleTypeName);
+                sectionProperty.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                sectionProperty.ReplaceTag("COLUMNNAME", entityField.ColumnName);
+                sectionPropertyList.AddSection(sectionProperty);
+
+                TemplateSection sectionPropertyAsync = sectionPropertiesAsync.ExtractSection(entityField.SimpleTypeName);
+                sectionPropertyAsync.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                sectionPropertyAsync.ReplaceTag("COLUMNNAME", entityField.ColumnName);
+                sectionPropertyAsyncList.AddSection(sectionPropertyAsync);
+
+                TemplateSection sectionParameter = sectionParameters.ExtractSection(entityField.SimpleTypeName);
+                sectionParameter.ReplaceTag("PARAMETERNAME", entityField.ColumnName);
+                sectionParameter.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                sectionParameter.ReplaceTag("INSTANCE_NAME_DOMAIN", instanceEntityName, false);
+                sectionParameterList.AddSection(sectionParameter);
+
+                TemplateSection sectionParameterAsync = sectionParametersAsync.ExtractSection(entityField.SimpleTypeName);
+                sectionParameterAsync.ReplaceTag("PARAMETERNAME", entityField.ColumnName);
+                sectionParameterAsync.ReplaceTag("PROPERTYNAME", entityField.ColumnName);
+                sectionParameterAsync.ReplaceTag("INSTANCE_NAME_DOMAIN", instanceEntityName, false);
+                sectionParameterAsyncList.AddSection(sectionParameterAsync);
+
+            }
+
+            template.ReplaceSection("PARAMETERS", sectionParameterList);
+            template.ReplaceSection("PARAMETERS_ASYNC", sectionParameterAsyncList);
+            template.ReplaceSection("PROPERTIES", sectionPropertyList);
+            template.ReplaceSection("PROPERTIES_ASYNC", sectionPropertyAsyncList);
+
+            template.ReplaceTag("PRIMARYKEY_DATATYPE", DataTypeHelper.GetCSharpType(primaryEntityField.SimpleTypeName), false);
+            template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
+            template.ReplaceTag("PRIMARYKEY_LOCAL_VARIABLE", StringHelper.ConverToInstanceName(StringHelper.ConvertToSafeCodeName(primaryEntityField.ColumnName)), false);
+
+            template.ReplaceTag("NAMESPACE_DOMAIN", Settings[CodeBaseConstants.NAMESPACE_DOMAIN].Value, false);
+            template.ReplaceTag("NAMESPACE_DATAACCESS", Settings[CodeBaseConstants.NAMESPACE_DATAACCESS].Value, false);
+            template.ReplaceTag("NAMESPACE_DBHELPER", Settings[CodeBaseConstants.NAMESPACE_DBHELPER].Value, false);
+            template.ReplaceTag("NAMESPACE_ACCESS_MODEL", Settings[CodeBaseConstants.NAMESPACE_ACCESS_MODEL].Value, false);
+
+            template.ReplaceTag("INSTANCE_NAME_DOMAIN", instanceEntityName, false);
+            template.ReplaceTag("CLASS_NAME_DOMAIN", DomainClassName, false);
+            template.ReplaceTag("CLASS_NAME_DATAACCESS", DataAccessClassName, false);
+
+            template.ReplaceTag("SAVE_STORED_PROCEDURE", SaveStoredProcedureName, false);
+            template.ReplaceTag("GETBYID_STORED_PROCEDURE", GetByIdStoredProcedureName, false);
+            template.ReplaceTag("LISTALL_STORED_PROCEDURE", ListAllStoredProcedureName, false);
+            template.ReplaceTag("DELETE_STORED_PROCEDURE", DeleteStoredProcedureName, false);
+
+            template.ReplaceTag("SAVE_METHODNAME", Settings[CodeBaseConstants.SAVE_METHODNAME].Value, false);
+            template.ReplaceTag("GETBYID_METHODNAME", Settings[CodeBaseConstants.GETBYID_METHODNAME].Value, false);
+            template.ReplaceTag("LISTALL_METHODNAME", Settings[CodeBaseConstants.LISTALL_METHODNAME].Value, false);
+            template.ReplaceTag("DELETE_METHODNAME", Settings[CodeBaseConstants.DELETE_METHODNAME].Value, false);
+            template.ReplaceTag("BUILDFUNCTION_METHODNAME", Settings[CodeBaseConstants.BUILDFUNCTION_METHODNAME].Value, false);
+            template.ReplaceTag("ASYNC_METHODS_SUFFIX", Settings[CodeBaseConstants.ASYNC_METHODS_SUFFIX].Value, false);
+
+            template.ReplaceTag("CONNECTIONSTRING_KEY", Settings[CodeBaseConstants.CONNECTIONSTRING_KEY].Value, false);
+            template.ReplaceTag("DBHELPER_INSTANCEOBJECT", Settings[CodeBaseConstants.DBHELPER_INSTANCEOBJECT].Value, false);
+            template.ReplaceTag("GETSCALAR_METHODNAME", Settings[CodeBaseConstants.GETSCALAR_METHODNAME].Value, false);
+            template.ReplaceTag("GETENTITY_METHODNAME", Settings[CodeBaseConstants.GETENTITY_METHODNAME].Value, false);
+            template.ReplaceTag("GETDATATABLE_METHODNAME", Settings[CodeBaseConstants.GETDATATABLE_METHODNAME].Value, false);
+            template.ReplaceTag("EXECUTESP_METHODNAME", Settings[CodeBaseConstants.EXECUTESP_METHODNAME].Value, false);
+
+            template.ReplaceTag("GETSCALAR_ASYNC_METHODNAME", Settings[CodeBaseConstants.GETSCALAR_ASYNC_METHODNAME].Value, false);
+            template.ReplaceTag("GETENTITY_ASYNC_METHODNAME", Settings[CodeBaseConstants.GETENTITY_ASYNC_METHODNAME].Value, false);
+            template.ReplaceTag("GETDATATABLE_ASYNC_METHODNAME", Settings[CodeBaseConstants.GETDATATABLE_ASYNC_METHODNAME].Value, false);
+            template.ReplaceTag("EXECUTESP_ASYNC_METHODNAME", Settings[CodeBaseConstants.EXECUTESP_ASYNC_METHODNAME].Value, false);
 
             template.ReplaceTag("AUTHOR_NAME", Settings[CodeBaseConstants.AUTHOR_NAME].Value, false);
             template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);

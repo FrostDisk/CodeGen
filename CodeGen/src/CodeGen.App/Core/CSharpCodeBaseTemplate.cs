@@ -129,6 +129,7 @@ namespace CodeGen.Core
                 {
                     case (int)eBaseTemplateComponent.DOMAIN: { return generator.GenerateCodeDomain(); }
                     case (int)eBaseTemplateComponent.DATA_ACCESS: { return generator.GenerateCodeDataAccess(); }
+                    case (int)eBaseTemplateComponent.DATA_ACCESS_ASYNC: { return generator.GenerateCodeDataAccessAsync(); }
                 }
             }
 
@@ -151,6 +152,7 @@ namespace CodeGen.Core
                 {
                     case (int)eBaseTemplateComponent.DOMAIN: { return generator.DomainClassName + _defaultFileExtension; }
                     case (int)eBaseTemplateComponent.DATA_ACCESS: { return generator.DataAccessClassName + _defaultFileExtension; }
+                    case (int)eBaseTemplateComponent.DATA_ACCESS_ASYNC: { return generator.DataAccessClassName + _defaultFileExtension; }
                 }
             }
 
@@ -167,6 +169,7 @@ namespace CodeGen.Core
             {
                 new GeneratorComponent((int) eBaseTemplateComponent.DOMAIN, "Domain", _defaultFileExtension),
                 new GeneratorComponent((int) eBaseTemplateComponent.DATA_ACCESS, "Data Access", _defaultFileExtension),
+                new GeneratorComponent((int) eBaseTemplateComponent.DATA_ACCESS_ASYNC, "Data Access with Async", _defaultFileExtension),
             };
         }
 

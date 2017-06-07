@@ -54,7 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NLog.4.4.6\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\..\packages\NLog.4.4.10\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -279,6 +279,9 @@
   <ItemGroup>
     <Content Include="icon.ico" />
     <None Include="Resources\Templates\class_Controller.cs.tpl" />
+    <None Include="Resources\Templates\class_DataAccess_async.cs.tpl" />
+    <None Include="Resources\Templates\class_DataAccess_async_en.cs.tpl" />
+    <None Include="Resources\Templates\class_DataAccess_async_es.cs.tpl" />
     <Content Include="Resources\Icons\file_extension_bin.png" />
     <Content Include="Resources\Icons\file_extension_dll.png" />
     <Content Include="Resources\Icons\file_extension_rtf.png" />

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
 using System.IO;
+using NLog;
 
 namespace CodeGen.Controls
 {
@@ -17,6 +18,8 @@ namespace CodeGen.Controls
     public partial class GenerateCodeDatabase : UserControl, IGeneratorUserControl
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Project
@@ -41,13 +44,16 @@ namespace CodeGen.Controls
         /// <summary>
         /// Gets the settings.
         /// </summary>
-        /// <value>
-        /// The settings.
-        /// </value>
-        /// <exception cref="NotImplementedException"></exception>
         public PluginSettings Settings
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                if (cmbTemplate.SelectedItem != null)
+                {
+                    return PluginsManager.GetSettingsFromPlugin((SupportedType)cmbTemplate.SelectedItem);
+                }
+                return null;
+            }
         }
 
         /// <summary>
@@ -86,7 +92,7 @@ namespace CodeGen.Controls
         {
             if (cmbTemplate.SelectedItem == null)
             {
-                PluginsManager.UpdateSettingsForPlugin(cmbTemplate.SelectedItem as SupportedType, settings);
+                PluginsManager.UpdateSettingsForPlugin((SupportedType)cmbTemplate.SelectedItem, settings);
             }
         }
 
@@ -145,6 +151,10 @@ namespace CodeGen.Controls
                 }
 
                 txtFileName.Text = ActiveTemplate.GenerateFileName(entity, (GeneratorComponent)cmbComponent.SelectedItem);
+            }
+            else
+            {
+                txtFileName.Text = string.Empty;
             }
         }
 
@@ -219,7 +229,7 @@ namespace CodeGen.Controls
             {
                 if (cmbTemplate.SelectedItem != null)
                 {
-                    var templateItem = (SupportedType)cmbTemplate.SelectedItem;
+                    var templateItem = (SupportedType) cmbTemplate.SelectedItem;
 
                     if (PluginsManager.ShowTemplateOptions(templateItem))
                     {
@@ -265,7 +275,7 @@ namespace CodeGen.Controls
             {
                 if (ValidateForm())
                 {
-                    string tableName = (string)cmbDatabaseEntity.SelectedItem;
+                    string tableName = (string) cmbDatabaseEntity.SelectedItem;
 
                     DatabaseEntity entity;
                     if (!_entities.TryGetValue(tableName, out entity))
@@ -274,7 +284,7 @@ namespace CodeGen.Controls
                         _entities[tableName] = entity;
                     }
 
-                    var code = ActiveTemplate.Generate(entity, (GeneratorComponent)cmbComponent.SelectedItem);
+                    var code = ActiveTemplate.Generate(entity, (GeneratorComponent) cmbComponent.SelectedItem);
 
                     if (!string.IsNullOrWhiteSpace(code))
                     {

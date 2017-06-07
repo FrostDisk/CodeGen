@@ -1,6 +1,7 @@
 ﻿using CodeGen.Library.Formats;
 using CodeGen.Plugin.Base;
 using CodeGen.Properties;
+using NLog;
 using System;
 using System.Data;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace CodeGen.Core
 {
     internal class AspNetMvcCoreGenerator
     {
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Settings
         /// </summary>

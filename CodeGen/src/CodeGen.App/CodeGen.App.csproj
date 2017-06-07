@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CodeGen</RootNamespace>
     <AssemblyName>CodeGen</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <PublishUrl>publish\</PublishUrl>
@@ -53,6 +53,9 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.4.10\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
@@ -68,6 +71,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\TemplateParameterDataAccessTemplate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TemplateParameterDataAccessTemplate.Designer.cs">
+      <DependentUpon>TemplateParameterDataAccessTemplate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\AspNetMvcCoreCodeTemplate.cs" />
     <Compile Include="Core\AspNetMvcCoreConstants.cs" />
     <Compile Include="Core\AspNetMvcCoreGenerator.cs" />
@@ -203,6 +212,9 @@
     <EmbeddedResource Include="Controls\ProjectWorkspace.resx">
       <DependentUpon>ProjectWorkspace.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TemplateParameterDataAccessTemplate.resx">
+      <DependentUpon>TemplateParameterDataAccessTemplate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\TemplateParameter.resx">
       <DependentUpon>TemplateParameter.cs</DependentUpon>
     </EmbeddedResource>
@@ -235,6 +247,13 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -244,6 +263,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Templates\class_DataAccess_en.cs.tpl" />
+    <None Include="Resources\Templates\class_DataAccess_es.cs.tpl" />
     <None Include="Resources\Templates\view_Create.cshtml.tpl" />
     <None Include="Resources\Templates\view_Delete.cshtml.tpl" />
     <None Include="Resources\Templates\view_Details.cshtml.tpl" />
@@ -251,11 +272,16 @@
     <None Include="Resources\Templates\view_Index.cshtml.tpl" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
     <None Include="Resources\Templates\class_Controller.cs.tpl" />
+    <None Include="Resources\Templates\class_DataAccess_async.cs.tpl" />
+    <None Include="Resources\Templates\class_DataAccess_async_en.cs.tpl" />
+    <None Include="Resources\Templates\class_DataAccess_async_es.cs.tpl" />
     <Content Include="Resources\Icons\file_extension_bin.png" />
     <Content Include="Resources\Icons\file_extension_dll.png" />
     <Content Include="Resources\Icons\file_extension_rtf.png" />

@@ -6,6 +6,7 @@ using CodeGen.Domain;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
 using System.IO;
+using NLog;
 
 namespace CodeGen.Controls
 {
@@ -17,6 +18,8 @@ namespace CodeGen.Controls
     public partial class GenerateCodeFile : UserControl, IGeneratorUserControl
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Project
@@ -319,7 +322,7 @@ namespace CodeGen.Controls
                 saveDialogGeneratedCode.Filter = DefaultFilters.Filters[component.Extension];
                 saveDialogGeneratedCode.FileName = txtFileName.Text;
 
-                if(saveDialogGeneratedCode.ShowDialog() == DialogResult.OK)
+                if (saveDialogGeneratedCode.ShowDialog() == DialogResult.OK)
                 {
                     File.WriteAllText(saveDialogGeneratedCode.FileName, txtGeneratedCode.Text);
 

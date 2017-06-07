@@ -4,6 +4,7 @@ using CodeGen.Data;
 using CodeGen.Domain;
 using CodeGen.Library.Formats;
 using CodeGen.Plugin.Base;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -21,6 +22,8 @@ namespace CodeGen.Utils
     /// </summary>
     public static class PluginsManager
     {
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Checks if Plugins are Loaded into Global Settings
         /// </summary>
@@ -312,10 +315,7 @@ namespace CodeGen.Utils
             var accessModel = GetPluginInstance<IAccessModelController>(plugin.Guid, plugin.Type);
             if (accessModel != null)
             {
-                if (!accessModel.IsLoaded)
-                {
-                    accessModel.Load(connectionString);
-                }
+                accessModel.Load(connectionString);
 
                 return accessModel.GetTableList();
             }

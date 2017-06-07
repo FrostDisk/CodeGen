@@ -171,7 +171,7 @@ namespace {NAMESPACE_DATAACCESS}
         /// </summary>
         /// <author>{AUTHOR_NAME}</author>
         /// <created>{CREATION_DATE}</created>
-        /// <returns><see cref="DataTable"/> con todos los objetos.</returns>
+        /// <returns><see cref="DataTable"/> with all the objects.</returns>
         public static DataTable {LISTALL_METHODNAME}()
         {
             DataTable table = new DataTable("Results");
@@ -207,7 +207,7 @@ namespace {NAMESPACE_DATAACCESS}
         /// </summary>
         /// <author>{AUTHOR_NAME}</author>
         /// <created>{CREATION_DATE}</created>
-        /// <param name="{PRIMARYKEY_LOCAL_VARIABLE}">ID de {CLASS_NAME_DOMAIN}.</param>
+        /// <param name="{PRIMARYKEY_LOCAL_VARIABLE}">PrimaryKey of {CLASS_NAME_DOMAIN}.</param>
         public static void {DELETE_METHODNAME}({PRIMARYKEY_DATATYPE} {PRIMARYKEY_LOCAL_VARIABLE})
         {
             SqlConnection connection = new SqlConnection(GetConnectionString());

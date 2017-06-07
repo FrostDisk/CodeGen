@@ -30,8 +30,8 @@ The're several ways to contribute in this project.
 
 ### Requirements
 
-* .NET Framework 4.5.2 (<http://www.microsoft.com/download/details.aspx?id=42642>)
-* Visual Studio Community 2013 or 2015 (<http://www.visualstudio.com/products/visual-studio-community-vs.aspx>)
+* .NET Framework 4.6.1 (<https://www.microsoft.com/download/details.aspx?id=49981>)
+* Visual Studio Community 2015 or newer (<https://www.visualstudio.com/vs/>)
 
 ## Related links
 

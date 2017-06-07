@@ -236,7 +236,7 @@ namespace {NAMESPACE_DOMAIN}
             /*-- END SECTION BIT */
             /*-- BEGIN SECTION CHAR AS VAR */{VAR.PROPERTYNAME} = null;
             /*-- END SECTION CHAR */
-            /*-- BEGIN SECTION DATETIME AS VAR */{VAR.PROPERTYNAME} = new DateTime();
+            /*-- BEGIN SECTION DATETIME AS VAR */{VAR.PROPERTYNAME} = new DateTime(1900, 1, 1);
             /*-- END SECTION DATETIME */
             /*-- BEGIN SECTION DECIMAL AS VAR */{VAR.PROPERTYNAME} = 0;
             /*-- END SECTION DECIMAL */
@@ -258,7 +258,7 @@ namespace {NAMESPACE_DOMAIN}
             /*-- END SECTION REAL */
             /*-- BEGIN SECTION UNIQUEIDENTIFIER AS VAR */{VAR.PROPERTYNAME} = new Guid();
             /*-- END SECTION UNIQUEIDENTIFIER */
-            /*-- BEGIN SECTION SMALLDATETIME AS VAR */{VAR.PROPERTYNAME} = new DateTime();
+            /*-- BEGIN SECTION SMALLDATETIME AS VAR */{VAR.PROPERTYNAME} = new DateTime(1900, 1, 1);
             /*-- END SECTION SMALLDATETIME */
             /*-- BEGIN SECTION SMALLINT AS VAR */{VAR.PROPERTYNAME} = 0;
             /*-- END SECTION SMALLINT */
@@ -278,11 +278,11 @@ namespace {NAMESPACE_DOMAIN}
             /*-- END SECTION VARIANT */
             /*-- BEGIN SECTION XML AS VAR */{VAR.PROPERTYNAME} = null;
             /*-- END SECTION XML */
-            /*-- BEGIN SECTION DATE AS VAR */{VAR.PROPERTYNAME} = new DateTime();
+            /*-- BEGIN SECTION DATE AS VAR */{VAR.PROPERTYNAME} = new DateTime(1900, 1, 1);
             /*-- END SECTION DATE */
             /*-- BEGIN SECTION TIME AS VAR */{VAR.PROPERTYNAME} = new TimeSpan(0);
             /*-- END SECTION TIME */
-            /*-- BEGIN SECTION DATETIME2 AS VAR */{VAR.PROPERTYNAME} = new DateTime();
+            /*-- BEGIN SECTION DATETIME2 AS VAR */{VAR.PROPERTYNAME} = new DateTime(1900, 1, 1);
             /*-- END SECTION DATETIME2 */
             /*-- BEGIN SECTION DATETIMEOFFSET AS VAR */{VAR.PROPERTYNAME} = new DateTimeOffset();
             /*-- END SECTION DATETIMEOFFSET */

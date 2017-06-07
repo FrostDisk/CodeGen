@@ -9,11 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CodeGen.Utils;
 using CodeGen.Properties;
+using NLog;
 
 namespace CodeGen
 {
     partial class FormAbout : Form
     {
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         public FormAbout()
         {
             InitializeComponent();

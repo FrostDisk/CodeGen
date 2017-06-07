@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using CodeGen.Data;
 using CodeGen.Domain;
+using NLog;
 
 namespace CodeGen.Controls
 {
@@ -12,6 +13,8 @@ namespace CodeGen.Controls
     public partial class ProjectWorkspace : UserControl
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Project

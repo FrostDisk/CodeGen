@@ -5,6 +5,7 @@ using CodeGen.Controls;
 using CodeGen.Library.Formats;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
+using NLog;
 
 namespace CodeGen
 {
@@ -15,6 +16,8 @@ namespace CodeGen
     public partial class FormBaseTemplateConfiguration : Form
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         private static FormBaseTemplateConfiguration _instance;
 

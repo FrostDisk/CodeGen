@@ -1,11 +1,13 @@
-﻿using System;
+﻿using CodeGen.Plugin.Base;
+using CodeGen.Plugin.MySql.Properties;
+using CodeGen.Plugin.MySql.Utils;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using CodeGen.Plugin.Base;
-using MySql.Data.MySqlClient;
 
 namespace CodeGen.Plugin.MySql
 {
@@ -13,21 +15,60 @@ namespace CodeGen.Plugin.MySql
     {
         private String _connectionString;
 
-        #region plugin base 
-
+        /// <summary>
+        /// Title
+        /// </summary>
         public string Title
         {
             get { return "MySql Access-Model Controller"; }
         }
 
+        /// <summary>
+        /// CreatedBy
+        /// </summary>
+        public string CreatedBy
+        {
+            get { return ProgramInfo.AssemblyCompany; }
+        }
+
+        /// <summary>
+        /// Icon
+        /// </summary>
+        public Image Icon
+        {
+            get { return null; }
+        }
+
+        /// <summary>
+        /// Description
+        /// </summary>
         public string Description
         {
             get { return "MySql Access-Model Controller"; }
         }
 
+        /// <summary>
+        /// Version
+        /// </summary>
         public string Version
         {
-            get { return "1.0"; }
+            get { return ProgramInfo.AssemblyVersion; }
+        }
+
+        /// <summary>
+        /// Release Notes Url
+        /// </summary>
+        public string ReleaseNotesUrl
+        {
+            get { return Resources.DefaultReleaseNotesUrl; }
+        }
+
+        /// <summary>
+        /// Author Website Url
+        /// </summary>
+        public string AuthorWebsiteUrl
+        {
+            get { return Resources.DefaultAuthorWebsiteUrl; }
         }
 
         public PluginSettings Settings { get; private set; }
@@ -36,8 +77,6 @@ namespace CodeGen.Plugin.MySql
         {
             
         }
-
-        #endregion
 
         public string DatabaseTypeCode
         {
@@ -54,6 +93,12 @@ namespace CodeGen.Plugin.MySql
         public bool Load(string connectionString)
         {
             _connectionString = connectionString;
+
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                connection.Close();
+            }
 
             IsLoaded = true;
 
@@ -153,6 +198,26 @@ namespace CodeGen.Plugin.MySql
             }
 
             return entity;
+        }
+
+
+        /// <summary>
+        /// Checks the connection.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
+        /// <returns></returns>
+        public bool CheckConnection(string connectionString)
+        {
+            try
+            {
+                return DatabaseUtils.CheckConnectionString(connectionString);
+            }
+            catch (Exception ex)
+            {
+                MessageBoxHelper.ProcessException(ex);
+            }
+
+            return false;
         }
     }
 }

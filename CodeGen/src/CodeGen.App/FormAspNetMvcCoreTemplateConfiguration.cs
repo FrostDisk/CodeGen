@@ -2,6 +2,7 @@
 using CodeGen.Library.Formats;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -14,6 +15,8 @@ namespace CodeGen
     public partial class FormAspNetMvcCoreTemplateConfiguration : Form
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         private static FormAspNetMvcCoreTemplateConfiguration _instance;
 

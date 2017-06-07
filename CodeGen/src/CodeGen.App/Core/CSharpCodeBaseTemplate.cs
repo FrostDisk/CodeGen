@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
-using CodeGen.Plugin.Base;
-using CodeGen.Utils;
-using System.Drawing;
+﻿using CodeGen.Plugin.Base;
 using CodeGen.Properties;
+using CodeGen.Utils;
+using NLog;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace CodeGen.Core
 {
@@ -15,10 +16,12 @@ namespace CodeGen.Core
     {
         #region properties
 
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// File Extension
         /// </summary>
-        public string _defaultFileExtension = ".cs";
+        private const string _defaultFileExtension = ".cs";
 
         /// <summary>
         /// Author Website Url
@@ -78,7 +81,6 @@ namespace CodeGen.Core
         /// </summary>
         public PluginSettings Settings { get; private set; }
 
-
         /// <summary>
         /// Title
         /// </summary>
@@ -127,6 +129,7 @@ namespace CodeGen.Core
                 {
                     case (int)eBaseTemplateComponent.DOMAIN: { return generator.GenerateCodeDomain(); }
                     case (int)eBaseTemplateComponent.DATA_ACCESS: { return generator.GenerateCodeDataAccess(); }
+                    case (int)eBaseTemplateComponent.DATA_ACCESS_ASYNC: { return generator.GenerateCodeDataAccessAsync(); }
                 }
             }
 
@@ -149,6 +152,7 @@ namespace CodeGen.Core
                 {
                     case (int)eBaseTemplateComponent.DOMAIN: { return generator.DomainClassName + _defaultFileExtension; }
                     case (int)eBaseTemplateComponent.DATA_ACCESS: { return generator.DataAccessClassName + _defaultFileExtension; }
+                    case (int)eBaseTemplateComponent.DATA_ACCESS_ASYNC: { return generator.DataAccessClassName + _defaultFileExtension; }
                 }
             }
 
@@ -165,6 +169,7 @@ namespace CodeGen.Core
             {
                 new GeneratorComponent((int) eBaseTemplateComponent.DOMAIN, "Domain", _defaultFileExtension),
                 new GeneratorComponent((int) eBaseTemplateComponent.DATA_ACCESS, "Data Access", _defaultFileExtension),
+                new GeneratorComponent((int) eBaseTemplateComponent.DATA_ACCESS_ASYNC, "Data Access with Async", _defaultFileExtension),
             };
         }
 
@@ -194,7 +199,6 @@ namespace CodeGen.Core
             return false;
         }
 
-        
         /// <summary>
         /// Updates the settings.
         /// </summary>

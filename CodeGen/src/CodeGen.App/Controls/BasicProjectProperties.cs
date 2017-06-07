@@ -8,6 +8,7 @@ using CodeGen.Library.Formats;
 using CodeGen.Library.System.IO;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
+using NLog;
 
 namespace CodeGen.Controls
 {
@@ -19,6 +20,8 @@ namespace CodeGen.Controls
     public partial class BasicProjectProperties : UserControl, IBaseUserControl
     {
         #region properties
+
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
         /// Gets or sets the default project location.

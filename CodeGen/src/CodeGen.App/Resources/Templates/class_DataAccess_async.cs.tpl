@@ -288,7 +288,7 @@ namespace {NAMESPACE_DATAACCESS}
                     {
                         if (reader.Read())
                         {
-                            {INSTANCE_NAME_DOMAIN} = await {BUILDFUNCTION_METHODNAME}(reader);
+                            {INSTANCE_NAME_DOMAIN} = await {BUILDFUNCTION_METHODNAME}{ASYNC_METHODS_SUFFIX}(reader);
                         }
                     }
                 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Xml;
 using {NAMESPACE_DOMAIN};
 using {NAMESPACE_DBHELPER};
 using {NAMESPACE_ACCESS_MODEL};
@@ -64,6 +65,8 @@ namespace {NAMESPACE_DATAACCESS}
                 /*-- END SECTION NCHAR */
                 /*-- BEGIN SECTION VARCHAR AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION VARCHAR */
+                /*-- BEGIN SECTION XML AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
+                /*-- END SECTION XML */
                 /*-- BEGIN SECTION NVARCHAR AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
                 /*-- END SECTION NVARCHAR */
                 /*-- BEGIN SECTION TEXT AS VAR */new Parameter("@{VAR.PARAMETERNAME}", {INSTANCE_NAME_DOMAIN}.{VAR.PROPERTYNAME}),
@@ -174,6 +177,8 @@ namespace {NAMESPACE_DATAACCESS}
                 /*-- END SECTION NCHAR */
                 /*-- BEGIN SECTION VARCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
                 /*-- END SECTION VARCHAR */
+                /*-- BEGIN SECTION XML AS VAR */{VAR.COLUMNNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? new Func<XmlDocument>(() => { var x = new XmlDocument(); x.LoadXml(row["{VAR.COLUMNNAME}"].ToString()); return x; })() : new XmlDocument(),
+                /*-- END SECTION XML */
                 /*-- BEGIN SECTION NVARCHAR AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,
                 /*-- END SECTION NVARCHAR */
                 /*-- BEGIN SECTION TEXT AS VAR */{VAR.PROPERTYNAME} = row["{VAR.COLUMNNAME}"] != DBNull.Value ? row["{VAR.COLUMNNAME}"].ToString() : string.Empty,

@@ -2,6 +2,7 @@
 using CodeGen.Utils;
 using NLog;
 using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CodeGen
@@ -48,6 +49,10 @@ namespace CodeGen
             txtPluginsDirectory.Text = _settings.DirectoriesSettings.PluginsDirectory;
             txtCacheDirectory.Text = _settings.DirectoriesSettings.CacheDirectory;
             txtTempDirectory.Text = _settings.DirectoriesSettings.TempDirectory;
+            txtLogDirectory.Text = _settings.DirectoriesSettings.LogDirectory;
+
+            LogLevel.AllLevels.ToList().ForEach(l => cmbLogLevel.Items.Add(l));
+            cmbLogLevel.SelectedItem = LogLevel.AllLevels.FirstOrDefault(l => l.Name.Equals(_settings.LogSettings.Level, StringComparison.InvariantCultureIgnoreCase));
         }
 
         private bool ValidateForm()
@@ -100,14 +105,29 @@ namespace CodeGen
             }
         }
 
+        private void btnChangeLogDirectory_Click(object sender, EventArgs e)
+        {
+            folderBrowserChangeDirectory.SelectedPath = txtLogDirectory.Text;
+            if(folderBrowserChangeDirectory.ShowDialog() == DialogResult.OK)
+            {
+                txtLogDirectory.Text = folderBrowserChangeDirectory.SelectedPath;
+            }
+        }
+
         private void btnAccept_Click(object sender, EventArgs e)
         {
             _settings.DirectoriesSettings.DefaultProjectsDirectory = txtDefaultProjectsDirectory.Text;
             _settings.DirectoriesSettings.PluginsDirectory = txtPluginsDirectory.Text;
             _settings.DirectoriesSettings.CacheDirectory = txtCacheDirectory.Text;
             _settings.DirectoriesSettings.TempDirectory = txtTempDirectory.Text;
+            _settings.DirectoriesSettings.LogDirectory = txtLogDirectory.Text;
 
+            _settings.LogSettings.Level = ((LogLevel)cmbLogLevel.SelectedItem).Name;
+
+            ProgramSettings.UpdateLoggerTargets();
             ProgramSettings.SaveGlobalSettings();
+
+            Close();
         }
 
         #endregion

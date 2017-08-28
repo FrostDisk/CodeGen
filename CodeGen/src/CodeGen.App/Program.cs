@@ -1,12 +1,16 @@
-﻿using System;
+﻿using CodeGen.Properties;
+using CodeGen.Utils;
+using NLog;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using CodeGen.Properties;
 
 namespace CodeGen
 {
     static class Program
     {
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,6 +20,8 @@ namespace CodeGen
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            ProgramSettings.UpdateLoggerTargets();
+
             FormMain form = new FormMain();
 
             if (Settings.Default.IsMaximized)
@@ -24,15 +30,24 @@ namespace CodeGen
             }
             else
             {
+                Screen screen = Screen.FromControl(form);
+
+                int locationX = form.Location.X;
+                int locationY = form.Location.Y;
+
+                if (Settings.Default.WindowPositionX > 0 && Settings.Default.WindowPositionX < screen.WorkingArea.Width
+                    && Settings.Default.WindowPositionY > 0 && Settings.Default.WindowPositionY < screen.WorkingArea.Height)
+                {
+                    locationX = Settings.Default.WindowPositionX;
+                    locationY = Settings.Default.WindowPositionY;
+
+                    form.StartPosition = FormStartPosition.Manual;
+                    form.Location = new Point(locationX, locationY);
+                }
+
                 if (Settings.Default.WindowSizeWidth > 0 && Settings.Default.WindowSizeHeight > 0)
                 {
                     form.Size = new Size(Settings.Default.WindowSizeWidth, Settings.Default.WindowSizeHeight);
-                }
-
-                if (Settings.Default.WindowPositionX > 0 && Settings.Default.WindowPositionY > 0)
-                {
-                    form.StartPosition = FormStartPosition.Manual;
-                    form.Location = new Point(Settings.Default.WindowPositionX, Settings.Default.WindowPositionY);
                 }
             }
 

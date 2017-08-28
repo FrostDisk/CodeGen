@@ -8,6 +8,7 @@ using CodeGen.Plugin.Base;
 using CodeGen.Library.Security;
 using CodeGen.Library.Formats;
 using System.Runtime.InteropServices;
+using NLog;
 
 namespace CodeGen.Data
 {
@@ -16,6 +17,8 @@ namespace CodeGen.Data
     /// </summary>
     public static class ProjectController
     {
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Creates the empty project.
         /// </summary>
@@ -24,6 +27,8 @@ namespace CodeGen.Data
         /// <returns></returns>
         public static Project CreateEmptyProject(string projectName, string projectDirectory)
         {
+            _logger.Trace("ProjectController.CreateEmptyProject()");
+
             string safeProjectName = StringHelper.ConvertToSafeFileName(projectName);
 
             Project project = new Project();
@@ -47,8 +52,10 @@ namespace CodeGen.Data
         /// <param name="encryptionKey">The encryption key.</param>
         public static void SaveProjectToStream(Project project, Stream projectStream, string encryptionKey)
         {
+            _logger.Trace("ProjectController.SaveProjectToStream()");
+
             // Encrypt Connection String
-            project.EncryptedConnectionString = StringEncryptorHelper.Encrypt(project.ConnectionString, encryptionKey);
+            project.AccessModel.EncryptedConnectionString = StringEncryptorHelper.Encrypt(project.AccessModel.ConnectionString, encryptionKey);
 
             using (StreamWriter streamWriter = new StreamWriter(projectStream, Encoding.UTF8))
             {
@@ -69,6 +76,8 @@ namespace CodeGen.Data
         /// <returns></returns>
         public static Project OpenProjectFromLocation(string projectLocation, string decryptionKey)
         {
+            _logger.Trace("ProjectController.OpenProjectFromLocation()");
+
             using (StreamReader streamReader = new StreamReader(projectLocation, Encoding.UTF8))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(Project));
@@ -95,6 +104,8 @@ namespace CodeGen.Data
         /// <returns></returns>
         public static ProjectPluginProperties GetPluginProperties(Project project, string guid, string plugin)
         {
+            _logger.Trace("ProjectController.GetPluginProperties()");
+
             if (project.Properties == null
                 || project.Properties.Plugins == null)
             {
@@ -112,6 +123,8 @@ namespace CodeGen.Data
         /// <returns></returns>
         public static Project UpdatePluginSettings(Project project, IGeneratorTemplate plugin)
         {
+            _logger.Trace("ProjectController.UpdatePluginSettings()");
+
             if (project.Properties == null)
             {
                 project.Properties = new ProjectProperties();
@@ -125,12 +138,12 @@ namespace CodeGen.Data
             var type = plugin.GetType();
             string guid = ((GuidAttribute)(type.Assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0])).Value;
 
-            var pluginAssembly = project.Properties.Plugins.FirstOrDefault(p => p.Guid == guid && p.Type == type.FullName);
+            var pluginAssembly = project.Properties.Plugins.FirstOrDefault(p => p.Guid == guid && p.Assembly == type.Assembly.FullName);
             if (pluginAssembly == null)
             {
                 pluginAssembly = new ProjectPluginProperties();
                 pluginAssembly.Guid = guid;
-                pluginAssembly.Type = type.FullName;
+                pluginAssembly.Assembly = type.Assembly.FullName;
                 project.Properties.Plugins.Add(pluginAssembly);
             }
 
@@ -139,15 +152,19 @@ namespace CodeGen.Data
                 pluginAssembly.Parameters = new List<PluginParameter>();
             }
 
-            pluginAssembly.Parameters.Clear();
             foreach (PluginSettingValue settingValue in plugin.Settings)
             {
-                PluginParameter parameter = new PluginParameter();
+                var parameter = pluginAssembly.Parameters.FirstOrDefault(c => c.Code.Equals(settingValue.Key));
+                if (parameter == null)
+                {
+                    parameter = new PluginParameter();
+                    pluginAssembly.Parameters.Add(parameter);
+                }
+
                 parameter.Code = settingValue.Key;
                 parameter.Value = settingValue.Value;
                 parameter.UseDefault = settingValue.UseDefault;
                 parameter.Type = settingValue.Type;
-                pluginAssembly.Parameters.Add(parameter);
             }
 
             return project;
@@ -155,12 +172,34 @@ namespace CodeGen.Data
 
         private static Project RecalculateVariables(Project openProject, string decryptionKey)
         {
+            _logger.Trace("ProjectController.RecalculateVariables()");
+
             openProject.IsNew = false;
             openProject.IsUnsaved = false;
             openProject.IsValid = true;
 
+            // Old version need convertion to last version
+            if (openProject.Version < Project.ActiveVersion)
+            {
+                switch(openProject.Version)
+                {
+                    case 1:
+                        {
+                            openProject.AccessModel = new ProjectAccessModelController()
+                            {
+                                Guid = openProject.Plugin.Guid
+                            };
+                            openProject.AccessModel.EncryptedConnectionString = openProject.EncryptedConnectionString;
+
+                            openProject.Plugin = null;
+                            openProject.EncryptedConnectionString = null;
+                            break;
+                        }
+                }
+            }
+
             // Decript Connection String
-            openProject.ConnectionString = StringEncryptorHelper.Decrypt(openProject.EncryptedConnectionString, decryptionKey);
+            openProject.AccessModel.ConnectionString = StringEncryptorHelper.Decrypt(openProject.AccessModel.EncryptedConnectionString, decryptionKey);
 
             return openProject;
         }

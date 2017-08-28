@@ -35,6 +35,12 @@ namespace CodeGen.Domain
         public ProjectPlugin Plugin { get; set; }
 
         /// <summary>
+        /// AccessModel
+        /// </summary>
+        [XmlElement("AccessModel")]
+        public ProjectAccessModelController AccessModel { get; set; }
+
+        /// <summary>
         /// Description
         /// </summary>
         [XmlElement("Description")]
@@ -98,7 +104,7 @@ namespace CodeGen.Domain
         /// ActiveVersion
         /// </summary>
         [XmlIgnore]
-        public const int ActiveVersion = 1;
+        public const int ActiveVersion = 2;
 
         /// <summary>
         /// Project
@@ -108,6 +114,7 @@ namespace CodeGen.Domain
             Name = string.Empty;
             Version = 0;
             Type = EnumDatabaseTypes.SqlServer;
+            AccessModel = new ProjectAccessModelController();
             Description = string.Empty;
             EncryptedConnectionString = string.Empty;
             ConnectionString = string.Empty;

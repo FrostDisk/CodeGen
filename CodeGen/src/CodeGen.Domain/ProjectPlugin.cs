@@ -20,5 +20,11 @@ namespace CodeGen.Domain
         /// </summary>
         [XmlAttribute("Type")]
         public string Type { get; set; }
+
+        /// <summary>
+        /// Assembly
+        /// </summary>
+        [XmlAttribute("Assembly")]
+        public string Assembly { get; set; }
     }
 }

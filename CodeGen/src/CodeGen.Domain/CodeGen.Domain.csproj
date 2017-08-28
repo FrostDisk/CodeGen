@@ -48,6 +48,7 @@
     <Compile Include="IProjectBase.cs" />
     <Compile Include="PluginParameter.cs" />
     <Compile Include="Project.cs" />
+    <Compile Include="ProjectAccessModelController.cs" />
     <Compile Include="ProjectBase.cs" />
     <Compile Include="ProjectPlugin.cs" />
     <Compile Include="ProjectEntity.cs" />

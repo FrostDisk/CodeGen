@@ -18,6 +18,11 @@ namespace CodeGen.Core
         public string Guid { get; set; }
 
         /// <summary>
+        /// Assembly
+        /// </summary>
+        public string Assembly { get; set; }
+
+        /// <summary>
         /// Type
         /// </summary>
         public string Type { get; set; }

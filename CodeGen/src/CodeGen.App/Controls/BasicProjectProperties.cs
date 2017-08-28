@@ -144,13 +144,13 @@ namespace CodeGen.Controls
             SupportedType item = (SupportedType) cmbDatabaseType.SelectedItem;
 
             project.Type = PluginsManager.GetDataBaseType(item);
-            project.Plugin = new ProjectPlugin
+            project.AccessModel = new ProjectAccessModelController
             {
                 Guid = item.Guid,
-                Type = item.Type
+                Assembly = item.Name,
+                ConnectionString = txtConnectionString.Text
             };
             project.Description = txtProjectDescription.Text;
-            project.ConnectionString = txtConnectionString.Text;
 
             return project;
         }

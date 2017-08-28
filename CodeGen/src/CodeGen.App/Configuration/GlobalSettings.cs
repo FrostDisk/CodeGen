@@ -17,6 +17,12 @@ namespace CodeGen.Configuration
         public DirectoriesSettings DirectoriesSettings { get; set; }
 
         /// <summary>
+        /// LogSettings
+        /// </summary>
+        [XmlElement("Log")]
+        public LogSettings LogSettings { get; set; }
+
+        /// <summary>
         /// Gets or sets the project settings.
         /// </summary>
         [XmlElement("Project")]
@@ -34,6 +40,7 @@ namespace CodeGen.Configuration
         public GlobalSettings()
         {
             DirectoriesSettings = new DirectoriesSettings();
+            LogSettings = new LogSettings();
             ProjectSettings = new ProjectSettings();
             PluginsSettings = new PluginsSettings();
         }

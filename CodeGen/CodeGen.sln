@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.App", "src\CodeGen.App\CodeGen.App.csproj", "{E5BBDC80-1168-4686-AA51-D7D513F6AAE0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0CE0250E-4F68-4F54-B1AA-0F4C0C076EB8} = {0CE0250E-4F68-4F54-B1AA-0F4C0C076EB8}
+		{E204907C-5359-4DA7-8B17-3DAC26EAAF71} = {E204907C-5359-4DA7-8B17-3DAC26EAAF71}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{18597B76-FE2F-4099-8E00-C906918919AF}"
 EndProject

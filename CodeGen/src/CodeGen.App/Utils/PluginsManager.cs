@@ -73,10 +73,11 @@ namespace CodeGen.Utils
         }
 
         /// <summary>
-        /// 
+        /// Imports the plugin.
         /// </summary>
-        /// <param name="pluginLocation"></param>
-        public static void ImportPlugin(string pluginLocation)
+        /// <param name="pluginLocation">The plugin location.</param>
+        /// <param name="overwrite">if set to <c>true</c> [overwrite].</param>
+        public static void ImportPlugin(string pluginLocation, bool overwrite = false)
         {
             _logger.Trace("PluginsManager.ImportPlugin('{0}')", pluginLocation);
 
@@ -133,7 +134,7 @@ namespace CodeGen.Utils
                 {
                     string pluginTargetLocation = Path.Combine(settings.DirectoriesSettings.PluginsDirectory, Path.GetFileName(pluginLocation));
 
-                    File.Copy(pluginLocation, pluginTargetLocation);
+                    File.Copy(pluginLocation, pluginTargetLocation, overwrite);
                 }
             }
         }

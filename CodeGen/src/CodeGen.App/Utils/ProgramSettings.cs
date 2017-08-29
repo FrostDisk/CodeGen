@@ -26,8 +26,9 @@ namespace CodeGen.Utils
         /// <summary>
         /// Load the global configuration settings for the application instance
         /// </summary>
+        /// <param name="createDefault">if set to <c>true</c> [create default].</param>
         /// <returns></returns>
-        public static GlobalSettings GetGlobalSettings()
+        public static GlobalSettings GetGlobalSettings(bool createDefault = true)
         {
             _logger.Trace("ProgramSettings.GetGlobalSettings()");
 
@@ -40,16 +41,15 @@ namespace CodeGen.Utils
             if (!Directory.Exists(SettingsFolder))
             {
                 Directory.CreateDirectory(SettingsFolder);
-                _loadedGlobalSettings = new GlobalSettings();
-                return _loadedGlobalSettings;
+
+                return createDefault ? (_loadedGlobalSettings = new GlobalSettings()) : null;
             }
 
             // look-up the settings file
             string settingsLocation = Path.Combine(SettingsFolder, Settings.Default.GlobalSettingsFilename);
             if (!File.Exists(settingsLocation))
             {
-                _loadedGlobalSettings = new GlobalSettings();
-                return _loadedGlobalSettings;
+                return createDefault ? (_loadedGlobalSettings = new GlobalSettings()) : null;
             }
 
             try
@@ -65,7 +65,7 @@ namespace CodeGen.Utils
             catch (InvalidOperationException ex)
             {
                 _logger.Error(ex, ex.Message);
-                _loadedGlobalSettings = new GlobalSettings();
+                _loadedGlobalSettings = createDefault ? new GlobalSettings() : null;
             }
 
             return _loadedGlobalSettings;
@@ -89,6 +89,30 @@ namespace CodeGen.Utils
                 serializer.Serialize(file, settings);
                 file.Close();
             }
+        }
+
+        /// <summary>
+        /// Checks if first run.
+        /// </summary>
+        /// <returns></returns>
+        public static bool CheckIfFirstRun()
+        {
+            var settings = GetGlobalSettings(false);
+
+            if (settings == null || string.IsNullOrWhiteSpace(settings.Version))
+            {
+                return true;
+            }
+
+            var settingsVersion = new Version(settings.Version);
+            var assemblyVersion = new Version(ProgramInfo.AssemblyVersion);
+
+            if (settingsVersion.CompareTo(assemblyVersion) < 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>

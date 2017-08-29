@@ -3,6 +3,8 @@ using CodeGen.Utils;
 using NLog;
 using System;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace CodeGen
@@ -15,12 +17,33 @@ namespace CodeGen
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+#if DEBUG
+            InstallBasePlugins();
+#else
+
+            if (ProgramSettings.CheckIfFirstRun())
+            {
+                InstallBasePlugins();
+            }
+#endif
+
             ProgramSettings.UpdateLoggerTargets();
+
+            if (args.Length > 0)
+            {
+                if (args.Any(a => a.Equals("/install", StringComparison.InvariantCultureIgnoreCase)))
+                {
+                    InstallBasePlugins();
+
+                    Application.Exit();
+                    return;
+                }
+            }
 
             FormMain form = new FormMain();
 
@@ -52,6 +75,16 @@ namespace CodeGen
             }
 
             Application.Run(form);
+        }
+
+        private static void InstallBasePlugins()
+        {
+            var directory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Plugins");
+
+            foreach (string extractedPluginLocation in Directory.GetFiles(directory, "*.dll", SearchOption.AllDirectories))
+            {
+                PluginsManager.ImportPlugin(extractedPluginLocation, true);
+            }
         }
     }
 }

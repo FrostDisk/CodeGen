@@ -79,6 +79,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /V /Y "$(TargetPath)" "$(SolutionDir)builds"</PostBuildEvent>
+    <PostBuildEvent>copy /V /Y "$(TargetPath)" "$(ProjectDir)..\CodeGen.App\Plugins"</PostBuildEvent>
   </PropertyGroup>
 </Project>

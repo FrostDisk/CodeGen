@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeGen.Utils;
+using System;
 using System.Xml.Serialization;
 
 namespace CodeGen.Configuration
@@ -10,6 +11,12 @@ namespace CodeGen.Configuration
     [XmlRoot("Settings")]
     public class GlobalSettings
     {
+        /// <summary>
+        /// Version
+        /// </summary>
+        [XmlAttribute("Version")]
+        public string Version { get; set; }
+
         /// <summary>
         /// DirectoriesSettings
         /// </summary>
@@ -39,6 +46,7 @@ namespace CodeGen.Configuration
         /// </summary>
         public GlobalSettings()
         {
+            Version = ProgramInfo.AssemblyVersion;
             DirectoriesSettings = new DirectoriesSettings();
             LogSettings = new LogSettings();
             ProjectSettings = new ProjectSettings();

@@ -141,14 +141,15 @@ namespace CodeGen.Controls
         {
             Project project = ProjectController.CreateEmptyProject(txtProjectName.Text, txtProjectDirectory.Text);
 
-            SupportedType item = (SupportedType) cmbDatabaseType.SelectedItem;
+            SupportedPluginComponent item = (SupportedPluginComponent) cmbDatabaseType.SelectedItem;
 
             project.Type = PluginsManager.GetDataBaseType(item);
-            project.AccessModel = new ProjectAccessModelController
+            project.Controller = new ProjectAccessModelController
             {
                 Guid = item.Guid,
-                Assembly = item.Name,
-                ConnectionString = txtConnectionString.Text
+                Plugin = item.Type,
+                ConnectionString = txtConnectionString.Text,
+                Encrypt = chkEncrypt.Checked
             };
             project.Description = txtProjectDescription.Text;
 
@@ -196,10 +197,10 @@ namespace CodeGen.Controls
             }
             else
             {
-                SupportedType item = null;
+                SupportedPluginComponent item = null;
                 Invoke((MethodInvoker)delegate
                 {
-                    item = cmbDatabaseType.SelectedItem as SupportedType;
+                    item = cmbDatabaseType.SelectedItem as SupportedPluginComponent;
                 });
 
                 if (item != null)
@@ -256,7 +257,7 @@ namespace CodeGen.Controls
         {
             if (cmbDatabaseType.SelectedItem != null)
             {
-                btnGenerateConnectionString.Enabled = PluginsManager.CheckIfPluginHaveCustomConnectionStringsForm(cmbDatabaseType.SelectedItem as SupportedType);
+                btnGenerateConnectionString.Enabled = PluginsManager.CheckIfPluginHaveCustomConnectionStringsForm(cmbDatabaseType.SelectedItem as SupportedPluginComponent);
                 txtConnectionString.ReadOnly = false;
             }
             else
@@ -268,7 +269,7 @@ namespace CodeGen.Controls
 
         private void btnGenerateConnectionString_Click(object sender, EventArgs e)
         {
-            var item = cmbDatabaseType.SelectedItem as SupportedType;
+            var item = cmbDatabaseType.SelectedItem as SupportedPluginComponent;
             if (item != null)
             {
                 var plugin = item.Item as IAccessModelController;

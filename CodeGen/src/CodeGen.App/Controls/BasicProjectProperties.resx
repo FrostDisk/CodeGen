@@ -172,7 +172,7 @@
     <value>1</value>
   </data>
   <data name="txtProjectDescription.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+    <value>Top, Left, Right</value>
   </data>
   <data name="txtProjectDescription.Location" type="System.Drawing.Point, System.Drawing">
     <value>92, 55</value>
@@ -181,7 +181,7 @@
     <value>True</value>
   </data>
   <data name="txtProjectDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>364, 50</value>
+    <value>364, 49</value>
   </data>
   <data name="txtProjectDescription.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -225,14 +225,11 @@
   <data name="&gt;&gt;lblProjectDescription.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="lblDatabaseType.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
   <data name="lblDatabaseType.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lblDatabaseType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 114</value>
+    <value>8, 113</value>
   </data>
   <data name="lblDatabaseType.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 13</value>
@@ -256,10 +253,10 @@
     <value>7</value>
   </data>
   <data name="cmbDatabaseType.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
+    <value>Top, Left, Right</value>
   </data>
   <data name="cmbDatabaseType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 111</value>
+    <value>92, 110</value>
   </data>
   <data name="cmbDatabaseType.Size" type="System.Drawing.Size, System.Drawing">
     <value>364, 21</value>
@@ -361,10 +358,10 @@
     <value>17, 17</value>
   </metadata>
   <data name="txtConnectionString.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
+    <value>Top, Left, Right</value>
   </data>
   <data name="txtConnectionString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 138</value>
+    <value>92, 137</value>
   </data>
   <data name="txtConnectionString.Size" type="System.Drawing.Size, System.Drawing">
     <value>283, 20</value>
@@ -385,13 +382,13 @@
     <value>9</value>
   </data>
   <data name="btnGenerateConnectionString.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Top, Right</value>
   </data>
   <data name="btnGenerateConnectionString.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="btnGenerateConnectionString.Location" type="System.Drawing.Point, System.Drawing">
-    <value>381, 138</value>
+    <value>381, 137</value>
   </data>
   <data name="btnGenerateConnectionString.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 20</value>
@@ -414,6 +411,33 @@
   <data name="&gt;&gt;btnGenerateConnectionString.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
+  <data name="chkEncrypt.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkEncrypt.Location" type="System.Drawing.Point, System.Drawing">
+    <value>92, 164</value>
+  </data>
+  <data name="chkEncrypt.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 17</value>
+  </data>
+  <data name="chkEncrypt.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="chkEncrypt.Text" xml:space="preserve">
+    <value>Encrypt Connection String</value>
+  </data>
+  <data name="&gt;&gt;chkEncrypt.Name" xml:space="preserve">
+    <value>chkEncrypt</value>
+  </data>
+  <data name="&gt;&gt;chkEncrypt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkEncrypt.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;chkEncrypt.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -421,7 +445,7 @@
     <value>6, 13</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>459, 161</value>
+    <value>459, 188</value>
   </data>
   <data name="&gt;&gt;folderBrowserSelectProjectLocation.Name" xml:space="preserve">
     <value>folderBrowserSelectProjectLocation</value>

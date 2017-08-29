@@ -9,6 +9,7 @@ using CodeGen.Library.Security;
 using CodeGen.Library.Formats;
 using System.Runtime.InteropServices;
 using NLog;
+using System;
 
 namespace CodeGen.Data
 {
@@ -55,7 +56,9 @@ namespace CodeGen.Data
             _logger.Trace("ProjectController.SaveProjectToStream()");
 
             // Encrypt Connection String
-            project.AccessModel.EncryptedConnectionString = StringEncryptorHelper.Encrypt(project.AccessModel.ConnectionString, encryptionKey);
+            project.Controller.EncryptedConnectionString = project.Controller.Encrypt
+                                                                ? StringEncryptorHelper.Encrypt(project.Controller.ConnectionString, encryptionKey)
+                                                                : project.Controller.ConnectionString;
 
             using (StreamWriter streamWriter = new StreamWriter(projectStream, Encoding.UTF8))
             {
@@ -102,7 +105,7 @@ namespace CodeGen.Data
         /// <param name="guid">The assembly file.</param>
         /// <param name="plugin">The plugin.</param>
         /// <returns></returns>
-        public static ProjectPluginProperties GetPluginProperties(Project project, string guid, string plugin)
+        public static ProjectPluginProperties GetPluginProperties(Project project, string guid)
         {
             _logger.Trace("ProjectController.GetPluginProperties()");
 
@@ -112,7 +115,7 @@ namespace CodeGen.Data
                 return null;
             }
 
-            return project.Properties.Plugins.FirstOrDefault(p => p.Guid == guid && p.Type == plugin);
+            return project.Properties.Plugins.FirstOrDefault(p => p.Guid.Equals(guid, StringComparison.InvariantCultureIgnoreCase));
         }
 
         /// <summary>
@@ -138,12 +141,11 @@ namespace CodeGen.Data
             var type = plugin.GetType();
             string guid = ((GuidAttribute)(type.Assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0])).Value;
 
-            var pluginAssembly = project.Properties.Plugins.FirstOrDefault(p => p.Guid == guid && p.Assembly == type.Assembly.FullName);
+            var pluginAssembly = project.Properties.Plugins.FirstOrDefault(p => p.Guid.Equals(guid, StringComparison.InvariantCultureIgnoreCase));
             if (pluginAssembly == null)
             {
                 pluginAssembly = new ProjectPluginProperties();
                 pluginAssembly.Guid = guid;
-                pluginAssembly.Assembly = type.Assembly.FullName;
                 project.Properties.Plugins.Add(pluginAssembly);
             }
 
@@ -152,9 +154,13 @@ namespace CodeGen.Data
                 pluginAssembly.Parameters = new List<PluginParameter>();
             }
 
-            foreach (PluginSettingValue settingValue in plugin.Settings)
+            // Remove all default values from plugin parameters
+            pluginAssembly.Parameters.RemoveAll(p => plugin.Settings.Any(s => s.Key.Equals(p.Code, StringComparison.InvariantCultureIgnoreCase) && s.UseDefault));
+
+            // Check all non-default parameters
+            foreach (PluginSettingValue settingValue in plugin.Settings.Where(s => !s.UseDefault))
             {
-                var parameter = pluginAssembly.Parameters.FirstOrDefault(c => c.Code.Equals(settingValue.Key));
+                var parameter = pluginAssembly.Parameters.FirstOrDefault(c => c.Code.Equals(settingValue.Key, StringComparison.InvariantCultureIgnoreCase));
                 if (parameter == null)
                 {
                     parameter = new PluginParameter();
@@ -163,7 +169,6 @@ namespace CodeGen.Data
 
                 parameter.Code = settingValue.Key;
                 parameter.Value = settingValue.Value;
-                parameter.UseDefault = settingValue.UseDefault;
                 parameter.Type = settingValue.Type;
             }
 
@@ -178,28 +183,10 @@ namespace CodeGen.Data
             openProject.IsUnsaved = false;
             openProject.IsValid = true;
 
-            // Old version need convertion to last version
-            if (openProject.Version < Project.ActiveVersion)
-            {
-                switch(openProject.Version)
-                {
-                    case 1:
-                        {
-                            openProject.AccessModel = new ProjectAccessModelController()
-                            {
-                                Guid = openProject.Plugin.Guid
-                            };
-                            openProject.AccessModel.EncryptedConnectionString = openProject.EncryptedConnectionString;
-
-                            openProject.Plugin = null;
-                            openProject.EncryptedConnectionString = null;
-                            break;
-                        }
-                }
-            }
-
             // Decript Connection String
-            openProject.AccessModel.ConnectionString = StringEncryptorHelper.Decrypt(openProject.AccessModel.EncryptedConnectionString, decryptionKey);
+            openProject.Controller.ConnectionString = openProject.Controller.Encrypt
+                                                        ? StringEncryptorHelper.Decrypt(openProject.Controller.EncryptedConnectionString, decryptionKey)
+                                                        : openProject.Controller.EncryptedConnectionString;
 
             return openProject;
         }

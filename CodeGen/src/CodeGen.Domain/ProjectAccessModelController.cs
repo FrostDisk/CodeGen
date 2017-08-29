@@ -10,6 +10,18 @@ namespace CodeGen.Domain
     public class ProjectAccessModelController : ProjectPlugin
     {
         /// <summary>
+        /// Plugin
+        /// </summary>
+        [XmlAttribute("Plugin")]
+        public string Plugin { get; set; }
+
+        /// <summary>
+        /// Encrypt
+        /// </summary>
+        [XmlAttribute("Encrypt")]
+        public bool Encrypt { get; set; }
+
+        /// <summary>
         /// EncryptedConnectionString
         /// </summary>
         [XmlElement("ConnectionString")]
@@ -26,6 +38,7 @@ namespace CodeGen.Domain
         /// </summary>
         public ProjectAccessModelController()
         {
+            Encrypt = false;
             EncryptedConnectionString = string.Empty;
             ConnectionString = string.Empty;
         }

@@ -34,7 +34,7 @@ namespace CodeGen.Utils
 
             var settings = ProgramSettings.GetGlobalSettings();
 
-            return settings.PluginsSettings.Plugins.Count() > 0;
+            return settings.PluginsSettings.Assemblies.Count() > 0;
         }
 
         /// <summary>
@@ -51,9 +51,6 @@ namespace CodeGen.Utils
 
             // Get current global settings
             var settings = ProgramSettings.GetGlobalSettings();
-
-            // Check Active Assembly (Base Plugin)
-            CheckAssembly(null, Assembly.GetExecutingAssembly(), settings, true);
 
             // Get DefaultPluginsLocation
             string pluginsDirectory = settings.DirectoriesSettings.PluginsDirectory;
@@ -115,7 +112,7 @@ namespace CodeGen.Utils
                     string relativePluginLocation = pluginTempDirectoryUri.MakeRelativeUri(pluginLocationUri).ToString();
 
                     // Check each assembly for plugins
-                    if (CheckAssembly(relativePluginLocation, assembly, settings, false, false))
+                    if (CheckAssembly(relativePluginLocation, assembly, settings, false))
                     {
                         string pluginTargetDirectory = Path.Combine(settings.DirectoriesSettings.PluginsDirectory, shortUniqueName);
 
@@ -132,7 +129,7 @@ namespace CodeGen.Utils
                 Assembly assembly = Assembly.Load(assemblyBytes);
 
                 // Check each assembly for plugins
-                if (CheckAssembly(null, assembly, settings, false, false))
+                if (CheckAssembly(null, assembly, settings, false))
                 {
                     string pluginTargetLocation = Path.Combine(settings.DirectoriesSettings.PluginsDirectory, Path.GetFileName(pluginLocation));
 
@@ -154,69 +151,22 @@ namespace CodeGen.Utils
             // Get DefaultPluginsLocation
             string pluginsDirectory = settings.DirectoriesSettings.PluginsDirectory;
 
-            foreach (var pluginAssembly in settings.PluginsSettings.Plugins)
+            foreach (var pluginAssembly in settings.PluginsSettings.Assemblies)
             {
-                // Base plugins means that the assembly is part of the application
-                // and don't need to be loaded again
-                if (!pluginAssembly.IsBase)
+                try
                 {
-                    try
-                    {
-                        // Load the assembly from the plugin folder
-                        string pluginLocation = Path.Combine(pluginsDirectory, pluginAssembly.File);
+                    // Load the assembly from the plugin folder
+                    string pluginLocation = Path.Combine(pluginsDirectory, pluginAssembly.File);
 
-                        byte[] assemblyBytes = File.ReadAllBytes(pluginLocation);
-                        Assembly assembly = Assembly.Load(assemblyBytes);
+                    byte[] assemblyBytes = File.ReadAllBytes(pluginLocation);
+                    Assembly assembly = Assembly.Load(assemblyBytes);
 
-                        bool isValidPlugin = false;
-                        foreach (PluginType pluginType in pluginAssembly.Types)
-                        {
-                            try
-                            {
-                                Type type = assembly.GetType(pluginType.Class);
-
-                                // Try to create an instance of the type and check
-                                // if inherit from IPluginBase interface
-                                object runnable = Activator.CreateInstance(type);
-                                if (runnable is IPluginBase)
-                                {
-                                    isValidPlugin = true;
-
-                                    if (type != null)
-                                    {
-                                        pluginAssembly.Version = type.Assembly.GetName().Version.ToString();
-                                    }
-                                }
-                            }
-                            catch(Exception ex)
-                            {
-                                _logger.Error(ex, ex.Message);
-                                isValidPlugin = false;
-                            }
-                            pluginType.IsValid = isValidPlugin;
-                            pluginType.Enabled = isValidPlugin && pluginType.Enabled;
-                        } // -- fin foreach (PluginType pluginType in pluginAssembly.Types)
-                    }
-                    catch(Exception ex)
-                    {
-                        _logger.Error(ex, ex.Message);
-                        pluginAssembly.IsValid = false;
-                        pluginAssembly.Types.ForEach(t =>
-                        {
-                            t.Enabled = false;
-                            t.IsValid = false;
-                        });
-                    }
-                } // -- fin if (!pluginAssembly.IsBase)
-                else
-                {
                     bool isValidPlugin = false;
-                    foreach (PluginType pluginType in pluginAssembly.Types)
+                    foreach (PluginComponent pluginComponent in pluginAssembly.Components)
                     {
                         try
                         {
-                            // Base classes are part of the executing assembly
-                            Type type = Assembly.GetExecutingAssembly().GetType(pluginType.Class);
+                            Type type = assembly.GetType(pluginComponent.Class);
 
                             // Try to create an instance of the type and check
                             // if inherit from IPluginBase interface
@@ -224,17 +174,31 @@ namespace CodeGen.Utils
                             if (runnable is IPluginBase)
                             {
                                 isValidPlugin = true;
+
+                                if (type != null)
+                                {
+                                    pluginAssembly.Version = type.Assembly.GetName().Version.ToString();
+                                }
                             }
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             _logger.Error(ex, ex.Message);
                             isValidPlugin = false;
                         }
-
-                        pluginType.IsValid = isValidPlugin;
-                        pluginType.Enabled = isValidPlugin && pluginType.Enabled;
-                    }
+                        pluginComponent.IsValid = isValidPlugin;
+                        pluginComponent.Enabled = isValidPlugin && pluginComponent.Enabled;
+                    } // -- fin foreach (PluginType pluginType in pluginAssembly.Types)
+                }
+                catch (Exception ex)
+                {
+                    _logger.Error(ex, ex.Message);
+                    pluginAssembly.IsValid = false;
+                    pluginAssembly.Components.ForEach(t =>
+                    {
+                        t.Enabled = false;
+                        t.IsValid = false;
+                    });
                 }
             }
         }
@@ -243,11 +207,11 @@ namespace CodeGen.Utils
         /// Gets the supported database controllers.
         /// </summary>
         /// <returns></returns>
-        public static List<SupportedType> GetSupportedAccessModelControllers()
+        public static List<SupportedPluginComponent> GetSupportedAccessModelControllers()
         {
             _logger.Trace("PluginsManager.GetSupportedAccessModelControllers()");
 
-            var supportedTypes = new List<SupportedType>();
+            var supportedTypes = new List<SupportedPluginComponent>();
 
             var activeControllerInstances = GetAllPluginInstances<IAccessModelController>();
 
@@ -257,7 +221,7 @@ namespace CodeGen.Utils
 
                 string guid = ((GuidAttribute)(type.Assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0])).Value;
 
-                supportedTypes.Add(new SupportedType
+                supportedTypes.Add(new SupportedPluginComponent
                 {
                     Name = string.Format("{0} ({1})", controller.Title, controller.Version),
                     Guid = guid,
@@ -275,21 +239,23 @@ namespace CodeGen.Utils
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static List<SupportedType> GetSupportedTemplates<T>() where T : class, IGeneratorTemplate
+        public static List<SupportedPluginComponent> GetSupportedTemplates<T>(ProjectAccessModelController controller) where T : class, IGeneratorTemplate
         {
             _logger.Trace("PluginsManager.GetSupportedTemplates()");
 
-            var supportedTypes = new List<SupportedType>();
+            var supportedTypes = new List<SupportedPluginComponent>();
 
             var activeGeneratorPluginInstances = GetAllPluginInstances<T>();
 
-            foreach (T generator in activeGeneratorPluginInstances)
+            var pluginController = GetPluginInstance<IAccessModelController>(controller.Guid, controller.Plugin);
+
+            foreach (T generator in activeGeneratorPluginInstances.Where(g => g.CompatibleControllers.Any(c => c.Equals(pluginController.DatabaseTypeCode, StringComparison.InvariantCultureIgnoreCase) || c.Equals("Any", StringComparison.InvariantCultureIgnoreCase))))
             {
                 Type type = generator.GetType();
 
                 string guid = ((GuidAttribute)(type.Assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0])).Value;
 
-                supportedTypes.Add(new SupportedType
+                supportedTypes.Add(new SupportedPluginComponent
                 {
                     Name = string.Format("{0} ({1})", generator.Title, generator.Version),
                     Guid = guid,
@@ -307,7 +273,7 @@ namespace CodeGen.Utils
         /// </summary>
         /// <param name="accessModelType">Type of the access model.</param>
         /// <returns></returns>
-        public static EnumDatabaseTypes GetDataBaseType(SupportedType accessModelType)
+        public static EnumDatabaseTypes GetDataBaseType(SupportedPluginComponent accessModelType)
         {
             _logger.Trace("PluginsManager.GetDataBaseType('{0}')", accessModelType.Assembly);
 
@@ -326,17 +292,16 @@ namespace CodeGen.Utils
         /// <summary>
         /// Gets the table list from plugin.
         /// </summary>
-        /// <param name="connectionString">The connection string.</param>
-        /// <param name="plugin">The plugin.</param>
+        /// <param name="controller">The plugin.</param>
         /// <returns></returns>
-        public static List<string> GetTableListFromPlugin(string connectionString, ProjectPlugin plugin)
+        public static List<string> GetTableListFromPlugin(ProjectAccessModelController controller)
         {
-            _logger.Trace("PluginsManager.GetTableListFromPlugin('{0}')", plugin.Assembly);
+            _logger.Trace("PluginsManager.GetTableListFromPlugin('{0}')", controller.Plugin);
 
-            var accessModel = GetPluginInstance<IAccessModelController>(plugin.Guid, plugin.Type);
+            var accessModel = GetPluginInstance<IAccessModelController>(controller.Guid, controller.Plugin);
             if (accessModel != null)
             {
-                accessModel.Load(connectionString);
+                accessModel.Load(controller.ConnectionString);
 
                 return accessModel.GetTableList();
             }
@@ -346,20 +311,19 @@ namespace CodeGen.Utils
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="connectionString"></param>
-        /// <param name="plugin"></param>
+        /// <param name="controller"></param>
         /// <param name="tableName"></param>
         /// <returns></returns>
-        public static DatabaseEntity GetEntityInfoFromPlugin(string connectionString, ProjectPlugin plugin, string tableName)
+        public static DatabaseEntity GetEntityInfoFromPlugin(ProjectAccessModelController controller, string tableName)
         {
-            _logger.Trace("PluginsManager.GetEntityInfoFromPlugin('{0}', '{1}')", plugin.Assembly, tableName);
+            _logger.Trace("PluginsManager.GetEntityInfoFromPlugin('{0}', '{1}')", controller.Plugin, tableName);
 
-            var accessModel = GetPluginInstance<IAccessModelController>(plugin.Guid, plugin.Type);
+            var accessModel = GetPluginInstance<IAccessModelController>(controller.Guid, controller.Plugin);
             if (accessModel != null)
             {
                 if (!accessModel.IsLoaded)
                 {
-                    accessModel.Load(connectionString);
+                    accessModel.Load(controller.ConnectionString);
                 }
 
                 return accessModel.GetEntityInfo(tableName);
@@ -372,7 +336,7 @@ namespace CodeGen.Utils
         /// </summary>
         /// <param name="generatorItem"></param>
         /// <returns></returns>
-        public static List<GeneratorComponent> GetComponents(SupportedType generatorItem)
+        public static List<GeneratorComponent> GetComponents(SupportedPluginComponent generatorItem)
         {
             _logger.Trace("PluginsManager.GetComponents()");
 
@@ -393,7 +357,7 @@ namespace CodeGen.Utils
         /// </summary>
         /// <param name="generatorItem"></param>
         /// <returns></returns>
-        public static bool CheckIfPluginHaveOptions(SupportedType generatorItem)
+        public static bool CheckIfPluginHaveOptions(SupportedPluginComponent generatorItem)
         {
             _logger.Trace("PluginsManager.CheckIfPluginHaveOptions()");
 
@@ -414,7 +378,7 @@ namespace CodeGen.Utils
         /// </summary>
         /// <param name="accessModelItem"></param>
         /// <returns></returns>
-        public static bool CheckIfPluginHaveCustomConnectionStringsForm(SupportedType accessModelItem)
+        public static bool CheckIfPluginHaveCustomConnectionStringsForm(SupportedPluginComponent accessModelItem)
         {
             _logger.Trace("PluginsManager.CheckIfPluginHaveCustomConnectionStringsForm()");
 
@@ -433,31 +397,9 @@ namespace CodeGen.Utils
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="pluginBase"></param>
-        /// <returns></returns>
-        public static bool CheckIfPluginIsBase(IPluginBase pluginBase)
-        {
-            _logger.Trace("PluginsManager.CheckIfPluginIsBase()");
-
-            var settings = ProgramSettings.GetGlobalSettings();
-
-            var type = pluginBase.GetType();
-
-            var assembly = settings.PluginsSettings.Plugins.FirstOrDefault(a => a.File.Equals(Path.GetFileName(type.Assembly.Location)));
-
-            if (assembly != null)
-            {
-                return assembly.IsBase;
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="generatorItem"></param>
         /// <returns></returns>
-        public static bool ShowTemplateOptions(SupportedType generatorItem)
+        public static bool ShowTemplateOptions(SupportedPluginComponent generatorItem)
         {
             _logger.Trace("PluginsManager.ShowTemplateOptions()");
 
@@ -477,7 +419,7 @@ namespace CodeGen.Utils
         /// </summary>
         /// <param name="generatorItem"></param>
         /// <returns></returns>
-        public static PluginSettings GetSettingsFromPlugin(SupportedType generatorItem)
+        public static PluginSettings GetSettingsFromPlugin(SupportedPluginComponent generatorItem)
         {
             _logger.Trace("PluginsManager.GetSettingsFromPlugin()");
 
@@ -495,15 +437,15 @@ namespace CodeGen.Utils
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="generatorItem"></param>
+        /// <param name="generatorComponent"></param>
         /// <param name="settings"></param>
-        public static void UpdateSettingsForPlugin(SupportedType generatorItem, PluginSettings settings)
+        public static void UpdateSettingsForPlugin(SupportedPluginComponent generatorComponent, PluginSettings settings)
         {
             _logger.Trace("PluginsManager.UpdateSettingsForPlugin()");
 
-            if (generatorItem != null)
+            if (generatorComponent != null)
             {
-                var template = generatorItem.Item as IGeneratorTemplate;
+                var template = generatorComponent.Item as IGeneratorTemplate;
                 if (template != null)
                 {
                     template.UpdateSettings(settings);
@@ -514,22 +456,22 @@ namespace CodeGen.Utils
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="generatorItem"></param>
+        /// <param name="generatorComponent"></param>
         /// <param name="project"></param>
-        public static void UpdateProjectSettingsForPlugin(SupportedType generatorItem, Project project)
+        public static void UpdateProjectSettingsForPlugin(SupportedPluginComponent generatorComponent, Project project)
         {
             _logger.Trace("PluginsManager.UpdateProjectSettingsForPlugin()");
 
-            if (generatorItem != null)
+            if (generatorComponent != null)
             {
-                var template = generatorItem.Item as IGeneratorTemplate;
+                var template = generatorComponent.Item as IGeneratorTemplate;
                 if (template != null)
                 {
                     var type = template.GetType();
 
                     string guid = ((GuidAttribute)(type.Assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0])).Value;
 
-                    var pluginProperties = ProjectController.GetPluginProperties(project, guid, type.FullName);
+                    var pluginProperties = ProjectController.GetPluginProperties(project, guid);
 
                     if (pluginProperties != null && pluginProperties.Parameters != null)
                     {
@@ -557,9 +499,8 @@ namespace CodeGen.Utils
         /// <param name="relativeLocation"></param>
         /// <param name="assembly">The assembly.</param>
         /// <param name="settings">The global settings.</param>
-        /// <param name="isBase">if set to <c>true</c> the assembly means that are base (part of the application).</param>
         /// <param name="addToSettings"></param>
-        private static bool CheckAssembly(string relativeLocation, Assembly assembly, GlobalSettings settings, bool isBase = false, bool addToSettings = true)
+        private static bool CheckAssembly(string relativeLocation, Assembly assembly, GlobalSettings settings, bool addToSettings = true)
         {
             _logger.Trace("PluginsManager.CheckAssembly()");
 
@@ -569,7 +510,7 @@ namespace CodeGen.Utils
             // Check all public non-abstract classes
             foreach (Type type in assembly.GetExportedTypes().Where(t => t.IsClass && !t.IsAbstract))
             {
-                PluginType pluginType = new PluginType();
+                PluginComponent pluginComponent = new PluginComponent();
 
                 bool isValidPlugin = false;
 
@@ -579,25 +520,24 @@ namespace CodeGen.Utils
                     var instance = assembly.CreateInstance(type.FullName) as IPluginBase;
                     if (instance != null)
                     {
-                        pluginType.Title = instance.Title;
-                        pluginType.CreatedBy = instance.CreatedBy;
-                        pluginType.Icon = instance.Icon;
-                        pluginType.Description = instance.Description;
-                        pluginType.Version = instance.Version;
-                        pluginType.ReleaseNotesUrl = instance.ReleaseNotesUrl;
-                        pluginType.AuthorWebsiteUrl = instance.AuthorWebsiteUrl;
-                        pluginType.DateInstalled = DateTime.Now;
-                        pluginType.Class = type.FullName;
-                        pluginType.Enabled = isBase;
-                        pluginType.IsValid = true;
+                        pluginComponent.Title = instance.Title;
+                        pluginComponent.CreatedBy = instance.CreatedBy;
+                        pluginComponent.Icon = instance.Icon;
+                        pluginComponent.Description = instance.Description;
+                        pluginComponent.Version = instance.Version;
+                        pluginComponent.ReleaseNotesUrl = instance.ReleaseNotesUrl;
+                        pluginComponent.AuthorWebsiteUrl = instance.AuthorWebsiteUrl;
+                        pluginComponent.Class = type.FullName;
+                        pluginComponent.Enabled = true;
+                        pluginComponent.IsValid = true;
 
                         if (instance is IGeneratorTemplate)
                         {
-                            pluginType.Base = "GeneratorTemplate";
+                            pluginComponent.Base = "GeneratorTemplate";
                         }
                         else if (instance is IAccessModelController)
                         {
-                            pluginType.Base = "AccessModelController";
+                            pluginComponent.Base = "AccessModelController";
                         }
 
                         isValidPlugin = true;
@@ -618,21 +558,20 @@ namespace CodeGen.Utils
                     string guid = ((GuidAttribute)assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0]).Value;
 
                     // Check if assembly was already registered in the global settings
-                    var settingsAssembly = settings.PluginsSettings.Plugins.FirstOrDefault(a => a.Guid == guid);
+                    var settingsAssembly = settings.PluginsSettings.Assemblies.FirstOrDefault(a => a.Guid.Equals(guid, StringComparison.InvariantCultureIgnoreCase));
 
                     // if not add to the list
                     if (settingsAssembly == null)
                     {
-                        IAssemblyDetails assemblyDetails = GetAssemblyDetails(assembly);
-
                         settingsAssembly = new PluginAssembly();
                         settingsAssembly.Title = assemblyName;
                         settingsAssembly.Guid = guid;
                         settingsAssembly.Version = assembly.GetName().Version.ToString();
-                        settingsAssembly.File = isBase ? assemblyName : relativeLocation;
+                        settingsAssembly.File = relativeLocation;
+                        settingsAssembly.DateInstalled = DateTime.Now;
                         settingsAssembly.IsValid = true;
-                        settingsAssembly.IsBase = isBase;
 
+                        IAssemblyDetails assemblyDetails = GetAssemblyDetails(assembly);
                         if (assemblyDetails != null)
                         {
                             settingsAssembly.Title = assemblyDetails.Title;
@@ -644,17 +583,17 @@ namespace CodeGen.Utils
 
                         if (addToSettings)
                         {
-                            settings.PluginsSettings.Plugins.Add(settingsAssembly);
+                            settings.PluginsSettings.Assemblies.Add(settingsAssembly);
                         }
 
                         isNew = true;
                     }
 
                     // Check if the Class was already registered in the assembly 
-                    if (!settingsAssembly.Types.Exists(t => t.Class == type.FullName) && addToSettings)
+                    if (!settingsAssembly.Components.Exists(t => t.Class.Equals(type.FullName, StringComparison.InvariantCultureIgnoreCase)) && addToSettings)
                     {
                         // if not add to the list
-                        settingsAssembly.Types.Add(pluginType);
+                        settingsAssembly.Components.Add(pluginComponent);
 
                         isNew = true;
                     }
@@ -698,9 +637,9 @@ namespace CodeGen.Utils
             // Get the global settings
             var settings = ProgramSettings.GetGlobalSettings();
 
-            foreach (var pluginAssembly in settings.PluginsSettings.Plugins.Where(p => p.IsValid))
+            foreach (var pluginAssembly in settings.PluginsSettings.Assemblies.Where(p => p.IsValid))
             {
-                foreach (var pluginType in pluginAssembly.Types.Where(t => t.Enabled))
+                foreach (var pluginType in pluginAssembly.Components.Where(t => t.Enabled))
                 {
                     // If the type instance was already loaded, returns the instance
                     if (pluginType.IsLoaded)
@@ -715,23 +654,12 @@ namespace CodeGen.Utils
                     {
                         if (!pluginAssembly.IsLoaded)
                         {
-                            // Base Assembly means that are part of the application (not an external file)
-                            if (pluginAssembly.IsBase)
-                            {
-                                pluginAssembly.AssemblyInstance = Assembly.GetExecutingAssembly();
-                                pluginAssembly.IsLoaded = true;
-                            }
+                            string pluginsDirectory = settings.DirectoriesSettings.PluginsDirectory;
 
-                            // Is not a base assembly and need to be loaded from the plugins directory
-                            else
-                            {
-                                string pluginsDirectory = settings.DirectoriesSettings.PluginsDirectory;
+                            string pluginLocation = Path.Combine(pluginsDirectory, pluginAssembly.File);
 
-                                string pluginLocation = Path.Combine(pluginsDirectory, pluginAssembly.File);
-
-                                pluginAssembly.AssemblyInstance = Assembly.LoadFile(pluginLocation);
-                                pluginAssembly.IsLoaded = true;
-                            }
+                            pluginAssembly.AssemblyInstance = Assembly.LoadFile(pluginLocation);
+                            pluginAssembly.IsLoaded = true;
                         }
 
                         Type type = pluginAssembly.AssemblyInstance.GetType(pluginType.Class);
@@ -755,9 +683,9 @@ namespace CodeGen.Utils
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="assemblyGuid">The assembly file name.</param>
-        /// <param name="pluginType">Type of the plugin.</param>
+        /// <param name="pluginComponent">Type of the plugin.</param>
         /// <returns>Instance object of the plugin</returns>
-        private static T GetPluginInstance<T>(string assemblyGuid, string pluginType) where T : class, IPluginBase
+        private static T GetPluginInstance<T>(string assemblyGuid, string pluginComponent) where T : class, IPluginBase
         {
             _logger.Trace("PluginsManager.GetPluginInstance()");
 
@@ -765,54 +693,43 @@ namespace CodeGen.Utils
             var settings = ProgramSettings.GetGlobalSettings();
 
             // Find the Assembly in the global settings
-            var globalAssembly = settings.PluginsSettings.Plugins.First(a => a.Guid.SequenceEqual(assemblyGuid));
+            var globalAssembly = settings.PluginsSettings.Assemblies.First(a => a.Guid.SequenceEqual(assemblyGuid));
 
             // Find the type in the assembly
-            var globalAssemblyType = globalAssembly.Types.First(t => t.Class.Equals(pluginType));
+            var globalAssemblyComponent = globalAssembly.Components.First(t => t.Class.Equals(pluginComponent, StringComparison.InvariantCultureIgnoreCase));
 
             // If the type instance was already loaded, returns the instance
-            if (globalAssemblyType.IsLoaded)
+            if (globalAssemblyComponent.IsLoaded)
             {
-                return (T) globalAssemblyType.PluginInstance;
+                return (T) globalAssemblyComponent.PluginInstance;
             }
 
             // If the assembly is not loaded we need to create an instance
             if (!globalAssembly.IsLoaded)
             {
-                // Base Assembly means that are part of the application (not an external file)
-                if (globalAssembly.IsBase)
+                string pluginsDirectory = settings.DirectoriesSettings.PluginsDirectory;
+
+                string pluginLocation = Path.Combine(pluginsDirectory, globalAssembly.File);
+
+                if (File.Exists(pluginLocation))
                 {
-                    globalAssembly.AssemblyInstance = Assembly.GetExecutingAssembly();
+                    globalAssembly.AssemblyInstance = Assembly.LoadFile(pluginLocation);
                     globalAssembly.IsLoaded = true;
                 }
-
-                // Is not a base assembly and need to be loaded from the plugins directory
                 else
                 {
-                    string pluginsDirectory = settings.DirectoriesSettings.PluginsDirectory;
-
-                    string pluginLocation = Path.Combine(pluginsDirectory, globalAssembly.File);
-
-                    if (File.Exists(pluginLocation))
-                    {
-                        globalAssembly.AssemblyInstance = Assembly.LoadFile(pluginLocation);
-                        globalAssembly.IsLoaded = true;
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return null;
                 }
             }
 
-            Type type = globalAssembly.AssemblyInstance.GetType(pluginType);
+            Type type = globalAssembly.AssemblyInstance.GetType(pluginComponent);
 
             // Create the new instance of the plugin and save it in the global settings (for later use)
-            globalAssemblyType.PluginInstance = (T) Activator.CreateInstance(type);
-            globalAssemblyType.IsLoaded = true;
+            globalAssemblyComponent.PluginInstance = (T) Activator.CreateInstance(type);
+            globalAssemblyComponent.IsLoaded = true;
 
             // returns the instance of the plugin
-            return (T) globalAssemblyType.PluginInstance;
+            return (T) globalAssemblyComponent.PluginInstance;
         }
 
         /// <summary>

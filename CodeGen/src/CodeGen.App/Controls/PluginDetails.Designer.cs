@@ -32,12 +32,10 @@
             this.lblVersion = new System.Windows.Forms.Label();
             this.pictureTypeIcon = new System.Windows.Forms.PictureBox();
             this.lblInfoCreatedBy = new System.Windows.Forms.Label();
-            this.lblInfoDateInstalled = new System.Windows.Forms.Label();
             this.lblInfoVersion = new System.Windows.Forms.Label();
             this.lnkReleasaeInfo = new System.Windows.Forms.LinkLabel();
             this.lnkAuthorWebsite = new System.Windows.Forms.LinkLabel();
             this.lblCreatedBy = new System.Windows.Forms.Label();
-            this.lblDateInstalled = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureTypeIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,16 +80,6 @@
             this.lblInfoCreatedBy.TabIndex = 3;
             this.lblInfoCreatedBy.Text = "Created by:";
             // 
-            // lblInfoDateInstalled
-            // 
-            this.lblInfoDateInstalled.AutoSize = true;
-            this.lblInfoDateInstalled.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInfoDateInstalled.Location = new System.Drawing.Point(73, 16);
-            this.lblInfoDateInstalled.Name = "lblInfoDateInstalled";
-            this.lblInfoDateInstalled.Size = new System.Drawing.Size(89, 13);
-            this.lblInfoDateInstalled.TabIndex = 4;
-            this.lblInfoDateInstalled.Text = "Date installed:";
-            // 
             // lblInfoVersion
             // 
             this.lblInfoVersion.AutoSize = true;
@@ -133,15 +121,6 @@
             this.lblCreatedBy.TabIndex = 8;
             this.lblCreatedBy.Text = "CreatedBy";
             // 
-            // lblDateInstalled
-            // 
-            this.lblDateInstalled.AutoSize = true;
-            this.lblDateInstalled.Location = new System.Drawing.Point(168, 16);
-            this.lblDateInstalled.Name = "lblDateInstalled";
-            this.lblDateInstalled.Size = new System.Drawing.Size(69, 13);
-            this.lblDateInstalled.TabIndex = 9;
-            this.lblDateInstalled.Text = "DateInstalled";
-            // 
             // PluginDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -149,8 +128,6 @@
             this.Controls.Add(this.pictureTypeIcon);
             this.Controls.Add(this.lblInfoCreatedBy);
             this.Controls.Add(this.lblCreatedBy);
-            this.Controls.Add(this.lblInfoDateInstalled);
-            this.Controls.Add(this.lblDateInstalled);
             this.Controls.Add(this.lblInfoVersion);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lnkReleasaeInfo);
@@ -169,11 +146,9 @@
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.PictureBox pictureTypeIcon;
         private System.Windows.Forms.Label lblInfoCreatedBy;
-        private System.Windows.Forms.Label lblInfoDateInstalled;
         private System.Windows.Forms.Label lblInfoVersion;
         private System.Windows.Forms.LinkLabel lnkReleasaeInfo;
         private System.Windows.Forms.LinkLabel lnkAuthorWebsite;
         private System.Windows.Forms.Label lblCreatedBy;
-        private System.Windows.Forms.Label lblDateInstalled;
     }
 }

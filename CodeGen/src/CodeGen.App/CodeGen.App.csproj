@@ -71,24 +71,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\IPluginAssembly.cs" />
     <Compile Include="Configuration\LogSettings.cs" />
-    <Compile Include="Controls\TemplateParameterDataAccessTemplate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\TemplateParameterDataAccessTemplate.Designer.cs">
-      <DependentUpon>TemplateParameterDataAccessTemplate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Core\AspNetMvcCoreCodeTemplate.cs" />
-    <Compile Include="Core\AspNetMvcCoreConstants.cs" />
-    <Compile Include="Core\AspNetMvcCoreGenerator.cs" />
+    <Compile Include="Configuration\PluginAssembly.cs" />
     <Compile Include="Core\DefaultFilters.cs" />
-    <Compile Include="Core\eAspNetMvcCoreTemplateComponent.cs" />
-    <Compile Include="FormAspNetMvcCoreTemplateConfiguration.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormAspNetMvcCoreTemplateConfiguration.Designer.cs">
-      <DependentUpon>FormAspNetMvcCoreTemplateConfiguration.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,8 +90,7 @@
     <Compile Include="Properties\AssemblyInfoCommon.cs" />
     <Compile Include="Configuration\DirectoriesSettings.cs" />
     <Compile Include="Configuration\GlobalSettings.cs" />
-    <Compile Include="Configuration\PluginType.cs" />
-    <Compile Include="Configuration\PluginAssembly.cs" />
+    <Compile Include="Configuration\PluginComponent.cs" />
     <Compile Include="Configuration\PluginsSettings.cs" />
     <Compile Include="Configuration\ProjectSettings.cs" />
     <Compile Include="Controls\BasicProjectProperties.cs">
@@ -127,7 +112,6 @@
       <DependentUpon>GenerateCodeFile.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ISettingsUserControl.cs" />
-    <Compile Include="Controls\ITemplateParameter.cs" />
     <Compile Include="Controls\PluginDetails.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -140,39 +124,15 @@
     <Compile Include="Controls\ProjectWorkspace.Designer.cs">
       <DependentUpon>ProjectWorkspace.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TemplateParameter.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\TemplateParameter.Designer.cs">
-      <DependentUpon>TemplateParameter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Core\CodeBaseConstants.cs" />
-    <Compile Include="Core\BaseGenerator.cs" />
-    <Compile Include="Core\SqlServerQueryBaseTemplate.cs" />
-    <Compile Include="Core\CSharpCodeBaseTemplate.cs" />
     <Compile Include="Controls\IBaseForm.cs" />
     <Compile Include="Controls\IBaseUserControl.cs" />
     <Compile Include="Controls\IGeneratorUserControl.cs" />
-    <Compile Include="Core\eBaseTemplateComponent.cs" />
-    <Compile Include="Core\SqlServerController.cs" />
-    <Compile Include="Core\SupportedType.cs" />
+    <Compile Include="Core\SupportedPluginComponent.cs" />
     <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAbout.Designer.cs">
       <DependentUpon>FormAbout.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormBaseTemplateConfiguration.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormBaseTemplateConfiguration.Designer.cs">
-      <DependentUpon>FormBaseTemplateConfiguration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormGenerateConnectionString.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormGenerateConnectionString.Designer.cs">
-      <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -194,13 +154,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Utils\BaseAssemblyDetails.cs" />
-    <Compile Include="Utils\MessageBoxHelper.cs" />
     <Compile Include="Utils\PluginsManager.cs" />
     <Compile Include="Utils\ProgramInfo.cs" />
     <Compile Include="Utils\ProgramSettings.cs" />
@@ -219,23 +173,8 @@
     <EmbeddedResource Include="Controls\ProjectWorkspace.resx">
       <DependentUpon>ProjectWorkspace.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\TemplateParameterDataAccessTemplate.resx">
-      <DependentUpon>TemplateParameterDataAccessTemplate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\TemplateParameter.resx">
-      <DependentUpon>TemplateParameter.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormAspNetMvcCoreTemplateConfiguration.resx">
-      <DependentUpon>FormAspNetMvcCoreTemplateConfiguration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormBaseTemplateConfiguration.resx">
-      <DependentUpon>FormBaseTemplateConfiguration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormGenerateConnectionString.resx">
-      <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
@@ -252,11 +191,6 @@
     <EmbeddedResource Include="FormProjectOptions.resx">
       <DependentUpon>FormProjectOptions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -267,13 +201,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Resources\Templates\class_DataAccess_en.cs.tpl" />
-    <None Include="Resources\Templates\class_DataAccess_es.cs.tpl" />
-    <None Include="Resources\Templates\view_Create.cshtml.tpl" />
-    <None Include="Resources\Templates\view_Delete.cshtml.tpl" />
-    <None Include="Resources\Templates\view_Details.cshtml.tpl" />
-    <None Include="Resources\Templates\view_Edit.cshtml.tpl" />
-    <None Include="Resources\Templates\view_Index.cshtml.tpl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -282,47 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <None Include="Resources\Templates\class_Controller.cs.tpl" />
-    <None Include="Resources\Templates\class_DataAccess_async.cs.tpl" />
-    <None Include="Resources\Templates\class_DataAccess_async_en.cs.tpl" />
-    <None Include="Resources\Templates\class_DataAccess_async_es.cs.tpl" />
-    <Content Include="Resources\Icons\file_extension_bin.png" />
-    <Content Include="Resources\Icons\file_extension_dll.png" />
-    <Content Include="Resources\Icons\file_extension_rtf.png" />
-    <Content Include="Resources\Icons\file_extension_sit.png" />
-    <None Include="Resources\Images\add_on.png" />
-    <None Include="Resources\Templates\class_Model.cs.tpl" />
-    <None Include="Resources\Templates\sp_Delete.sql.tpl" />
-    <None Include="Resources\Templates\sp_GetByID.sql.tpl" />
-    <None Include="Resources\Templates\sp_ListAll.sql.tpl" />
-    <None Include="Resources\Templates\sp_Save.sql.tpl" />
-    <None Include="Resources\Templates\class_Domain.cs.tpl" />
-    <None Include="Resources\Templates\class_DataAccess.cs.tpl" />
-    <None Include="Resources\Icons\interface_preferences.png" />
-    <None Include="Resources\Icons\cog.png" />
-    <None Include="Resources\Icons\door_in.png" />
-    <None Include="Resources\Icons\diskette.png" />
-    <None Include="Resources\Icons\application_form_add.png" />
-    <None Include="Resources\Icons\help.png" />
-    <None Include="Resources\Icons\paste_plain.png" />
-    <None Include="Resources\Icons\page_white_php.png" />
-    <None Include="Resources\Icons\page_white_edit.png" />
-    <None Include="Resources\Icons\page_white_database.png" />
-    <None Include="Resources\Icons\page_white_csharp.png" />
-    <None Include="Resources\Icons\page_white_cplusplus.png" />
-    <None Include="Resources\Icons\page_white_code.png" />
-    <None Include="Resources\Icons\page_white_c.png" />
-    <None Include="Resources\Icons\database_add.png" />
-    <None Include="Resources\Icons\cut.png" />
-    <None Include="Resources\Icons\save_data.png" />
-    <None Include="Resources\Icons\save_as.png" />
-    <None Include="Resources\Icons\folder.png" />
-    <None Include="Resources\license_about.txt" />
-    <None Include="license.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Resources\Icons\page_white_add.png" />
-    <None Include="Resources\FrostDisk_about.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CodeGen.Data\CodeGen.Data.csproj">
@@ -332,10 +218,6 @@
     <ProjectReference Include="..\CodeGen.Domain\CodeGen.Domain.csproj">
       <Project>{cd81c9c1-ad1e-4bb7-be30-eaa7a584a377}</Project>
       <Name>CodeGen.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CodeGen.Library.AccessModel\CodeGen.Library.AccessModel.csproj">
-      <Project>{07451D36-93F9-4598-8414-BE9269DB06F8}</Project>
-      <Name>CodeGen.Library.AccessModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\CodeGen.Library.Formats\CodeGen.Library.Formats.csproj">
       <Project>{74E0C129-FC44-4298-A723-444B2D679566}</Project>
@@ -348,6 +230,10 @@
     <ProjectReference Include="..\CodeGen.Plugin.Base\CodeGen.Plugin.Base.csproj">
       <Project>{25CD4C77-2763-4139-A22F-26A589857780}</Project>
       <Name>CodeGen.Plugin.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Resources\CodeGen.Resources.csproj">
+      <Project>{d762d87a-5218-4367-a587-1b8919c21e85}</Project>
+      <Name>CodeGen.Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

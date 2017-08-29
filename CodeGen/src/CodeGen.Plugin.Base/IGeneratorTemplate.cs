@@ -8,6 +8,11 @@ namespace CodeGen.Plugin.Base
     public interface IGeneratorTemplate : IPluginBase
     {
         /// <summary>
+        /// CompatibleControllers
+        /// </summary>
+        List<string> CompatibleControllers { get; }
+
+        /// <summary>
         /// HaveOptions
         /// </summary>
         bool HaveOptions { get; }

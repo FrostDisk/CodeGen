@@ -14,17 +14,5 @@ namespace CodeGen.Domain
         /// </summary>
         [XmlAttribute("Guid")]
         public string Guid { get; set; }
-
-        /// <summary>
-        /// Type
-        /// </summary>
-        [XmlAttribute("Type")]
-        public string Type { get; set; }
-
-        /// <summary>
-        /// Assembly
-        /// </summary>
-        [XmlAttribute("Assembly")]
-        public string Assembly { get; set; }
     }
 }

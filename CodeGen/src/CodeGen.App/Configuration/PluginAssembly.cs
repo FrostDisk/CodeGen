@@ -9,10 +9,22 @@ namespace CodeGen.Configuration
     /// PluginAssembly
     /// </summary>
     [Serializable]
-    public class PluginAssembly
+    public class PluginAssembly : IPluginAssembly
     {
         /// <summary>
-        /// Gets or sets the file.
+        /// Guid
+        /// </summary>
+        [XmlAttribute("Guid")]
+        public string Guid { get; set; }
+
+        /// <summary>
+        /// Version
+        /// </summary>
+        [XmlAttribute("Version")]
+        public string Version { get; set; }
+
+        /// <summary>
+        /// File
         /// </summary>
         [XmlAttribute("File")]
         public string File { get; set; }
@@ -20,32 +32,8 @@ namespace CodeGen.Configuration
         /// <summary>
         /// Gets or sets the title.
         /// </summary>
-        [XmlAttribute("Title")]
+        [XmlElement("Title")]
         public string Title { get; set; }
-
-        /// <summary>
-        /// Gets or sets the unique identifier.
-        /// </summary>
-        [XmlAttribute("Guid")]
-        public string Guid { get; set; }
-
-        /// <summary>
-        /// Gets or sets the version.
-        /// </summary>
-        [XmlAttribute("Version")]
-        public string Version { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether this instance is base.
-        /// </summary>
-        [XmlAttribute("IsBase")]
-        public bool IsBase { get; set; }
-
-        /// <summary>
-        /// Returns true if ... is valid.
-        /// </summary>
-        [XmlAttribute("IsValid")]
-        public bool IsValid { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
@@ -66,10 +54,22 @@ namespace CodeGen.Configuration
         public string Url { get; set; }
 
         /// <summary>
-        /// Gets or sets the types.
+        /// DateInstalled
         /// </summary>
-        [XmlArray("Components"), XmlArrayItem("Type")]
-        public List<PluginType> Types { get; set; }
+        [XmlElement("DateInstalled")]
+        public DateTime DateInstalled { get; set; }
+
+        /// <summary>
+        /// Returns true if ... is valid.
+        /// </summary>
+        [XmlIgnore]
+        public bool IsValid { get; set; }
+
+        /// <summary>
+        /// Components
+        /// </summary>
+        [XmlArray("Components"), XmlArrayItem("Component")]
+        public List<PluginComponent> Components { get; set; }
 
         /// <summary>
         /// Gets or sets the assembly instance.
@@ -88,7 +88,7 @@ namespace CodeGen.Configuration
         /// </summary>
         public PluginAssembly()
         {
-            Types = new List<PluginType>();
+            Components = new List<PluginComponent>();
             IsLoaded = false;
         }
     }

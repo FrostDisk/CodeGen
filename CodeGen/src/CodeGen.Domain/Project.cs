@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace CodeGen.Domain
@@ -31,13 +32,19 @@ namespace CodeGen.Domain
         /// AccessModel
         /// </summary>
         [XmlElement("Controller")]
-        public ProjectAccessModelController Controller { get; set; }
+        public ProjectController Controller { get; set; }
 
         /// <summary>
         /// Description
         /// </summary>
         [XmlElement("Description")]
         public string Description { get; set; }
+
+        /// <summary>
+        /// Plugins
+        /// </summary>
+        [XmlArray("Entities"), XmlArrayItem("Entity")]
+        public List<ProjectEntity> Entities { get; set; }
 
         /// <summary>
         /// Properties
@@ -89,8 +96,9 @@ namespace CodeGen.Domain
             Name = string.Empty;
             Version = 0;
             Type = EnumDatabaseTypes.SqlServer;
-            Controller = new ProjectAccessModelController();
+            Controller = new ProjectController();
             Description = string.Empty;
+            Entities = new List<ProjectEntity>();
             //Properties = new ProjectProperties();
             SaveLocation = string.Empty;
             SaveDirectory = string.Empty;

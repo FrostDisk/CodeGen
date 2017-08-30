@@ -139,12 +139,12 @@ namespace CodeGen.Controls
         /// <returns></returns>
         public Project GetProject()
         {
-            Project project = ProjectController.CreateEmptyProject(txtProjectName.Text, txtProjectDirectory.Text);
+            Project project = Data.ProjectsController.CreateEmptyProject(txtProjectName.Text, txtProjectDirectory.Text);
 
             SupportedPluginComponent item = (SupportedPluginComponent) cmbDatabaseType.SelectedItem;
 
             project.Type = PluginsManager.GetDataBaseType(item);
-            project.Controller = new ProjectAccessModelController
+            project.Controller = new Domain.ProjectController
             {
                 Guid = item.Guid,
                 Plugin = item.Type,

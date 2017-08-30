@@ -7,6 +7,8 @@ using CodeGen.Plugin.Base;
 using CodeGen.Utils;
 using System.IO;
 using NLog;
+using static CodeGen.Controls.ProjectWorkspace;
+using CodeGen.Data;
 
 namespace CodeGen.Controls
 {
@@ -233,15 +235,9 @@ namespace CodeGen.Controls
 
                     if (PluginsManager.ShowTemplateOptions(templateItem))
                     {
-                        if (OnSettingsUpdate != null)
-                        {
-                            OnSettingsUpdate(this, new EventArgs());
-                        }
+                        OnSettingsUpdate?.Invoke(this, new EventArgs());
 
-                        if (OnControlUpdate != null)
-                        {
-                            OnControlUpdate(this, new EventArgs());
-                        }
+                        OnControlUpdate?.Invoke(this, new EventArgs());
 
                         UpdateFileName();
                     }
@@ -284,16 +280,17 @@ namespace CodeGen.Controls
                         _entities[tableName] = entity;
                     }
 
-                    var code = ActiveTemplate.Generate(entity, (GeneratorComponent) cmbComponent.SelectedItem);
+                    var component = (GeneratorComponent)cmbComponent.SelectedItem;
+
+                    var code = ActiveTemplate.Generate(entity, component);
 
                     if (!string.IsNullOrWhiteSpace(code))
                     {
                         txtGeneratedCode.Text = code;
 
-                        if (OnControlUpdate != null)
-                        {
-                            OnControlUpdate(this, new EventArgs());
-                        }
+                        ProjectsController.SaveCodeToProject(ActiveTemplate, component, Project, tableName, code, txtFileName.Text);
+
+                        OnControlUpdate?.Invoke(this, new EventArgs());
 
                         if (chkCopyToClipboard.Checked)
                         {

@@ -7,7 +7,7 @@ namespace CodeGen.Domain
     /// ProjectPlugin
     /// </summary>
     [Serializable]
-    public class ProjectPlugin
+    public class ProjectPluginBase
     {
         /// <summary>
         /// Guid

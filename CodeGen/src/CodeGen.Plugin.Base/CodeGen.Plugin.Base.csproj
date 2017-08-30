@@ -54,7 +54,7 @@
     <Compile Include="IConnectionStringForm.cs" />
     <Compile Include="IGeneratorTemplate.cs" />
     <Compile Include="IPluginBase.cs" />
-    <Compile Include="IPluginComponentBase.cs" />
+    <Compile Include="IPluginDefinition.cs" />
     <Compile Include="IQueryGeneratorTemplate.cs" />
     <Compile Include="PluginSettings.cs" />
     <Compile Include="PluginSettingValue.cs" />

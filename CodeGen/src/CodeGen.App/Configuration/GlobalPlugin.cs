@@ -8,9 +8,9 @@ namespace CodeGen.Configuration
     /// <summary>
     /// PluginType
     /// </summary>
-    /// <seealso cref="CodeGen.Plugin.Base.IPluginComponentBase" />
+    /// <seealso cref="CodeGen.Plugin.Base.IPluginDefinition" />
     [Serializable]
-    public class PluginComponent : IPluginComponentBase
+    public class GlobalPlugin : IPluginDefinition
     {
         /// <summary>
         /// Gets or sets the title.
@@ -79,7 +79,7 @@ namespace CodeGen.Configuration
         public bool IsValid { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="PluginComponent"/> is enabled.
+        /// Gets or sets a value indicating whether this <see cref="GlobalPlugin"/> is enabled.
         /// </summary>
         [XmlAttribute("Enabled")]
         public bool Enabled { get; set; }
@@ -97,9 +97,9 @@ namespace CodeGen.Configuration
         public bool IsLoaded { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PluginComponent"/> class.
+        /// Initializes a new instance of the <see cref="GlobalPlugin"/> class.
         /// </summary>
-        public PluginComponent()
+        public GlobalPlugin()
         {
             IsLoaded = false;
         }

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("ProjectRoot");
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectWorkspace));
             this.panelWorkspace = new System.Windows.Forms.Panel();
             this.splitWorkspace = new System.Windows.Forms.SplitContainer();
             this.panelProject = new System.Windows.Forms.Panel();
@@ -85,15 +87,22 @@
             this.treeViewProject.ImageList = this.imageListTreeViewProject;
             this.treeViewProject.Location = new System.Drawing.Point(0, 0);
             this.treeViewProject.Name = "treeViewProject";
+            treeNode1.ImageKey = "project";
+            treeNode1.Name = "nodeProjectRoot";
+            treeNode1.SelectedImageKey = "project";
+            treeNode1.Text = "ProjectRoot";
+            this.treeViewProject.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1});
             this.treeViewProject.SelectedImageIndex = 0;
             this.treeViewProject.Size = new System.Drawing.Size(100, 419);
             this.treeViewProject.TabIndex = 0;
             // 
             // imageListTreeViewProject
             // 
-            this.imageListTreeViewProject.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageListTreeViewProject.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageListTreeViewProject.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageListTreeViewProject.ImageStream")));
             this.imageListTreeViewProject.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageListTreeViewProject.Images.SetKeyName(0, "project");
+            this.imageListTreeViewProject.Images.SetKeyName(1, "entity");
             // 
             // ProjectWorkspace
             // 

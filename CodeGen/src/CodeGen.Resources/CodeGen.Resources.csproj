@@ -103,6 +103,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="FrostDisk_about.png" />
+    <Content Include="Icons\application_view.png" />
+    <Content Include="Icons\database_table.png" />
     <Content Include="Icons\file_extension_bin.png" />
     <Content Include="Icons\file_extension_dll.png" />
     <Content Include="Icons\file_extension_rtf.png" />

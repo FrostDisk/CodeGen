@@ -9,7 +9,7 @@ namespace CodeGen.Configuration
     /// PluginAssembly
     /// </summary>
     [Serializable]
-    public class PluginAssembly : IPluginAssembly
+    public class GlobalAssembly : IGlobalAssembly
     {
         /// <summary>
         /// Guid
@@ -68,8 +68,8 @@ namespace CodeGen.Configuration
         /// <summary>
         /// Components
         /// </summary>
-        [XmlArray("Components"), XmlArrayItem("Component")]
-        public List<PluginComponent> Components { get; set; }
+        [XmlArray("Plugins"), XmlArrayItem("Plugin")]
+        public List<GlobalPlugin> Plugins { get; set; }
 
         /// <summary>
         /// Gets or sets the assembly instance.
@@ -84,11 +84,11 @@ namespace CodeGen.Configuration
         public bool IsLoaded { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PluginAssembly"/> class.
+        /// Initializes a new instance of the <see cref="GlobalAssembly"/> class.
         /// </summary>
-        public PluginAssembly()
+        public GlobalAssembly()
         {
-            Components = new List<PluginComponent>();
+            Plugins = new List<GlobalPlugin>();
             IsLoaded = false;
         }
     }

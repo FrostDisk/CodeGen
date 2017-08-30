@@ -64,7 +64,7 @@ namespace CodeGen
 
             listPluginsList.Items.Clear();
             listPluginsList.Groups.Clear();
-            foreach (var assembly in globalSettings.PluginsSettings.Assemblies)
+            foreach (var assembly in globalSettings.Assemblies)
             {
                 ListViewGroup lstViewGroup = new ListViewGroup();
 
@@ -72,7 +72,7 @@ namespace CodeGen
 
                 listPluginsList.Groups.Add(lstViewGroup);
 
-                foreach (var type in assembly.Components)
+                foreach (var type in assembly.Plugins)
                 {
                     var item = new ListViewItem();
                     item.Name = type.Title;
@@ -97,7 +97,7 @@ namespace CodeGen
         /// Loads the plugin.
         /// </summary>
         /// <param name="type">The type.</param>
-        public void LoadPlugin(PluginComponent type)
+        public void LoadPlugin(Configuration.GlobalPlugin type)
         {
             pnlPluginDetails.Controls.Clear();
 
@@ -130,7 +130,7 @@ namespace CodeGen
             {
                 if (listPluginsList.SelectedItems.Count > 0)
                 {
-                    LoadPlugin((PluginComponent) listPluginsList.SelectedItems[0].Tag);
+                    LoadPlugin((Configuration.GlobalPlugin)listPluginsList.SelectedItems[0].Tag);
                 }
                 else
                 {
@@ -147,7 +147,7 @@ namespace CodeGen
         {
             try
             {
-                var type = (PluginComponent) e.Item.Tag;
+                var type = (Configuration.GlobalPlugin) e.Item.Tag;
                 type.Enabled = e.Item.Checked;
             }
             catch (Exception ex)

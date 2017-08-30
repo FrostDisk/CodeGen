@@ -7,7 +7,7 @@ namespace CodeGen.Configuration
     /// <summary>
     /// IPluginAssembly
     /// </summary>
-    public interface IPluginAssembly
+    public interface IGlobalAssembly
     {
         /// <summary>
         /// Guid
@@ -57,7 +57,7 @@ namespace CodeGen.Configuration
         /// <summary>
         /// Components
         /// </summary>
-        List<PluginComponent> Components { get; set; }
+        List<GlobalPlugin> Plugins { get; set; }
 
         /// <summary>
         /// Gets or sets the assembly instance.

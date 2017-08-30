@@ -7,7 +7,7 @@ namespace CodeGen.Domain
     /// ProjectAccessModelController
     /// </summary>
     [Serializable]
-    public class ProjectAccessModelController : ProjectPlugin
+    public class ProjectController : ProjectPluginBase
     {
         /// <summary>
         /// Plugin
@@ -34,9 +34,9 @@ namespace CodeGen.Domain
         public string ConnectionString { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProjectAccessModelController"/> class.
+        /// Initializes a new instance of the <see cref="ProjectController"/> class.
         /// </summary>
-        public ProjectAccessModelController()
+        public ProjectController()
         {
             Encrypt = false;
             EncryptedConnectionString = string.Empty;

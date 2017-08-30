@@ -71,9 +71,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\IPluginAssembly.cs" />
+    <Compile Include="Configuration\IGlobalAssembly.cs" />
     <Compile Include="Configuration\LogSettings.cs" />
-    <Compile Include="Configuration\PluginAssembly.cs" />
+    <Compile Include="Configuration\GlobalAssembly.cs" />
     <Compile Include="Core\DefaultFilters.cs" />
     <Compile Include="FormOptions.cs">
       <SubType>Form</SubType>
@@ -90,8 +90,8 @@
     <Compile Include="Properties\AssemblyInfoCommon.cs" />
     <Compile Include="Configuration\DirectoriesSettings.cs" />
     <Compile Include="Configuration\GlobalSettings.cs" />
-    <Compile Include="Configuration\PluginComponent.cs" />
-    <Compile Include="Configuration\PluginsSettings.cs" />
+    <Compile Include="Configuration\GlobalPlugin.cs" />
+    <Compile Include="Configuration\GlobalAssemblies.cs" />
     <Compile Include="Configuration\ProjectSettings.cs" />
     <Compile Include="Controls\BasicProjectProperties.cs">
       <SubType>UserControl</SubType>
@@ -209,12 +209,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <None Include="Plugins\CodeGen.AccessModel.SqlServer.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Plugins\CodeGen.Generator.Default.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CodeGen.Data\CodeGen.Data.csproj">
@@ -259,8 +253,14 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Plugins\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

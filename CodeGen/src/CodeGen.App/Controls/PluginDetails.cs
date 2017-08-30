@@ -20,7 +20,7 @@ namespace CodeGen.Controls
 
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
-        private PluginComponent _type;
+        private Configuration.GlobalPlugin _type;
 
         #endregion
 
@@ -42,7 +42,7 @@ namespace CodeGen.Controls
         /// Loads the type.
         /// </summary>
         /// <param name="component">The type.</param>
-        public void LoadComponent(PluginComponent component)
+        public void LoadComponent(Configuration.GlobalPlugin component)
         {
             _type = component;
 

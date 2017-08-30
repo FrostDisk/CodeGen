@@ -100,7 +100,7 @@ namespace CodeGen
         {
             _logger.Trace("FormMain.OpenProject()");
 
-            _activeProject = ProjectController.OpenProjectFromLocation(projectLocation, Resources.EncriptionKey);
+            _activeProject = ProjectsController.OpenProjectFromLocation(projectLocation, Resources.EncriptionKey);
 
             if(!_activeProject.IsValid)
             {
@@ -151,7 +151,7 @@ namespace CodeGen
             // Serialize the instance of the project class in a Xml file and save it in a file
             using (Stream projectStream = File.Open(_activeProject.SaveLocation, FileMode.Create, FileAccess.Write))
             {
-                ProjectController.SaveProjectToStream(_activeProject, projectStream, Resources.EncriptionKey);
+                ProjectsController.SaveProjectToStream(_activeProject, projectStream, Resources.EncriptionKey);
             }
 
             UpdateWindowTitle();

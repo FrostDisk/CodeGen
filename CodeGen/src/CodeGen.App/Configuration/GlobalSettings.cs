@@ -38,8 +38,8 @@ namespace CodeGen.Configuration
         /// <summary>
         /// Gets or sets the plugins settings.
         /// </summary>
-        [XmlElement("Plugins")]
-        public PluginsSettings PluginsSettings { get; set; }
+        [XmlArray("Assemblies"), XmlArrayItem("Assembly")]
+        public GlobalAssemblies Assemblies { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GlobalSettings"/> class.
@@ -50,7 +50,7 @@ namespace CodeGen.Configuration
             DirectoriesSettings = new DirectoriesSettings();
             LogSettings = new LogSettings();
             ProjectSettings = new ProjectSettings();
-            PluginsSettings = new PluginsSettings();
+            Assemblies = new GlobalAssemblies();
         }
     }
 }

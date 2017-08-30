@@ -5,7 +5,7 @@ namespace CodeGen.Plugin.Base
     /// <summary>
     /// IPluginTypeBase
     /// </summary>
-    public interface IPluginComponentBase
+    public interface IPluginDefinition
     {
         /// <summary>
         /// Title

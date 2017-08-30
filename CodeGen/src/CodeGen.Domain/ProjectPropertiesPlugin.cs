@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace CodeGen.Domain
@@ -11,7 +8,7 @@ namespace CodeGen.Domain
     /// ProjectPluginProperties
     /// </summary>
     [Serializable]
-    public class ProjectPluginProperties : ProjectPlugin
+    public class ProjectPropertiesPlugin : ProjectPluginBase
     {
         /// <summary>
         /// Parameters

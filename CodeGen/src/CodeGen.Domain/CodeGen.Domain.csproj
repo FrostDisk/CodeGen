@@ -48,11 +48,12 @@
     <Compile Include="IProjectBase.cs" />
     <Compile Include="PluginParameter.cs" />
     <Compile Include="Project.cs" />
-    <Compile Include="ProjectAccessModelController.cs" />
+    <Compile Include="ProjectController.cs" />
     <Compile Include="ProjectBase.cs" />
-    <Compile Include="ProjectPlugin.cs" />
+    <Compile Include="ProjectEntityFile.cs" />
+    <Compile Include="ProjectPluginBase.cs" />
     <Compile Include="ProjectEntity.cs" />
-    <Compile Include="ProjectPluginProperties.cs" />
+    <Compile Include="ProjectPropertiesPlugin.cs" />
     <Compile Include="ProjectProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EnumDatabaseTypes.cs" />

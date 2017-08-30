@@ -3,7 +3,7 @@
     /// <summary>
     /// IPluginBase
     /// </summary>
-    public interface IPluginBase : IPluginComponentBase
+    public interface IPluginBase : IPluginDefinition
     {
         /// <summary>
         /// Settings

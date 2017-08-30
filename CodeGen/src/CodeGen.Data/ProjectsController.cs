@@ -10,13 +10,15 @@ using CodeGen.Library.Formats;
 using System.Runtime.InteropServices;
 using NLog;
 using System;
+using System.Drawing;
+using CodeGen.Properties;
 
 namespace CodeGen.Data
 {
     /// <summary>
     /// ProjectController
     /// </summary>
-    public static class ProjectController
+    public static class ProjectsController
     {
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
@@ -105,12 +107,11 @@ namespace CodeGen.Data
         /// <param name="guid">The assembly file.</param>
         /// <param name="plugin">The plugin.</param>
         /// <returns></returns>
-        public static ProjectPluginProperties GetPluginProperties(Project project, string guid)
+        public static ProjectPropertiesPlugin GetPluginProperties(Project project, string guid)
         {
             _logger.Trace("ProjectController.GetPluginProperties()");
 
-            if (project.Properties == null
-                || project.Properties.Plugins == null)
+            if (project.Properties == null)
             {
                 return null;
             }
@@ -133,18 +134,13 @@ namespace CodeGen.Data
                 project.Properties = new ProjectProperties();
             }
 
-            if (project.Properties.Plugins == null)
-            {
-                project.Properties.Plugins = new List<ProjectPluginProperties>();
-            }
-
             var type = plugin.GetType();
             string guid = ((GuidAttribute)(type.Assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0])).Value;
 
             var pluginAssembly = project.Properties.Plugins.FirstOrDefault(p => p.Guid.Equals(guid, StringComparison.InvariantCultureIgnoreCase));
             if (pluginAssembly == null)
             {
-                pluginAssembly = new ProjectPluginProperties();
+                pluginAssembly = new ProjectPropertiesPlugin();
                 pluginAssembly.Guid = guid;
                 project.Properties.Plugins.Add(pluginAssembly);
             }
@@ -173,6 +169,81 @@ namespace CodeGen.Data
             }
 
             return project;
+        }
+
+        /// <summary>
+        /// Saves the code to disk.
+        /// </summary>
+        /// <param name="plugin">The plugin.</param>
+        /// <param name="component">The component.</param>
+        /// <param name="project">The project.</param>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="code">The code.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns></returns>
+        public static bool SaveCodeToProject(IGeneratorTemplate plugin, GeneratorComponent component, Project project, string tableName, string code, string fileName)
+        {
+            _logger.Trace("ProjectController.SaveCodeToDisk()");
+
+            var targetDirectory = Path.Combine(project.SaveDirectory, "Files", tableName);
+            if (!Directory.Exists(targetDirectory))
+            {
+                Directory.CreateDirectory(targetDirectory);
+            }
+
+            var entity = project.Entities.FirstOrDefault(e => e.Name.Equals(tableName, StringComparison.InvariantCultureIgnoreCase));
+            if (entity == null)
+            {
+                entity = new ProjectEntity();
+                entity.Name = tableName;
+                project.Entities.Add(entity);
+            }
+
+            project.Entities = project.Entities.OrderBy(e => e.Name).ToList();
+
+            string guid = ((GuidAttribute)(plugin.GetType().Assembly.GetCustomAttributes(typeof(GuidAttribute), true)[0])).Value;
+
+            var file = entity.Files.FirstOrDefault(f => f.Guid.Equals(guid, StringComparison.InvariantCultureIgnoreCase) && f.Plugin.Equals(plugin.GetType().ToString(), StringComparison.InvariantCultureIgnoreCase) && f.Component.Equals(component.Id));
+            if (file == null)
+            {
+                file = new ProjectEntityFile();
+                file.Guid = guid;
+                file.Plugin = plugin.GetType().ToString();
+                file.Component = component.Id;
+                file.File = fileName;
+                entity.Files.Add(file);
+            }
+
+            entity.Files = entity.Files.OrderBy(e => e.File).ToList();
+
+            var targetLocation = Path.Combine(targetDirectory, fileName);
+
+            File.WriteAllText(targetLocation, code, Encoding.UTF8);
+
+            return true;
+        }
+
+        /// <summary>
+        /// Gets the image from file.
+        /// </summary>
+        /// <param name="project">The project.</param>
+        /// <param name="entity">The entity.</param>
+        /// <param name="file">The file.</param>
+        /// <returns></returns>
+        public static Image GetImageFromFile(Project project, ProjectEntity entity, ProjectEntityFile file)
+        {
+            _logger.Trace("ProjectController.GetImageFromFile()");
+
+            var targetLocation = Path.Combine(project.SaveDirectory, "Files", entity.Name, file.File);
+
+            if (File.Exists(targetLocation))
+            {
+                var icon = Icon.ExtractAssociatedIcon(targetLocation);
+
+                return icon.ToBitmap();
+            }
+
+            return Resources.page_white_code;
         }
 
         private static Project RecalculateVariables(Project openProject, string decryptionKey)

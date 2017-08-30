@@ -41,6 +41,7 @@
             this.folderBrowserSelectProjectLocation = new System.Windows.Forms.FolderBrowserDialog();
             this.txtConnectionString = new System.Windows.Forms.TextBox();
             this.btnGenerateConnectionString = new System.Windows.Forms.Button();
+            this.chkEncrypt = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // lblProjectName
@@ -110,6 +111,14 @@
             this.btnGenerateConnectionString.UseVisualStyleBackColor = true;
             this.btnGenerateConnectionString.Click += new System.EventHandler(this.btnGenerateConnectionString_Click);
             // 
+            // chkEncrypt
+            // 
+            resources.ApplyResources(this.chkEncrypt, "chkEncrypt");
+            this.chkEncrypt.Checked = true;
+            this.chkEncrypt.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkEncrypt.Name = "chkEncrypt";
+            this.chkEncrypt.UseVisualStyleBackColor = true;
+            // 
             // BasicProjectProperties
             // 
             resources.ApplyResources(this, "$this");
@@ -125,6 +134,7 @@
             this.Controls.Add(this.cmbDatabaseType);
             this.Controls.Add(this.txtConnectionString);
             this.Controls.Add(this.btnGenerateConnectionString);
+            this.Controls.Add(this.chkEncrypt);
             this.Name = "BasicProjectProperties";
             this.Load += new System.EventHandler(this.BasicProjectProperties_Load);
             this.ResumeLayout(false);
@@ -146,5 +156,6 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserSelectProjectLocation;
         private System.Windows.Forms.TextBox txtConnectionString;
         private System.Windows.Forms.Button btnGenerateConnectionString;
+        private System.Windows.Forms.CheckBox chkEncrypt;
     }
 }

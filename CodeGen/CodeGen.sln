@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.App", "src\CodeGen.App\CodeGen.App.csproj", "{E5BBDC80-1168-4686-AA51-D7D513F6AAE0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0CE0250E-4F68-4F54-B1AA-0F4C0C076EB8} = {0CE0250E-4F68-4F54-B1AA-0F4C0C076EB8}
+		{E204907C-5359-4DA7-8B17-3DAC26EAAF71} = {E204907C-5359-4DA7-8B17-3DAC26EAAF71}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence", "{18597B76-FE2F-4099-8E00-C906918919AF}"
 EndProject
@@ -12,8 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Data", "src\CodeGen.Data\CodeGen.Data.csproj", "{7995572A-42DC-406B-B0C4-2E5645C901A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{A1DE76B3-7ECC-4D83-A1D6-EEB8CB3244BB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Library.AccessModel", "src\CodeGen.Library.AccessModel\CodeGen.Library.AccessModel.csproj", "{07451D36-93F9-4598-8414-BE9269DB06F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Library.System", "src\CodeGen.Library.System\CodeGen.Library.System.csproj", "{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9}"
 EndProject
@@ -24,6 +26,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugin", "Plugin", "{CF394B0A-103D-4046-B229-BBCA2B0C1486}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Library.Security", "src\CodeGen.Library.Security\CodeGen.Library.Security.csproj", "{E03B6B18-3308-4703-A860-E764C52BF0B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.AccessModel.SqlServer", "src\CodeGen.AccessModel.SqlServer\CodeGen.AccessModel.SqlServer.csproj", "{0CE0250E-4F68-4F54-B1AA-0F4C0C076EB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Resources", "src\CodeGen.Resources\CodeGen.Resources.csproj", "{D762D87A-5218-4367-A587-1B8919C21E85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Generator.Default", "src\CodeGen.Generator.Default\CodeGen.Generator.Default.csproj", "{E204907C-5359-4DA7-8B17-3DAC26EAAF71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +51,6 @@ Global
 		{7995572A-42DC-406B-B0C4-2E5645C901A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7995572A-42DC-406B-B0C4-2E5645C901A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7995572A-42DC-406B-B0C4-2E5645C901A7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07451D36-93F9-4598-8414-BE9269DB06F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07451D36-93F9-4598-8414-BE9269DB06F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07451D36-93F9-4598-8414-BE9269DB06F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07451D36-93F9-4598-8414-BE9269DB06F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -63,6 +67,18 @@ Global
 		{E03B6B18-3308-4703-A860-E764C52BF0B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E03B6B18-3308-4703-A860-E764C52BF0B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E03B6B18-3308-4703-A860-E764C52BF0B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CE0250E-4F68-4F54-B1AA-0F4C0C076EB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CE0250E-4F68-4F54-B1AA-0F4C0C076EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CE0250E-4F68-4F54-B1AA-0F4C0C076EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CE0250E-4F68-4F54-B1AA-0F4C0C076EB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D762D87A-5218-4367-A587-1B8919C21E85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D762D87A-5218-4367-A587-1B8919C21E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D762D87A-5218-4367-A587-1B8919C21E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D762D87A-5218-4367-A587-1B8919C21E85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E204907C-5359-4DA7-8B17-3DAC26EAAF71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E204907C-5359-4DA7-8B17-3DAC26EAAF71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E204907C-5359-4DA7-8B17-3DAC26EAAF71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E204907C-5359-4DA7-8B17-3DAC26EAAF71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,10 +86,14 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CD81C9C1-AD1E-4BB7-BE30-EAA7A584A377} = {18597B76-FE2F-4099-8E00-C906918919AF}
 		{7995572A-42DC-406B-B0C4-2E5645C901A7} = {18597B76-FE2F-4099-8E00-C906918919AF}
-		{07451D36-93F9-4598-8414-BE9269DB06F8} = {A1DE76B3-7ECC-4D83-A1D6-EEB8CB3244BB}
 		{6CAA1A18-1551-472B-8CC1-C6D701E6C2B9} = {A1DE76B3-7ECC-4D83-A1D6-EEB8CB3244BB}
 		{74E0C129-FC44-4298-A723-444B2D679566} = {A1DE76B3-7ECC-4D83-A1D6-EEB8CB3244BB}
 		{25CD4C77-2763-4139-A22F-26A589857780} = {CF394B0A-103D-4046-B229-BBCA2B0C1486}
 		{E03B6B18-3308-4703-A860-E764C52BF0B4} = {A1DE76B3-7ECC-4D83-A1D6-EEB8CB3244BB}
+		{0CE0250E-4F68-4F54-B1AA-0F4C0C076EB8} = {CF394B0A-103D-4046-B229-BBCA2B0C1486}
+		{E204907C-5359-4DA7-8B17-3DAC26EAAF71} = {CF394B0A-103D-4046-B229-BBCA2B0C1486}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F6CAC04-A0FE-4123-B7F3-6C4956DBF400}
 	EndGlobalSection
 EndGlobal

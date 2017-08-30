@@ -6,6 +6,7 @@ using CodeGen.Configuration;
 using CodeGen.Controls;
 using CodeGen.Utils;
 using NLog;
+using System.Linq;
 
 namespace CodeGen
 {
@@ -63,15 +64,15 @@ namespace CodeGen
 
             listPluginsList.Items.Clear();
             listPluginsList.Groups.Clear();
-            foreach (var assembly in globalSettings.PluginsSettings.Plugins)
+            foreach (var assembly in globalSettings.Assemblies)
             {
-                var lstViewGroup = new ListViewGroup(assembly.Title, HorizontalAlignment.Left);
-                if (!assembly.IsBase)
-                {
-                    listPluginsList.Groups.Add(lstViewGroup);
-                }
+                ListViewGroup lstViewGroup = new ListViewGroup();
 
-                foreach (var type in assembly.Types)
+                lstViewGroup = new ListViewGroup(assembly.Title, HorizontalAlignment.Left);
+
+                listPluginsList.Groups.Add(lstViewGroup);
+
+                foreach (var type in assembly.Plugins)
                 {
                     var item = new ListViewItem();
                     item.Name = type.Title;
@@ -79,15 +80,13 @@ namespace CodeGen
                     item.ImageKey = type.Base;
                     item.Checked = type.Enabled;
                     item.Tag = type;
+
                     if (!type.IsValid)
                     {
                         item.Font = new Font(item.Font, FontStyle.Strikeout);
                     }
 
-                    if (!assembly.IsBase)
-                    {
-                        item.Group = lstViewGroup;
-                    }
+                    item.Group = lstViewGroup;
 
                     listPluginsList.Items.Add(item);
                 }
@@ -98,7 +97,7 @@ namespace CodeGen
         /// Loads the plugin.
         /// </summary>
         /// <param name="type">The type.</param>
-        public void LoadPlugin(PluginType type)
+        public void LoadPlugin(Configuration.GlobalPlugin type)
         {
             pnlPluginDetails.Controls.Clear();
 
@@ -108,7 +107,7 @@ namespace CodeGen
                 {
                     Dock = DockStyle.Fill
                 };
-                control.LoadType(type);
+                control.LoadComponent(type);
 
                 pnlPluginDetails.Controls.Add(control);
             }
@@ -131,7 +130,7 @@ namespace CodeGen
             {
                 if (listPluginsList.SelectedItems.Count > 0)
                 {
-                    LoadPlugin((PluginType) listPluginsList.SelectedItems[0].Tag);
+                    LoadPlugin((Configuration.GlobalPlugin)listPluginsList.SelectedItems[0].Tag);
                 }
                 else
                 {
@@ -148,7 +147,7 @@ namespace CodeGen
         {
             try
             {
-                var type = (PluginType) e.Item.Tag;
+                var type = (Configuration.GlobalPlugin) e.Item.Tag;
                 type.Enabled = e.Item.Checked;
             }
             catch (Exception ex)

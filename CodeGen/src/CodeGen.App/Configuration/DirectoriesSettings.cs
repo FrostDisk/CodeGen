@@ -115,5 +115,31 @@ namespace CodeGen.Configuration
             }
             set { _tempDirectory = value; }
         }
+
+        [XmlIgnore]
+        private string _logDirectory;
+
+        /// <summary>
+        /// Temp Directory
+        /// </summary>
+        [XmlElement("LogDirectory")]
+        public string LogDirectory
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_logDirectory))
+                {
+                    _logDirectory = Path.Combine(ProgramSettings.SettingsFolder, "Log");
+                }
+
+                if (!Directory.Exists(_logDirectory))
+                {
+                    Directory.CreateDirectory(_logDirectory);
+                }
+
+                return FolderHelper.PathAddBackslash(_logDirectory);
+            }
+            set { _logDirectory = value; }
+        }
     }
 }

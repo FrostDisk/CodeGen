@@ -20,7 +20,7 @@ namespace CodeGen.Controls
 
         private static Logger _logger = LogManager.GetCurrentClassLogger();
 
-        private PluginType _type;
+        private Configuration.GlobalPlugin _type;
 
         #endregion
 
@@ -41,57 +41,56 @@ namespace CodeGen.Controls
         /// <summary>
         /// Loads the type.
         /// </summary>
-        /// <param name="type">The type.</param>
-        public void LoadType(PluginType type)
+        /// <param name="component">The type.</param>
+        public void LoadComponent(Configuration.GlobalPlugin component)
         {
-            _type = type;
+            _type = component;
 
             var globalSettings = ProgramSettings.GetGlobalSettings();
 
             Image icon = Resources.add_on;
 
-            if (type.Icon != null)
+            if (component.Icon != null)
             {
-                icon = type.Icon;
+                icon = component.Icon;
 
-                if (string.IsNullOrWhiteSpace(type.IconPath))
+                if (string.IsNullOrWhiteSpace(component.IconPath))
                 {
-                    type.IconPath = PluginsManager.SaveIconOnCache(type.Icon, globalSettings);
+                    component.IconPath = PluginsManager.SaveIconOnCache(component.Icon, globalSettings);
                 }
             }
-            else if (!string.IsNullOrWhiteSpace(type.IconPath))
+            else if (!string.IsNullOrWhiteSpace(component.IconPath))
             {
-                string iconLocation = Path.Combine(globalSettings.DirectoriesSettings.CacheDirectory, type.IconPath);
+                string iconLocation = Path.Combine(globalSettings.DirectoriesSettings.CacheDirectory, component.IconPath);
                 if (File.Exists(iconLocation))
                 {
-                    type.Icon = Image.FromFile(iconLocation);
-                    icon = type.Icon;
+                    component.Icon = Image.FromFile(iconLocation);
+                    icon = component.Icon;
                 }
-                else if (type.PluginInstance != null)
+                else if (component.PluginInstance != null)
                 {
-                    type.Icon = type.PluginInstance.Icon;
-                    type.IconPath = PluginsManager.SaveIconOnCache(type.Icon, globalSettings);
-                    icon = type.Icon;
+                    component.Icon = component.PluginInstance.Icon;
+                    component.IconPath = PluginsManager.SaveIconOnCache(component.Icon, globalSettings);
+                    icon = component.Icon;
                 }
                 else
                 {
-                    type.IconPath = null;
+                    component.IconPath = null;
                 }
             }
 
             pictureTypeIcon.Image = icon;
 
-            lblCreatedBy.Text = type.CreatedBy;
-            lblDateInstalled.Text = type.DateInstalled.ToShortDateString();
-            lblVersion.Text = type.Version;
+            lblCreatedBy.Text = component.CreatedBy;
+            lblVersion.Text = component.Version;
 
             Uri uriReleaseInfo;
-            lnkReleasaeInfo.Visible = !string.IsNullOrWhiteSpace(type.ReleaseNotesUrl) && Uri.TryCreate(type.ReleaseNotesUrl, UriKind.Absolute, out uriReleaseInfo) && uriReleaseInfo.Scheme == Uri.UriSchemeHttp;
+            lnkReleasaeInfo.Visible = !string.IsNullOrWhiteSpace(component.ReleaseNotesUrl) && Uri.TryCreate(component.ReleaseNotesUrl, UriKind.Absolute, out uriReleaseInfo) && uriReleaseInfo.Scheme == Uri.UriSchemeHttp;
 
             Uri uriAuthorWebsite;
-            lnkAuthorWebsite.Visible = !string.IsNullOrWhiteSpace(type.AuthorWebsiteUrl) && Uri.TryCreate(type.AuthorWebsiteUrl, UriKind.Absolute, out uriAuthorWebsite) && uriAuthorWebsite.Scheme == Uri.UriSchemeHttp;
+            lnkAuthorWebsite.Visible = !string.IsNullOrWhiteSpace(component.AuthorWebsiteUrl) && Uri.TryCreate(component.AuthorWebsiteUrl, UriKind.Absolute, out uriAuthorWebsite) && uriAuthorWebsite.Scheme == Uri.UriSchemeHttp;
 
-            txtPluginDescription.Text = type.Description;
+            txtPluginDescription.Text = component.Description;
         }
 
         #endregion

@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E204907C-5359-4DA7-8B17-3DAC26EAAF71}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CodeGen.Generator.Default</RootNamespace>
+    <AssemblyName>CodeGen.Generator.Default</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\CodeGen.Generator.Default.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\CodeGen.App\Properties\AssemblyInfoCommon.cs">
+      <Link>Properties\AssemblyInfoCommon.cs</Link>
+    </Compile>
+    <Compile Include="AspNetMvcCoreCodeTemplate.cs" />
+    <Compile Include="Core\AspNetMvcCoreConstants.cs" />
+    <Compile Include="Core\AspNetMvcCoreGenerator.cs" />
+    <Compile Include="Controls\ITemplateParameter.cs" />
+    <Compile Include="Controls\TemplateParameter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TemplateParameter.Designer.cs">
+      <DependentUpon>TemplateParameter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TemplateParameterDataAccessTemplate.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TemplateParameterDataAccessTemplate.Designer.cs">
+      <DependentUpon>TemplateParameterDataAccessTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\BaseGenerator.cs" />
+    <Compile Include="Core\CodeBaseConstants.cs" />
+    <Compile Include="Core\eAspNetMvcCoreTemplateComponent.cs" />
+    <Compile Include="Core\eBaseTemplateComponent.cs" />
+    <Compile Include="CSharpCodeBaseTemplate.cs" />
+    <Compile Include="FormAspNetMvcCoreTemplateConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAspNetMvcCoreTemplateConfiguration.Designer.cs">
+      <DependentUpon>FormAspNetMvcCoreTemplateConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormBaseTemplateConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBaseTemplateConfiguration.Designer.cs">
+      <DependentUpon>FormBaseTemplateConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerQueryBaseTemplate.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeGen.Domain\CodeGen.Domain.csproj">
+      <Project>{CD81C9C1-AD1E-4BB7-BE30-EAA7A584A377}</Project>
+      <Name>CodeGen.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Library.Formats\CodeGen.Library.Formats.csproj">
+      <Project>{74E0C129-FC44-4298-A723-444B2D679566}</Project>
+      <Name>CodeGen.Library.Formats</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Plugin.Base\CodeGen.Plugin.Base.csproj">
+      <Project>{25cd4c77-2763-4139-a22f-26a589857780}</Project>
+      <Name>CodeGen.Plugin.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Resources\CodeGen.Resources.csproj">
+      <Project>{d762d87a-5218-4367-a587-1b8919c21e85}</Project>
+      <Name>CodeGen.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\TemplateParameter.resx">
+      <DependentUpon>TemplateParameter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TemplateParameterDataAccessTemplate.resx">
+      <DependentUpon>TemplateParameterDataAccessTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAspNetMvcCoreTemplateConfiguration.resx">
+      <DependentUpon>FormAspNetMvcCoreTemplateConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBaseTemplateConfiguration.resx">
+      <DependentUpon>FormBaseTemplateConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /V /Y "$(TargetPath)" "$(ProjectDir)..\CodeGen.App\Plugins"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -139,18 +139,19 @@ namespace CodeGen.Controls
         /// <returns></returns>
         public Project GetProject()
         {
-            Project project = ProjectController.CreateEmptyProject(txtProjectName.Text, txtProjectDirectory.Text);
+            Project project = Data.ProjectsController.CreateEmptyProject(txtProjectName.Text, txtProjectDirectory.Text);
 
-            SupportedType item = (SupportedType) cmbDatabaseType.SelectedItem;
+            SupportedPluginComponent item = (SupportedPluginComponent) cmbDatabaseType.SelectedItem;
 
             project.Type = PluginsManager.GetDataBaseType(item);
-            project.Plugin = new ProjectPlugin
+            project.Controller = new Domain.ProjectController
             {
                 Guid = item.Guid,
-                Type = item.Type
+                Plugin = item.Type,
+                ConnectionString = txtConnectionString.Text,
+                Encrypt = chkEncrypt.Checked
             };
             project.Description = txtProjectDescription.Text;
-            project.ConnectionString = txtConnectionString.Text;
 
             return project;
         }
@@ -196,10 +197,10 @@ namespace CodeGen.Controls
             }
             else
             {
-                SupportedType item = null;
+                SupportedPluginComponent item = null;
                 Invoke((MethodInvoker)delegate
                 {
-                    item = cmbDatabaseType.SelectedItem as SupportedType;
+                    item = cmbDatabaseType.SelectedItem as SupportedPluginComponent;
                 });
 
                 if (item != null)
@@ -256,7 +257,7 @@ namespace CodeGen.Controls
         {
             if (cmbDatabaseType.SelectedItem != null)
             {
-                btnGenerateConnectionString.Enabled = PluginsManager.CheckIfPluginHaveCustomConnectionStringsForm(cmbDatabaseType.SelectedItem as SupportedType);
+                btnGenerateConnectionString.Enabled = PluginsManager.CheckIfPluginHaveCustomConnectionStringsForm(cmbDatabaseType.SelectedItem as SupportedPluginComponent);
                 txtConnectionString.ReadOnly = false;
             }
             else
@@ -268,7 +269,7 @@ namespace CodeGen.Controls
 
         private void btnGenerateConnectionString_Click(object sender, EventArgs e)
         {
-            var item = cmbDatabaseType.SelectedItem as SupportedType;
+            var item = cmbDatabaseType.SelectedItem as SupportedPluginComponent;
             if (item != null)
             {
                 var plugin = item.Item as IAccessModelController;

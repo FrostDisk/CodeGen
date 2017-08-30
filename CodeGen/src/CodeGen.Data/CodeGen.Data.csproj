@@ -32,8 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,7 +49,7 @@
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProjectController.cs" />
+    <Compile Include="ProjectsController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CodeGen.Domain\CodeGen.Domain.csproj">
@@ -64,6 +68,13 @@
       <Project>{25cd4c77-2763-4139-a22f-26a589857780}</Project>
       <Name>CodeGen.Plugin.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CodeGen.Resources\CodeGen.Resources.csproj">
+      <Project>{D762D87A-5218-4367-A587-1B8919C21E85}</Project>
+      <Name>CodeGen.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

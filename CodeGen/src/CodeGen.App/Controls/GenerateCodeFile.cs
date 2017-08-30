@@ -7,6 +7,8 @@ using CodeGen.Plugin.Base;
 using CodeGen.Utils;
 using System.IO;
 using NLog;
+using static CodeGen.Controls.ProjectWorkspace;
+using CodeGen.Data;
 
 namespace CodeGen.Controls
 {
@@ -50,7 +52,7 @@ namespace CodeGen.Controls
             {
                 if (cmbTemplate.SelectedItem != null)
                 {
-                    return PluginsManager.GetSettingsFromPlugin((SupportedType)cmbTemplate.SelectedItem);
+                    return PluginsManager.GetSettingsFromPlugin((SupportedPluginComponent)cmbTemplate.SelectedItem);
                 }
                 return null;
             }
@@ -92,7 +94,7 @@ namespace CodeGen.Controls
         {
             if (cmbTemplate.SelectedItem == null)
             {
-                PluginsManager.UpdateSettingsForPlugin((SupportedType)cmbTemplate.SelectedItem, settings);
+                PluginsManager.UpdateSettingsForPlugin((SupportedPluginComponent)cmbTemplate.SelectedItem, settings);
             }
         }
 
@@ -102,10 +104,10 @@ namespace CodeGen.Controls
         public void LoadLocalVariables()
         {
             cmbDatabaseEntity.Items.Clear();
-            cmbDatabaseEntity.Items.AddRange(PluginsManager.GetTableListFromPlugin(Project.ConnectionString, Project.Plugin).ToArray());
+            cmbDatabaseEntity.Items.AddRange(PluginsManager.GetTableListFromPlugin(Project.Controller).ToArray());
 
             cmbTemplate.Items.Clear();
-            cmbTemplate.DataSource = PluginsManager.GetSupportedTemplates<ICodeGeneratorTemplate>();
+            cmbTemplate.DataSource = PluginsManager.GetSupportedTemplates<ICodeGeneratorTemplate>(Project.Controller);
             cmbTemplate.DisplayMember = "Name";
             cmbTemplate.ValueMember = "Name";
         }
@@ -146,7 +148,7 @@ namespace CodeGen.Controls
                 DatabaseEntity entity;
                 if (!_entities.TryGetValue(entityItem, out entity))
                 {
-                    entity = PluginsManager.GetEntityInfoFromPlugin(Project.ConnectionString, Project.Plugin, entityItem);
+                    entity = PluginsManager.GetEntityInfoFromPlugin(Project.Controller, entityItem);
                     _entities[entityItem] = entity;
                 }
 
@@ -191,7 +193,7 @@ namespace CodeGen.Controls
             {
                 if (cmbTemplate.SelectedItem != null)
                 {
-                    var item = (SupportedType) cmbTemplate.SelectedItem;
+                    var item = (SupportedPluginComponent) cmbTemplate.SelectedItem;
 
                     ActiveTemplate = (IGeneratorTemplate) item.Item;
 
@@ -229,19 +231,13 @@ namespace CodeGen.Controls
             {
                 if (cmbTemplate.SelectedItem != null)
                 {
-                    var templateItem = (SupportedType) cmbTemplate.SelectedItem;
+                    var templateItem = (SupportedPluginComponent) cmbTemplate.SelectedItem;
 
                     if (PluginsManager.ShowTemplateOptions(templateItem))
                     {
-                        if (OnSettingsUpdate != null)
-                        {
-                            OnSettingsUpdate(this, new EventArgs());
-                        }
+                        OnSettingsUpdate?.Invoke(this, new EventArgs());
 
-                        if (OnControlUpdate != null)
-                        {
-                            OnControlUpdate(this, new EventArgs());
-                        }
+                        OnControlUpdate?.Invoke(this, new EventArgs());
 
                         UpdateFileName();
                     }
@@ -280,20 +276,21 @@ namespace CodeGen.Controls
                     DatabaseEntity entity;
                     if (!_entities.TryGetValue(tableName, out entity))
                     {
-                        entity = PluginsManager.GetEntityInfoFromPlugin(Project.ConnectionString, Project.Plugin, tableName);
+                        entity = PluginsManager.GetEntityInfoFromPlugin(Project.Controller, tableName);
                         _entities[tableName] = entity;
                     }
 
-                    var code = ActiveTemplate.Generate(entity, (GeneratorComponent) cmbComponent.SelectedItem);
+                    var component = (GeneratorComponent)cmbComponent.SelectedItem;
+
+                    var code = ActiveTemplate.Generate(entity, component);
 
                     if (!string.IsNullOrWhiteSpace(code))
                     {
                         txtGeneratedCode.Text = code;
 
-                        if (OnControlUpdate != null)
-                        {
-                            OnControlUpdate(this, new EventArgs());
-                        }
+                        ProjectsController.SaveCodeToProject(ActiveTemplate, component, Project, tableName, code, txtFileName.Text);
+
+                        OnControlUpdate?.Invoke(this, new EventArgs());
 
                         if (chkCopyToClipboard.Checked)
                         {

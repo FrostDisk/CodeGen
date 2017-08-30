@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace CodeGen.Domain
@@ -17,14 +14,14 @@ namespace CodeGen.Domain
         /// Plugins
         /// </summary>
         [XmlArray("Plugins"), XmlArrayItem("Plugin")]
-        public List<ProjectPluginProperties> Plugins { get; set; }
+        public List<ProjectPropertiesPlugin> Plugins { get; set; }
 
         /// <summary>
-        /// ProjectProperties
+        /// Initializes a new instance of the <see cref="ProjectProperties"/> class.
         /// </summary>
         public ProjectProperties()
         {
-            Plugins = new List<ProjectPluginProperties>();
+            Plugins = new List<ProjectPropertiesPlugin>();
         }
     }
 }

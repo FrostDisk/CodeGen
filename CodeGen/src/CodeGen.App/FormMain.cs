@@ -39,6 +39,8 @@ namespace CodeGen
         /// </summary>
         public FormMain()
         {
+            _logger.Trace("FormMain.FormMain()");
+
             InitializeComponent();
         }
 
@@ -48,6 +50,8 @@ namespace CodeGen
 
         private void LoadLocalVariables()
         {
+            _logger.Trace("FormMain.LoadLocalVariables()");
+
             // Recover saved project directory (or load default if isn't any)
             openFileDialogProject.InitialDirectory = ProgramSettings.GetGlobalSettings().DirectoriesSettings.DefaultProjectsDirectory;
 
@@ -65,6 +69,8 @@ namespace CodeGen
 
         private void UpdateMenuControls()
         {
+            _logger.Trace("FormMain.UpdateMenuControls()");
+
             // Block controls if is there a active project loaded
             bool enable = _activeProject.IsValid;
 
@@ -77,6 +83,8 @@ namespace CodeGen
 
         private void UpdateWindowTitle()
         {
+            _logger.Trace("FormMain.UpdateWindowTitle()");
+
             // Shows an * in the Window title to mark if the project has any unsaved changes
             Text = _activeProject.IsValid
                     ? string.Format(_activeProject.IsUnsaved ? "*{0} - {1} {2}" : "{0} - {1} {2}", _activeProject.Name, ProgramInfo.AssemblyProduct, ProgramInfo.AssemblyVersion)
@@ -85,11 +93,14 @@ namespace CodeGen
 
         private void BlockWindowControls(bool block)
         {
+            _logger.Trace("FormMain.BlockWindowControls()");
         }
 
         private void OpenProject(string projectLocation)
         {
-            _activeProject = ProjectController.OpenProjectFromLocation(projectLocation, Resources.EncriptionKey);
+            _logger.Trace("FormMain.OpenProject()");
+
+            _activeProject = ProjectsController.OpenProjectFromLocation(projectLocation, Resources.EncriptionKey);
 
             if(!_activeProject.IsValid)
             {
@@ -111,8 +122,10 @@ namespace CodeGen
 
         private void SaveProject(bool showSaveDialog)
         {
+            _logger.Trace("FormMain.SaveProject()");
+
             // To differentiate from "Save" and "Save as"
-            if(showSaveDialog)
+            if (showSaveDialog)
             {
                 saveFileDialogProject.InitialDirectory = _activeProject.SaveLocation;
 
@@ -138,7 +151,7 @@ namespace CodeGen
             // Serialize the instance of the project class in a Xml file and save it in a file
             using (Stream projectStream = File.Open(_activeProject.SaveLocation, FileMode.Create, FileAccess.Write))
             {
-                ProjectController.SaveProjectToStream(_activeProject, projectStream, Resources.EncriptionKey);
+                ProjectsController.SaveProjectToStream(_activeProject, projectStream, Resources.EncriptionKey);
             }
 
             UpdateWindowTitle();
@@ -147,7 +160,9 @@ namespace CodeGen
 
         private void CloseProject()
         {
-            if(_activeControl != null)
+            _logger.Trace("FormMain.CloseProject()");
+
+            if (_activeControl != null)
             {
                 _activeProject = new Project();
             }
@@ -161,6 +176,8 @@ namespace CodeGen
 
         private void SaveAndCloseProject(bool exitApplication)
         {
+            _logger.Trace("FormMain.SaveAndCloseProject()");
+
             bool close = true;
 
             // Check if there a open project and has unsaved changes
@@ -207,11 +224,15 @@ namespace CodeGen
 
         private void activeControl_OnProjectChange(object sender, EventArgs e)
         {
+            _logger.Trace("FormMain.activeControl_OnProjectChange()");
+
             UpdateWindowTitle();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            _logger.Trace("FormMain.FormMain_Load()");
+
             try
             {
                 LoadLocalVariables();
@@ -227,12 +248,15 @@ namespace CodeGen
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, ex.Message);
                 MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
         {
+            _logger.Trace("FormMain.FormMain_FormClosed()");
+
             try
             {
                 // Store some global configuration to save
@@ -248,6 +272,7 @@ namespace CodeGen
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, ex.Message);
                 MessageBoxHelper.ProcessException(ex);
             }
         }
@@ -256,6 +281,8 @@ namespace CodeGen
 
         private void toolStripMenuItemNewProject_Click(object sender, EventArgs e)
         {
+            _logger.Trace("FormMain.toolStripMenuItemNewProject_Click()");
+
             try
             {
                 SaveAndCloseProject(false);
@@ -282,12 +309,15 @@ namespace CodeGen
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, ex.Message);
                 MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void toolStripMenuItemOpenProject_Click(object sender, EventArgs e)
         {
+            _logger.Trace("FormMain.toolStripMenuItemOpenProject_Click()");
+
             try
             {
                 // Before opening a new project, save the active project (if there's any)
@@ -300,54 +330,67 @@ namespace CodeGen
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, ex.Message);
                 MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void toolStripMenuItemCloseProject_Click(object sender, EventArgs e)
         {
+            _logger.Trace("FormMain.toolStripMenuItemCloseProject_Click()");
+
             try
             {
                 SaveAndCloseProject(false);
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, ex.Message);
                 MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void toolStripMenuItemSaveProject_Click(object sender, EventArgs e)
         {
+            _logger.Trace("FormMain.toolStripMenuItemSaveProject_Click()");
+
             try
             {
                 SaveProject(false);
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, ex.Message);
                 MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void toolStripMenuItemSaveProjectAs_Click(object sender, EventArgs e)
         {
+            _logger.Trace("FormMain.toolStripMenuItemSaveProjectAs_Click()");
+
             try
             {
                 SaveProject(true);
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, ex.Message);
                 MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void toolStripMenuItemExit_Click(object sender, EventArgs e)
         {
+            _logger.Trace("FormMain.toolStripMenuItemExit_Click()");
+
             try
             {
                 SaveAndCloseProject(true);
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, ex.Message);
                 MessageBoxHelper.ProcessException(ex);
             }
         }
@@ -358,24 +401,30 @@ namespace CodeGen
 
         private void toolStripMenuItemGenerateCodeFile_Click(object sender, EventArgs e)
         {
+            _logger.Trace("FormMain.toolStripMenuItemGenerateCodeFile_Click()");
+
             try
             {
                 _activeControl.LoadGenerator<GenerateCodeFile>();
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, ex.Message);
                 MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void toolStripMenuItemGenerateDatabaseScript_Click(object sender, EventArgs e)
         {
+            _logger.Trace("FormMain.toolStripMenuItemGenerateDatabaseScript_Click()");
+
             try
             {
                 _activeControl.LoadGenerator<GenerateCodeDatabase>();
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, ex.Message);
                 MessageBoxHelper.ProcessException(ex);
             }
         }
@@ -386,6 +435,8 @@ namespace CodeGen
 
         private void toolStripMenuItemPluginsManager_Click(object sender, EventArgs e)
         {
+            _logger.Trace("FormMain.toolStripMenuItemPluginsManager_Click()");
+
             try
             {
                 FormPluginsManager form = new FormPluginsManager();
@@ -395,12 +446,15 @@ namespace CodeGen
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, ex.Message);
                 MessageBoxHelper.ProcessException(ex);
             }
         }
 
         private void toolStripMenuItemOptions_Click(object sender, EventArgs e)
         {
+            _logger.Trace("FormMain.toolStripMenuItemOptions_Click()");
+
             try
             {
                 FormOptions form = new FormOptions();
@@ -410,6 +464,7 @@ namespace CodeGen
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, ex.Message);
                 MessageBoxHelper.ProcessException(ex);
             }
         }
@@ -420,6 +475,8 @@ namespace CodeGen
 
         private void toolStripMenuItemAbout_Click(object sender, EventArgs e)
         {
+            _logger.Trace("FormMain.toolStripMenuItemAbout_Click()");
+
             new FormAbout().ShowDialog();
         }
 
@@ -427,14 +484,19 @@ namespace CodeGen
 
         private void workerCheckPlugins_DoWork(object sender, DoWorkEventArgs e)
         {
+            _logger.Trace("FormMain.workerCheckPlugins_DoWork()");
+
             PluginsManager.UpdatePluginList();
             PluginsManager.CheckExistingPlugins();
         }
 
         private void workerCheckPlugins_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if( e.Error != null)
+            _logger.Trace("FormMain.workerCheckPlugins_RunWorkerCompleted()");
+
+            if ( e.Error != null)
             {
+                _logger.Error(e.Error, e.Error.Message);
                 MessageBoxHelper.ProcessException(e.Error);
             }
 

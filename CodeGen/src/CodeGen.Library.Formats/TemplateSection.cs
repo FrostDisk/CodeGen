@@ -201,12 +201,12 @@ namespace CodeGen.Library.Formats
             Regex regexPatternSection;
             switch (SectionType)
             {
-                case TemplateType.ASPX: { regexPatternSection = new Regex(RegularExpressionsPatterns.TemplateGenericAspxSection, RegexOptions.IgnoreCase); break; }
-                case TemplateType.HTML: { regexPatternSection = new Regex(RegularExpressionsPatterns.TemplateGenericHtmlSection, RegexOptions.IgnoreCase); break; }
-                case TemplateType.CS: { regexPatternSection = new Regex(RegularExpressionsPatterns.TemplateGenericCsSection, RegexOptions.IgnoreCase); break; }
-                case TemplateType.SQL: { regexPatternSection = new Regex(RegularExpressionsPatterns.TemplateGenericSqlSection, RegexOptions.IgnoreCase); break; }
-                case TemplateType.CPP: { regexPatternSection = new Regex(RegularExpressionsPatterns.TemplateGenericCppSection, RegexOptions.IgnoreCase); break; }
-                case TemplateType.PHP: { regexPatternSection = new Regex(RegularExpressionsPatterns.TemplateGenericPhpSection, RegexOptions.IgnoreCase); break; }
+                case TemplateType.ASPX: { regexPatternSection =RegularExpressionsPatterns.RegexTemplateGenericAspxSection; break; }
+                case TemplateType.HTML: { regexPatternSection = RegularExpressionsPatterns.RegexTemplateGenericHtmlSection; break; }
+                case TemplateType.CS: { regexPatternSection = RegularExpressionsPatterns.RegexTemplateGenericCsSection; break; }
+                case TemplateType.SQL: { regexPatternSection = RegularExpressionsPatterns.RegexTemplateGenericSqlSection; break; }
+                case TemplateType.CPP: { regexPatternSection = RegularExpressionsPatterns.RegexTemplateGenericCppSection; break; }
+                case TemplateType.PHP: { regexPatternSection = RegularExpressionsPatterns.RegexTemplateGenericPhpSection; break; }
                 default: { throw new NotSupportedTemplateTypeException(SectionType); }
             }
 
@@ -338,12 +338,12 @@ namespace CodeGen.Library.Formats
             Regex regexPatternSection;
             switch (SectionType)
             {
-                case TemplateType.ASPX: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateAspxSection, sectionName), RegexOptions.IgnoreCase); break; }
-                case TemplateType.HTML: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateHtmlSection, sectionName), RegexOptions.IgnoreCase); break; }
-                case TemplateType.CS: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateCsSection, sectionName), RegexOptions.IgnoreCase); break; }
-                case TemplateType.SQL: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateSqlSection, sectionName), RegexOptions.IgnoreCase); break; }
-                case TemplateType.CPP: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateCppSection, sectionName), RegexOptions.IgnoreCase); break; }
-                case TemplateType.PHP: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplatePhpSection, sectionName), RegexOptions.IgnoreCase); break; }
+                case TemplateType.ASPX: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateAspxSection, sectionName), RegexOptions.Compiled | RegexOptions.IgnoreCase); break; }
+                case TemplateType.HTML: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateHtmlSection, sectionName), RegexOptions.Compiled | RegexOptions.IgnoreCase); break; }
+                case TemplateType.CS: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateCsSection, sectionName), RegexOptions.Compiled | RegexOptions.IgnoreCase); break; }
+                case TemplateType.SQL: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateSqlSection, sectionName), RegexOptions.Compiled | RegexOptions.IgnoreCase); break; }
+                case TemplateType.CPP: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplateCppSection, sectionName), RegexOptions.Compiled | RegexOptions.IgnoreCase); break; }
+                case TemplateType.PHP: { regexPatternSection = new Regex(string.Format(RegularExpressionsPatterns.TemplatePhpSection, sectionName), RegexOptions.Compiled | RegexOptions.IgnoreCase); break; }
                 default: { throw new NotSupportedTemplateTypeException(SectionType); }
             }
 

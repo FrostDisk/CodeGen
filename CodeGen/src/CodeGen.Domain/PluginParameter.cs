@@ -40,7 +40,7 @@ namespace CodeGen.Domain
         /// <summary>
         /// UseDefault
         /// </summary>
-        [XmlAttribute("UseDefault")]
+        [XmlIgnore]
         public bool UseDefault { get; set; }
 
         /// <summary>

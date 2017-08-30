@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
-<package >
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>FrostDisk.CodeGen.Plugin</id>
-    <version>0.9.2.0</version>
+    <version>$version$</version>
     <title>FrostDisk CodeGen Plugin API</title>
-    <authors>FrostDisk</authors>
-    <owners>FrostDisk</owners>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
     <licenseUrl>http://www.gnu.org/licenses/gpl-3.0.html</licenseUrl>
     <projectUrl>https://github.com/FrostDisk/CodeGen</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>First release.</releaseNotes>
     <copyright>Copyright FrostDisk© 2017</copyright>
-    <tags>frostdisk codegen plugin api c# sql-server</tags>
+    <tags>frostdisk codegen plugin api</tags>
   </metadata>
 </package>

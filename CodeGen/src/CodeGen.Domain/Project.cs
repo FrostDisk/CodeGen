@@ -29,10 +29,10 @@ namespace CodeGen.Domain
         public EnumDatabaseTypes Type { get; set; }
 
         /// <summary>
-        /// Plugin
+        /// AccessModel
         /// </summary>
-        [XmlElement("Plugin")]
-        public ProjectPlugin Plugin { get; set; }
+        [XmlElement("Controller")]
+        public ProjectController Controller { get; set; }
 
         /// <summary>
         /// Description
@@ -41,28 +41,16 @@ namespace CodeGen.Domain
         public string Description { get; set; }
 
         /// <summary>
-        /// EncryptedConnectionString
+        /// Plugins
         /// </summary>
-        [XmlElement("ConnectionString")]
-        public string EncryptedConnectionString { get; set; }
-
-        /// <summary>
-        /// ConnectionString
-        /// </summary>
-        [XmlIgnore]
-        public string ConnectionString { get; set; }
+        [XmlArray("Entities"), XmlArrayItem("Entity")]
+        public List<ProjectEntity> Entities { get; set; }
 
         /// <summary>
         /// Properties
         /// </summary>
         [XmlElement("Properties")]
         public ProjectProperties Properties { get; set; }
-
-        /// <summary>
-        /// Entities
-        /// </summary>
-        [XmlArray("Entities"), XmlArrayItem("Entity")]
-        public List<ProjectEntity> Entities { get; set; }
 
         /// <summary>
         /// SaveLocation
@@ -98,7 +86,7 @@ namespace CodeGen.Domain
         /// ActiveVersion
         /// </summary>
         [XmlIgnore]
-        public const int ActiveVersion = 1;
+        public const int ActiveVersion = 2;
 
         /// <summary>
         /// Project
@@ -108,11 +96,10 @@ namespace CodeGen.Domain
             Name = string.Empty;
             Version = 0;
             Type = EnumDatabaseTypes.SqlServer;
+            Controller = new ProjectController();
             Description = string.Empty;
-            EncryptedConnectionString = string.Empty;
-            ConnectionString = string.Empty;
+            Entities = new List<ProjectEntity>();
             //Properties = new ProjectProperties();
-            //Entities = new List<ProjectEntity>();
             SaveLocation = string.Empty;
             SaveDirectory = string.Empty;
             IsNew = true;

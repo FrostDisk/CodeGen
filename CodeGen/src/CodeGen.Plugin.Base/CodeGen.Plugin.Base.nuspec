@@ -6,12 +6,14 @@
     <title>FrostDisk CodeGen Plugin API</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <licenseUrl>http://www.gnu.org/licenses/gpl-3.0.html</licenseUrl>
     <projectUrl>https://github.com/FrostDisk/CodeGen</projectUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
-    <releaseNotes>First release.</releaseNotes>
-    <copyright>Copyright FrostDisk© 2017</copyright>
+    <iconUrl>https://avatars3.githubusercontent.com/u/12076693</iconUrl>
+    <description>CodeGen is a Windows Forms application to generate source code from database schemas. It contains an API to generate custom plugins for Access-Model connector or Code-Generators. This package contains the basic assembly used to generate any plugins. The plugins can be installed manually through the main application.</description>
+    <summary>CodeGen Plugin API is a assembly used to generate plugins for FrostDisk CodeGen software</summary>
+    <releaseNotes>This package includes the base assembly required to build CodeGen plugins</releaseNotes>
+    <copyright>Copyright © 2017 FrostDisk</copyright>
     <tags>frostdisk codegen plugin api</tags>
   </metadata>
 </package>

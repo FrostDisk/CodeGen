@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0CE0250E-4F68-4F54-B1AA-0F4C0C076EB8}</ProjectGuid>
+    <ProjectGuid>{D71AF059-890E-44AD-9E6C-333A08DF0213}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CodeGen.AccessModel.SqlServer</RootNamespace>
-    <AssemblyName>CodeGen.AccessModel.SqlServer</AssemblyName>
+    <RootNamespace>CodeGen.Generator.AspNetMvc</RootNamespace>
+    <AssemblyName>CodeGen.Generator.AspNetMvc</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\CodeGen.AccessModel.SqlServer.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\CodeGen.Generator.AspNetMvc.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -46,36 +46,39 @@
     <Compile Include="..\CodeGen.App\Properties\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
-    <Compile Include="BaseAssemblyDetails.cs" />
-    <Compile Include="DatabaseUtils.cs" />
-    <Compile Include="FormGenerateConnectionString.cs">
+    <Compile Include="Core\AspNetMvcConstants.cs" />
+    <Compile Include="Core\AspNetMvcGenerator.cs" />
+    <Compile Include="Core\eAspNetMvcTemplateComponent.cs" />
+    <Compile Include="Core\eEntityFrameworkComponent.cs" />
+    <Compile Include="EntityFrameworkCodeTemplate.cs" />
+    <Compile Include="FormPluginConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormGenerateConnectionString.Designer.cs">
-      <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
+    <Compile Include="FormPluginConfiguration.Designer.cs">
+      <DependentUpon>FormPluginConfiguration.cs</DependentUpon>
     </Compile>
     <Compile Include="PluginAssemblyDetails.cs" />
     <Compile Include="ProgramInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SqlServerController.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\CodeGen.Domain\CodeGen.Domain.csproj">
-      <Project>{cd81c9c1-ad1e-4bb7-be30-eaa7a584a377}</Project>
-      <Name>CodeGen.Domain</Name>
+    <ProjectReference Include="..\CodeGen.Library.Formats\CodeGen.Library.Formats.csproj">
+      <Project>{74e0c129-fc44-4298-a723-444b2d679566}</Project>
+      <Name>CodeGen.Library.Formats</Name>
     </ProjectReference>
     <ProjectReference Include="..\CodeGen.Plugin.Base\CodeGen.Plugin.Base.csproj">
       <Project>{25cd4c77-2763-4139-a22f-26a589857780}</Project>
       <Name>CodeGen.Plugin.Base</Name>
     </ProjectReference>
     <ProjectReference Include="..\CodeGen.Resources\CodeGen.Resources.csproj">
-      <Project>{D762D87A-5218-4367-A587-1B8919C21E85}</Project>
+      <Project>{d762d87a-5218-4367-a587-1b8919c21e85}</Project>
       <Name>CodeGen.Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormGenerateConnectionString.resx">
-      <DependentUpon>FormGenerateConnectionString.cs</DependentUpon>
+    <EmbeddedResource Include="FormPluginConfiguration.resx">
+      <DependentUpon>FormPluginConfiguration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,25 +1,22 @@
-﻿using CodeGen.Domain;
-using CodeGen.Generator.Default.Core;
-using CodeGen.Plugin.Base;
+﻿using CodeGen.Plugin.Base;
 using CodeGen.Properties;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace CodeGen.Generator.Default
+namespace CodeGen.Generator.AspNetMvc
 {
     /// <summary>
-    /// SqlServerQueryBaseTemplate
+    /// EntityFrameworkCodeTemplate
     /// </summary>
-    /// <seealso cref="IQueryGeneratorTemplate" />
-    public sealed class SqlServerQueryBaseTemplate : IQueryGeneratorTemplate
+    public class EntityFrameworkCodeTemplate : ICodeGeneratorTemplate
     {
         #region properties
 
-         /// <summary>
+        /// <summary>
         /// File Extension
         /// </summary>
-        private const string _defaultFileExtension = ".sql";
+        private const string _defaultFileExtension = ".cs";
 
         /// <summary>
         /// Author Website Url
@@ -42,7 +39,7 @@ namespace CodeGen.Generator.Default
         /// </summary>
         public string Description
         {
-            get { return "Sql Server Save/GetById/ListaAll Query Template"; }
+            get { return "Entity Framework Domain/DataAccess Code Template"; }
         }
 
         /// <summary>
@@ -50,7 +47,7 @@ namespace CodeGen.Generator.Default
         /// </summary>
         public List<string> CompatibleControllers
         {
-            get { return new List<string> { EnumDatabaseTypes.SqlServer.ToString("G") }; }
+            get { return new List<string> { "Any" }; }
         }
 
         /// <summary>
@@ -92,7 +89,7 @@ namespace CodeGen.Generator.Default
         /// </summary>
         public string Title
         {
-            get { return "Sql Server Base Query Template"; }
+            get { return "Entity Framework Code Template"; }
         }
 
         /// <summary>
@@ -108,9 +105,9 @@ namespace CodeGen.Generator.Default
         #region initialization
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SqlServerQueryBaseTemplate"/> class.
+        /// Initializes a new instance of the <see cref="EntityFrameworkCodeTemplate"/> class.
         /// </summary>
-        public SqlServerQueryBaseTemplate()
+        public EntityFrameworkCodeTemplate()
         {
             Settings = FormPluginConfiguration.Instance.GetSettings();
         }
@@ -129,14 +126,11 @@ namespace CodeGen.Generator.Default
         {
             if (FormPluginConfiguration.Instance.ValidateForm())
             {
-                BaseGenerator generator = new BaseGenerator(Settings, entity);
+                
 
                 switch (component.Id)
                 {
-                    case (int)eBaseTemplateComponent.SAVE: { return generator.GenerateScriptSave(); }
-                    case (int)eBaseTemplateComponent.GET_BY_ID: { return generator.GenerateScriptGetById(); }
-                    case (int)eBaseTemplateComponent.LIST_ALL: { return generator.GenerateScriptListAll(); }
-                    case (int)eBaseTemplateComponent.DELETE: { return generator.GenerateScriptDelete(); }
+
                 }
             }
 
@@ -153,14 +147,11 @@ namespace CodeGen.Generator.Default
         {
             if (FormPluginConfiguration.Instance.ValidateForm(false))
             {
-                BaseGenerator generator = new BaseGenerator(Settings, entity);
+                
 
                 switch (component.Id)
                 {
-                    case (int)eBaseTemplateComponent.SAVE: { return generator.SaveStoredProcedureName + _defaultFileExtension; }
-                    case (int)eBaseTemplateComponent.GET_BY_ID: { return generator.GetByIdStoredProcedureName + _defaultFileExtension; }
-                    case (int)eBaseTemplateComponent.LIST_ALL: { return generator.ListAllStoredProcedureName + _defaultFileExtension; }
-                    case (int)eBaseTemplateComponent.DELETE: { return generator.DeleteStoredProcedureName + _defaultFileExtension; }
+
                 }
             }
 
@@ -175,10 +166,7 @@ namespace CodeGen.Generator.Default
         {
             return new List<GeneratorComponent>
             {
-                new GeneratorComponent((int) eBaseTemplateComponent.SAVE, "Save Stored Procedure", _defaultFileExtension),
-                new GeneratorComponent((int) eBaseTemplateComponent.GET_BY_ID, "GetByID Stored Procedure", _defaultFileExtension),
-                new GeneratorComponent((int) eBaseTemplateComponent.LIST_ALL, "ListAll Stored Procedure", _defaultFileExtension),
-                new GeneratorComponent((int) eBaseTemplateComponent.DELETE, "Delete Stored Procedure", _defaultFileExtension),
+                
             };
         }
 

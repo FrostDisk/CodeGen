@@ -33,6 +33,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Resources", "src\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Generator.Default", "src\CodeGen.Generator.Default\CodeGen.Generator.Default.csproj", "{E204907C-5359-4DA7-8B17-3DAC26EAAF71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Generator.AspNetMvcCore", "src\CodeGen.Generator.AspNetMvcCore\CodeGen.Generator.AspNetMvcCore.csproj", "{B563DA7F-A708-4D25-8F08-0AC879DECE77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeGen.Generator.AspNetMvc", "src\CodeGen.Generator.AspNetMvc\CodeGen.Generator.AspNetMvc.csproj", "{D71AF059-890E-44AD-9E6C-333A08DF0213}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +83,14 @@ Global
 		{E204907C-5359-4DA7-8B17-3DAC26EAAF71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E204907C-5359-4DA7-8B17-3DAC26EAAF71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E204907C-5359-4DA7-8B17-3DAC26EAAF71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B563DA7F-A708-4D25-8F08-0AC879DECE77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B563DA7F-A708-4D25-8F08-0AC879DECE77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B563DA7F-A708-4D25-8F08-0AC879DECE77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B563DA7F-A708-4D25-8F08-0AC879DECE77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D71AF059-890E-44AD-9E6C-333A08DF0213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D71AF059-890E-44AD-9E6C-333A08DF0213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D71AF059-890E-44AD-9E6C-333A08DF0213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D71AF059-890E-44AD-9E6C-333A08DF0213}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +104,8 @@ Global
 		{E03B6B18-3308-4703-A860-E764C52BF0B4} = {A1DE76B3-7ECC-4D83-A1D6-EEB8CB3244BB}
 		{0CE0250E-4F68-4F54-B1AA-0F4C0C076EB8} = {CF394B0A-103D-4046-B229-BBCA2B0C1486}
 		{E204907C-5359-4DA7-8B17-3DAC26EAAF71} = {CF394B0A-103D-4046-B229-BBCA2B0C1486}
+		{B563DA7F-A708-4D25-8F08-0AC879DECE77} = {CF394B0A-103D-4046-B229-BBCA2B0C1486}
+		{D71AF059-890E-44AD-9E6C-333A08DF0213} = {CF394B0A-103D-4046-B229-BBCA2B0C1486}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2F6CAC04-A0FE-4123-B7F3-6C4956DBF400}

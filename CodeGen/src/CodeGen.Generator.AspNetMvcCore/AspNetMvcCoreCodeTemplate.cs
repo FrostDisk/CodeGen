@@ -1,11 +1,11 @@
-﻿using CodeGen.Generator.Default.Core;
+﻿using CodeGen.Generator.AspNetMvcCore.Core;
 using CodeGen.Plugin.Base;
 using CodeGen.Properties;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace CodeGen.Generator.Default
+namespace CodeGen.Generator.AspNetMvcCore
 {
     /// <summary>
     /// AspNetMvcCoreCodeTemplate
@@ -113,7 +113,7 @@ namespace CodeGen.Generator.Default
         /// </summary>
         public AspNetMvcCoreCodeTemplate()
         {
-            Settings = FormAspNetMvcCoreTemplateConfiguration.Instance.GetSettings();
+            Settings = FormPluginConfiguration.Instance.GetSettings();
         }
 
         #endregion
@@ -126,7 +126,7 @@ namespace CodeGen.Generator.Default
         /// <returns></returns>
         public string Generate(DatabaseEntity entity, GeneratorComponent component)
         {
-            if (FormAspNetMvcCoreTemplateConfiguration.Instance.ValidateForm())
+            if (FormPluginConfiguration.Instance.ValidateForm())
             {
                 AspNetMvcCoreGenerator generator = new AspNetMvcCoreGenerator(Settings, entity);
 
@@ -153,7 +153,7 @@ namespace CodeGen.Generator.Default
         /// <returns></returns>
         public string GenerateFileName(DatabaseEntity entity, GeneratorComponent component)
         {
-            if (FormAspNetMvcCoreTemplateConfiguration.Instance.ValidateForm(false))
+            if (FormPluginConfiguration.Instance.ValidateForm(false))
             {
                 AspNetMvcCoreGenerator generator = new AspNetMvcCoreGenerator(Settings, entity);
 
@@ -197,7 +197,7 @@ namespace CodeGen.Generator.Default
         /// <param name="projectName"></param>
         public void Load(string projectName)
         {
-            FormAspNetMvcCoreTemplateConfiguration.Instance.ReplaceMyProject(projectName);
+            FormPluginConfiguration.Instance.ReplaceMyProject(projectName);
             IsLoaded = true;
         }
 
@@ -207,11 +207,11 @@ namespace CodeGen.Generator.Default
         /// <returns></returns>
         public bool ShowOptionsForm()
         {
-            var result = FormAspNetMvcCoreTemplateConfiguration.Instance.ShowDialog();
+            var result = FormPluginConfiguration.Instance.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                Settings = FormAspNetMvcCoreTemplateConfiguration.Instance.GetSettings();
+                Settings = FormPluginConfiguration.Instance.GetSettings();
                 return true;
             }
             return false;
@@ -225,10 +225,10 @@ namespace CodeGen.Generator.Default
         {
             foreach (PluginSettingValue settingValue in settings)
             {
-                FormAspNetMvcCoreTemplateConfiguration.Instance.UpdateSetting(settingValue.Key, settingValue.Value);
+                FormPluginConfiguration.Instance.UpdateSetting(settingValue.Key, settingValue.Value);
             }
 
-            Settings = FormAspNetMvcCoreTemplateConfiguration.Instance.GetSettings();
+            Settings = FormPluginConfiguration.Instance.GetSettings();
         }
     }
 }

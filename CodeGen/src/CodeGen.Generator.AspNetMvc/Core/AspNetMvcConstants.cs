@@ -1,9 +1,9 @@
-﻿namespace CodeGen.Generator.Default.Core
+﻿namespace CodeGen.Generator.AspNetMvc.Core
 {
     /// <summary>
     /// AspNetMvcCoreConstants
     /// </summary>
-    public static class AspNetMvcCoreConstants
+    public static class AspNetMvcConstants
     {
         /// <summary>AUTHOR_NAME</summary>
         public const string AUTHOR_NAME = "AUTHOR_NAME";

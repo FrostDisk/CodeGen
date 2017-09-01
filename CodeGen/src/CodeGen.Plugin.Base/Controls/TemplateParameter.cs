@@ -1,9 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
-using CodeGen.Library.Formats;
 
-namespace CodeGen.Generator.Default.Controls
+namespace CodeGen.Plugin.Base.Controls
 {
     /// <summary>
     /// TemplateParameter
@@ -118,12 +117,12 @@ namespace CodeGen.Generator.Default.Controls
         /// <param name="value">The value.</param>
         public void UpdateValue(string value)
         {
-            if (!IsUpdated && !StringHelper.AreEquals(value, _savedValue))
+            if (!IsUpdated && !value.Equals(_savedValue))
             {
                 _savedValue = ParameterValue;
                 IsUpdated = true;
             }
-            IsDefaultValue = StringHelper.AreEquals(value, DefaultValue);
+            IsDefaultValue = value.Equals(DefaultValue);
             txtValue.Text = value;
         }
 

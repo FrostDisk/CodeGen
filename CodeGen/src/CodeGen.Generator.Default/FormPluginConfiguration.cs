@@ -1,28 +1,29 @@
-﻿using CodeGen.Generator.Default.Controls;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using CodeGen.Library.Formats;
 using CodeGen.Plugin.Base;
 using CodeGen.Utils;
-using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
+using CodeGen.Plugin.Base.Controls;
 
 namespace CodeGen.Generator.Default
 {
     /// <summary>
-    /// FormAspNetMvcCoreTemplateConfiguration
+    /// Base Template Configuration Form
     /// </summary>
-    public partial class FormAspNetMvcCoreTemplateConfiguration : Form
+    /// <seealso cref="System.Windows.Forms.Form" />
+    public partial class FormPluginConfiguration : Form
     {
         #region properties
 
-        private static FormAspNetMvcCoreTemplateConfiguration _instance;
+        private static FormPluginConfiguration _instance;
 
         /// <summary>
         /// Singleton Instance of this Class
         /// </summary>
-        public static FormAspNetMvcCoreTemplateConfiguration Instance
+        public static FormPluginConfiguration Instance
         {
-            get { return _instance ?? (_instance = new FormAspNetMvcCoreTemplateConfiguration()); }
+            get { return _instance ?? (_instance = new FormPluginConfiguration()); }
         }
 
         private Dictionary<string, ITemplateParameter> _parameters;
@@ -32,9 +33,9 @@ namespace CodeGen.Generator.Default
         #region initialization
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FormAspNetMvcCoreTemplateConfiguration"/> class.
+        /// Initializes a new instance of the <see cref="FormPluginConfiguration"/> class.
         /// </summary>
-        public FormAspNetMvcCoreTemplateConfiguration()
+        public FormPluginConfiguration()
         {
             InitializeComponent();
             PopulateDictionary();
@@ -77,7 +78,7 @@ namespace CodeGen.Generator.Default
                 value.Key = entry.Value.ParameterCode;
                 value.Value = entry.Value.ParameterValue;
                 value.UseDefault = entry.Value.IsDefaultValue;
-                value.Type = typeof(string);
+                value.Type = typeof (string);
                 settings.Add(value);
             }
 

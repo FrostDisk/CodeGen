@@ -1,6 +1,6 @@
-﻿namespace CodeGen.Generator.Default.Core
+﻿namespace CodeGen.Generator.AspNetMvc.Core
 {
-    internal enum eAspNetMvcCoreTemplateComponent
+    internal enum eAspNetMvcTemplateComponent
     {
         MODEL = 1,
         CONTROLLER = 2,        

@@ -1,4 +1,4 @@
-﻿namespace CodeGen.Generator.Default.Controls
+﻿namespace CodeGen.Plugin.Base.Controls
 {
     partial class TemplateParameter
     {

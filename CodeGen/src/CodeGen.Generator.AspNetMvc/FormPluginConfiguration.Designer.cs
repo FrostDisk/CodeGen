@@ -1,6 +1,6 @@
-﻿namespace CodeGen.Generator.Default
+﻿namespace CodeGen.Generator.AspNetMvc
 {
-    partial class FormAspNetMvcCoreTemplateConfiguration
+    partial class FormPluginConfiguration
     {
         /// <summary>
         /// Required designer variable.
@@ -31,32 +31,32 @@
             this.tabConfiguration = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
             this.tableLayoutGeneral = new System.Windows.Forms.TableLayoutPanel();
-            this.paramAuthorName = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramModelsNamespace = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramControllerNamespace = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramDatabaseContextNamespace = new CodeGen.Generator.Default.Controls.TemplateParameter();
+            this.paramAuthorName = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramModelsNamespace = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramControllerNamespace = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramDatabaseContextNamespace = new CodeGen.Plugin.Base.Controls.TemplateParameter();
             this.tabClasses = new System.Windows.Forms.TabPage();
             this.tableLayoutClasses = new System.Windows.Forms.TableLayoutPanel();
-            this.paramModelPrefix = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramModelSuffix = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramControllerPrefix = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramControllerSuffix = new CodeGen.Generator.Default.Controls.TemplateParameter();
+            this.paramModelPrefix = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramModelSuffix = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramControllerPrefix = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramControllerSuffix = new CodeGen.Plugin.Base.Controls.TemplateParameter();
             this.tabController = new System.Windows.Forms.TabPage();
             this.tableLayoutController = new System.Windows.Forms.TableLayoutPanel();
-            this.paramDetailsMethodName = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramCreateMethodName = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramEditMethodName = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramDeleteMethodName = new CodeGen.Generator.Default.Controls.TemplateParameter();
+            this.paramDetailsMethodName = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramCreateMethodName = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramEditMethodName = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramDeleteMethodName = new CodeGen.Plugin.Base.Controls.TemplateParameter();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnAccept = new System.Windows.Forms.Button();
             this.tabViews = new System.Windows.Forms.TabPage();
             this.tableLayoutViews = new System.Windows.Forms.TableLayoutPanel();
-            this.paramDetailsViewName = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramCreateViewName = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramEditViewName = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramDeleteViewName = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramIndexViewName = new CodeGen.Generator.Default.Controls.TemplateParameter();
-            this.paramDatabaseContextClassName = new CodeGen.Generator.Default.Controls.TemplateParameter();
+            this.paramDetailsViewName = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramCreateViewName = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramEditViewName = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramDeleteViewName = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramIndexViewName = new CodeGen.Plugin.Base.Controls.TemplateParameter();
+            this.paramDatabaseContextClassName = new CodeGen.Plugin.Base.Controls.TemplateParameter();
             this.tabConfiguration.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.tableLayoutGeneral.SuspendLayout();
@@ -578,28 +578,28 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.TabPage tabController;
-        private Controls.TemplateParameter paramAuthorName;
-        private Controls.TemplateParameter paramModelsNamespace;
-        private Controls.TemplateParameter paramControllerNamespace;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramAuthorName;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramModelsNamespace;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramControllerNamespace;
         private System.Windows.Forms.TableLayoutPanel tableLayoutClasses;
-        private Controls.TemplateParameter paramModelPrefix;
-        private Controls.TemplateParameter paramControllerSuffix;
-        private Controls.TemplateParameter paramControllerPrefix;
-        private Controls.TemplateParameter paramModelSuffix;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramModelPrefix;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramControllerSuffix;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramControllerPrefix;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramModelSuffix;
         private System.Windows.Forms.TableLayoutPanel tableLayoutController;
-        private Controls.TemplateParameter paramDetailsMethodName;
-        private Controls.TemplateParameter paramCreateMethodName;
-        private Controls.TemplateParameter paramEditMethodName;
-        private Controls.TemplateParameter paramDeleteMethodName;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramDetailsMethodName;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramCreateMethodName;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramEditMethodName;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramDeleteMethodName;
         private System.Windows.Forms.TableLayoutPanel tableLayoutGeneral;
-        private Controls.TemplateParameter paramDatabaseContextNamespace;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramDatabaseContextNamespace;
         private System.Windows.Forms.TabPage tabViews;
         private System.Windows.Forms.TableLayoutPanel tableLayoutViews;
-        private Controls.TemplateParameter paramDetailsViewName;
-        private Controls.TemplateParameter paramCreateViewName;
-        private Controls.TemplateParameter paramEditViewName;
-        private Controls.TemplateParameter paramDeleteViewName;
-        private Controls.TemplateParameter paramIndexViewName;
-        private Controls.TemplateParameter paramDatabaseContextClassName;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramDetailsViewName;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramCreateViewName;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramEditViewName;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramDeleteViewName;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramIndexViewName;
+        private CodeGen.Plugin.Base.Controls.TemplateParameter paramDatabaseContextClassName;
     }
 }

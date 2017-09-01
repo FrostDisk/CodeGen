@@ -5,9 +5,9 @@ using System;
 using System.Data;
 using System.Linq;
 
-namespace CodeGen.Generator.Default.Core
+namespace CodeGen.Generator.AspNetMvc.Core
 {
-    internal class AspNetMvcCoreGenerator
+    internal class AspNetMvcGenerator
     {
         /// <summary>
         /// Settings
@@ -39,14 +39,14 @@ namespace CodeGen.Generator.Default.Core
         /// </summary>
         public string CleanEntityName { get; private set; }
 
-        public AspNetMvcCoreGenerator(PluginSettings settings, DatabaseEntity entity)
+        public AspNetMvcGenerator(PluginSettings settings, DatabaseEntity entity)
         {
             Settings = settings;
             Entity = entity;
 
             CleanEntityName = StringHelper.ConvertToSafeCodeName(StringHelper.RemovePrefix(entity.Name)).Replace("_", string.Empty);
-            ModelClassName = string.Format("{0}{1}{2}", Settings[AspNetMvcCoreConstants.MODEL_PREFIX].Value, CleanEntityName, Settings[AspNetMvcCoreConstants.MODEL_SUFFIX].Value);
-            ControllerClassName = string.Format("{0}{1}{2}", Settings[AspNetMvcCoreConstants.CONTROLLER_PREFIX].Value, CleanEntityName, Settings[AspNetMvcCoreConstants.CONTROLLER_SUFFIX].Value);
+            ModelClassName = string.Format("{0}{1}{2}", Settings[AspNetMvcConstants.MODEL_PREFIX].Value, CleanEntityName, Settings[AspNetMvcConstants.MODEL_SUFFIX].Value);
+            ControllerClassName = string.Format("{0}{1}{2}", Settings[AspNetMvcConstants.CONTROLLER_PREFIX].Value, CleanEntityName, Settings[AspNetMvcConstants.CONTROLLER_SUFFIX].Value);
             ViewBaseName = StringHelper.Pluralize(CleanEntityName);
 
 
@@ -79,10 +79,10 @@ namespace CodeGen.Generator.Default.Core
 
             template.ReplaceSection("PROPERTIES", propertiesSectionList);
             template.ReplaceSection("PARAMETERS", parametersSectionList);
-            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcCoreConstants.NAMESPACE_MODELS].Value, false);
+            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcConstants.NAMESPACE_MODELS].Value, false);
             template.ReplaceTag("CLASS_NAME_MODEL", ModelClassName, false);
 
-            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcCoreConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcConstants.AUTHOR_NAME].Value, false);
             template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
 
             return template.Content;
@@ -105,9 +105,9 @@ namespace CodeGen.Generator.Default.Core
             template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
             template.ReplaceTag("PRIMARYKEY_LOCAL_VARIABLE", StringHelper.ConverToInstanceName(StringHelper.ConvertToSafeCodeName(primaryEntityField.ColumnName)), false);
 
-            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcCoreConstants.NAMESPACE_MODELS].Value, false);
-            template.ReplaceTag("NAMESPACE_CONTROLLER", Settings[AspNetMvcCoreConstants.NAMESPACE_CONTROLLER].Value, false);
-            template.ReplaceTag("NAMESPACE_DBCONTEXT", Settings[AspNetMvcCoreConstants.NAMESPACE_DBCONTEXT].Value, false);
+            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcConstants.NAMESPACE_MODELS].Value, false);
+            template.ReplaceTag("NAMESPACE_CONTROLLER", Settings[AspNetMvcConstants.NAMESPACE_CONTROLLER].Value, false);
+            template.ReplaceTag("NAMESPACE_DBCONTEXT", Settings[AspNetMvcConstants.NAMESPACE_DBCONTEXT].Value, false);
 
             template.ReplaceTag("INSTANCE_NAME_MODEL", instanceEntityName, false);
             template.ReplaceTag("CLASS_NAME_MODEL", ModelClassName, false);
@@ -115,14 +115,14 @@ namespace CodeGen.Generator.Default.Core
             template.ReplaceTag("VIEW_NAME", ViewBaseName, false);
             template.ReplaceTag("PROPERTIES_MODEL", string.Join(",", Entity.Fields.Select(t => t.ColumnName)), false);
 
-            template.ReplaceTag("DETAILS_METHODNAME", Settings[AspNetMvcCoreConstants.DETAILS_METHODNAME].Value, false);
-            template.ReplaceTag("CREATE_METHODNAME", Settings[AspNetMvcCoreConstants.CREATE_METHODNAME].Value, false);
-            template.ReplaceTag("EDIT_METHODNAME", Settings[AspNetMvcCoreConstants.EDIT_METHODNAME].Value, false);
-            template.ReplaceTag("DELETE_METHODNAME", Settings[AspNetMvcCoreConstants.DELETE_METHODNAME].Value, false);
+            template.ReplaceTag("DETAILS_METHODNAME", Settings[AspNetMvcConstants.DETAILS_METHODNAME].Value, false);
+            template.ReplaceTag("CREATE_METHODNAME", Settings[AspNetMvcConstants.CREATE_METHODNAME].Value, false);
+            template.ReplaceTag("EDIT_METHODNAME", Settings[AspNetMvcConstants.EDIT_METHODNAME].Value, false);
+            template.ReplaceTag("DELETE_METHODNAME", Settings[AspNetMvcConstants.DELETE_METHODNAME].Value, false);
 
-            template.ReplaceTag("DBCONTEXT_NAME", Settings[AspNetMvcCoreConstants.DBCONTEXT_NAME].Value, false);
+            template.ReplaceTag("DBCONTEXT_NAME", Settings[AspNetMvcConstants.DBCONTEXT_NAME].Value, false);
 
-            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcCoreConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcConstants.AUTHOR_NAME].Value, false);
             template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
 
             return template.Content;
@@ -153,13 +153,13 @@ namespace CodeGen.Generator.Default.Core
 
             template.ReplaceSection("FORM", propertiesFormList);
 
-            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcCoreConstants.NAMESPACE_MODELS].Value, false);
+            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcConstants.NAMESPACE_MODELS].Value, false);
             template.ReplaceTag("CLASS_NAME_MODEL", ModelClassName, false);
 
-            template.ReplaceTag("CREATE_VIEWNAME", Settings[AspNetMvcCoreConstants.CREATE_VIEWNAME].Value, false);
-            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcCoreConstants.INDEX_VIEWNAME].Value, false);
+            template.ReplaceTag("CREATE_VIEWNAME", Settings[AspNetMvcConstants.CREATE_VIEWNAME].Value, false);
+            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcConstants.INDEX_VIEWNAME].Value, false);
 
-            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcCoreConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcConstants.AUTHOR_NAME].Value, false);
             template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
 
             return template.Content;
@@ -190,13 +190,13 @@ namespace CodeGen.Generator.Default.Core
 
             template.ReplaceSection("FORM", propertiesFormList);
 
-            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcCoreConstants.NAMESPACE_MODELS].Value, false);
+            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcConstants.NAMESPACE_MODELS].Value, false);
             template.ReplaceTag("CLASS_NAME_MODEL", ModelClassName, false);
 
-            template.ReplaceTag("DELETE_VIEWNAME", Settings[AspNetMvcCoreConstants.DELETE_VIEWNAME].Value, false);
-            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcCoreConstants.INDEX_VIEWNAME].Value, false);
+            template.ReplaceTag("DELETE_VIEWNAME", Settings[AspNetMvcConstants.DELETE_VIEWNAME].Value, false);
+            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcConstants.INDEX_VIEWNAME].Value, false);
 
-            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcCoreConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcConstants.AUTHOR_NAME].Value, false);
             template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
 
             return template.Content;
@@ -228,14 +228,14 @@ namespace CodeGen.Generator.Default.Core
             template.ReplaceSection("FORM", propertiesFormList);
 
             template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
-            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcCoreConstants.NAMESPACE_MODELS].Value, false);
+            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcConstants.NAMESPACE_MODELS].Value, false);
             template.ReplaceTag("CLASS_NAME_MODEL", ModelClassName, false);
 
-            template.ReplaceTag("DETAILS_VIEWNAME", Settings[AspNetMvcCoreConstants.DETAILS_VIEWNAME].Value, false);
-            template.ReplaceTag("EDIT_VIEWNAME", Settings[AspNetMvcCoreConstants.EDIT_VIEWNAME].Value, false);
-            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcCoreConstants.INDEX_VIEWNAME].Value, false);
+            template.ReplaceTag("DETAILS_VIEWNAME", Settings[AspNetMvcConstants.DETAILS_VIEWNAME].Value, false);
+            template.ReplaceTag("EDIT_VIEWNAME", Settings[AspNetMvcConstants.EDIT_VIEWNAME].Value, false);
+            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcConstants.INDEX_VIEWNAME].Value, false);
 
-            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcCoreConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcConstants.AUTHOR_NAME].Value, false);
             template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
 
             return template.Content;
@@ -267,13 +267,13 @@ namespace CodeGen.Generator.Default.Core
             template.ReplaceSection("FORM", propertiesFormList);
 
             template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
-            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcCoreConstants.NAMESPACE_MODELS].Value, false);
+            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcConstants.NAMESPACE_MODELS].Value, false);
             template.ReplaceTag("CLASS_NAME_MODEL", ModelClassName, false);
 
-            template.ReplaceTag("EDIT_VIEWNAME", Settings[AspNetMvcCoreConstants.EDIT_VIEWNAME].Value, false);
-            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcCoreConstants.INDEX_VIEWNAME].Value, false);
+            template.ReplaceTag("EDIT_VIEWNAME", Settings[AspNetMvcConstants.EDIT_VIEWNAME].Value, false);
+            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcConstants.INDEX_VIEWNAME].Value, false);
 
-            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcCoreConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcConstants.AUTHOR_NAME].Value, false);
             template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
 
             return template.Content;
@@ -312,16 +312,16 @@ namespace CodeGen.Generator.Default.Core
             template.ReplaceSection("ROW", propertiesRowList);
 
             template.ReplaceTag("PRIMARYKEY_PARAMETERNAME", primaryEntityField.ColumnName, false);
-            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcCoreConstants.NAMESPACE_MODELS].Value, false);
+            template.ReplaceTag("NAMESPACE_MODELS", Settings[AspNetMvcConstants.NAMESPACE_MODELS].Value, false);
             template.ReplaceTag("CLASS_NAME_MODEL", ModelClassName, false);
 
-            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcCoreConstants.INDEX_VIEWNAME].Value, false);
-            template.ReplaceTag("CREATE_VIEWNAME", Settings[AspNetMvcCoreConstants.CREATE_VIEWNAME].Value, false);
-            template.ReplaceTag("EDIT_VIEWNAME", Settings[AspNetMvcCoreConstants.EDIT_VIEWNAME].Value, false);
-            template.ReplaceTag("DETAILS_VIEWNAME", Settings[AspNetMvcCoreConstants.DETAILS_VIEWNAME].Value, false);
-            template.ReplaceTag("DELETE_VIEWNAME", Settings[AspNetMvcCoreConstants.DELETE_VIEWNAME].Value, false);
+            template.ReplaceTag("INDEX_VIEWNAME", Settings[AspNetMvcConstants.INDEX_VIEWNAME].Value, false);
+            template.ReplaceTag("CREATE_VIEWNAME", Settings[AspNetMvcConstants.CREATE_VIEWNAME].Value, false);
+            template.ReplaceTag("EDIT_VIEWNAME", Settings[AspNetMvcConstants.EDIT_VIEWNAME].Value, false);
+            template.ReplaceTag("DETAILS_VIEWNAME", Settings[AspNetMvcConstants.DETAILS_VIEWNAME].Value, false);
+            template.ReplaceTag("DELETE_VIEWNAME", Settings[AspNetMvcConstants.DELETE_VIEWNAME].Value, false);
 
-            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcCoreConstants.AUTHOR_NAME].Value, false);
+            template.ReplaceTag("AUTHOR_NAME", Settings[AspNetMvcConstants.AUTHOR_NAME].Value, false);
             template.ReplaceTag("CREATION_DATE", GetSimpleDate(DateTime.Now), false);
 
             return template.Content;

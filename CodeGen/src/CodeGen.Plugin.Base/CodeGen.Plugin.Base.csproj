@@ -35,6 +35,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +45,13 @@
   <ItemGroup>
     <Compile Include="..\CodeGen.App\Properties\AssemblyInfoCommon.cs">
       <Link>Properties\AssemblyInfoCommon.cs</Link>
+    </Compile>
+    <Compile Include="Controls\ITemplateParameter.cs" />
+    <Compile Include="Controls\TemplateParameter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TemplateParameter.Designer.cs">
+      <DependentUpon>TemplateParameter.cs</DependentUpon>
     </Compile>
     <Compile Include="DatabaseEntity.cs" />
     <Compile Include="DatabaseEntityField.cs" />
@@ -62,6 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="CodeGen.Plugin.Base.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\TemplateParameter.resx">
+      <DependentUpon>TemplateParameter.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

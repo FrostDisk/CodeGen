@@ -111,7 +111,7 @@ namespace CodeGen.Generator.Default
         /// </summary>
         public CSharpCodeBaseTemplate()
         {
-            Settings = FormBaseTemplateConfiguration.Instance.GetSettings();
+            Settings = FormPluginConfiguration.Instance.GetSettings();
         }
 
         #endregion
@@ -126,7 +126,7 @@ namespace CodeGen.Generator.Default
         /// <returns></returns>
         public string Generate(DatabaseEntity entity, GeneratorComponent component)
         {
-            if (FormBaseTemplateConfiguration.Instance.ValidateForm())
+            if (FormPluginConfiguration.Instance.ValidateForm())
             {
                 BaseGenerator generator = new BaseGenerator(Settings, entity);
 
@@ -149,7 +149,7 @@ namespace CodeGen.Generator.Default
         /// <returns></returns>
         public string GenerateFileName(DatabaseEntity entity, GeneratorComponent component)
         {
-            if (FormBaseTemplateConfiguration.Instance.ValidateForm(false))
+            if (FormPluginConfiguration.Instance.ValidateForm(false))
             {
                 BaseGenerator generator = new BaseGenerator(Settings, entity);
 
@@ -184,7 +184,7 @@ namespace CodeGen.Generator.Default
         /// <param name="projectName">Name of the project.</param>
         public void Load(string projectName)
         {
-            FormBaseTemplateConfiguration.Instance.ReplaceMyProject(projectName);
+            FormPluginConfiguration.Instance.ReplaceMyProject(projectName);
             IsLoaded = true;
         }
 
@@ -194,11 +194,11 @@ namespace CodeGen.Generator.Default
         /// <returns></returns>
         public bool ShowOptionsForm()
         {
-            var result = FormBaseTemplateConfiguration.Instance.ShowDialog();
+            var result = FormPluginConfiguration.Instance.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                Settings = FormBaseTemplateConfiguration.Instance.GetSettings();
+                Settings = FormPluginConfiguration.Instance.GetSettings();
                 return true;
             }
             return false;
@@ -212,10 +212,10 @@ namespace CodeGen.Generator.Default
         {
             foreach (PluginSettingValue settingValue in settings)
             {
-                FormBaseTemplateConfiguration.Instance.UpdateSetting(settingValue.Key, settingValue.Value);
+                FormPluginConfiguration.Instance.UpdateSetting(settingValue.Key, settingValue.Value);
             }
 
-            Settings = FormBaseTemplateConfiguration.Instance.GetSettings();
+            Settings = FormPluginConfiguration.Instance.GetSettings();
         }
 
         #endregion

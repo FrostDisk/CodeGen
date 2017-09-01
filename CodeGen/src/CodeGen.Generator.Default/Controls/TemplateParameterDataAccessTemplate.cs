@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using CodeGen.Library.Formats;
+using CodeGen.Plugin.Base.Controls;
 
 namespace CodeGen.Generator.Default.Controls
 {

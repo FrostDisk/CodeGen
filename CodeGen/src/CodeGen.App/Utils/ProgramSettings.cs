@@ -18,7 +18,11 @@ namespace CodeGen.Utils
 
         internal static string SettingsFolder
         {
+            #if DEBUG
+            get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), ProgramInfo.AssemblyCompany, ProgramInfo.AssemblyProduct + "_Debug"); }
+            #else
             get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), ProgramInfo.AssemblyCompany, ProgramInfo.AssemblyProduct); }
+            #endif
         }
 
         private static GlobalSettings _loadedGlobalSettings;

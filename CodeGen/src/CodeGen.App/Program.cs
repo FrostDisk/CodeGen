@@ -22,15 +22,14 @@ namespace CodeGen
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-#if DEBUG
+            #if DEBUG
             InstallBasePlugins();
-#else
-
+            #else
             if (ProgramSettings.CheckIfFirstRun())
             {
                 InstallBasePlugins();
             }
-#endif
+            #endif
 
             ProgramSettings.UpdateLoggerTargets();
 
